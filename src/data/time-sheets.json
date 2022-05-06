@@ -1,0 +1,82 @@
+[
+    {
+        "id": 1,
+        "firstName": "Sherry",
+        "lastName": "Fawcett",
+        "email": "sfawcett0@merriamwebster.com",
+        "dni": "029194251",
+        "dateOfBirth": "6/18/1965"
+    },
+    {
+        "id": 2,
+        "firstName": "Randi",
+        "lastName": "Stoppard",
+        "email": "rstoppard1@photobucket.com",
+        "dni": "656800020",
+        "dateOfBirth": "5/27/1949"
+    },
+    {
+        "id": 3,
+        "firstName": "Del",
+        "lastName": "Jancar",
+        "email": "djancar2@cbsnews.com",
+        "dni": "503659753",
+        "dateOfBirth": "5/11/1986"
+    },
+    {
+        "id": 4,
+        "firstName": "Bellina",
+        "lastName": "Bento",
+        "email": "bbento3@vimeo.com",
+        "dni": "352891906",
+        "dateOfBirth": "9/5/1985"
+    },
+    {
+        "id": 5,
+        "firstName": "Cherrita",
+        "lastName": "Lepper",
+        "email": "clepper4@pbs.org",
+        "dni": "332363409",
+        "dateOfBirth": "9/12/1985"
+    },
+    {
+        "id": 6,
+        "firstName": "Tad",
+        "lastName": "Tomasian",
+        "email": "ttomasian5@ucla.edu",
+        "dni": "005854009",
+        "dateOfBirth": "10/28/1996"
+    },
+    {
+        "id": 7,
+        "firstName": "Valentine",
+        "lastName": "Oganian",
+        "email": "voganian6@spiegel.de",
+        "dni": "403792187",
+        "dateOfBirth": "10/11/2003"
+    },
+    {
+        "id": 8,
+        "firstName": "Kaylee",
+        "lastName": "Anglish",
+        "email": "kanglish7@alibaba.com",
+        "dni": "075697630",
+        "dateOfBirth": "2/12/1958"
+    },
+    {
+        "id": 9,
+        "firstName": "Rhonda",
+        "lastName": "Mayow",
+        "email": "rmayow8@dailymail.co.uk",
+        "dni": "966625645",
+        "dateOfBirth": "10/10/1990"
+    },
+    {
+        "id": 10,
+        "firstName": "Scarlett",
+        "lastName": "Earwaker",
+        "email": "searwaker9@sciencedaily.com",
+        "dni": "397773440",
+        "dateOfBirth": "5/23/1942"
+    }
+]
