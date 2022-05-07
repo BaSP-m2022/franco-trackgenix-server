@@ -1,5 +1,6 @@
 // const express = require('express');
 import express from 'express';
+import fs from 'fs';
 
 const timesheets = require('../data/time-sheets.json');
 
@@ -8,7 +9,7 @@ const router = express.Router();
 router.get('/', (req, res) => {
   res.send(timesheets);
 });
-// /getAllTimesheet
+/// //// GET METHOD
 
 router.get('/getByCheck/:check', (req, res) => {
   const hoursChecked = req.params.check === 'true';
@@ -66,5 +67,21 @@ router.get('/getByDay', (req, res) => {
     res.send(`There are not ${timesheetDay}`);
   }
 });
+
+/// //// POST METHOD
+
+router.post('/addTimesheet', (req, res) => {
+  const newTimesheet = req.body;
+  timesheets.push(newTimesheet);
+  fs.writeFile('src/data/time-sheets.json', JSON.stringify(timesheets), (err) => {
+    if (err) {
+      res.send(err);
+    } else {
+      res.send('Timesheet created');
+    }
+  });
+});
+
+/// //// PUT METHOD
 
 export default router;
