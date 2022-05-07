@@ -6,7 +6,7 @@
         "project": "Buzzdog",
         "task": "Span",
         "check": false,
-        "manager": "Heywood Creser"
+        "manager": "Gan Orum"
     },
     {
         "user": "Harmony Wallhead",
@@ -21,7 +21,7 @@
         "user": "Corrinne Westell",
         "day": "saturday",
         "workedHours": 2,
-        "project": "Riffpedia",
+        "project": "Buzzdog",
         "task": "Tresom",
         "check": true,
         "manager": "Junette Thrift"
@@ -57,7 +57,7 @@
         "user": "Staci Kimmel",
         "day": "sunday",
         "workedHours": 3,
-        "project": "Dabfeed",
+        "project": "Buzzdog",
         "task": "Fixflex",
         "check": false,
         "manager": "Bertrand Straw"
@@ -87,6 +87,6 @@
         "project": "Eire",
         "task": "Transcof",
         "check": true,
-        "manager": "Fenelia Burth"
+        "manager": "Gan Orum"
     }
 ]

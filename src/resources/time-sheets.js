@@ -5,15 +5,12 @@ const timesheets = require('../data/time-sheets.json');
 
 const router = express.Router();
 
-router.get('/getAllTimesheet', (req, res) => {
+router.get('/', (req, res) => {
   res.send(timesheets);
 });
+// /getAllTimesheet
 
 router.get('/getByCheck/:check', (req, res) => {
-//   var isTrueSet = (req.params.check === 'true');
-  //   console.log('type req.params.check', typeof req.params.check);
-  //   req.params.check
-  // console.log(req)
   const hoursChecked = req.params.check === 'true';
   const filteredCheck = timesheets.filter((timesheet) => timesheet.check === hoursChecked);
   if (filteredCheck) {
@@ -26,12 +23,13 @@ router.get('/getByCheck/:check', (req, res) => {
 router.get('/getByManager', (req, res) => {
   const timesheetManager = req.query.manager;
   const filteredManager = timesheets.filter(
-    (timesheet) => timesheet.manager === filteredManager,
+    (timesheet) => timesheet.manager === timesheetManager,
   );
   if (filteredManager.length > 0) {
     res.send(filteredManager);
+  } else {
+    res.send(`There are not ${timesheetManager}`);
   }
-  res.send(`There are not ${timesheetManager}`);
 });
 
 router.get('/getByProject', (req, res) => {
@@ -41,35 +39,32 @@ router.get('/getByProject', (req, res) => {
   );
   if (filteredProject.length > 0) {
     res.send(filteredProject);
+  } else {
+    res.send(`There are not ${timesheetProject}`);
   }
-  res.send(`There are not ${timesheetProject}`);
 });
 
 router.get('/getByUser', (req, res) => {
   const timesheetUser = req.query.user;
-  const filteredUser = timesheets.filter((timesheet) => timesheet.user === timesheetUser);
+  const filteredUser = timesheets.filter(
+    (timesheet) => timesheet.user === timesheetUser,
+  );
   if (filteredUser.length > 0) {
-    res.send(timesheetUser);
+    res.send(filteredUser);
+  } else {
+    res.send(`There are not ${timesheetUser}`);
   }
-  res.send(`There are not ${timesheetUser}`);
 });
-
 router.get('/getByDay', (req, res) => {
   const timesheetDay = req.query.day;
-  const filteredDay = timesheets.filter((timesheet) => timesheet.user === timesheetDay);
+  const filteredDay = timesheets.filter(
+    (timesheet) => timesheet.day === timesheetDay,
+  );
   if (filteredDay.length > 0) {
     res.send(filteredDay);
+  } else {
+    res.send(`There are not ${timesheetDay}`);
   }
-  res.send(`There are not ${timesheetDay}`);
 });
-// router.get('/getByEmployee', (req, res) => {
-//   const timesheetUser = req.query.email;
-//   const filteredUser = timesheet.filter((filteredUser) => filteredUser.user === timesheetUser);
-//   if (filteredUser.length > 0) {
-//     res.send(filteredUser);
-//   }
-//   res.send(`There are not ${timesheetUser}`);
-// });
 
-// module.exports = router;
 export default router;
