@@ -8,6 +8,7 @@ const sAdminRouter = require('./resources/super-admins');
 const app = express();
 const port = process.env.PORT || 3000;
 
+app.use(express.json());
 app.use('/sAdmin', sAdminRouter);
 
 app.get('/', async (req, res) => {
