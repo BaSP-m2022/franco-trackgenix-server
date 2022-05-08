@@ -26,7 +26,6 @@ router.post('/add', (req, res) => {
         res.send('SuperAdmin Created');
       }
     });
-    console.log('SuperAdmin data', sAdmin);
     res.send('SuperAdmin Created');
   } else {
     res.send('Data insufficient');
