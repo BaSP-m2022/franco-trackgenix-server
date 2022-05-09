@@ -1,22 +1,19 @@
 import express from 'express';
-
-const projects = require('./data/projects.json');
-const projectRouter = require('./resources/projects');
+import adminController from './resources/admins';
+import projectRouter from './resources/projects';
 
 const app = express();
-app.use(express.json());
 const port = process.env.PORT || 3000;
+
+app.use(express.json());
 app.use('/projects', projectRouter);
 
 app.get('/', async (req, res) => {
   res.send('Hello World!');
 });
 
-app.get('/projects', (req, res) => {
-  res.status(200).json({
-    data: projects,
-  });
-});
+app.get('/admins/:id', adminController.getAdminById);
+app.get('/admins', adminController.getAdminsByQuery);
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
