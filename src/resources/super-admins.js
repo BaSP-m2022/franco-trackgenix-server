@@ -1,5 +1,5 @@
-const express = require('express');
-const fs = require('fs');
+import express from 'express';
+import fs from 'fs';
 
 const router = express.Router();
 const superAdmin = require('../data/super-admins.json');
@@ -17,23 +17,37 @@ router.get('/:id', (req, res) => {
 router.get('/', (req, res) => {
   const sAdminName = req.query.firstName;
   const sAdminLName = req.query.lastName;
-  //   const sAdminEmail = req.query.email;
-  //   const sAdminDate = req.query.dateOfBirth;
-  //   const sAdminDni = req.query.dni;
-  if (!sAdminName && !sAdminLName) {
+  const sAdminEmail = req.query.email;
+  const sAdminDate = req.query.dateOfBirth;
+  const sAdminDni = req.query.dni;
+  if (!sAdminName && !sAdminLName && !sAdminEmail && !sAdminDate && !sAdminDni) {
     res.send(superAdmin);
   }
-  const filteredAdByName = superAdmin.filter((sAdmin) => {
-    if (sAdminName && sAdminLName) {
-      return sAdmin.firstName.includes(sAdminName) && sAdmin.lastName.includes(sAdminLName);
+  const filteredSuperAdmins = superAdmin.filter((sAdmin) => {
+    if (sAdminName && sAdminLName && sAdminEmail && sAdminDate && sAdminDni) {
+      return sAdmin.firstName.includes(sAdminName) && sAdmin.lastName.includes(sAdminLName)
+      && sAdmin.email.includes(sAdminEmail) && sAdmin.dateOfBirth.includes(sAdminDate)
+      && sAdmin.dni.includes(sAdminDni);
     }
     if (sAdminName) {
       return sAdmin.firstName.includes(sAdminName);
     }
+    if (sAdminLName) {
+      return sAdmin.lastName.includes(sAdminLName);
+    }
+    if (sAdminEmail) {
+      return sAdmin.email.includes(sAdminEmail);
+    }
+    if (sAdminDate) {
+      return sAdmin.dateOfBirth.includes(sAdminDate);
+    }
+    if (sAdminDni) {
+      return sAdmin.dni.includes(sAdminDni);
+    }
     return false;
   });
-  if (filteredAdByName.length > 0) {
-    res.send(filteredAdByName);
+  if (filteredSuperAdmins.length > 0) {
+    res.send(filteredSuperAdmins);
   } else {
     res.send('SuperAdmin not found');
   }
@@ -78,16 +92,25 @@ router.put('/:id', (req, res) => {
   if (sAdmin) {
     const sAdminUpdated = req.body;
     const newAdmin = {};
+    newAdmin.id = sAdminId;
     newAdmin.firstName = sAdminUpdated.firstName ? sAdminUpdated.firstName : sAdmin.firstName;
     newAdmin.lastName = sAdminUpdated.lastName ? sAdminUpdated.lastName : sAdmin.lastName;
     newAdmin.email = sAdminUpdated.email ? sAdminUpdated.email : sAdmin.email;
     newAdmin.dateOfBirth = sAdminUpdated.dateOfBirth
       ? sAdminUpdated.dateOfBirth : sAdmin.dateOfBirth;
     newAdmin.dni = sAdminUpdated.dni ? sAdminUpdated.dni : sAdmin.dni;
-    res.send({ msg: 'SuperAdmin updated', newAdmin });
+    const superAdminUpdate = superAdmin.filter((s) => s.id !== sAdminId);
+    superAdminUpdate.push(newAdmin);
+    fs.writeFile('src/data/super-admins.json', JSON.stringify(superAdminUpdate), (err) => {
+      if (err) {
+        res.send(err);
+      } else {
+        res.send('SuperAdmin Updated');
+      }
+    });
   } else {
     res.send('SuperAdmin not found');
   }
 });
 
-module.exports = router;
+export default router;
