@@ -1,7 +1,47 @@
 [
-  {
-    "name": "esteban",
-    "lastName": "frare",
-    "email": "esteban.frare@radiumrocket.com"
-  }
+    {
+        "id": "1",
+        "firstName": "Maggi",
+        "lastName": "Adie",
+        "email": "madie0@vinaora.com",
+        "dateOfBirth": "10/15/1995",
+        "password": "QzE1U3",
+        "dni": "10191817"
+    },
+    {
+        "id": "2",
+        "firstName": "Teri",
+        "lastName": "Pridden",
+        "email": "tpridden1@uol.com.br",
+        "dateOfBirth": "09/01/1994",
+        "password": "M9kH56wF",
+        "dni": "20292827"
+    },
+    {
+        "id": "3",
+        "firstName": "Aida",
+        "lastName": "Dresche",
+        "email": "adresche2@over-blog.com",
+        "dateOfBirth": "10/03/1986",
+        "password": "yPwAu2",
+        "dni": "30393837"
+    },
+    {
+        "id": "4",
+        "firstName": "Finlay",
+        "lastName": "Klaassens",
+        "email": "fklaassens3@aboutads.info",
+        "dateOfBirth": "11/15/1996",
+        "password": "ZkcSnOdE",
+        "dni": "40494847"
+    },
+    {
+        "id": "10",
+        "firstName": "Diego",
+        "lastName": "Teeee",
+        "email": "dame2@mundiales.com",
+        "dateOfBirth": "10/30/1960",
+        "password": "diegol10",
+        "dni": "10788610"
+    }
 ]
