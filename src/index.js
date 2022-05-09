@@ -19,6 +19,5 @@ app.get('/projects', (req, res) => {
 });
 
 app.listen(port, () => {
-//   console.log('comillasalt+96'Example app listening on port ${port}'comillasalt+96');
   console.log(`Example app listening on port ${port}`);
 });
