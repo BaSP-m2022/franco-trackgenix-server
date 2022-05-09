@@ -1,12 +1,13 @@
 import express from 'express';
 import fs from 'fs';
 
+const superAdmins = require('../data/super-admins.json');
+
 const router = express.Router();
-const superAdmin = require('../data/super-admins.json');
 
 router.get('/:id', (req, res) => {
   const sAdminId = req.params.id;
-  const sAdmin = superAdmin.find((s) => s.id === sAdminId);
+  const sAdmin = superAdmins.find((s) => s.id === sAdminId);
   if (sAdmin) {
     res.send(sAdmin);
   } else {
@@ -21,13 +22,24 @@ router.get('/', (req, res) => {
   const sAdminDate = req.query.dateOfBirth;
   const sAdminDni = req.query.dni;
   if (!sAdminName && !sAdminLName && !sAdminEmail && !sAdminDate && !sAdminDni) {
-    res.send(superAdmin);
+    res.send(superAdmins);
   }
-  const filteredSuperAdmins = superAdmin.filter((sAdmin) => {
+  const filteredSuperAdmins = superAdmins.filter((sAdmin) => {
     if (sAdminName && sAdminLName && sAdminEmail && sAdminDate && sAdminDni) {
       return sAdmin.firstName.includes(sAdminName) && sAdmin.lastName.includes(sAdminLName)
       && sAdmin.email.includes(sAdminEmail) && sAdmin.dateOfBirth.includes(sAdminDate)
       && sAdmin.dni.includes(sAdminDni);
+    }
+    if (sAdminName && sAdminLName && sAdminEmail && sAdminDate) {
+      return sAdmin.firstName.includes(sAdminName) && sAdmin.lastName.includes(sAdminLName)
+        && sAdmin.email.includes(sAdminEmail) && sAdmin.dateOfBirth.includes(sAdminDate);
+    }
+    if (sAdminName && sAdminLName && sAdminEmail) {
+      return sAdmin.firstName.includes(sAdminName) && sAdmin.lastName.includes(sAdminLName)
+        && sAdmin.email.includes(sAdminEmail);
+    }
+    if (sAdminName && sAdminLName) {
+      return sAdmin.firstName.includes(sAdminName) && sAdmin.lastName.includes(sAdminLName);
     }
     if (sAdminName) {
       return sAdmin.firstName.includes(sAdminName);
@@ -57,8 +69,8 @@ router.post('/', (req, res) => {
   const sAdmin = req.body;
   if (sAdmin.id && sAdmin.firstName && sAdmin.lastName && sAdmin.email && sAdmin.dateOfBirth
       && sAdmin.dni) {
-    superAdmin.push(sAdmin);
-    fs.writeFile('src/data/super-admins.json', JSON.stringify(superAdmin), (err) => {
+    superAdmins.push(sAdmin);
+    fs.writeFile('src/data/super-admins.json', JSON.stringify(superAdmins), (err) => {
       if (err) {
         res.send(err);
       } else {
@@ -72,8 +84,8 @@ router.post('/', (req, res) => {
 
 router.delete('/:id', (req, res) => {
   const sAdminId = req.params.id;
-  const deletedById = superAdmin.filter((s) => s.id !== sAdminId);
-  if (superAdmin.length === deletedById.length) {
+  const deletedById = superAdmins.filter((s) => s.id !== sAdminId);
+  if (superAdmins.length === deletedById.length) {
     res.send('Could not delete SuperAdmin because it was not found');
   } else {
     fs.writeFile('src/data/super-admins.json', JSON.stringify(deletedById), (err) => {
@@ -88,7 +100,7 @@ router.delete('/:id', (req, res) => {
 
 router.put('/:id', (req, res) => {
   const sAdminId = req.params.id;
-  const sAdmin = superAdmin.find((s) => s.id === sAdminId);
+  const sAdmin = superAdmins.find((s) => s.id === sAdminId);
   if (sAdmin) {
     const sAdminUpdated = req.body;
     const newAdmin = {};
@@ -99,7 +111,7 @@ router.put('/:id', (req, res) => {
     newAdmin.dateOfBirth = sAdminUpdated.dateOfBirth
       ? sAdminUpdated.dateOfBirth : sAdmin.dateOfBirth;
     newAdmin.dni = sAdminUpdated.dni ? sAdminUpdated.dni : sAdmin.dni;
-    const superAdminUpdate = superAdmin.filter((s) => s.id !== sAdminId);
+    const superAdminUpdate = superAdmins.filter((s) => s.id !== sAdminId);
     superAdminUpdate.push(newAdmin);
     fs.writeFile('src/data/super-admins.json', JSON.stringify(superAdminUpdate), (err) => {
       if (err) {
