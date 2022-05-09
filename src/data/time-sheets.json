@@ -116,5 +116,25 @@
         "project": "Buzzdog",
         "task": "Span",
         "manager": "Gan Orum"
+    },
+    {
+        "id": "13",
+        "user": "Steve Jobs",
+        "day": "thursday",
+        "workedHours": 7,
+        "project": "Apple",
+        "task": "Iphone",
+        "check": false,
+        "manager": "Angeline Charman"
+    },
+    {
+        "id": "14",
+        "user": "Anibal Pachano",
+        "day": "tuesday",
+        "workedHours": 3,
+        "project": "Bailando",
+        "task": "Puterio",
+        "check": true,
+        "manager": "Franco Marini"
     }
 ]

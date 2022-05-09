@@ -9,6 +9,7 @@ const router = express.Router();
 router.get('/', (req, res) => {
   res.send(timesheets);
 });
+
 /// //// GET METHOD
 
 router.get('/getByCheck/:check', (req, res) => {
@@ -22,39 +23,37 @@ router.get('/getByCheck/:check', (req, res) => {
 });
 
 router.get('/filter', (req, res) => {
-  const timesheetManager = req.query.manager;
-  const timesheetProject = req.query.project;
-  const timesheetUser = req.query.user;
-  const timesheetDay = req.query.day;
-  if (!timesheetManager && !timesheetProject && !timesheetUser && !timesheetDay) {
+  const tmManager = req.query.manager;
+  const tmProject = req.query.project;
+  const tmUser = req.query.user;
+  const tmDay = req.query.day;
+  const tmTask = req.query.task;
+  if (!tmManager && !tmProject && !tmUser && !tmDay && !tmTask) {
     res.send('There are not filter');
-  } else if (timesheetManager) {
-    const filteredManager = timesheets.filter((timesheet) => timesheet.manager.includes(timesheetManager));
+  } else if (tmManager) {
+    const filteredManager = timesheets.filter((timesheet) => timesheet.manager.includes(tmManager));
     if (filteredManager.length > 0) {
       res.send(filteredManager);
-    } else {
-      res.send(`There are not ${timesheetManager}`);
     }
-  } else if (timesheetProject) {
-    const filteredProject = timesheets.filter((timesheet) => timesheet.project.includes(timesheetProject));
+  } else if (tmProject) {
+    const filteredProject = timesheets.filter((timesheet) => timesheet.project.includes(tmProject));
     if (filteredProject.length > 0) {
       res.send(filteredProject);
-    } else {
-      res.send(`There are not ${timesheetProject}`);
     }
-  } else if (timesheetUser) {
-    const filteredUser = timesheets.filter((timesheet) => timesheet.user.includes(timesheetUser));
+  } else if (tmUser) {
+    const filteredUser = timesheets.filter((timesheet) => timesheet.user.includes(tmUser));
     if (filteredUser.length > 0) {
       res.send(filteredUser);
-    } else {
-      res.send(`There are not ${timesheetUser}`);
     }
-  } else if (timesheetDay) {
-    const filteredDay = timesheets.filter((timesheet) => timesheet.day.includes(timesheetDay));
+  } else if (tmDay) {
+    const filteredDay = timesheets.filter((timesheet) => timesheet.day.includes(tmDay));
     if (filteredDay.length > 0) {
       res.send(filteredDay);
-    } else {
-      res.send(`There are not ${timesheetDay}`);
+    }
+  } else if (tmTask) {
+    const filteredTask = timesheets.filter((timesheet) => timesheet.task.includes(tmTask));
+    if (filteredTask.length > 0) {
+      res.send(filteredTask);
     }
   }
 });
@@ -63,14 +62,18 @@ router.get('/filter', (req, res) => {
 
 router.post('/', (req, res) => {
   const newTimesheet = req.body;
-  timesheets.push(newTimesheet);
-  fs.writeFile('src/data/time-sheets.json', JSON.stringify(timesheets), (err) => {
-    if (err) {
-      res.send(err);
-    } else {
-      res.send('Timesheet created');
-    }
-  });
+  if (newTimesheet.id && newTimesheet.user && newTimesheet.day && newTimesheet.project && newTimesheet.task && newTimesheet.workedHours && newTimesheet.check && newTimesheet.manager) {
+    timesheets.push(newTimesheet);
+    fs.writeFile('src/data/time-sheets.json', JSON.stringify(timesheets), (err) => {
+      if (err) {
+        res.send(err);
+      } else {
+        res.send('Timesheet created');
+      }
+    });
+  } else {
+    res.send('Timesheet was not created');
+  }
 });
 
 /// //// PUT METHOD
@@ -104,5 +107,7 @@ router.put('/:id', (req, res) => {
     res.send('Id not found');
   }
 });
+
+timesheets.sort();
 
 export default router;

@@ -15,7 +15,7 @@ app.get('/', (req, res) => {
 app.get('/admins/:id', adminController.getAdminById);
 app.get('/admins', adminController.getAdminsByQuery);
 
-app.use('/time-sheets', timesheetRouter);
+app.use('/timesheets', timesheetRouter);
 
 app.listen(port, () => {
   // eslint-disable-next-line no-console
