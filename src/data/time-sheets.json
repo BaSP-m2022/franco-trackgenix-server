@@ -111,7 +111,7 @@
     {
         "id": "12",
         "user": "Pedro",
-        "day": "lunes",
+        "day": "saturday",
         "workedHours": 5,
         "project": "Buzzdog",
         "task": "Span",
