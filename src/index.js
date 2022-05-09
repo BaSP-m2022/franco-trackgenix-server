@@ -7,7 +7,7 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 app.use(express.json());
-app.use('/super-admin', superAdminRouter);
+app.use('/super-admins', superAdminRouter);
 
 app.get('/', (req, res) => {
   res.send('Hello World!');
@@ -17,5 +17,6 @@ app.get('/admins/:id', adminController.getAdminById);
 app.get('/admins', adminController.getAdminsByQuery);
 
 app.listen(port, () => {
+  // eslint-disable-next-line no-console
   console.log(`Example app listening on port ${port}`);
 });
