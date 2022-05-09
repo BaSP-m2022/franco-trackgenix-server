@@ -1,4 +1,3 @@
-// const express = require('express');
 import express from 'express';
 import fs from 'fs';
 
@@ -70,7 +69,7 @@ router.get('/getByDay', (req, res) => {
 
 /// //// POST METHOD
 
-router.post('/addTimesheet', (req, res) => {
+router.post('/', (req, res) => {
   const newTimesheet = req.body;
   timesheets.push(newTimesheet);
   fs.writeFile('src/data/time-sheets.json', JSON.stringify(timesheets), (err) => {
@@ -83,5 +82,35 @@ router.post('/addTimesheet', (req, res) => {
 });
 
 /// //// PUT METHOD
+
+router.put('/:id', (req, res) => {
+  const timesheetId = req.params.id;
+  const timesheetToModifiy = timesheets.find((timesheet) => timesheet.id === timesheetId);
+  if (timesheetToModifiy) {
+    const updateTimesheet = req.body;
+    const newTimesheet = {};
+    newTimesheet.id = timesheetId;
+    newTimesheet.user = updateTimesheet.user ? updateTimesheet.user : timesheetToModifiy.user;
+    newTimesheet.day = updateTimesheet.day ? updateTimesheet.day : timesheetToModifiy.day;
+    newTimesheet.workedHours = updateTimesheet.workedHours
+      ? updateTimesheet.workedHours : timesheetToModifiy.workedHours;
+    newTimesheet.project = updateTimesheet.project
+      ? updateTimesheet.project : timesheetToModifiy.project;
+    newTimesheet.task = updateTimesheet.task ? updateTimesheet.task : timesheetToModifiy.task;
+    newTimesheet.manager = updateTimesheet.manager
+      ? updateTimesheet.manager : timesheetToModifiy.manager;
+    const timesheetModified = timesheets.filter((timesheet) => timesheet.id !== timesheetId);
+    timesheetModified.push(newTimesheet);
+    fs.writeFile('src/data/time-sheets.json', JSON.stringify(timesheetModified), (err) => {
+      if (err) {
+        res.send(err);
+      } else {
+        res.send('Timesheet modified');
+      }
+    });
+  } else {
+    res.send('Id not found');
+  }
+});
 
 export default router;
