@@ -14,7 +14,32 @@ router.get('/:id', (req, res) => {
   }
 });
 
-router.post('/add', (req, res) => {
+router.get('/', (req, res) => {
+  const sAdminName = req.query.firstName;
+  const sAdminLName = req.query.lastName;
+  //   const sAdminEmail = req.query.email;
+  //   const sAdminDate = req.query.dateOfBirth;
+  //   const sAdminDni = req.query.dni;
+  if (!sAdminName && !sAdminLName) {
+    res.send(superAdmin);
+  }
+  const filteredAdByName = superAdmin.filter((sAdmin) => {
+    if (sAdminName && sAdminLName) {
+      return sAdmin.firstName.includes(sAdminName) && sAdmin.lastName.includes(sAdminLName);
+    }
+    if (sAdminName) {
+      return sAdmin.firstName.includes(sAdminName);
+    }
+    return false;
+  });
+  if (filteredAdByName.length > 0) {
+    res.send(filteredAdByName);
+  } else {
+    res.send('SuperAdmin not found');
+  }
+});
+
+router.post('/', (req, res) => {
   const sAdmin = req.body;
   if (sAdmin.id && sAdmin.firstName && sAdmin.lastName && sAdmin.email && sAdmin.dateOfBirth
       && sAdmin.dni) {
@@ -31,7 +56,7 @@ router.post('/add', (req, res) => {
   }
 });
 
-router.delete('/delete/:id', (req, res) => {
+router.delete('/:id', (req, res) => {
   const sAdminId = req.params.id;
   const deletedById = superAdmin.filter((s) => s.id !== sAdminId);
   if (superAdmin.length === deletedById.length) {
@@ -52,59 +77,16 @@ router.put('/:id', (req, res) => {
   const sAdmin = superAdmin.find((s) => s.id === sAdminId);
   if (sAdmin) {
     const sAdminUpdated = req.body;
-    sAdmin.firstName = sAdminUpdated.firstName ? sAdminUpdated.firstName : sAdmin.firstName;
-    sAdmin.lastName = sAdminUpdated.lastName ? sAdminUpdated.lastName : sAdmin.lastName;
-    sAdmin.email = sAdminUpdated.email ? sAdminUpdated.email : sAdmin.email;
-    sAdmin.dateOfBirth = sAdminUpdated.dateOfBirth ? sAdminUpdated.dateOfBirth : sAdmin.dateOfBirth;
-    sAdmin.dni = sAdminUpdated.dni ? sAdminUpdated.dni : sAdmin.dni;
-    res.send({ msg: 'SuperAdmin updated', sAdmin });
+    const newAdmin = {};
+    newAdmin.firstName = sAdminUpdated.firstName ? sAdminUpdated.firstName : sAdmin.firstName;
+    newAdmin.lastName = sAdminUpdated.lastName ? sAdminUpdated.lastName : sAdmin.lastName;
+    newAdmin.email = sAdminUpdated.email ? sAdminUpdated.email : sAdmin.email;
+    newAdmin.dateOfBirth = sAdminUpdated.dateOfBirth
+      ? sAdminUpdated.dateOfBirth : sAdmin.dateOfBirth;
+    newAdmin.dni = sAdminUpdated.dni ? sAdminUpdated.dni : sAdmin.dni;
+    res.send({ msg: 'SuperAdmin updated', newAdmin });
   } else {
     res.send('SuperAdmin not found');
-  }
-});
-router.get('/', (req, res) => {
-  const sAdminName = req.query.firstName;
-  const sAdminLName = req.query.lastName;
-  const sAdminEmail = req.query.email;
-  const sAdminDate = req.query.dateOfBirth;
-  const sAdminDni = req.query.dni;
-  if (!sAdminName && !sAdminLName && !sAdminEmail && !sAdminDate && !sAdminDni) {
-    res.send(superAdmin);
-  } else if (sAdminName) {
-    const filteredAdByName = superAdmin.filter((sAdmin) => sAdmin.firstName.includes(sAdminName));
-    if (filteredAdByName.length > 0) {
-      res.send(filteredAdByName);
-    } else {
-      res.send(`SuperAdmin whit Name: ${sAdminName}, not found`);
-    }
-  } else if (sAdminLName) {
-    const filteredAdByLName = superAdmin.filter((sAdmin) => sAdmin.lastName.includes(sAdminLName));
-    if (filteredAdByLName.length > 0) {
-      res.send(filteredAdByLName);
-    } else {
-      res.send(`SuperAdmin whit Last Name: ${sAdminLName}, not found`);
-    }
-  } else if (sAdminEmail) {
-    const filteredAdByEmail = superAdmin.filter((sAdmin) => sAdmin.email.includes(sAdminEmail));
-    if (filteredAdByEmail.length > 0) {
-      res.send(filteredAdByEmail);
-    } else {
-      res.send(`SuperAdmin whit email: ${sAdminEmail}, not found`);
-    }
-  } else if (sAdminDate) {
-    const filteredAdByDate = superAdmin.filter((sAdmin) => sAdmin.dateOfBirth.includes(sAdminDate));
-    if (filteredAdByDate.length > 0) {
-      res.send(filteredAdByDate);
-    } else {
-      res.send(`SuperAdmin whit date of birth: ${sAdminDate}, not found`);
-    }
-  } else if (sAdminDni) {
-    const filteredAdByDni = superAdmin.filter((sAdmin) => sAdmin.dni.includes(sAdminDni));
-    if (filteredAdByDni.length > 0) {
-      res.send(filteredAdByDni);
-    } else {
-      res.send(`SuperAdmin whit dni: ${sAdminDni}, not found`);
-    }
   }
 });
 
