@@ -108,6 +108,4 @@ router.put('/:id', (req, res) => {
   }
 });
 
-timesheets.sort();
-
 export default router;
