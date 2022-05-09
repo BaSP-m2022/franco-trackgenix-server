@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 import express from 'express';
 import fs from 'fs';
 
@@ -10,20 +9,19 @@ router.get('/', (req, res) => {
   res.send(timesheets);
 });
 
-/// //// GET METHOD
-
-router.get('/getByCheck/:check', (req, res) => {
-  const hoursChecked = req.params.check === 'true';
-  const filteredCheck = timesheets.filter((timesheet) => timesheet.check === hoursChecked);
-  if (filteredCheck) {
-    res.send(filteredCheck);
+router.get('/:id', (req, res) => {
+  const byId = req.params.id;
+  const filteredId = timesheets.find((timesheet) => timesheet.id === byId);
+  if (filteredId) {
+    res.send(filteredId);
   } else {
-    res.send(`There are not ${hoursChecked}`);
+    res.send(`There are not ${byId}`);
   }
 });
 
 router.get('/filter', (req, res) => {
   const tmManager = req.query.manager;
+  const tmCheck = req.query.check;
   const tmProject = req.query.project;
   const tmUser = req.query.user;
   const tmDay = req.query.day;
@@ -55,14 +53,24 @@ router.get('/filter', (req, res) => {
     if (filteredTask.length > 0) {
       res.send(filteredTask);
     }
+  } else if (tmCheck) {
+    const filteredCheck = timesheets.filter((timesheet) => timesheet.check.includes(tmCheck));
+    if (filteredCheck.length > 0) {
+      res.send(filteredCheck);
+    }
   }
 });
 
-/// //// POST METHOD
-
 router.post('/', (req, res) => {
   const newTimesheet = req.body;
-  if (newTimesheet.id && newTimesheet.user && newTimesheet.day && newTimesheet.project && newTimesheet.task && newTimesheet.workedHours && newTimesheet.check && newTimesheet.manager) {
+  if (newTimesheet.id
+     && newTimesheet.user
+      && newTimesheet.day
+       && newTimesheet.project
+        && newTimesheet.task
+         && newTimesheet.workedHours
+          && newTimesheet.check
+           && newTimesheet.manager) {
     timesheets.push(newTimesheet);
     fs.writeFile('src/data/time-sheets.json', JSON.stringify(timesheets), (err) => {
       if (err) {
@@ -75,8 +83,6 @@ router.post('/', (req, res) => {
     res.send('Timesheet was not created');
   }
 });
-
-/// //// PUT METHOD
 
 router.put('/:id', (req, res) => {
   const timesheetId = req.params.id;

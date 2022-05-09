@@ -1,5 +1,14 @@
 [
     {
+        "id": "1",
+        "user": "Claudio",
+        "day": "monday",
+        "workedHours": 4,
+        "project": "Buzzdog",
+        "task": "Span",
+        "manager": "Gan Orum"
+    },
+    {
         "id": "2",
         "user": "Harmony Wallhead",
         "day": "thursday",
@@ -98,15 +107,6 @@
         "task": "Fixflex",
         "check": false,
         "manager": "Franco Marini"
-    },
-    {
-        "id": "1",
-        "user": "Claudio",
-        "day": "monday",
-        "workedHours": 4,
-        "project": "Buzzdog",
-        "task": "Span",
-        "manager": "Gan Orum"
     },
     {
         "id": "12",
