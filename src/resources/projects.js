@@ -3,6 +3,8 @@ import express from 'express';
 import fs from 'fs';
 
 const projects = require('../data/projects.json');
+// eslint-disable-next-line no-unused-vars
+const employees = require('../data/employees.json');
 
 const router = express.Router();
 

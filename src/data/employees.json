@@ -1,0 +1,38 @@
+[
+    {
+        "id": "1",
+        "firstName": "Alejo",
+        "lastName": "Gonzalez",
+        "email": "agonzalezfittipaldi@gmail.com",
+        "password": "Randompw1",
+        "dateOfBirth": "03/16/1995",
+        "dni": "38904808"
+    },
+    {
+        "id": "2",
+        "firstName": "Lionel",
+        "lastName": "Messi",
+        "email": "liomessi@gmail.com",
+        "password": "Randompw2",
+        "dateOfBirth": "06/24/1987",
+        "dni": "33016244"
+    },
+    {
+        "id": "3",
+        "firstName": "Diego",
+        "lastName": "Maradona",
+        "email": "lamanodedios@gmail.com",
+        "password": "Randompw3",
+        "dateOfBirth": "10/30/1960",
+        "dni": "14276579"
+    },
+    {
+        "id": "4",
+        "firstName": "Cristiano",
+        "lastName": "Ronaldo",
+        "email": "cr7@gmail.com",
+        "password": "Randompw4",
+        "dateOfBirth": "05/02/1985",
+        "dni": "31508796"
+    }
+]
