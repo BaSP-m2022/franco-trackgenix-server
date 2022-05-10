@@ -2,7 +2,7 @@ import express from 'express';
 import fs from 'fs';
 
 const taskRouter = express.Router();
-const tasks = require('../data/tasks.json');
+let tasks = require('../data/tasks.json');
 
 taskRouter.get('/', (req, res) => {
   res.send(tasks);
@@ -81,6 +81,29 @@ taskRouter.post('/addTask', (req, res) => {
     });
   } else {
     res.send('Insufficient information');
+  }
+});
+
+taskRouter.delete('/deleteTask/:id', (req, res) => {
+  const taskId = req.params.id;
+  const deleteById = tasks.find((task) => task.id === Number(taskId));
+  if (!deleteById) {
+    res.send(`Task with ID ${taskId} was not found.`);
+  } else {
+    const newTasks = [];
+    tasks.forEach((task) => {
+      if (task.id !== Number(taskId)) {
+        newTasks.push(task);
+      }
+    });
+    tasks = newTasks;
+    fs.writeFile('src/data/tasks.json', JSON.stringify(tasks), (err) => {
+      if (err) {
+        res.send(err);
+      } else {
+        res.send(`Task with ID ${taskId} deleted.`);
+      }
+    });
   }
 });
 
