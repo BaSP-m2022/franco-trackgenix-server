@@ -1,40 +1,40 @@
 {
-  "name": "backend-template",
-  "version": "1.0.0",
-  "description": "app_name is a system that provides Human Resources services to companies.",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon --exec npm run babel-node -- src/index.js",
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
-    "babel-node": "babel-node --presets=@babel/preset-env",
-    "prepare": "husky install"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/BaSP-m2022/Backend-template.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/BaSP-m2022/Backend-template/issues"
-  },
-  "homepage": "https://github.com/BaSP-m2022/Backend-template#readme",
-  "engines": {
-    "node": "14.x"
-  },
-  "dependencies": {
-    "express": "^4.18.0",
-    "nodemon": "^2.0.15"
-  },
-  "devDependencies": {
-    "@babel/core": "^7.17.9",
-    "@babel/node": "^7.16.8",
-    "@babel/preset-env": "^7.16.11",
-    "eslint": "^8.14.0",
-    "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-plugin-import": "^2.26.0",
-    "husky": "^7.0.4"
-  }
+    "name": "backend-template",
+    "version": "1.0.0",
+    "description": "app_name is a system that provides Human Resources services to companies.",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "nodemon --exec npm run babel-node -- src/index.js",
+        "lint": "eslint .",
+        "lint:fix": "eslint . --fix",
+        "babel-node": "babel-node --presets=@babel/preset-env",
+        "prepare": "husky install"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/BaSP-m2022/Backend-template.git"
+    },
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/BaSP-m2022/Backend-template/issues"
+    },
+    "homepage": "https://github.com/BaSP-m2022/Backend-template#readme",
+    "engines": {
+        "node": "14.x"
+    },
+    "dependencies": {
+        "express": "^4.18.0",
+        "nodemon": "^2.0.15"
+    },
+    "devDependencies": {
+        "@babel/core": "^7.17.9",
+        "@babel/node": "^7.16.8",
+        "@babel/preset-env": "^7.16.11",
+        "eslint": "^8.14.0",
+        "eslint-config-airbnb-base": "^15.0.0",
+        "eslint-plugin-import": "^2.26.0",
+        "husky": "^7.0.4"
+    }
 }
