@@ -1,4 +1,5 @@
 import express from 'express';
+import fs from 'fs';
 
 const taskRouter = express.Router();
 const tasks = require('../data/tasks.json');
@@ -63,6 +64,23 @@ taskRouter.get('/getByProject', (req, res) => {
     res.send(filteredTasks);
   } else {
     res.send('Task not found.');
+  }
+});
+
+taskRouter.post('/addTask', (req, res) => {
+  const newTask = req.body;
+  // eslint-disable-next-line no-console
+  if (newTask.name && newTask.id && newTask.description && newTask.project && newTask.workedHours) {
+    tasks.push(newTask);
+    fs.writeFile('src/data/tasks.json', JSON.stringify(tasks), (err) => {
+      if (err) {
+        res.send(err);
+      } else {
+        res.send('Task created.');
+      }
+    });
+  } else {
+    res.send('Insufficient information');
   }
 });
 
