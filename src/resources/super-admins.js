@@ -26,35 +26,41 @@ router.get('/', (req, res) => {
   }
   const filteredSuperAdmins = superAdmins.filter((sAdmin) => {
     if (sAdminName && sAdminLName && sAdminEmail && sAdminDate && sAdminDni) {
-      return sAdmin.firstName.includes(sAdminName) && sAdmin.lastName.includes(sAdminLName)
-      && sAdmin.email.includes(sAdminEmail) && sAdmin.dateOfBirth.includes(sAdminDate)
-      && sAdmin.dni.includes(sAdminDni);
+      return sAdmin.firstName.includes(sAdminName.toLowerCase())
+      && sAdmin.lastName.includes(sAdminLName.toLowerCase())
+      && sAdmin.email.includes(sAdminEmail.toLowerCase())
+      && sAdmin.dateOfBirth.includes(sAdminDate.toLowerCase())
+      && sAdmin.dni.includes(sAdminDni.toLowerCase());
     }
     if (sAdminName && sAdminLName && sAdminEmail && sAdminDate) {
-      return sAdmin.firstName.includes(sAdminName) && sAdmin.lastName.includes(sAdminLName)
-        && sAdmin.email.includes(sAdminEmail) && sAdmin.dateOfBirth.includes(sAdminDate);
+      return sAdmin.firstName.includes(sAdminName.toLowerCase())
+      && sAdmin.lastName.includes(sAdminLName.toLowerCase())
+      && sAdmin.email.includes(sAdminEmail.toLowerCase())
+      && sAdmin.dateOfBirth.includes(sAdminDate.toLowerCase());
     }
     if (sAdminName && sAdminLName && sAdminEmail) {
-      return sAdmin.firstName.includes(sAdminName) && sAdmin.lastName.includes(sAdminLName)
-        && sAdmin.email.includes(sAdminEmail);
+      return sAdmin.firstName.includes(sAdminName.toLowerCase())
+      && sAdmin.lastName.includes(sAdminLName.toLowerCase())
+      && sAdmin.email.includes(sAdminEmail.toLowerCase());
     }
     if (sAdminName && sAdminLName) {
-      return sAdmin.firstName.includes(sAdminName) && sAdmin.lastName.includes(sAdminLName);
+      return sAdmin.firstName.includes(sAdminName.toLowerCase())
+      && sAdmin.lastName.includes(sAdminLName.toLowerCase());
     }
     if (sAdminName) {
-      return sAdmin.firstName.includes(sAdminName);
+      return sAdmin.firstName.includes(sAdminName.toLowerCase());
     }
     if (sAdminLName) {
-      return sAdmin.lastName.includes(sAdminLName);
+      return sAdmin.lastName.includes(sAdminLName.toLowerCase());
     }
     if (sAdminEmail) {
-      return sAdmin.email.includes(sAdminEmail);
+      return sAdmin.email.includes(sAdminEmail.toLowerCase());
     }
     if (sAdminDate) {
-      return sAdmin.dateOfBirth.includes(sAdminDate);
+      return sAdmin.dateOfBirth.includes(sAdminDate.toLowerCase());
     }
     if (sAdminDni) {
-      return sAdmin.dni.includes(sAdminDni);
+      return sAdmin.dni.includes(sAdminDni.toLowerCase());
     }
     return false;
   });
@@ -101,6 +107,7 @@ router.delete('/:id', (req, res) => {
 router.put('/:id', (req, res) => {
   const sAdminId = req.params.id;
   const sAdmin = superAdmins.find((s) => s.id === sAdminId);
+  console.log(sAdmin);
   if (sAdmin) {
     const sAdminUpdated = req.body;
     const newAdmin = {};
