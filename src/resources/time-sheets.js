@@ -11,39 +11,57 @@ router.get('/', (req, res) => {
   const tmProject = req.query.project;
   const tmUser = req.query.user;
   const tmDay = req.query.day;
-  const tmTask = req.query.task;
-  if (!tmManager && !tmProject && !tmUser && !tmDay && !tmTask) {
+  if (!tmManager
+        && !tmProject
+          && !tmUser
+            && !tmDay
+              && !tmCheck) {
     res.send(timesheets);
-  } else if (tmManager) {
-    const filteredManager = timesheets.filter((timesheet) => timesheet.manager.includes(tmManager));
-    if (filteredManager.length > 0) {
-      res.send(filteredManager);
+  }
+  const filteredAll = timesheets.filter((timesheet) => {
+    if (tmUser && tmDay && tmProject && tmCheck && tmManager) {
+      return timesheet.user.toLowerCase().includes(tmUser.toLowerCase())
+              && timesheet.day.toLowerCase().includes(tmDay.toLowerCase())
+                && timesheet.project.toLowerCase().includes(tmProject.toLowerCase())
+                  && timesheet.check.toLowerCase().includes(tmCheck.toLowerCase())
+                    && timesheet.manager.toLowerCase().includes(tmManager.toLowerCase());
     }
-  } else if (tmProject) {
-    const filteredProject = timesheets.filter((timesheet) => timesheet.project.includes(tmProject));
-    if (filteredProject.length > 0) {
-      res.send(filteredProject);
+    if (tmUser && tmDay && tmProject && tmManager) {
+      return timesheet.user.toLowerCase().includes(tmUser.toLowerCase())
+            && timesheet.day.toLowerCase().includes(tmDay.toLowerCase())
+              && timesheet.project.toLowerCase().includes(tmProject.toLowerCase())
+                && timesheet.manager.toLowerCase().includes(tmManager.toLowerCase());
     }
-  } else if (tmUser) {
-    const filteredUser = timesheets.filter((timesheet) => timesheet.user.includes(tmUser));
-    if (filteredUser.length > 0) {
-      res.send(filteredUser);
+    if (tmUser && tmDay && tmProject) {
+      return timesheet.user.toLowerCase().includes(tmUser.toLowerCase())
+            && timesheet.day.toLowerCase().includes(tmDay.toLowerCase())
+              && timesheet.project.toLowerCase().includes(tmProject.toLowerCase());
     }
-  } else if (tmDay) {
-    const filteredDay = timesheets.filter((timesheet) => timesheet.day.includes(tmDay));
-    if (filteredDay.length > 0) {
-      res.send(filteredDay);
+    if (tmUser && tmDay) {
+      return timesheet.user.toLowerCase().includes(tmUser.toLowerCase())
+            && timesheet.day.toLowerCase().includes(tmDay.toLowerCase());
     }
-  } else if (tmTask) {
-    const filteredTask = timesheets.filter((timesheet) => timesheet.task.includes(tmTask));
-    if (filteredTask.length > 0) {
-      res.send(filteredTask);
+    if (tmUser) {
+      return timesheet.user.toLowerCase().includes(tmUser.toLowerCase());
     }
-  } else if (tmCheck) {
-    const filteredCheck = timesheets.filter((timesheet) => timesheet.check.includes(tmCheck));
-    if (filteredCheck.length > 0) {
-      res.send(filteredCheck);
+    if (tmDay) {
+      return timesheet.day.toLowerCase().includes(tmDay.toLowerCase());
     }
+    if (tmProject) {
+      return timesheet.project.toLowerCase().includes(tmProject.toLowerCase());
+    }
+    if (tmManager) {
+      return timesheet.manager.toLowerCase().includes(tmManager.toLowerCase());
+    }
+    if (typeof tmCheck !== 'undefined') {
+      return timesheet.check.toString().toLowerCase().includes(tmCheck.toLowerCase());
+    }
+    return false;
+  });
+  if (filteredAll.length > 0) {
+    res.send(filteredAll);
+  } else {
+    res.send('Timesheet not found');
   }
 });
 
@@ -60,13 +78,13 @@ router.get('/:id', (req, res) => {
 router.post('/', (req, res) => {
   const newTimesheet = req.body;
   if (newTimesheet.id
-     && newTimesheet.user
-      && newTimesheet.day
-       && newTimesheet.project
-        && newTimesheet.task
-         && newTimesheet.workedHours
-          && newTimesheet.check
-           && newTimesheet.manager) {
+      && newTimesheet.user
+        && newTimesheet.day
+          && newTimesheet.project
+            && newTimesheet.task
+              && newTimesheet.workedHours
+                && newTimesheet.check
+                  && newTimesheet.manager) {
     timesheets.push(newTimesheet);
     fs.writeFile('src/data/time-sheets.json', JSON.stringify(timesheets), (err) => {
       if (err) {

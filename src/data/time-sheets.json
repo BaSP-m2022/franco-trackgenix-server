@@ -1,190 +1,182 @@
 [
     {
         "id": "1",
-        "user": "Claudio",
+        "user": "claudio",
         "day": "monday",
         "workedHours": 4,
-        "project": "Buzzdog",
-        "task": [
-            "Miscellaneous",
-            "Capital Goods",
-            "Technology"
+        "project": "buzzdog",
+        "tasks": [
+            {
+                "name": "trencher",
+                "id": "1",
+                "description": "f500",
+                "project": "sub-ex",
+                "workedHours": 8
+            }
         ],
-        "manager": "Gan Orum"
+        "check": false,
+        "manager": "gan orum"
     },
     {
         "id": "2",
-        "user": "Harmony Wallhead",
+        "user": "harmony wallhead",
         "day": "thursday",
         "workedHours": 7,
-        "project": "Voonte",
-        "task": [
-            "Basic Industries",
-            "Health Care",
-            "Home"
+        "project": "voonte",
+        "tasks": [
+            {
+                "name": "bulldozer",
+                "id": "2",
+                "description": "s90424d",
+                "project": "sonsing",
+                "workedHours": 6
+            }
         ],
         "check": false,
-        "manager": "Angeline Charman"
+        "manager": "angeline charman"
     },
     {
         "id": "3",
-        "user": "Corrinne Westell",
+        "user": "corrinne westell",
         "day": "saturday",
         "workedHours": 2,
-        "project": "Buzzdog",
-        "task": [
-            "Jewelry",
-            "Consumer Services",
-            "Technology"
+        "project": "buzzdog",
+        "tasks": [
+            {
+                "name": "trencher",
+                "id": "3",
+                "description": "b5883",
+                "project": "home ing",
+                "workedHours": 8
+            }
         ],
         "check": true,
-        "manager": "Junette Thrift"
+        "manager": "junette thrift"
     },
     {
         "id": "4",
-        "user": "Dahlia Chudleigh",
+        "user": "dahlia chudleigh",
         "day": "tuesday",
         "workedHours": 4,
-        "project": "Thoughtblab",
-        "task": [
-            "Health Care",
-            "Industrial",
-            "Home"
+        "project": "thoughtblab",
+        "tasks": [
+            {
+                "name": "bulldozer",
+                "id": "4",
+                "description": "n015",
+                "project": "sub-ex",
+                "workedHours": 2
+            }
         ],
         "check": false,
-        "manager": "Maegan Swan"
+        "manager": "maegan swan"
     },
     {
         "id": "5",
-        "user": "Petunia Hierro",
+        "user": "petunia hierro",
         "day": "sunday",
         "workedHours": 6,
-        "project": "Rhyzio",
-        "task": [
-            "Television Services",
-            "Basic Industries"
+        "project": "rhyzio",
+        "tasks": [
+            {
+                "name": "scraper",
+                "id": "5",
+                "description": "s32011b",
+                "project": "daltfresh",
+                "workedHours": 5
+            }
         ],
         "check": false,
-        "manager": "Morrie Hares"
+        "manager": "morrie hares"
     },
     {
         "id": "6",
-        "user": "Ciel Samper",
+        "user": "ciel samper",
         "day": "saturday",
         "workedHours": 3,
-        "project": "Brainverse",
-        "task": [
-            "Finance",
-            "Jewelry",
-            "Home"
+        "project": "brainverse",
+        "tasks": [
+            {
+                "name": "excavator",
+                "id": "6",
+                "description": "y383",
+                "project": "voyatouch",
+                "workedHours": 7
+            }
         ],
         "check": false,
-        "manager": "Federica Kehir"
+        "manager": "federica kehir"
     },
     {
         "id": "7",
-        "user": "Staci Kimmel",
+        "user": "staci kimmel",
         "day": "sunday",
         "workedHours": 3,
-        "project": "Buzzdog",
-        "task": [
-            "Television Services",
-            "Clothing",
-            "Technology"
+        "project": "buzzdog",
+        "tasks": [
+            {
+                "name": "trencher",
+                "id": "7",
+                "description": "s01149d",
+                "project": "bitchip",
+                "workedHours": 1
+            }
         ],
         "check": false,
-        "manager": "Bertrand Straw"
+        "manager": "bertrand straw"
     },
     {
         "id": "8",
-        "user": "Eadith Djekovic",
+        "user": "eadith djekovic",
         "day": "thursday",
         "workedHours": 2,
-        "project": "Skiba",
-        "task": [
-            "Basic Industries",
-            "Computers",
-            "Home"
+        "project": "skiba",
+        "tasks": [
+            {
+                "name": "compactor",
+                "id": "8",
+                "description": "c44500",
+                "project": "duobam",
+                "workedHours": 6
+            }
         ],
         "check": true,
-        "manager": "Rickie Bickerdyke"
+        "manager": "rickie bickerdyke"
     },
     {
         "id": "9",
-        "user": "Coreen Turville",
+        "user": "coreen turville",
         "day": "monday",
         "workedHours": 1,
-        "project": "Eamia",
-        "task": [
-            "Finance",
-            "Industrial",
-            "Automotive"
+        "project": "eamia",
+        "tasks": [
+            {
+                "name": "compactor",
+                "id": "9",
+                "description": "s55011a",
+                "project": "konklux",
+                "workedHours": 1
+            }
         ],
         "check": false,
-        "manager": "Gan Orum"
+        "manager": "gan orum"
     },
     {
         "id": "10",
-        "user": "Luz Round",
+        "user": "luz round",
         "day": "friday",
         "workedHours": 1,
-        "project": "Eire",
-        "task": [
-            "Clothing",
-            "Medical Specialities"
+        "project": "eire",
+        "tasks": [
+            {
+                "name": "bulldozer",
+                "id": "10",
+                "description": "o0484",
+                "project": "it",
+                "workedHours": 8
+            }
         ],
         "check": true,
-        "manager": "Gan Orum"
-    },
-    {
-        "id": "11",
-        "user": "Juano",
-        "day": "sunday",
-        "workedHours": 3,
-        "project": "Buzzdog",
-        "task": [
-            "Finance",
-            "Computers",
-            "Office Equipment"
-        ],
-        "check": false,
-        "manager": "Franco Marini"
-    },
-    {
-        "id": "12",
-        "user": "Pedro",
-        "day": "saturday",
-        "workedHours": 5,
-        "project": "Buzzdog",
-        "task": [
-            "Sports"
-        ],
-        "manager": "Gan Orum"
-    },
-    {
-        "id": "13",
-        "user": "Steve Jobs",
-        "day": "thursday",
-        "workedHours": 7,
-        "project": "Apple",
-        "task": [
-            "Office Equipment",
-            "Medical Specialities"
-        ],
-        "check": false,
-        "manager": "Angeline Charman"
-    },
-    {
-        "id": "14",
-        "user": "Anibal Pachano",
-        "day": "tuesday",
-        "workedHours": 3,
-        "project": "Bailando",
-        "task": [
-            "Computers",
-            "Automotive"
-        ],
-        "check": true,
-        "manager": "Franco Marini"
+        "manager": "gan orum"
     }
 ]
