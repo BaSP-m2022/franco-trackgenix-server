@@ -45,14 +45,13 @@ router.delete('/delete/:id', (req, res) => {
   }
 });
 
-router.get('/getById/:id', (req, res) => {
+router.get('/:id', (req, res) => {
   const projectId = req.params.id;
-
-  const filterId = projects.filter((project) => project.id.includes(projectId));
-  if (filterId.length > 0) {
-    res.send(filterId);
+  const project = projects.find((p) => p.id === projectId);
+  if (project) {
+    res.send(project);
   } else {
-    res.send('Project it was not found');
+    res.send('Project not found');
   }
 });
 
