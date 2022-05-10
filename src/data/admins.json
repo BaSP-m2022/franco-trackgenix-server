@@ -19,11 +19,29 @@
     },
     {
         "id": "3",
-        "firstName": "Britte",
-        "lastName": "Ogers",
-        "email": "bogers2@google.com.au",
-        "dateOfBirth": "08/22/1980",
-        "password": "j7BBpP",
-        "dni": "55-404-8213"
+        "firstName": "Javier",
+        "lastName": "Yanov",
+        "email": "javyanov1@salon.com",
+        "dateOfBirth": "06/28/1992",
+        "password": "8mMa24gO",
+        "dni": "57-474-1190"
+    },
+    {
+        "id": "4",
+        "firstName": "Javier",
+        "lastName": "Cachilo",
+        "email": "javcahilo4@gugul.com",
+        "dateOfBirth": "06/28/1999",
+        "password": "5Sda24gO",
+        "dni": "57-385-1190"
+    },
+    {
+        "id": "4",
+        "firstName": "Richulo",
+        "lastName": "Cachilo",
+        "email": "javcahilo4@gugul.com",
+        "dateOfBirth": "06/28/2000",
+        "password": "5Sd25g4gT",
+        "dni": "57-385-2590"
     }
 ]

@@ -49,7 +49,8 @@ router.put('/edit/:id', (req, res) => {
     res.send('Admin not found');
   }
 });
-router.get('/getAll', (req, res) => {
+
+router.get('/', (req, res) => {
   res.send(admins);
 });
 
@@ -60,6 +61,32 @@ router.get('/getById/:id', (req, res) => {
     res.send(admin);
   } else {
     res.send('Admin not found');
+  }
+});
+
+router.get('/name', (req, res) => {
+  const adminName = req.query.firstName;
+  const filteredAdmins = admins.filter((admin) => admin.firstName === adminName);
+  if (filteredAdmins.length > 0) {
+    res.send(filteredAdmins);
+  } else {
+    res.send(`There is no admin with the name "${adminName}" in admins list`);
+  }
+});
+
+router.delete('/delete/:id', (req, res) => {
+  const adminId = req.params.id;
+  const filteredAdmins = admins.filter((admin) => adminId !== admin.id);
+  if (filteredAdmins.length === admins.length) {
+    res.send('Could not delete admin because it was not found');
+  } else {
+    fs.writeFile('src/data/admins.json', JSON.stringify(filteredAdmins), (err) => {
+      if (err) {
+        res.send(err);
+      } else {
+        res.send('Admin deleted');
+      }
+    });
   }
 });
 
