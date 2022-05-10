@@ -1,10 +1,7 @@
-/* eslint-disable import/no-import-module-exports */
 import express from 'express';
 import fs from 'fs';
 
 const projects = require('../data/projects.json');
-// eslint-disable-next-line no-unused-vars
-const employees = require('../data/employees.json');
 
 const router = express.Router();
 
@@ -85,8 +82,6 @@ router.put('/:id', (req, res) => {
     editedProject.status = projectUpdated.status ? projectUpdated.name : project.status;
     editedProject.description = projectUpdated.description
       ? projectUpdated.description : project.description;
-    editedProject.employees = projectUpdated.employees
-      ? projectUpdated.employees : project.employees;
     editedProject.startDate = projectUpdated.startDate
       ? projectUpdated.startDate : project.startDate;
     editedProject.endDate = projectUpdated.endDate ? projectUpdated.endDate : project.endDate;
@@ -101,6 +96,36 @@ router.put('/:id', (req, res) => {
     });
   } else {
     res.send('Project not found');
+  }
+});
+
+router.put('/:id/addEmployee', (req, res) => {
+  const projectId = req.params.id;
+  const project = projects.find((s) => s.id === projectId);
+  if (project) {
+    const {
+      id, name, role, rate,
+    } = req.body;
+    const newEmployee = {
+      id, name, rate, role,
+    };
+    if (newEmployee.id !== undefined
+        && newEmployee.name !== undefined
+        && newEmployee.rate !== undefined
+        && newEmployee.role !== undefined) {
+      project.employees.push(newEmployee);
+      const filteredProjects = projects.filter((s) => s.id !== projectId);
+      filteredProjects.push(project);
+      fs.writeFile('src/data/projects.json', JSON.stringify(filteredProjects), (err) => {
+        if (err) {
+          res.send(err);
+        } else {
+          res.send('Employee added successfully');
+        }
+      });
+    }
+  } else {
+    res.send('Employee cannot be added');
   }
 });
 

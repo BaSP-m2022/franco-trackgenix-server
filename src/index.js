@@ -1,3 +1,4 @@
+// use "import" to import libraries
 import express from 'express';
 import adminController from './resources/admins';
 import projectRouter from './resources/projects';
@@ -16,5 +17,6 @@ app.get('/admins/:id', adminController.getAdminById);
 app.get('/admins', adminController.getAdminsByQuery);
 
 app.listen(port, () => {
+  // eslint-disable-next-line no-console
   console.log(`Example app listening on port ${port}`);
 });
