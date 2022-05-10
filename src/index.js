@@ -12,9 +12,6 @@ app.get('/', (req, res) => {
   res.send('Hello World!');
 });
 
-// app.get('/admins/:id', adminRouter.getAdminById);
-// app.get('/admins', adminRouter.getAdminsByQuery);
-
 app.listen(port, () => {
   // eslint-disable-next-line no-console
   console.log(`Example app listening on port ${port}`);

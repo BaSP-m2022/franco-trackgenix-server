@@ -5,6 +5,7 @@ const admins = require('../data/admins.json');
 
 const router = express.Router();
 
+// CREATE
 router.post('/create', (req, res) => {
   const adminData = req.body;
   if (adminData.id
@@ -27,6 +28,7 @@ router.post('/create', (req, res) => {
   }
 });
 
+// EDIT
 router.put('/edit/:id', (req, res) => {
   const adminId = req.params.id;
   const adminToEdit = admins.find((adm) => adm.id === adminId);
@@ -50,11 +52,13 @@ router.put('/edit/:id', (req, res) => {
   }
 });
 
+// GET ALL
 router.get('/', (req, res) => {
   res.send(admins);
 });
 
-router.get('/getById/:id', (req, res) => {
+// GET ADMIN BY ID
+router.get('/id/:id', (req, res) => {
   const admId = req.params.id;
   const admin = admins.find((adm) => adm.id === admId);
   if (admin) {
@@ -64,6 +68,7 @@ router.get('/getById/:id', (req, res) => {
   }
 });
 
+// FILTER BY NAME
 router.get('/name', (req, res) => {
   const adminName = req.query.firstName;
   const filteredAdmins = admins.filter((admin) => admin.firstName === adminName);
@@ -74,6 +79,7 @@ router.get('/name', (req, res) => {
   }
 });
 
+// DELETE
 router.delete('/delete/:id', (req, res) => {
   const adminId = req.params.id;
   const filteredAdmins = admins.filter((admin) => adminId !== admin.id);
