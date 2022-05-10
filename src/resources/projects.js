@@ -10,10 +10,8 @@ router.get('/getAll', (req, res) => {
   res.send(projects);
 });
 
-// -----------POST METHOD
 router.post('/create', (req, res) => {
   // eslint-disable-next-line no-console
-  console.log('Entre');
   const projectData = req.body;
   if (projectData.id && projectData.name && projectData.status && projectData.description
     && projectData.employees && projectData.startDate && projectData.endDate) {
@@ -30,7 +28,6 @@ router.post('/create', (req, res) => {
   }
 });
 
-// ----------- DELETE METHOD
 router.delete('/delete/:id', (req, res) => {
   const projectId = req.params.id;
   const filteredProjects = projects.filter((project) => projectId !== project.id);
@@ -48,8 +45,18 @@ router.delete('/delete/:id', (req, res) => {
   }
 });
 
-// ----------- FILTER METHOD
-router.get('/filter', (req, res) => {
+router.get('/getById/:id', (req, res) => {
+  const projectId = req.params.id;
+
+  const filterId = projects.filter((project) => project.id.includes(projectId));
+  if (filterId.length > 0) {
+    res.send(filterId);
+  } else {
+    res.send('Project it was not found');
+  }
+});
+
+router.get('/', (req, res) => {
   const pName = req.query.name;
   const pStatus = req.query.status;
   const pDescription = req.query.description;
@@ -57,51 +64,63 @@ router.get('/filter', (req, res) => {
   const pStartDate = req.query.startDate;
   const pEndDate = req.query.startDate;
   if (!pName && !pStatus && !pDescription && !pEmployees && !pStartDate && !pEndDate) {
-    res.send('No filters were found');
-  } else if (pName) {
-    const filterName = projects.filter((project) => project.name.includes(pName));
-    if (filterName.length > 0) {
-      res.send(filterName);
-    } else {
-      res.send('Project it was not found');
+    res.send(projects);
+  }
+
+  const filteredProjects = projects.filter((p) => {
+    if (pName && pStatus && pDescription && pEmployees && pStartDate && pEndDate) {
+      return p.name.includes(pName.toLowerCase())
+            && p.status.includes(pStatus.toLowerCase())
+            && p.description.includes(pDescription.toLowerCase())
+            && p.employees.includes(pEmployees.toLowerCase())
+            && p.startDate.includes(pStartDate.toLowerCase())
+            && p.endDate.includes(pEndDate.toLowerCase());
     }
-  } else if (pStatus) {
-    const filterStatus = projects.filter((project) => project.status.includes(pStatus));
-    if (filterStatus.length > 0) {
-      res.send(filterStatus);
-    } else {
-      res.send('Project it was not found');
+    if (pName && pStatus && pDescription && pEmployees && pStartDate) {
+      return p.name.includes(pName.toLowerCase())
+            && p.status.includes(pStatus.toLowerCase())
+            && p.description.includes(pDescription.toLowerCase())
+            && p.employees.includes(pEmployees.toLowerCase())
+            && p.startDate.includes(pStartDate.toLowerCase());
     }
-  } else if (pDescription) {
-    const filterDescription = projects.filter(
-      (project) => project.description.includes(pDescription),
-    );
-    if (filterDescription.length > 0) {
-      res.send(filterDescription);
-    } else {
-      res.send('Project it was not found');
+    if (pName && pStatus && pDescription && pEmployees) {
+      return p.name.includes(pName.toLowerCase())
+            && p.status.includes(pStatus.toLowerCase())
+            && p.description.includes(pDescription.toLowerCase())
+            && p.employees.includes(pEmployees.toLowerCase());
     }
-  } else if (pEmployees) {
-    const filterEmployees = projects.filter((project) => project.employees.includes(pEmployees));
-    if (filterEmployees.length > 0) {
-      res.send(filterEmployees);
-    } else {
-      res.send('Project it was not found');
+    if (pName && pStatus && pDescription) {
+      return p.name.includes(pName.toLowerCase())
+            && p.status.includes(pStatus.toLowerCase())
+            && p.description.includes(pDescription.toLowerCase());
     }
-  } else if (pStartDate) {
-    const filterStartDate = projects.filter((project) => project.startDate.includes(pStartDate));
-    if (filterStartDate.length > 0) {
-      res.send(filterStartDate);
-    } else {
-      res.send('Project it was not found');
+    if (pName && pStatus) {
+      return p.name.includes(pName.toLowerCase()) && p.status.includes(pStatus.toLowerCase());
     }
-  } else if (pEndDate) {
-    const filterEndDate = projects.filter((project) => project.endDate.includes(pEndDate));
-    if (filterEndDate.length > 0) {
-      res.send(filterEndDate);
-    } else {
-      res.send('Project it was not found');
+    if (pName) {
+      return p.name.includes(pName.toLowerCase());
     }
+    if (pStatus) {
+      return p.status.includes(pStatus.toLowerCase());
+    }
+    if (pDescription) {
+      return p.description.includes(pDescription.toLowerCase());
+    }
+    if (pEmployees) {
+      return p.employees.includes(pEmployees.toLowerCase());
+    }
+    if (pStartDate) {
+      return p.startDate.includes(pStartDate.toLowerCase());
+    }
+    if (pEndDate) {
+      return p.endDate.includes(pEndDate);
+    }
+    return false;
+  });
+  if (filteredProjects.length > 0) {
+    res.send(filteredProjects);
+  } else {
+    res.send('Project not found');
   }
 });
 

@@ -1,67 +1,109 @@
 [
     {
         "id": "1",
-        "name": "Trackgenix",
+        "name": "trackgenix",
         "status": "true",
-        "description": "Project number 1",
+        "description": "project number 1",
         "employees": [
-            "Employee",
-            "Admin",
-            "SuperAdmin"
+            {
+                "id": "1",
+                "firstName": "zeb",
+                "lastName": "kington",
+                "email": "zkington0@yelp.com",
+                "password": "aq0oib2",
+                "dateOfBirth": "06/01/1968",
+                "dni": "0179122096"
+              },
+              {
+                "id": "1",
+                "firstName": "eluno",
+                "lastName": "editado",
+                "email": "edita2@edit.com",
+                "dateOfBirth": "10/30/2000",
+                "password": "eledit2",
+                "dni": "84-289-5946"
+            },
+            {
+                "id": "1",
+                "firstName": "alyda",
+                "lastName": "audsley",
+                "email": "aaudsley1@alexa.com",
+                "dateOfBirth": "1/4/1975",
+                "dni": "56865747"
+            }
         ],
         "startDate": "09-16-2021",
         "endDate": "03-11-2022"
     },
     {
         "id": "2",
-        "name": "MercadoLibre",
+        "name": "amazon",
         "status": "true",
-        "description": "Project number 2",
+        "description": "project number 2",
         "employees": [
-            "Employee",
-            "Admin",
-            "SuperAdmin"
-        ],
-        "startDate": "03-16-2021",
-        "endDate": "12-31-2022"
-    },
-    {
-        "id": "3",
-        "name": "Amazon",
-        "status": "true",
-        "description": "Project number 3",
-        "employees": [
-            "Employee",
-            "Admin",
-            "SuperAdmin"
+            {
+                "id": "2",
+                "firstName": "clarance",
+                "lastName": "haddick",
+                "email": "chaddick1@comsenz.com",
+                "password": "vlhdtCLc",
+                "dateOfBirth": "07/30/1980",
+                "dni": "3673450522"
+              },
+              {
+                "id": "2",
+                "firstName": "jenilee",
+                "lastName": "yanov",
+                "email": "jyanov1@salon.com",
+                "dateOfBirth": "06/28/1990",
+                "password": "8mMa2URO",
+                "dni": "57-474-1169"
+            },
+            {
+                "id": "2",
+                "firstName": "roseann",
+                "lastName": "wike",
+                "email": "rwike2@ebay.com",
+                "dateOfBirth": "7/22/1975",
+                "dni": "33940681"
+            }
         ],
         "startDate": "05-21-2021",
         "endDate": "11-27-2021"
     },
     {
-        "id": "4",
-        "name": "Apple",
+        "id": "3",
+        "name": "apple",
         "status": "true",
-        "description": "Project number 4",
+        "description": "project number 3",
         "employees": [
-            "Employee",
-            "Admin",
-            "SuperAdmin"
+            {
+                "id": "3",
+                "firstName": "roseann",
+                "lastName": "wike",
+                "email": "rwike2@ebay.com",
+                "dateOfBirth": "7/22/1975",
+                "dni": "33940681"
+            },
+            {
+                "id": "3",
+                "firstName": "javier",
+                "lastName": "yanov",
+                "email": "javyanov1@salon.com",
+                "dateOfBirth": "06/28/1992",
+                "password": "8mMa24gO",
+                "dni": "57-474-1190"
+            },
+            {
+                "id": "6",
+                "firstName": "alyda",
+                "lastName": "east",
+                "email": "zeast5@oaic.gov.au",
+                "dateOfBirth": "4/8/1973",
+                "dni": "99434942"
+            }
         ],
         "startDate": "03-01-2022",
         "endDate": "31-03-2022"
-    },
-    {
-        "id": "5",
-        "name": "This project will be edited",
-        "status": "true",
-        "description": "Hello World",
-        "employees": [
-            "Employee",
-            "Admin",
-            "SuperAdmin"
-        ],
-        "startDate": "01-01-2022",
-        "endDate": "12-03-2022"
     }
 ]
