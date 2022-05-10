@@ -1,17 +1,11 @@
 import express from 'express';
-// const fs = require('fs');
 import fs from 'fs';
 
 const router = express.Router();
 
 const projects = require('../data/projects.json');
 
-router.get('/getAll', (req, res) => {
-  res.send(projects);
-});
-
-router.post('/create', (req, res) => {
-  // eslint-disable-next-line no-console
+router.post('/:id', (req, res) => {
   const projectData = req.body;
   if (projectData.id && projectData.name && projectData.status && projectData.description
     && projectData.employees && projectData.startDate && projectData.endDate) {
@@ -28,7 +22,7 @@ router.post('/create', (req, res) => {
   }
 });
 
-router.delete('/delete/:id', (req, res) => {
+router.delete('/:id', (req, res) => {
   const projectId = req.params.id;
   const filteredProjects = projects.filter((project) => projectId !== project.id);
 
