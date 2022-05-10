@@ -107,4 +107,38 @@ taskRouter.delete('/deleteTask/:id', (req, res) => {
   }
 });
 
+taskRouter.put('/modifyTask/:id', (req, res) => {
+  const taskId = req.params.id;
+  const taskToModify = tasks.find((task) => Number(taskId) === task.id);
+  if (taskToModify) {
+    const taskUpdated = req.body;
+    taskToModify.name = taskUpdated.name ? taskUpdated.name : taskToModify.name;
+    taskToModify.description = taskUpdated.description
+      ? taskUpdated.description : taskToModify.description;
+    taskToModify.project = taskUpdated.project ? taskUpdated.project : taskToModify.project;
+    taskToModify.workedHours = taskUpdated.workedHours
+      ? taskUpdated.workedHours : taskToModify.workedHours;
+    tasks = tasks.filter((task) => task.id !== Number(taskId));
+    tasks.push(taskToModify);
+    tasks.sort((a, b) => {
+      if (a.id > b.id) {
+        return 1;
+      }
+      if (a.id < b.id) {
+        return -1;
+      }
+      return 0;
+    });
+    fs.writeFile('src/data/tasks.json', JSON.stringify(tasks), (err) => {
+      if (err) {
+        res.send(err);
+      } else {
+        res.send('Changes made successfully.');
+      }
+    });
+  } else {
+    res.send('Task not found.');
+  }
+});
+
 export default taskRouter;
