@@ -45,38 +45,32 @@ router.delete('/deleted/:id', (req, res) => {
   }
 });
 
-// filter employee by name
-
-// router.get('/getByName', (req, res) => {
-//   const employeeName = req.query.name;
-//   const employeeFilter = employees.filter((s) => s.Name === employeeName);
-//   if (employeeFilter.length > 0) {
-//     res.send(employeeFilter);
-//   } else {
-//     res.send('This name was not found');
-//   }
-// });
-
 // add an employee
 
-// router.post('/add', (req, res) => {
-//   const employeeAdd = req.body;
-//   employees.push(employeeAdd);
-//   fs.writeFile('src/data/employees.json', JSON.stringify(employees), (error) => {
-//     if (error) {
-//       res.send(error);
-//     } else {
-//       res.send('employee not added');
-//     }
-//   });
-// });
+// eslint-disable-next-line no-shadow
+router.post('/add', (req, res) => {
+  const employeeAdd = req.body;
+  if (employeeAdd.id && employeeAdd.firstName && employeeAdd.lastName
+    && employeeAdd.email && employeeAdd.dateOfBirth && employeeAdd.dni) {
+    employees.push(employeeAdd);
+    fs.writeFile('src/data/employees.json', JSON.stringify(employees), (error) => {
+      if (error) {
+        res.send(error);
+      } else {
+        res.send('employee added');
+      }
+    });
+  } else {
+    res.send('employee not added');
+  }
+});
 
 // filter employee
 
 // eslint-disable-next-line no-shadow
 router.get('/filter', (req, res) => {
   const employeeId = req.query.id;
-  const employeeName = req.query.Name;
+  const employeeName = req.query.firstName;
   const employeeLastName = req.query.lastName;
   const employeeEmail = req.query.email;
   const employeeDoB = req.query.dateOfBirth;
@@ -88,13 +82,14 @@ router.get('/filter', (req, res) => {
   const employeeFilter = employees.filter((employee) => {
     if (employeeId && employeeName && employeeLastName && employeeEmail
         && employeeDoB && employeeDni) {
-      return employee.id.includes(employeeId) && employee.Name.includes(employeeName)
+      return employee.id.includes(employeeId) && employee.firstName.includes(employeeName)
             // eslint-disable-next-line max-len
             && employee.lastName.includes(employeeLastName) && employee.email.includes(employeeEmail)
             && employee.dateOfBirth.includes(employeeDoB) && employee.dni.includes(employeeDni);
     }
     if (employeeName && employeeLastName && employeeEmail && employeeDoB && employeeDni) {
-      return employee.Name.includes(employeeName) && employee.lastName.includes(employeeLastName)
+      // eslint-disable-next-line max-len
+      return employee.firstName.includes(employeeName) && employee.lastName.includes(employeeLastName)
             && employee.email.includes(employeeEmail) && employee.dateOfBirth.includes(employeeDoB)
             && employee.dni.includes(employeeDni);
     }
@@ -122,7 +117,7 @@ router.get('/filter', (req, res) => {
       return employee.lastName.includes(employeeLastName);
     }
     if (employeeName) {
-      return employee.Name.includes(employeeName);
+      return employee.firstName.includes(employeeName);
     }
     if (employeeId) {
       return employee.id.includes(employeeId);
