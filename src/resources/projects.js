@@ -68,51 +68,52 @@ router.get('/', (req, res) => {
 
   const filteredProjects = projects.filter((p) => {
     if (pName && pStatus && pDescription && pEmployees && pStartDate && pEndDate) {
-      return p.name.includes(pName.toLowerCase())
-            && p.status.includes(pStatus.toLowerCase())
-            && p.description.includes(pDescription.toLowerCase())
-            && p.employees.includes(pEmployees.toLowerCase())
-            && p.startDate.includes(pStartDate.toLowerCase())
-            && p.endDate.includes(pEndDate.toLowerCase());
+      return p.name.toLowerCase().includes(pName.toLowerCase())
+            && p.status.toLowerCase().includes(pStatus.toLowerCase())
+            && p.description.toLowerCase().includes(pDescription.toLowerCase())
+            && p.employees.toLowerCase().includes(pEmployees.toLowerCase())
+            && p.startDate.toLowerCase().includes(pStartDate.toLowerCase())
+            && p.endDate.toLowerCase().includes(pEndDate.toLowerCase());
     }
     if (pName && pStatus && pDescription && pEmployees && pStartDate) {
-      return p.name.includes(pName.toLowerCase())
-            && p.status.includes(pStatus.toLowerCase())
-            && p.description.includes(pDescription.toLowerCase())
-            && p.employees.includes(pEmployees.toLowerCase())
-            && p.startDate.includes(pStartDate.toLowerCase());
+      return p.name.toLowerCase().includes(pName.toLowerCase())
+      && p.status.toLowerCase().includes(pStatus.toLowerCase())
+      && p.description.toLowerCase().includes(pDescription.toLowerCase())
+      && p.employees.toLowerCase().includes(pEmployees.toLowerCase())
+      && p.startDate.toLowerCase().includes(pStartDate.toLowerCase());
     }
     if (pName && pStatus && pDescription && pEmployees) {
-      return p.name.includes(pName.toLowerCase())
-            && p.status.includes(pStatus.toLowerCase())
-            && p.description.includes(pDescription.toLowerCase())
-            && p.employees.includes(pEmployees.toLowerCase());
+      return p.name.toLowerCase().includes(pName.toLowerCase())
+      && p.status.toLowerCase().includes(pStatus.toLowerCase())
+      && p.description.toLowerCase().includes(pDescription.toLowerCase())
+      && p.employees.toLowerCase().includes(pEmployees.toLowerCase());
     }
     if (pName && pStatus && pDescription) {
-      return p.name.includes(pName.toLowerCase())
-            && p.status.includes(pStatus.toLowerCase())
-            && p.description.includes(pDescription.toLowerCase());
+      return p.name.toLowerCase().includes(pName.toLowerCase())
+      && p.status.toLowerCase().includes(pStatus.toLowerCase())
+      && p.description.toLowerCase().includes(pDescription.toLowerCase());
     }
     if (pName && pStatus) {
-      return p.name.includes(pName.toLowerCase()) && p.status.includes(pStatus.toLowerCase());
+      return p.name.toLowerCase().includes(pName.toLowerCase())
+      && p.status.toLowerCase().includes(pStatus.toLowerCase());
     }
     if (pName) {
-      return p.name.includes(pName.toLowerCase());
+      return p.name.toLowerCase().includes(pName.toLowerCase());
     }
     if (pStatus) {
-      return p.status.includes(pStatus.toLowerCase());
+      return p.status.toLowerCase().includes(pStatus.toLowerCase());
     }
     if (pDescription) {
-      return p.description.includes(pDescription.toLowerCase());
+      return p.description.toLowerCase().includes(pDescription.toLowerCase());
     }
     if (pEmployees) {
-      return p.employees.includes(pEmployees.toLowerCase());
+      return p.employees.toLowerCase().includes(pEmployees.toLowerCase());
     }
     if (pStartDate) {
-      return p.startDate.includes(pStartDate.toLowerCase());
+      return p.startDate.toLowerCase().includes(pStartDate.toLowerCase());
     }
     if (pEndDate) {
-      return p.endDate.includes(pEndDate);
+      return p.endDate.toLowerCase().includes(pEndDate);
     }
     return false;
   });
