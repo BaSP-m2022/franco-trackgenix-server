@@ -107,7 +107,6 @@ router.delete('/:id', (req, res) => {
 router.put('/:id', (req, res) => {
   const sAdminId = req.params.id;
   const sAdmin = superAdmins.find((s) => s.id === sAdminId);
-  console.log(sAdmin);
   if (sAdmin) {
     const sAdminUpdated = req.body;
     const newAdmin = {};
