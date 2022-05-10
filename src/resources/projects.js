@@ -23,7 +23,7 @@ router.put('/:id', (req, res) => {
     const editedProject = {};
     editedProject.id = projectId;
     editedProject.name = projectUpdated.name ? projectUpdated.name : project.name;
-    editedProject.status = projectUpdated.status ? projectUpdated.name : project.status;
+    editedProject.status = projectUpdated.status ? projectUpdated.status : project.status;
     editedProject.description = projectUpdated.description
       ? projectUpdated.description : project.description;
     editedProject.startDate = projectUpdated.startDate
