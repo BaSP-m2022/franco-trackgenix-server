@@ -5,7 +5,11 @@
         "day": "monday",
         "workedHours": 4,
         "project": "Buzzdog",
-        "task": "Span",
+        "task": [
+            "Miscellaneous",
+            "Capital Goods",
+            "Technology"
+        ],
         "manager": "Gan Orum"
     },
     {
@@ -14,7 +18,11 @@
         "day": "thursday",
         "workedHours": 7,
         "project": "Voonte",
-        "task": "Y-Solowarm",
+        "task": [
+            "Basic Industries",
+            "Health Care",
+            "Home"
+        ],
         "check": false,
         "manager": "Angeline Charman"
     },
@@ -24,7 +32,11 @@
         "day": "saturday",
         "workedHours": 2,
         "project": "Buzzdog",
-        "task": "Tresom",
+        "task": [
+            "Jewelry",
+            "Consumer Services",
+            "Technology"
+        ],
         "check": true,
         "manager": "Junette Thrift"
     },
@@ -34,7 +46,11 @@
         "day": "tuesday",
         "workedHours": 4,
         "project": "Thoughtblab",
-        "task": "Cardify",
+        "task": [
+            "Health Care",
+            "Industrial",
+            "Home"
+        ],
         "check": false,
         "manager": "Maegan Swan"
     },
@@ -44,7 +60,10 @@
         "day": "sunday",
         "workedHours": 6,
         "project": "Rhyzio",
-        "task": "Andalax",
+        "task": [
+            "Television Services",
+            "Basic Industries"
+        ],
         "check": false,
         "manager": "Morrie Hares"
     },
@@ -54,7 +73,11 @@
         "day": "saturday",
         "workedHours": 3,
         "project": "Brainverse",
-        "task": "Redhold",
+        "task": [
+            "Finance",
+            "Jewelry",
+            "Home"
+        ],
         "check": false,
         "manager": "Federica Kehir"
     },
@@ -64,7 +87,11 @@
         "day": "sunday",
         "workedHours": 3,
         "project": "Buzzdog",
-        "task": "Fixflex",
+        "task": [
+            "Television Services",
+            "Clothing",
+            "Technology"
+        ],
         "check": false,
         "manager": "Bertrand Straw"
     },
@@ -74,7 +101,11 @@
         "day": "thursday",
         "workedHours": 2,
         "project": "Skiba",
-        "task": "Zaam-Dox",
+        "task": [
+            "Basic Industries",
+            "Computers",
+            "Home"
+        ],
         "check": true,
         "manager": "Rickie Bickerdyke"
     },
@@ -84,7 +115,11 @@
         "day": "monday",
         "workedHours": 1,
         "project": "Eamia",
-        "task": "Andalax",
+        "task": [
+            "Finance",
+            "Industrial",
+            "Automotive"
+        ],
         "check": false,
         "manager": "Gan Orum"
     },
@@ -94,7 +129,10 @@
         "day": "friday",
         "workedHours": 1,
         "project": "Eire",
-        "task": "Transcof",
+        "task": [
+            "Clothing",
+            "Medical Specialities"
+        ],
         "check": true,
         "manager": "Gan Orum"
     },
@@ -104,7 +142,11 @@
         "day": "sunday",
         "workedHours": 3,
         "project": "Buzzdog",
-        "task": "Fixflex",
+        "task": [
+            "Finance",
+            "Computers",
+            "Office Equipment"
+        ],
         "check": false,
         "manager": "Franco Marini"
     },
@@ -114,7 +156,9 @@
         "day": "saturday",
         "workedHours": 5,
         "project": "Buzzdog",
-        "task": "Span",
+        "task": [
+            "Sports"
+        ],
         "manager": "Gan Orum"
     },
     {
@@ -123,7 +167,10 @@
         "day": "thursday",
         "workedHours": 7,
         "project": "Apple",
-        "task": "Iphone",
+        "task": [
+            "Office Equipment",
+            "Medical Specialities"
+        ],
         "check": false,
         "manager": "Angeline Charman"
     },
@@ -133,7 +180,10 @@
         "day": "tuesday",
         "workedHours": 3,
         "project": "Bailando",
-        "task": "Puterio",
+        "task": [
+            "Computers",
+            "Automotive"
+        ],
         "check": true,
         "manager": "Franco Marini"
     }

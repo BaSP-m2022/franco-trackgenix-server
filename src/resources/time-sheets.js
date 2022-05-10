@@ -6,20 +6,6 @@ const timesheets = require('../data/time-sheets.json');
 const router = express.Router();
 
 router.get('/', (req, res) => {
-  res.send(timesheets);
-});
-
-router.get('/:id', (req, res) => {
-  const byId = req.params.id;
-  const filteredId = timesheets.find((timesheet) => timesheet.id === byId);
-  if (filteredId) {
-    res.send(filteredId);
-  } else {
-    res.send(`There are not ${byId}`);
-  }
-});
-
-router.get('/filter', (req, res) => {
   const tmManager = req.query.manager;
   const tmCheck = req.query.check;
   const tmProject = req.query.project;
@@ -27,7 +13,7 @@ router.get('/filter', (req, res) => {
   const tmDay = req.query.day;
   const tmTask = req.query.task;
   if (!tmManager && !tmProject && !tmUser && !tmDay && !tmTask) {
-    res.send('There are not filter');
+    res.send(timesheets);
   } else if (tmManager) {
     const filteredManager = timesheets.filter((timesheet) => timesheet.manager.includes(tmManager));
     if (filteredManager.length > 0) {
@@ -58,6 +44,16 @@ router.get('/filter', (req, res) => {
     if (filteredCheck.length > 0) {
       res.send(filteredCheck);
     }
+  }
+});
+
+router.get('/:id', (req, res) => {
+  const byId = req.params.id;
+  const filteredId = timesheets.find((timesheet) => timesheet.id === byId);
+  if (filteredId) {
+    res.send(filteredId);
+  } else {
+    res.send(`There are not ${byId}`);
   }
 });
 
