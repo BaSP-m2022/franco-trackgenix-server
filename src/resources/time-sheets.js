@@ -78,13 +78,14 @@ router.get('/:id', (req, res) => {
 router.post('/', (req, res) => {
   const newTimesheet = req.body;
   if (newTimesheet.id
-      && newTimesheet.user
+    && newTimesheet.user
         && newTimesheet.day
-          && newTimesheet.project
-            && newTimesheet.task
-              && newTimesheet.workedHours
-                && newTimesheet.check
-                  && newTimesheet.manager) {
+            && newTimesheet.project
+                && newTimesheet.tasks
+                    && newTimesheet.workedHours
+                        && newTimesheet.check !== 'undefined'
+                            && newTimesheet.manager
+  ) {
     timesheets.push(newTimesheet);
     fs.writeFile('src/data/time-sheets.json', JSON.stringify(timesheets), (err) => {
       if (err) {
@@ -106,14 +107,23 @@ router.put('/:id', (req, res) => {
     const newTimesheet = {};
     newTimesheet.id = timesheetId;
     newTimesheet.user = updateTimesheet.user ? updateTimesheet.user : timesheetToModifiy.user;
+
     newTimesheet.day = updateTimesheet.day ? updateTimesheet.day : timesheetToModifiy.day;
+
     newTimesheet.workedHours = updateTimesheet.workedHours
       ? updateTimesheet.workedHours : timesheetToModifiy.workedHours;
+
     newTimesheet.project = updateTimesheet.project
       ? updateTimesheet.project : timesheetToModifiy.project;
-    newTimesheet.task = updateTimesheet.task ? updateTimesheet.task : timesheetToModifiy.task;
+
+    newTimesheet.tasks = updateTimesheet.tasks ? updateTimesheet.tasks : timesheetToModifiy.tasks;
+
+    newTimesheet.check = updateTimesheet.check !== 'undefined'
+      ? updateTimesheet.check : timesheetToModifiy.check;
+
     newTimesheet.manager = updateTimesheet.manager
       ? updateTimesheet.manager : timesheetToModifiy.manager;
+
     const timesheetModified = timesheets.filter((timesheet) => timesheet.id !== timesheetId);
     timesheetModified.push(newTimesheet);
     fs.writeFile('src/data/time-sheets.json', JSON.stringify(timesheetModified), (err) => {

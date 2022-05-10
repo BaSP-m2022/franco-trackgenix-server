@@ -1,23 +1,5 @@
 [
     {
-        "id": "1",
-        "user": "claudio",
-        "day": "monday",
-        "workedHours": 4,
-        "project": "buzzdog",
-        "tasks": [
-            {
-                "name": "trencher",
-                "id": "1",
-                "description": "f500",
-                "project": "sub-ex",
-                "workedHours": 8
-            }
-        ],
-        "check": false,
-        "manager": "gan orum"
-    },
-    {
         "id": "2",
         "user": "harmony wallhead",
         "day": "thursday",
@@ -177,6 +159,24 @@
             }
         ],
         "check": true,
+        "manager": "gan orum"
+    },
+    {
+        "id": "1",
+        "user": "claudio",
+        "day": "monday",
+        "workedHours": 4,
+        "project": "buzzdog",
+        "tasks": [
+            {
+                "name": "trencher",
+                "id": "1",
+                "description": "f500",
+                "project": "sub-ex",
+                "workedHours": 8
+            }
+        ],
+        "check": false,
         "manager": "gan orum"
     }
 ]
