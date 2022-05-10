@@ -15,62 +15,6 @@ router.get('/:id', (req, res) => {
   }
 });
 
-router.get('/', (req, res) => {
-  const projectName = req.query.name;
-  const projectStatus = req.query.status;
-  const projectDescription = req.query.description;
-  const projectEmployees = req.query.employees;
-  const projectStartDate = req.query.startDate;
-  const projectEndDate = req.query.endDate;
-  if (!projectName
-    && !projectStatus
-    && !projectDescription
-    && !projectEmployees
-    && !projectStartDate
-    && !projectEndDate) {
-    res.send(projects);
-  }
-  const filteredProjects = projects.filter((project) => {
-    if (projectName
-        && projectStatus
-        && projectDescription
-        && projectEmployees
-        && projectStartDate
-        && projectEndDate) {
-      return project.name.includes(projectName)
-        && project.status.includes(projectStatus)
-        && project.description.includes(projectDescription)
-        && project.employees.includes(projectEmployees)
-        && project.startDate.includes(projectStartDate)
-        && project.endDate.includes(projectEndDate);
-    }
-    if (projectName) {
-      return project.name.includes(projectName);
-    }
-    if (projectStatus) {
-      return project.status.includes(projectStatus);
-    }
-    if (projectDescription) {
-      return project.description.includes(projectDescription);
-    }
-    if (projectEmployees) {
-      return project.employees.includes(projectEmployees);
-    }
-    if (projectStartDate) {
-      return project.startDate.includes(projectStartDate);
-    }
-    if (projectEndDate) {
-      return project.endDate.includes(projectEndDate);
-    }
-    return false;
-  });
-  if (filteredProjects.length > 0) {
-    res.send(filteredProjects);
-  } else {
-    res.send('Project not found');
-  }
-});
-
 router.put('/:id', (req, res) => {
   const projectId = req.params.id;
   const project = projects.find((s) => s.id === projectId);
