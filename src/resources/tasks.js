@@ -27,33 +27,38 @@ taskRouter.get('/getByProject', (req, res) => {
 
   const filteredTasks = tasks.filter((task) => {
     if (taskName && taskId && taskDescription && projectName && workedHoursTask) {
-      return task.name.includes(taskName) && task.id === Number(taskId)
-      && task.description.includes(taskDescription)
-      && task.project.includes(projectName) && task.workedHours === Number(workedHoursTask);
+      return task.name.toLowerCase().includes(taskName.toLowerCase())
+      && task.id === Number(taskId)
+      && task.description.toLowerCase().includes(taskDescription.toLowerCase())
+      && task.project.toLowerCase().includes(projectName.toLowerCase())
+      && task.workedHours === Number(workedHoursTask);
     }
     if (taskName && taskId && taskDescription && projectName) {
-      return task.name.includes(taskName) && task.id === Number(taskId)
-      && task.description.includes(taskDescription)
-      && task.project.includes(projectName);
+      return task.name.toLowerCase().includes(taskName.toLowerCase())
+      && task.id === Number(taskId)
+      && task.description.toLowerCase().includes(taskDescription.toLowerCase())
+      && task.project.toLowerCase().includes(projectName.toLowerCase());
     }
     if (taskName && taskId && taskDescription) {
-      return task.name.includes(taskName) && task.id === Number(taskId)
-      && task.description.includes(taskDescription);
+      return task.name.toLowerCase().includes(taskName.toLowerCase())
+      && task.id === Number(taskId)
+      && task.description.toLowerCase().includes(taskDescription.toLowerCase());
     }
     if (taskName && taskId) {
-      return task.name.includes(taskName) && task.id === Number(taskId);
+      return task.name.toLowerCase().includes(taskName.toLowerCase())
+      && task.id === Number(taskId);
     }
     if (taskName) {
-      return task.name.includes(taskName);
+      return task.name.toLowerCase().includes(taskName.toLowerCase());
     }
     if (taskId) {
       return task.id === Number(taskId);
     }
     if (taskDescription) {
-      return task.description.includes(taskDescription);
+      return task.description.toLowerCase().includes(taskDescription.toLowerCase());
     }
     if (projectName) {
-      return task.project.includes(projectName);
+      return task.project.toLowerCase().includes(projectName.toLowerCase());
     }
     if (workedHoursTask) {
       return task.workedHours === Number(workedHoursTask);
