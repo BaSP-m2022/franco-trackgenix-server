@@ -5,7 +5,7 @@ const router = express.Router();
 
 const projects = require('../data/projects.json');
 
-router.post('/:id', (req, res) => {
+router.post('/', (req, res) => {
   const projectData = req.body;
   if (projectData.id && projectData.name && projectData.status && projectData.description
     && projectData.employees && projectData.startDate && projectData.endDate) {
@@ -36,16 +36,6 @@ router.delete('/:id', (req, res) => {
         res.send('Project delete');
       }
     });
-  }
-});
-
-router.get('/:id', (req, res) => {
-  const projectId = req.params.id;
-  const project = projects.find((p) => p.id === projectId);
-  if (project) {
-    res.send(project);
-  } else {
-    res.send('Project not found');
   }
 });
 
