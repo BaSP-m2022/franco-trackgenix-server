@@ -5,8 +5,7 @@ const admins = require('../data/admins.json');
 
 const router = express.Router();
 
-// CREATE
-router.post('/create', (req, res) => {
+router.post('/', (req, res) => {
   const adminData = req.body;
   if (adminData.id
     && adminData.firstName
@@ -28,8 +27,7 @@ router.post('/create', (req, res) => {
   }
 });
 
-// EDIT
-router.put('/edit/:id', (req, res) => {
+router.put('/:id', (req, res) => {
   const adminId = req.params.id;
   const adminToEdit = admins.find((adm) => adm.id === adminId);
   if (adminToEdit) {
@@ -37,8 +35,8 @@ router.put('/edit/:id', (req, res) => {
     adminToEdit.firstName = adminBody.firstName ? adminBody.firstName : adminToEdit.firstName;
     adminToEdit.lastName = adminBody.lastName ? adminBody.lastName : adminToEdit.lastName;
     adminToEdit.email = adminBody.email ? adminBody.email : adminToEdit.email;
-    // eslint-disable-next-line max-len
-    adminToEdit.dateOfBirth = adminBody.dateOfBirth ? adminBody.dateOfBirth : adminToEdit.dateOfBirth;
+    adminToEdit.dateOfBirth = adminBody.dateOfBirth
+      ? adminBody.dateOfBirth : adminToEdit.dateOfBirth;
     adminToEdit.password = adminBody.password ? adminBody.password : adminToEdit.password;
     fs.writeFile('src/data/admins.json', JSON.stringify(admins), (err) => {
       if (err) {
@@ -52,13 +50,34 @@ router.put('/edit/:id', (req, res) => {
   }
 });
 
-// GET ALL
 router.get('/', (req, res) => {
-  res.send(admins);
+  const adminFirstName = req.query.firstName;
+  const adminLastName = req.query.lastName;
+  if (!adminFirstName && !adminLastName) {
+    res.send(admins);
+  }
+  const filteredAdmins = admins.filter((admin) => {
+    if (adminFirstName && adminLastName) {
+      return admin.firstName.toLowerCase().includes(adminFirstName.toLowerCase())
+              && admin.lastName.toLowerCase().includes(adminLastName.toLowerCase());
+    }
+    if (adminFirstName) {
+      return admin.firstName.toLowerCase().includes(adminFirstName.toLowerCase());
+    }
+    if (adminLastName) {
+      admin.lastName.toLowerCase().includes(adminLastName.toLowerCase());
+    }
+    return false;
+  });
+
+  if (filteredAdmins.length > 0) {
+    res.send(filteredAdmins);
+  } else {
+    res.send('Admin not found');
+  }
 });
 
-// GET ADMIN BY ID
-router.get('/id/:id', (req, res) => {
+router.get('/:id', (req, res) => {
   const admId = req.params.id;
   const admin = admins.find((adm) => adm.id === admId);
   if (admin) {
@@ -68,19 +87,7 @@ router.get('/id/:id', (req, res) => {
   }
 });
 
-// FILTER BY NAME
-router.get('/name', (req, res) => {
-  const adminName = req.query.firstName;
-  const filteredAdmins = admins.filter((admin) => admin.firstName === adminName);
-  if (filteredAdmins.length > 0) {
-    res.send(filteredAdmins);
-  } else {
-    res.send(`There is no admin with the name "${adminName}" in admins list`);
-  }
-});
-
-// DELETE
-router.delete('/delete/:id', (req, res) => {
+router.delete('/:id', (req, res) => {
   const adminId = req.params.id;
   const filteredAdmins = admins.filter((admin) => adminId !== admin.id);
   if (filteredAdmins.length === admins.length) {
