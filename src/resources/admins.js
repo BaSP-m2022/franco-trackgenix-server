@@ -65,7 +65,7 @@ router.get('/', (req, res) => {
       return admin.firstName.toLowerCase().includes(adminFirstName.toLowerCase());
     }
     if (adminLastName) {
-      admin.lastName.toLowerCase().includes(adminLastName.toLowerCase());
+      return admin.lastName.toLowerCase().includes(adminLastName.toLowerCase());
     }
     return false;
   });
