@@ -34,18 +34,6 @@ router.get('/getById', (req, res) => {
   res.send(`There are not timesheets with users by the id of ${timesheetId}`);
 });
 
-// GET BY TASK
-
-router.get('/getByTask', (req, res) => {
-  const tasksChecked = req.query.task;
-  const filteredTask = timesheet.filter((taskToFilter) => taskToFilter.task === tasksChecked);
-  if (filteredTask.length > 0) {
-    res.send(filteredTask);
-  } else {
-    res.send(`There are not timesheets with tasks by the name of ${tasksChecked}`);
-  }
-});
-
 // GET BY MANAGER
 
 router.get('/getByManager', (req, res) => {
@@ -74,7 +62,6 @@ router.get('/getByProject', (req, res) => {
 
 router.get('/getByDay', (req, res) => {
   const timesheetDay = req.query.day;
-  console.log(req.query.method);
   const result = timesheet.filter((filteredDay) => filteredDay.day === timesheetDay);
   if (result.length > 0) {
     res.send(result);
@@ -98,7 +85,6 @@ router.delete('/deleteTimesheet', (req, res) => {
         res.send(err);
       } else {
         res.send(`The user ${timesheetUser} was deleted successfully from the timesheet list.`);
-        console.log(timesheet);
       }
     });
   }
