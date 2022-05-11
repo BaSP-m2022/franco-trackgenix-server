@@ -1,12 +1,14 @@
 // use "import" to import libraries
 import express from 'express';
 import adminController from './resources/admins';
+import projectRouter from './resources/projects';
 import superAdminRouter from './resources/super-admins';
 
 const app = express();
 const port = process.env.PORT || 3000;
 
 app.use(express.json());
+app.use('/projects', projectRouter);
 app.use('/super-admins', superAdminRouter);
 
 app.get('/', (req, res) => {
