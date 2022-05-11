@@ -1,0 +1,92 @@
+[
+    {
+        "id": "1",
+        "firstName": "Zeb",
+        "lastName": "Kington",
+        "email": "zkington0@yelp.com",
+        "password": "aq0oib2",
+        "dateOfBirth": "06/01/1968",
+        "dni": "0179122096"
+    },
+    {
+        "id": "2",
+        "firstName": "Clarance",
+        "lastName": "Haddick",
+        "email": "chaddick1@comsenz.com",
+        "password": "vlhdtCLc",
+        "dateOfBirth": "07/30/1980",
+        "dni": "3673450522"
+    },
+    {
+        "id": "4",
+        "firstName": "Gay",
+        "lastName": "Tollet",
+        "email": "gtollet3@xing.com",
+        "password": "wFdWf9r",
+        "dateOfBirth": "11/07/1963",
+        "dni": "7249264370"
+    },
+    {
+        "id": "5",
+        "firstName": "Ramonda",
+        "lastName": "De Vere",
+        "email": "rdevere4@bandcamp.com",
+        "password": "53h3Td0",
+        "dateOfBirth": "03/12/1952",
+        "dni": "0293959315"
+    },
+    {
+        "id": "6",
+        "firstName": "Abeu",
+        "lastName": "Le Quesne",
+        "email": "alequesne5@arstechnica.com",
+        "password": "jJrtfDzC",
+        "dateOfBirth": "12/10/1973",
+        "dni": "6718681334"
+    },
+    {
+        "id": "7",
+        "firstName": "Melicent",
+        "lastName": "Danilovic",
+        "email": "mdanilovic6@skyrock.com",
+        "password": "TLu6IxriR8",
+        "dateOfBirth": "08/20/1999",
+        "dni": "1123787514"
+    },
+    {
+        "id": "8",
+        "firstName": "Esmeralda",
+        "lastName": "Weinmann",
+        "email": "eweinmann7@ifeng.com",
+        "password": "f0ow2Akicq",
+        "dateOfBirth": "01/08/1991",
+        "dni": "5936875881"
+    },
+    {
+        "id": "9",
+        "firstName": "Aldin",
+        "lastName": "Girke",
+        "email": "agirke8@goo.gl",
+        "password": "xwVUpyK6GkqG",
+        "dateOfBirth": "07/02/1975",
+        "dni": "3332169564"
+    },
+    {
+        "id": "10",
+        "firstName": "Fredrick",
+        "lastName": "MacDougall",
+        "email": "fmacdougall9@upenn.edu",
+        "password": "vPTBry",
+        "dateOfBirth": "10/24/1977",
+        "dni": "4344185013"
+    },
+    {
+        "id": "3",
+        "firstName": "Christiano",
+        "lastName": "Westberg",
+        "dni": "2275923063",
+        "dateOfBirth": "10/25/2001",
+        "password": "gqM2kFpB1Ol5",
+        "email": "cwestberg2@facebook.com"
+    }
+]
