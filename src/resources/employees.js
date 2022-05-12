@@ -2,14 +2,8 @@ import express from 'express';
 import fs from 'fs';
 
 const router = express.Router();
+
 const employees = require('../data/employees.json');
-
-// eslint-disable-next-line no-shadow
-router.get('/', (req, res) => {
-  res.send(employees);
-});
-
-// add an employee
 
 router.post('/', (req, res) => {
   const employeeData = req.body;
