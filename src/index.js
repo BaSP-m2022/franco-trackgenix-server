@@ -16,6 +16,8 @@ app.use('/admins', adminRouter);
 app.use('/projects', projectRouter);
 app.use('/super-admins', superAdminRouter);
 
+app.use('/timesheets', timesheetRouter);
+
 app.get('/', (req, res) => {
   res.send('Hello World!');
 });

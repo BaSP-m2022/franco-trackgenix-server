@@ -5,6 +5,22 @@ const timesheets = require('../data/time-sheets.json');
 
 const router = express.Router();
 
+router.delete('/:id', (req, res) => {
+  const timesheetIdToFilter = req.query.id;
+  const filteredTimesheets = timesheets.filter((timeSheet) => timeSheet.id !== timesheetIdToFilter);
+  if (filteredTimesheets.length === timesheets.length) {
+    res.send('Could not delete the timesheet because it was not found.');
+  } else {
+    fs.writeFile('src/data/time-sheets.json', JSON.stringify(filteredTimesheets), (err) => {
+      if (err) {
+        res.send(err);
+      } else {
+        res.send(`The user by the id of ${timesheetIdToFilter} was deleted successfully from the timesheet list.`);
+      }
+    });
+  }
+});
+
 router.get('/', (req, res) => {
   const tmManager = req.query.manager;
   const tmCheck = req.query.check;
