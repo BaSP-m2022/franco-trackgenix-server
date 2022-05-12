@@ -1,8 +1,9 @@
 import express from 'express';
 import fs from 'fs';
 
+const tasks = require('../data/tasks.json');
+
 const taskRouter = express.Router();
-let tasks = require('../data/tasks.json');
 
 taskRouter.get('/:id', (req, res) => {
   const taskId = req.params.id;
@@ -92,8 +93,8 @@ taskRouter.delete('/:id', (req, res) => {
   if (!deleteById) {
     res.send(`Task with ID ${taskId} was not found.`);
   } else {
-    tasks = tasks.filter((task) => task.id !== Number(taskId));
-    fs.writeFile('src/data/tasks.json', JSON.stringify(tasks), (err) => {
+    const filteredTasks = tasks.filter((task) => task.id !== Number(taskId));
+    fs.writeFile('src/data/tasks.json', JSON.stringify(filteredTasks), (err) => {
       if (err) {
         res.send(err);
       } else {
@@ -114,9 +115,9 @@ taskRouter.put('/:id', (req, res) => {
     taskToModify.project = taskUpdated.project ? taskUpdated.project : taskToModify.project;
     taskToModify.workedHours = taskUpdated.workedHours
       ? taskUpdated.workedHours : taskToModify.workedHours;
-    tasks = tasks.filter((task) => task.id !== Number(taskId));
-    tasks.push(taskToModify);
-    tasks.sort((a, b) => {
+    const filteredTasks = tasks.filter((task) => task.id !== Number(taskId));
+    filteredTasks.push(taskToModify);
+    filteredTasks.sort((a, b) => {
       if (a.id > b.id) {
         return 1;
       }
@@ -125,7 +126,7 @@ taskRouter.put('/:id', (req, res) => {
       }
       return 0;
     });
-    fs.writeFile('src/data/tasks.json', JSON.stringify(tasks), (err) => {
+    fs.writeFile('src/data/tasks.json', JSON.stringify(filteredTasks), (err) => {
       if (err) {
         res.send(err);
       } else {
