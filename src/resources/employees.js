@@ -1,23 +1,17 @@
 import express from 'express';
-// eslint-disable-next-line no-unused-vars
-import res from 'express/lib/response';
 import fs from 'fs';
 
-const router = express.Router();
 const employees = require('../data/employees.json');
 
-// eslint-disable-next-line no-shadow
+const router = express.Router();
+
 router.get('/', (req, res) => {
   res.send(employees);
 });
 
-// get an employee by id
-
-// eslint-disable-next-line no-shadow
-router.get('/getById/:id', (req, res) => {
+router.get('/:id', (req, res) => {
   const employeeId = req.params.id;
-  // eslint-disable-next-line no-shadow
-  const employee = employees.find((employee) => employee.id === employeeId);
+  const employee = employees.find((s) => s.id === employeeId);
   if (employee) {
     res.send(employee);
   } else {
@@ -25,13 +19,9 @@ router.get('/getById/:id', (req, res) => {
   }
 });
 
-// delete an employee by id
-
-// eslint-disable-next-line no-shadow
-router.delete('/deleted/:id', (req, res) => {
+router.delete('/:id', (req, res) => {
   const employeeId = req.params.id;
-  // eslint-disable-next-line no-shadow
-  const deleteEmployee = employees.filter((deleteEmployee) => deleteEmployee.id !== employeeId);
+  const deleteEmployee = employees.filter((s) => s.id !== employeeId);
   if (employees.length === deleteEmployee.length) {
     res.send('Employee was not found to delete');
   } else {
@@ -45,10 +35,7 @@ router.delete('/deleted/:id', (req, res) => {
   }
 });
 
-// add an employee
-
-// eslint-disable-next-line no-shadow
-router.post('/add', (req, res) => {
+router.post('/', (req, res) => {
   const employeeAdd = req.body;
   if (employeeAdd.id && employeeAdd.firstName && employeeAdd.lastName
     && employeeAdd.email && employeeAdd.dateOfBirth && employeeAdd.dni) {
@@ -65,10 +52,7 @@ router.post('/add', (req, res) => {
   }
 });
 
-// filter employee
-
-// eslint-disable-next-line no-shadow
-router.get('/filter', (req, res) => {
+router.get('/', (req, res) => {
   const employeeId = req.query.id;
   const employeeName = req.query.firstName;
   const employeeLastName = req.query.lastName;
@@ -82,49 +66,55 @@ router.get('/filter', (req, res) => {
   const employeeFilter = employees.filter((employee) => {
     if (employeeId && employeeName && employeeLastName && employeeEmail
         && employeeDoB && employeeDni) {
-      return employee.id.includes(employeeId) && employee.firstName.includes(employeeName)
-            // eslint-disable-next-line max-len
-            && employee.lastName.includes(employeeLastName) && employee.email.includes(employeeEmail)
-            && employee.dateOfBirth.includes(employeeDoB) && employee.dni.includes(employeeDni);
+      return employee.id.toLowerCase().includes(employeeId.toLowerCase())
+        && employee.firstName.toLowerCase().includes(employeeName.toLowerCase())
+        && employee.lastName.toLowerCase().includes(employeeLastName.toLowerCase())
+        && employee.email.toLowerCase().includes(employeeEmail.toLowerCase())
+        && employee.dateOfBirth.toLowerCase().includes(employeeDoB.toLowerCase())
+        && employee.dni.toLowerCase().includes(employeeDni.toLowerCase());
     }
     if (employeeName && employeeLastName && employeeEmail && employeeDoB && employeeDni) {
-      // eslint-disable-next-line max-len
-      return employee.firstName.includes(employeeName) && employee.lastName.includes(employeeLastName)
-            && employee.email.includes(employeeEmail) && employee.dateOfBirth.includes(employeeDoB)
-            && employee.dni.includes(employeeDni);
+      return employee.firstName.toLowerCase().includes(employeeName.toLowerCase())
+        && employee.lastName.toLowerCase().includes(employeeLastName.toLowerCase())
+        && employee.email.toLowerCase().includes(employeeEmail.toLowerCase())
+        && employee.dateOfBirth.toLowerCase().includes(employeeDoB.toLowerCase())
+        && employee.dni.toLowerCase().includes(employeeDni.toLowerCase());
     }
     if (employeeLastName && employeeEmail && employeeDoB && employeeDni) {
-      return employee.lastName.includes(employeeLastName) && employee.email.includes(employeeEmail)
-            && employee.dateOfBirth.includes(employeeDoB) && employee.dni.includes(employeeDni);
+      return employee.lastName.toLowerCase().includes(employeeLastName.toLowerCase())
+        && employee.email.toLowerCase().includes(employeeEmail.toLowerCase())
+        && employee.dateOfBirth.toLowerCase().includes(employeeDoB.toLowerCase())
+        && employee.dni.toLowerCase().includes(employeeDni.toLowerCase());
     }
     if (employeeEmail && employeeDoB && employeeDni) {
-      return employee.email.includes(employeeEmail) && employee.dateOfBirth.includes(employeeDoB)
-            && employee.dni.includes(employeeDni);
+      return employee.email.toLowerCase().includes(employeeEmail.toLowerCase())
+        && employee.dateOfBirth.toLowerCase().includes(employeeDoB.toLowerCase())
+        && employee.dni.toLowerCase().includes(employeeDni.toLowerCase());
     }
     if (employeeDoB && employeeDni) {
-      return employee.dateOfBirth.includes(employeeDoB) && employee.dni.includes(employeeDni);
+      return employee.dateOfBirth.toLowerCase().includes(employeeDoB.toLowerCase())
+        && employee.dni.toLowerCase().includes(employeeDni.toLowerCase());
     }
     if (employeeDni) {
-      return employee.dni.includes(employeeDni);
+      return employee.dni.toLowerCase().includes(employeeDni.toLowerCase());
     }
     if (employeeDoB) {
-      return employee.dateOfBirth.includes(employeeDoB);
+      return employee.dateOfBirth.toLowerCase().includes(employeeDoB.toLowerCase());
     }
     if (employeeEmail) {
-      return employee.email.includes(employeeEmail);
+      return employee.email.toLowerCase().includes(employeeEmail.toLowerCase());
     }
     if (employeeLastName) {
-      return employee.lastName.includes(employeeLastName);
+      return employee.lastName.toLowerCase().includes(employeeLastName.toLowerCase());
     }
     if (employeeName) {
-      return employee.firstName.includes(employeeName);
+      return employee.firstName.toLowerCase().includes(employeeName.toLowerCase());
     }
     if (employeeId) {
-      return employee.id.includes(employeeId);
+      return employee.id.toLowerCase().includes(employeeId.toLowerCase());
     }
     return false;
   });
-
   if (employeeFilter.length > 0) {
     res.send(employeeFilter);
   } else {
