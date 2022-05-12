@@ -1,9 +1,9 @@
 import express from 'express';
 import fs from 'fs';
 
-const router = express.Router();
-
 const projects = require('../data/projects.json');
+
+const router = express.Router();
 
 router.post('/', (req, res) => {
   const projectData = req.body;
