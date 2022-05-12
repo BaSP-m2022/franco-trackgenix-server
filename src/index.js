@@ -1,6 +1,7 @@
 // use "import" to import libraries
 import express from 'express';
 import adminRouter from './resources/admins';
+import timesheetRouter from './resources/time-sheets';
 import projectRouter from './resources/projects';
 import superAdminRouter from './resources/super-admins';
 
@@ -15,6 +16,8 @@ app.use('/super-admins', superAdminRouter);
 app.get('/', (req, res) => {
   res.send('Hello World!');
 });
+
+app.use('/timesheets', timesheetRouter);
 
 app.listen(port, () => {
   // eslint-disable-next-line no-console
