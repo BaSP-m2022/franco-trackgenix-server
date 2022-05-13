@@ -1,4 +1,3 @@
-// use "import" to import libraries
 import express from 'express';
 import employeesRouter from './resources/employees';
 import taskRouter from './resources/tasks';
