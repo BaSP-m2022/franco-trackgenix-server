@@ -5,10 +5,6 @@ const employees = require('../data/employees.json');
 
 const router = express.Router();
 
-router.get('/', (req, res) => {
-  res.send(employees);
-});
-
 router.get('/:id', (req, res) => {
   const employeeId = req.params.id;
   const employee = employees.find((s) => s.id === employeeId);
