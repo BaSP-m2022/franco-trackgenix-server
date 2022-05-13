@@ -10,16 +10,7 @@ import superAdminRouter from './controllers/super-admins';
 const app = express();
 const port = process.env.PORT || 3000;
 
-// eslint-disable-next-line quotes
-const mongoDBURL = "mongodb+srv://trackgenix-franco:BaSP2022-franco-tg@trackgenix-cluster.3g4em.mongodb.net/BaSP_database?retryWrites=true&w=majority";
-
-mongoose.connect(mongoDBURL, () => {
-  // eslint-disable-next-line no-console
-  console.log('connect to data base');
-}, (error) => {
-  // eslint-disable-next-line no-console
-  console.log('filed to connect to data base', error);
-});
+const mongoDBURL = 'mongodb+srv://trackgenix-franco:BaSP2022-franco-tg@trackgenix-cluster.3g4em.mongodb.net/BaSP_database?retryWrites=true&w=majority';
 
 app.use(express.json());
 app.use('/tasks', taskRouter);
@@ -33,7 +24,19 @@ app.get('/', (req, res) => {
   res.send('Hello World!');
 });
 
-app.listen(port, () => {
-  // eslint-disable-next-line no-console
-  console.log(`Example app listening on port ${port}`);
-});
+mongoose.connect(
+  mongoDBURL,
+  (error) => {
+    if (error) {
+      // eslint-disable-next-line no-console
+      console.log('Fail to connect', error);
+    } else {
+      // eslint-disable-next-line no-console
+      console.log('Connected to database');
+      app.listen(port, () => {
+        // eslint-disable-next-line no-console
+        console.log(`Example app listening on port ${port}`);
+      });
+    }
+  },
+);
