@@ -1,19 +1,41 @@
 import express from 'express';
 import fs from 'fs';
 
-const router = express.Router();
-
 const employees = require('../data/employees.json');
 
+const router = express.Router();
+
+router.get('/:id', (req, res) => {
+  const employeeId = req.params.id;
+  const employee = employees.find((s) => s.id === employeeId);
+  if (employee) {
+    res.send(employee);
+  } else {
+    res.send('Employee not found');
+  }
+});
+
+router.delete('/:id', (req, res) => {
+  const employeeId = req.params.id;
+  const deleteEmployee = employees.filter((s) => s.id !== employeeId);
+  if (employees.length === deleteEmployee.length) {
+    res.send('Employee was not found to delete');
+  } else {
+    fs.writeFile('src/data/employees.json', JSON.stringify(deleteEmployee), (error) => {
+      if (error) {
+        res.send(error);
+      } else {
+        res.send('Employee deleted');
+      }
+    });
+  }
+});
+
 router.post('/', (req, res) => {
-  const employeeData = req.body;
-  employees.push(employeeData);
-  if (employeeData.id
-    && employeeData.lastName
-    && employeeData.firstName
-    && employeeData.dni
-    && employeeData.dateOfBirth
-    && employeeData.password) {
+  const employeeAdd = req.body;
+  if (employeeAdd.id && employeeAdd.firstName && employeeAdd.lastName
+    && employeeAdd.email && employeeAdd.dateOfBirth && employeeAdd.dni) {
+    employees.push(employeeAdd);
     fs.writeFile('src/data/employees.json', JSON.stringify(employees), (error) => {
       if (error) {
         res.send(error);
