@@ -1,7 +1,7 @@
 import express from 'express';
-import fs from 'fs';
+// import fs from 'fs';
 
-const admins = require('../data/admins.json');
+const admins = [];
 
 const router = express.Router();
 
@@ -15,13 +15,13 @@ router.post('/', (req, res) => {
     && adminData.password
     && adminData.dni) {
     admins.push(adminData);
-    fs.writeFile('src/data/admins.json', JSON.stringify(admins), (err) => {
-      if (err) {
-        res.send(err);
-      } else {
-        res.send('Admin created');
-      }
-    });
+    // fs.writeFile('src/data/admins.json', JSON.stringify(admins), (err) => {
+    //   if (err) {
+    //     res.send(err);
+    //   } else {
+    //     res.send('Admin created');
+    //   }
+    // });
   } else {
     res.send('Admin not created, missing data');
   }
@@ -38,13 +38,13 @@ router.put('/:id', (req, res) => {
     adminToEdit.dateOfBirth = adminBody.dateOfBirth
       ? adminBody.dateOfBirth : adminToEdit.dateOfBirth;
     adminToEdit.password = adminBody.password ? adminBody.password : adminToEdit.password;
-    fs.writeFile('src/data/admins.json', JSON.stringify(admins), (err) => {
-      if (err) {
-        res.send(err);
-      } else {
-        res.send('Admin edited');
-      }
-    });
+    // fs.writeFile('src/data/admins.json', JSON.stringify(admins), (err) => {
+    //   if (err) {
+    //     res.send(err);
+    //   } else {
+    //     res.send('Admin edited');
+    //   }
+    // });
   } else {
     res.send('Admin not found');
   }
@@ -93,13 +93,13 @@ router.delete('/:id', (req, res) => {
   if (filteredAdmins.length === admins.length) {
     res.send('Could not delete admin because it was not found');
   } else {
-    fs.writeFile('src/data/admins.json', JSON.stringify(filteredAdmins), (err) => {
-      if (err) {
-        res.send(err);
-      } else {
-        res.send('Admin deleted');
-      }
-    });
+    // fs.writeFile('src/data/admins.json', JSON.stringify(filteredAdmins), (err) => {
+    //   if (err) {
+    //     res.send(err);
+    //   } else {
+    //     res.send('Admin deleted');
+    //   }
+    // });
   }
 });
 

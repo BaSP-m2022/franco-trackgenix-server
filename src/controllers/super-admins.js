@@ -1,7 +1,7 @@
 import express from 'express';
-import fs from 'fs';
+// import fs from 'fs';
 
-const superAdmins = require('../data/super-admins.json');
+const superAdmins = [];
 
 const router = express.Router();
 
@@ -76,13 +76,13 @@ router.post('/', (req, res) => {
   if (sAdmin.id && sAdmin.firstName && sAdmin.lastName && sAdmin.email && sAdmin.dateOfBirth
       && sAdmin.dni) {
     superAdmins.push(sAdmin);
-    fs.writeFile('src/data/super-admins.json', JSON.stringify(superAdmins), (err) => {
-      if (err) {
-        res.send(err);
-      } else {
-        res.send('SuperAdmin Created');
-      }
-    });
+    // fs.writeFile('src/data/super-admins.json', JSON.stringify(superAdmins), (err) => {
+    //   if (err) {
+    //     res.send(err);
+    //   } else {
+    //     res.send('SuperAdmin Created');
+    //   }
+    // });
   } else {
     res.send('Data insufficient');
   }
@@ -94,13 +94,13 @@ router.delete('/:id', (req, res) => {
   if (superAdmins.length === deletedById.length) {
     res.send('Could not delete SuperAdmin because it was not found');
   } else {
-    fs.writeFile('src/data/super-admins.json', JSON.stringify(deletedById), (err) => {
-      if (err) {
-        res.send(err);
-      } else {
-        res.send('SuperAdmin Deleted');
-      }
-    });
+    // fs.writeFile('src/data/super-admins.json', JSON.stringify(deletedById), (err) => {
+    //   if (err) {
+    //     res.send(err);
+    //   } else {
+    //     res.send('SuperAdmin Deleted');
+    //   }
+    // });
   }
 });
 
@@ -119,13 +119,13 @@ router.put('/:id', (req, res) => {
     newAdmin.dni = sAdminUpdated.dni ? sAdminUpdated.dni : sAdmin.dni;
     const superAdminUpdate = superAdmins.filter((s) => s.id !== sAdminId);
     superAdminUpdate.push(newAdmin);
-    fs.writeFile('src/data/super-admins.json', JSON.stringify(superAdminUpdate), (err) => {
-      if (err) {
-        res.send(err);
-      } else {
-        res.send('SuperAdmin Updated');
-      }
-    });
+    // fs.writeFile('src/data/super-admins.json', JSON.stringify(superAdminUpdate), (err) => {
+    //   if (err) {
+    //     res.send(err);
+    //   } else {
+    //     res.send('SuperAdmin Updated');
+    //   }
+    // });
   } else {
     res.send('SuperAdmin not found');
   }
