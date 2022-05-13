@@ -1,4 +1,3 @@
-// use "import" to import libraries
 import express from 'express';
 import mongoose from 'mongoose';
 import employeesRouter from './controllers/employees';
