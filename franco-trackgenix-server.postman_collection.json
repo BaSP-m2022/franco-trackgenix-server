@@ -1,0 +1,33 @@
+{
+	"info": {
+		"_postman_id": "933eb2a8-d97d-402a-87e4-e8f1af8e3c1e",
+		"name": "franco-trackgenix-server",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "admins",
+			"item": []
+		},
+		{
+			"name": "superAdmins",
+			"item": []
+		},
+		{
+			"name": "tasks",
+			"item": []
+		},
+		{
+			"name": "employees",
+			"item": []
+		},
+		{
+			"name": "timesheets",
+			"item": []
+		},
+		{
+			"name": "projects",
+			"item": []
+		}
+	]
+}
