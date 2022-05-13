@@ -1,7 +1,7 @@
 import express from 'express';
-import fs from 'fs';
+// import fs from 'fs';
 
-const projects = require('../data/projects.json');
+const projects = [];
 
 const router = express.Router();
 
@@ -10,13 +10,13 @@ router.post('/', (req, res) => {
   if (projectData.id && projectData.name && projectData.status && projectData.description
     && projectData.employees && projectData.startDate && projectData.endDate) {
     projects.push(projectData);
-    fs.writeFile('src/data/projects.json', JSON.stringify(projects), (err) => {
-      if (err) {
-        res.send(err);
-      } else {
-        res.send('Project create');
-      }
-    });
+    // fs.writeFile('src/data/projects.json', JSON.stringify(projects), (err) => {
+    //   if (err) {
+    //     res.send(err);
+    //   } else {
+    //     res.send('Project create');
+    //   }
+    // });
   } else {
     res.send('project not created');
   }
@@ -29,13 +29,13 @@ router.delete('/:id', (req, res) => {
   if (projects.length === filteredProjects.length) {
     res.send('Could not delete project because it was not found');
   } else {
-    fs.writeFile('src/data/projects.json', JSON.stringify(filteredProjects), (err) => {
-      if (err) {
-        res.send(err);
-      } else {
-        res.send('Project delete');
-      }
-    });
+    // fs.writeFile('src/data/projects.json', JSON.stringify(filteredProjects), (err) => {
+    //   if (err) {
+    //     res.send(err);
+    //   } else {
+    //     res.send('Project delete');
+    //   }
+    // });
   }
 });
 
@@ -134,13 +134,13 @@ router.put('/:id', (req, res) => {
     editedProject.endDate = projectUpdated.endDate ? projectUpdated.endDate : project.endDate;
     const projectUpdate = projects.filter((s) => s.id !== projectId);
     projectUpdate.push(editedProject);
-    fs.writeFile('src/data/projects.json', JSON.stringify(projectUpdate), (err) => {
-      if (err) {
-        res.send(err);
-      } else {
-        res.send('Project updated');
-      }
-    });
+    // fs.writeFile('src/data/projects.json', JSON.stringify(projectUpdate), (err) => {
+    //   if (err) {
+    //     res.send(err);
+    //   } else {
+    //     res.send('Project updated');
+    //   }
+    // });
   } else {
     res.send('Project not found');
   }
@@ -163,13 +163,13 @@ router.put('/:id/addEmployee', (req, res) => {
       project.employees.push(newEmployee);
       const filteredProjects = projects.filter((s) => s.id !== projectId);
       filteredProjects.push(project);
-      fs.writeFile('src/data/projects.json', JSON.stringify(filteredProjects), (err) => {
-        if (err) {
-          res.send(err);
-        } else {
-          res.send('Employee added successfully');
-        }
-      });
+      // fs.writeFile('src/data/projects.json', JSON.stringify(filteredProjects), (err) => {
+      //   if (err) {
+      //     res.send(err);
+      //   } else {
+      //     res.send('Employee added successfully');
+      //   }
+      // });
     }
   } else {
     res.send('Employee cannot be added');

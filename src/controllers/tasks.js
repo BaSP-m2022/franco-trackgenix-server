@@ -1,7 +1,7 @@
 import express from 'express';
-import fs from 'fs';
+// import fs from 'fs';
 
-const tasks = require('../data/tasks.json');
+const tasks = [];
 
 const taskRouter = express.Router();
 
@@ -75,13 +75,13 @@ taskRouter.post('/', (req, res) => {
   const newTask = req.body;
   if (newTask.name && newTask.id && newTask.description && newTask.project && newTask.workedHours) {
     tasks.push(newTask);
-    fs.writeFile('src/data/tasks.json', JSON.stringify(tasks), (err) => {
-      if (err) {
-        res.send(err);
-      } else {
-        res.send('Task created.');
-      }
-    });
+    // fs.writeFile('src/data/tasks.json', JSON.stringify(tasks), (err) => {
+    //   if (err) {
+    //     res.send(err);
+    //   } else {
+    //     res.send('Task created.');
+    //   }
+    // });
   } else {
     res.send('Insufficient information');
   }
@@ -93,14 +93,14 @@ taskRouter.delete('/:id', (req, res) => {
   if (!deleteById) {
     res.send(`Task with ID ${taskId} was not found.`);
   } else {
-    const filteredTasks = tasks.filter((task) => task.id !== Number(taskId));
-    fs.writeFile('src/data/tasks.json', JSON.stringify(filteredTasks), (err) => {
-      if (err) {
-        res.send(err);
-      } else {
-        res.send(`Task with ID ${taskId} deleted.`);
-      }
-    });
+    // const filteredTasks = tasks.filter((task) => task.id !== Number(taskId));
+    // fs.writeFile('src/data/tasks.json', JSON.stringify(filteredTasks), (err) => {
+    //   if (err) {
+    //     res.send(err);
+    //   } else {
+    //     res.send(`Task with ID ${taskId} deleted.`);
+    //   }
+    // });
   }
 });
 
@@ -126,13 +126,13 @@ taskRouter.put('/:id', (req, res) => {
       }
       return 0;
     });
-    fs.writeFile('src/data/tasks.json', JSON.stringify(filteredTasks), (err) => {
-      if (err) {
-        res.send(err);
-      } else {
-        res.send('Changes made successfully.');
-      }
-    });
+    // fs.writeFile('src/data/tasks.json', JSON.stringify(filteredTasks), (err) => {
+    //   if (err) {
+    //     res.send(err);
+    //   } else {
+    //     res.send('Changes made successfully.');
+    //   }
+    // });
   } else {
     res.send('Task not found.');
   }

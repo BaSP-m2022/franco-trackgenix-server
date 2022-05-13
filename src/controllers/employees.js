@@ -1,7 +1,7 @@
 import express from 'express';
-import fs from 'fs';
+// import fs from 'fs';
 
-const employees = require('../data/employees.json');
+const employees = [];
 
 const router = express.Router();
 
@@ -21,13 +21,13 @@ router.delete('/:id', (req, res) => {
   if (employees.length === deleteEmployee.length) {
     res.send('Employee was not found to delete');
   } else {
-    fs.writeFile('src/data/employees.json', JSON.stringify(deleteEmployee), (error) => {
-      if (error) {
-        res.send(error);
-      } else {
-        res.send('Employee deleted');
-      }
-    });
+    // fs.writeFile('src/data/employees.json', JSON.stringify(deleteEmployee), (error) => {
+    //   if (error) {
+    //     res.send(error);
+    //   } else {
+    //     res.send('Employee deleted');
+    //   }
+    // });
   }
 });
 
@@ -36,13 +36,13 @@ router.post('/', (req, res) => {
   if (employeeAdd.id && employeeAdd.firstName && employeeAdd.lastName
     && employeeAdd.email && employeeAdd.dateOfBirth && employeeAdd.dni) {
     employees.push(employeeAdd);
-    fs.writeFile('src/data/employees.json', JSON.stringify(employees), (error) => {
-      if (error) {
-        res.send(error);
-      } else {
-        res.send('New employee created');
-      }
-    });
+    // fs.writeFile('src/data/employees.json', JSON.stringify(employees), (error) => {
+    //   if (error) {
+    //     res.send(error);
+    //   } else {
+    //     res.send('employee added');
+    //   }
+    // });
   } else {
     res.send('Insufficient data: New employee impossible to create.');
   }
@@ -133,13 +133,13 @@ router.put('/:id', (req, res) => {
     updated.email = empUpdate.email ? empUpdate.email : modEmployee.email;
     const toEdit = employees.filter((employee) => employee.id !== reqId);
     toEdit.push(updated);
-    fs.writeFile('src/data/employees.json', JSON.stringify(toEdit), (err) => {
-      if (err) {
-        res.send(err);
-      } else {
-        res.send(`Employee ${updated.firstName} ${updated.lastName} successfully updated`);
-      }
-    });
+    // fs.writeFile('src/data/employees.json', JSON.stringify(toEdit), (err) => {
+    //   if (err) {
+    //     res.send(err);
+    //   } else {
+    //     res.send(`Employee ${updated.firstName} ${updated.lastName} successfully updated`);
+    //   }
+    // });
   } else {
     res.send('Error: Id not found.');
   }

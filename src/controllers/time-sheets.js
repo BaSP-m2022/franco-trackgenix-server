@@ -1,7 +1,7 @@
 import express from 'express';
-import fs from 'fs';
+// import fs from 'fs';
 
-const timesheets = require('../data/time-sheets.json');
+const timesheets = [];
 
 const router = express.Router();
 
@@ -11,13 +11,16 @@ router.delete('/:id', (req, res) => {
   if (filteredTimesheets.length === timesheets.length) {
     res.send('Could not delete the timesheet because it was not found.');
   } else {
-    fs.writeFile('src/data/time-sheets.json', JSON.stringify(filteredTimesheets), (err) => {
-      if (err) {
-        res.send(err);
-      } else {
-        res.send(`The user by the id of ${timesheetIdToFilter} was deleted successfully from the timesheet list.`);
-      }
-    });
+    // fs.writeFile('src/data/time-sheets.json', JSON.stringify(filteredTimesheets), (err) => {
+    //   if (err) {
+    //     res.send(err);
+    //   } else {
+    //     res.send(`
+    // The user by the id of ${timesheetIdToFilter}
+    // was deleted successfully from the timesheet list.
+    // `);
+    //   }
+    // });
   }
 });
 
@@ -103,13 +106,13 @@ router.post('/', (req, res) => {
                             && newTimesheet.manager
   ) {
     timesheets.push(newTimesheet);
-    fs.writeFile('src/data/time-sheets.json', JSON.stringify(timesheets), (err) => {
-      if (err) {
-        res.send(err);
-      } else {
-        res.send('Timesheet created');
-      }
-    });
+    // fs.writeFile('src/data/time-sheets.json', JSON.stringify(timesheets), (err) => {
+    //   if (err) {
+    //     res.send(err);
+    //   } else {
+    //     res.send('Timesheet created');
+    //   }
+    // });
   } else {
     res.send('Timesheet was not created');
   }
@@ -142,13 +145,13 @@ router.put('/:id', (req, res) => {
 
     const timesheetModified = timesheets.filter((timesheet) => timesheet.id !== timesheetId);
     timesheetModified.push(newTimesheet);
-    fs.writeFile('src/data/time-sheets.json', JSON.stringify(timesheetModified), (err) => {
-      if (err) {
-        res.send(err);
-      } else {
-        res.send('Timesheet modified');
-      }
-    });
+    // fs.writeFile('src/data/time-sheets.json', JSON.stringify(timesheetModified), (err) => {
+    //   if (err) {
+    //     res.send(err);
+    //   } else {
+    //     res.send('Timesheet modified');
+    //   }
+    // });
   } else {
     res.send('Id not found');
   }
