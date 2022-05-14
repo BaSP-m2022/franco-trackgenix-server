@@ -13,7 +13,7 @@ const getById = (req, res) => {
   }
 };
 
-const Delete = (req, res) => {
+const deleteById = (req, res) => {
   const employeeId = req.params.id;
   const deleteEmployee = employees.filter((s) => s.id !== employeeId);
   if (employees.length === deleteEmployee.length) {
@@ -145,7 +145,7 @@ const put = (req, res) => {
 
 export default {
   getById,
-  Delete,
+  deleteById,
   post,
   getFilter,
   put,
