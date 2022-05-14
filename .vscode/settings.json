@@ -9,4 +9,7 @@
     "source.fixAll.eslint": true
   },
   "eslint.format.enable": true,
+  "cSpell.words": [
+    "timesheets"
+  ],
 }
