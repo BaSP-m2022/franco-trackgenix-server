@@ -1,9 +1,19 @@
 import express from 'express';
 // import fs from 'fs';
+import modelsEmployee from '../models/Employees';
 
 const employees = [];
 
 const router = express.Router();
+router.get('/:id', (req, res) => {
+  const employeeId = req.params.id;
+  const employee = employees.find((s) => s.id === employeeId);
+  if (employee) {
+    res.send(modelsEmployee);
+  } else {
+    res.send('Employee not found');
+  }
+});
 
 router.get('/:id', (req, res) => {
   const employeeId = req.params.id;

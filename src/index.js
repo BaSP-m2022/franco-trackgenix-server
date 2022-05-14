@@ -1,6 +1,6 @@
 import express from 'express';
 import mongoose from 'mongoose';
-import employeesRouter from './controllers/employees';
+import employeesRouter from './routes';
 import taskRouter from './controllers/tasks';
 import adminRouter from './controllers/admins';
 import timesheetRouter from './controllers/time-sheets';
@@ -18,7 +18,7 @@ app.use('/admins', adminRouter);
 app.use('/projects', projectRouter);
 app.use('/super-admins', superAdminRouter);
 app.use('/timesheets', timesheetRouter);
-app.use('/employees', employeesRouter);
+app.use('/', employeesRouter);
 
 app.get('/', (req, res) => {
   res.send('Hello World!');
