@@ -2,13 +2,13 @@ import express from 'express';
 import Project from '../models/Project';
 // import fs from 'fs';
 
-const projects = [Project];
+const projects = [];
 
 const router = express.Router();
 
 router.post('/', (req, res) => {
   const projectData = req.body;
-  if (projectData.id && projectData.name && projectData.status && projectData.description
+  if (Project.id && projectData.name && projectData.status && projectData.description
     && projectData.employees && projectData.startDate && projectData.endDate) {
     projects.push(projectData);
     // fs.writeFile('src/data/projects.json', JSON.stringify(projects), (err) => {

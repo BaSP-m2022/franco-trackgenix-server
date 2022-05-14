@@ -7,10 +7,6 @@ const projectSchema = new Schema({
     type: String,
     required: true,
   },
-  id: {
-    type: String,
-    required: true,
-  },
   status: {
     type: String,
     required: true,
