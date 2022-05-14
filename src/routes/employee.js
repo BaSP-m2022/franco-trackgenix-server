@@ -4,10 +4,10 @@ import employeeController from '../controllers/employees';
 
 const router = express.Router();
 
-router.get('/', employeeController.routerGetFilter);
-router.get('/:id', employeeController.routerGetById);
-router.post('/', employeeController.routerPost);
-router.put('/:id', employeeController.routerPut);
-router.delete('/:id', employeeController.routerDelete);
+router.get('/', employeeController.getFilter);
+router.get('/:id', employeeController.getById);
+router.post('/', employeeController.post);
+router.put('/:id', employeeController.put);
+router.delete('/:id', employeeController.Delete);
 
 export default router;

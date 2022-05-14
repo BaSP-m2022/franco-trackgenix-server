@@ -1,9 +1,9 @@
 // import fs from 'fs';
-// import modelsEmployee from '../models/Employees';
+// import Employees from '../models/Employees';
 
 const employees = [];
 
-const routerGetById = (req, res) => {
+const getById = (req, res) => {
   const employeeId = req.params.id;
   const employee = employees.find((s) => s.id === employeeId);
   if (employee) {
@@ -13,7 +13,7 @@ const routerGetById = (req, res) => {
   }
 };
 
-const routerDelete = (req, res) => {
+const Delete = (req, res) => {
   const employeeId = req.params.id;
   const deleteEmployee = employees.filter((s) => s.id !== employeeId);
   if (employees.length === deleteEmployee.length) {
@@ -29,7 +29,7 @@ const routerDelete = (req, res) => {
   }
 };
 
-const routerPost = (req, res) => {
+const post = (req, res) => {
   const employeeAdd = req.body;
   if (employeeAdd.id && employeeAdd.firstName && employeeAdd.lastName
     && employeeAdd.email && employeeAdd.dateOfBirth && employeeAdd.dni) {
@@ -46,7 +46,7 @@ const routerPost = (req, res) => {
   }
 };
 
-const routerGetFilter = (req, res) => {
+const getFilter = (req, res) => {
   const employeeId = req.query.id;
   const employeeName = req.query.firstName;
   const employeeLastName = req.query.lastName;
@@ -116,7 +116,7 @@ const routerGetFilter = (req, res) => {
   }
 };
 
-const routerPut = (req, res) => {
+const put = (req, res) => {
   const reqId = req.params.id;
   const modEmployee = employees.find((employee) => employee.id === reqId);
   if (modEmployee) {
@@ -144,9 +144,9 @@ const routerPut = (req, res) => {
 };
 
 export default {
-  routerGetById,
-  routerDelete,
-  routerPost,
-  routerGetFilter,
-  routerPut,
+  getById,
+  Delete,
+  post,
+  getFilter,
+  put,
 };
