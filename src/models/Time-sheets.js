@@ -26,9 +26,7 @@ const timesheetsSchema = new mongoose.Schema({
   employeeId: {
     type: String,
   },
-  managerId: {
-    type: String,
-  },
+  managerId: { type: String },
 });
 
 export default mongoose.model('Time-sheets', timesheetsSchema);
