@@ -4,7 +4,7 @@ import employeesRouter from './controllers/employees';
 import taskRouter from './controllers/tasks';
 import adminRouter from './controllers/admins';
 import timesheetRouter from './controllers/time-sheets';
-import projectRouter from './controllers/projects';
+import projectRouter from './routes/index';
 import superAdminRouter from './controllers/super-admins';
 
 const app = express();
@@ -15,7 +15,7 @@ const mongoDBURL = 'mongodb+srv://trackgenix-franco:BaSP2022-franco-tg@trackgeni
 app.use(express.json());
 app.use('/tasks', taskRouter);
 app.use('/admins', adminRouter);
-app.use('/projects', projectRouter);
+app.use('/', projectRouter);
 app.use('/super-admins', superAdminRouter);
 app.use('/timesheets', timesheetRouter);
 app.use('/employees', employeesRouter);

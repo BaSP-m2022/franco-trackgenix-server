@@ -1,7 +1,8 @@
 import express from 'express';
+import Project from '../models/Project';
 // import fs from 'fs';
 
-const projects = [];
+const projects = [Project];
 
 const router = express.Router();
 
