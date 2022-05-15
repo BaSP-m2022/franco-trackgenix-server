@@ -1,11 +1,11 @@
-import express from 'express';
+// import express from 'express';
 // import fs from 'fs';
 
 const superAdmins = [];
 
-const router = express.Router();
+// const router = express.Router();
 
-router.get('/:id', (req, res) => {
+const getById = ('/:id', (req, res) => {
   const sAdminId = req.params.id;
   const sAdmin = superAdmins.find((s) => s.id === sAdminId);
   if (sAdmin) {
@@ -15,7 +15,7 @@ router.get('/:id', (req, res) => {
   }
 });
 
-router.get('/', (req, res) => {
+const getFilter = ((req, res) => {
   const sAdminName = req.query.firstName;
   const sAdminLName = req.query.lastName;
   const sAdminEmail = req.query.email;
@@ -71,7 +71,7 @@ router.get('/', (req, res) => {
   }
 });
 
-router.post('/', (req, res) => {
+const post = ('/', (req, res) => {
   const sAdmin = req.body;
   if (sAdmin.id && sAdmin.firstName && sAdmin.lastName && sAdmin.email && sAdmin.dateOfBirth
       && sAdmin.dni) {
@@ -88,7 +88,7 @@ router.post('/', (req, res) => {
   }
 });
 
-router.delete('/:id', (req, res) => {
+const deleteById = ('/:id', (req, res) => {
   const sAdminId = req.params.id;
   const deletedById = superAdmins.filter((s) => s.id !== sAdminId);
   if (superAdmins.length === deletedById.length) {
@@ -104,7 +104,7 @@ router.delete('/:id', (req, res) => {
   }
 });
 
-router.put('/:id', (req, res) => {
+const put = ('/:id', (req, res) => {
   const sAdminId = req.params.id;
   const sAdmin = superAdmins.find((s) => s.id === sAdminId);
   if (sAdmin) {
@@ -131,4 +131,10 @@ router.put('/:id', (req, res) => {
   }
 });
 
-export default router;
+export default {
+  getById,
+  getFilter,
+  deleteById,
+  post,
+  put,
+};
