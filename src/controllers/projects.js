@@ -71,109 +71,36 @@ const deleteById = async (req, res) => {
 };
 
 const filter = async (req, res) => {
-  const pName = req.query.name;
-  const pStatus = req.query.status;
-  const pDescription = req.query.description;
-  const pEmployees = req.query.employees;
-  const pStartDate = req.query.startDate;
-  const pEndDate = req.query.startDate;
-  const projectX = await Project.find({ name: pName });
-  console.log('aca');
-  console.log(projectX);
+  const emptyPath = req.query;
   try {
-    if (!pName && !pStatus && !pDescription && !pEmployees && !pStartDate && !pEndDate) {
+    if (Object.entries(emptyPath).length === 0) {
       const allProjects = await Project.find({});
-      console.log('0');
-      return res.status(201).json({
-        message: '',
+      return res.status(200).json({
+        message: 'List of all projects',
         data: allProjects,
         error: false,
       });
     }
-
-    // if (pName && pStatus && pDescription && pEmployees && pStartDate && pEndDate) {
-    //   return p.name.toLowerCase().includes(pName.toLowerCase())
-    //           && p.status.toLowerCase().includes(pStatus.toLowerCase())
-    //           && p.description.toLowerCase().includes(pDescription.toLowerCase())
-    //           && p.employees.toLowerCase().includes(pEmployees.toLowerCase())
-    //           && p.startDate.toLowerCase().includes(pStartDate.toLowerCase())
-    //           && p.endDate.toLowerCase().includes(pEndDate.toLowerCase());
-    // }
-    // if (pName && pStatus && pDescription && pEmployees && pStartDate) {
-    //   return p.name.toLowerCase().includes(pName.toLowerCase())
-    //     && p.status.toLowerCase().includes(pStatus.toLowerCase())
-    //     && p.description.toLowerCase().includes(pDescription.toLowerCase())
-    //     && p.employees.toLowerCase().includes(pEmployees.toLowerCase())
-    //     && p.startDate.toLowerCase().includes(pStartDate.toLowerCase());
-    // }
-    // if (pName && pStatus && pDescription && pEmployees) {
-    //   return p.name.toLowerCase().includes(pName.toLowerCase())
-    //     && p.status.toLowerCase().includes(pStatus.toLowerCase())
-    //     && p.description.toLowerCase().includes(pDescription.toLowerCase())
-    //     && p.employees.toLowerCase().includes(pEmployees.toLowerCase());
-    // }
-    // if (pName && pStatus && pDescription) {
-    //   return p.name.toLowerCase().includes(pName.toLowerCase())
-    //     && p.status.toLowerCase().includes(pStatus.toLowerCase())
-    //     && p.description.toLowerCase().includes(pDescription.toLowerCase());
-    // }
-    if (pName && pStatus) {
-      console.log('1');
-      const project = await Project.find({ name: pName, status: pStatus });
-      return res.send({
-        message: 'Found projects',
-        data: project,
-        error: false,
+    const filteredProjects = await Project.find(req.query);
+    if (filteredProjects.length === 0) {
+      return res.status(404).json({
+        message: 'Error 404. Project not found with those parameters',
+        data: undefined,
+        error: true,
       });
     }
-    if (pName) {
-      console.log('2');
-      const project = await Project.find({ name: pName });
-      console.log(project);
-      return res.send({
-        message: 'Found projects',
-        data: project,
-        error: false,
-      });
-    }
-    // if (pStatus) {
-    //   return p.status.toLowerCase().includes(pStatus.toLowerCase());
-    // }
-    // if (pDescription) {
-    //   return p.description.toLowerCase().includes(pDescription.toLowerCase());
-    // }
-    // if (pEmployees) {
-    //   return p.employees.toLowerCase().includes(pEmployees.toLowerCase());
-    // }
-    // if (pStartDate) {
-    //   return p.startDate.toLowerCase().includes(pStartDate.toLowerCase());
-    // }
-    // if (pEndDate) {
-    //   return p.endDate.toLowerCase().includes(pEndDate);
-    // }
-    // return false;
-
-    // if (filteredProjects.length > 0) {
-    //   res.send(filteredProjects);
-    // } else {
-    //   res.send('Project not found');
-    // }
-    // if (project.length === 0) {
-    //   return res.send({
-    //     message: 'Project not found',
-    //     data: undefined,
-    //     error: true,
-    //   });
-    // }
+    return res.status(200).json({
+      message: 'Project found',
+      data: filteredProjects,
+      error: false,
+    });
   } catch (error) {
-    console.log('3');
-    return res.send({
-      message: error.message,
+    return res.status(404).json({
+      message: 'Error 404. Not found',
       data: undefined,
       error: true,
     });
   }
-  return false;
 };
 
 const getById = async (req, res) => {
