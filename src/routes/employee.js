@@ -6,8 +6,8 @@ const router = express.Router();
 
 router.get('/', employeeController.getFilter);
 router.get('/:id', employeeController.getById);
-router.post('/', employeeController.post);
+// router.post('/', employeeController.post);
 router.put('/:id', employeeController.put);
-router.delete('/:id', employeeController.deleteById);
+// router.delete('/:id', employeeController.deleteById);
 
 export default router;
