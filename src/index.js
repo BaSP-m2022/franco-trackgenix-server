@@ -2,6 +2,8 @@ import express from 'express';
 import mongoose from 'mongoose';
 import router from './routes';
 
+// const schema = require('./models/admins');
+
 const app = express();
 const port = process.env.PORT || 3000;
 
