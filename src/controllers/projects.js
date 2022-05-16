@@ -1,11 +1,9 @@
-import express from 'express';
+// import Project from '../models/Project';
 // import fs from 'fs';
 
 const projects = [];
 
-const router = express.Router();
-
-router.post('/', (req, res) => {
+const create = (req, res) => {
   const projectData = req.body;
   if (projectData.id && projectData.name && projectData.status && projectData.description
     && projectData.employees && projectData.startDate && projectData.endDate) {
@@ -20,9 +18,9 @@ router.post('/', (req, res) => {
   } else {
     res.send('project not created');
   }
-});
+};
 
-router.delete('/:id', (req, res) => {
+const deleteById = (req, res) => {
   const projectId = req.params.id;
   const filteredProjects = projects.filter((project) => projectId !== project.id);
 
@@ -37,9 +35,9 @@ router.delete('/:id', (req, res) => {
     //   }
     // });
   }
-});
+};
 
-router.get('/', (req, res) => {
+const filter = (req, res) => {
   const pName = req.query.name;
   const pStatus = req.query.status;
   const pDescription = req.query.description;
@@ -106,9 +104,9 @@ router.get('/', (req, res) => {
   } else {
     res.send('Project not found');
   }
-});
+};
 
-router.get('/:id', (req, res) => {
+const getById = (req, res) => {
   const projectId = req.params.id;
   const project = projects.find((s) => s.id === projectId);
   if (project) {
@@ -116,9 +114,9 @@ router.get('/:id', (req, res) => {
   } else {
     res.send('Project not found');
   }
-});
+};
 
-router.put('/:id', (req, res) => {
+const update = (req, res) => {
   const projectId = req.params.id;
   const project = projects.find((s) => s.id === projectId);
   if (project) {
@@ -144,36 +142,42 @@ router.put('/:id', (req, res) => {
   } else {
     res.send('Project not found');
   }
-});
+};
 
-router.put('/:id/addEmployee', (req, res) => {
-  const projectId = req.params.id;
-  const project = projects.find((s) => s.id === projectId);
-  if (project) {
-    const {
-      id, name, role, rate,
-    } = req.body;
-    const newEmployee = {
-      id, name, rate, role,
-    };
-    if (newEmployee.id !== undefined
-          && newEmployee.name !== undefined
-          && newEmployee.rate !== undefined
-          && newEmployee.role !== undefined) {
-      project.employees.push(newEmployee);
-      const filteredProjects = projects.filter((s) => s.id !== projectId);
-      filteredProjects.push(project);
-      // fs.writeFile('src/data/projects.json', JSON.stringify(filteredProjects), (err) => {
-      //   if (err) {
-      //     res.send(err);
-      //   } else {
-      //     res.send('Employee added successfully');
-      //   }
-      // });
-    }
-  } else {
-    res.send('Employee cannot be added');
-  }
-});
+// router.put('/:id/addEmployee', (req, res) => {
+//   const projectId = req.params.id;
+//   const project = projects.find((s) => s.id === projectId);
+//   if (project) {
+//     const {
+//       id, name, role, rate,
+//     } = req.body;
+//     const newEmployee = {
+//       id, name, rate, role,
+//     };
+//     if (newEmployee.id !== undefined
+//           && newEmployee.name !== undefined
+//           && newEmployee.rate !== undefined
+//           && newEmployee.role !== undefined) {
+//       project.employees.push(newEmployee);
+//       const filteredProjects = projects.filter((s) => s.id !== projectId);
+//       filteredProjects.push(project);
+//       // fs.writeFile('src/data/projects.json', JSON.stringify(filteredProjects), (err) => {
+//       //   if (err) {
+//       //     res.send(err);
+//       //   } else {
+//       //     res.send('Employee added successfully');
+//       //   }
+//       // });
+//     }
+//   } else {
+//     res.send('Employee cannot be added');
+//   }
+// });
 
-export default router;
+export default {
+  create,
+  deleteById,
+  filter,
+  getById,
+  update,
+};
