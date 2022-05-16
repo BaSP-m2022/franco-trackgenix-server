@@ -23,4 +23,4 @@ const superAdminSchema = new Schema(
   },
 );
 
-export default mongoose.model('Project', superAdminSchema);
+export default mongoose.model('SuperAdmins', superAdminSchema);

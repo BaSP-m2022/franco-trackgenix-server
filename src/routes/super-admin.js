@@ -4,10 +4,10 @@ import superAdminsController from '../controllers/super-admins';
 
 const router = express.Router();
 
-router.get('/', superAdminsController.getFilter);
-router.get('/:id', superAdminsController.getById);
+// router.get('/', superAdminsController.getFilter);
+// router.get('/:id', superAdminsController.getById);
 router.post('/', superAdminsController.post);
-router.put('/:id', superAdminsController.put);
-router.delete('/:id', superAdminsController.deleteById);
+// router.put('/:id', superAdminsController.put);
+// router.delete('/:id', superAdminsController.deleteById);
 
 export default router;
