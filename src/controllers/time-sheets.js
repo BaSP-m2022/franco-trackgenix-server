@@ -32,7 +32,7 @@ const createTimesheet = async (req, res) => {
 const editTimesheet = async (req, res) => {
   try {
     const timeSheet = await TimeSheet.findByIdAndUpdate(req.params.id, req.body);
-    return res.status(201).json({
+    return res.status(200).json({
       message: 'Time sheet edited',
       data: timeSheet,
       error: false,
