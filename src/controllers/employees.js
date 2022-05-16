@@ -1,152 +1,55 @@
-// import fs from 'fs';
-// import Employees from '../models/Employees';
+import Employee from '../models/Employees';
 
-const employees = [];
-
-const getById = (req, res) => {
-  const employeeId = req.params.id;
-  const employee = employees.find((s) => s.id === employeeId);
-  if (employee) {
-    res.send(employee);
-  } else {
-    res.send('Employee not found');
+const post = async (req, res) => {
+  try {
+    const employee = await Employee.create({
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      dni: req.body.dni,
+      email: req.body.email,
+      password: req.body.password,
+      dateOfBirth: req.body.dateOfBirth,
+    });
+    await employee.save();
+    return res.status(201).json({
+      message: 'Employee created successfully',
+      data: employee,
+      error: false,
+    });
+  } catch (error) {
+    return res.status(400).json({
+      message: 'Error creating new employee',
+      data: undefined,
+      error: true,
+    });
   }
 };
 
-const deleteById = (req, res) => {
-  const employeeId = req.params.id;
-  const deleteEmployee = employees.filter((s) => s.id !== employeeId);
-  if (employees.length === deleteEmployee.length) {
-    res.send('Employee was not found to delete');
-  } else {
-    // fs.writeFile('src/data/employees.json', JSON.stringify(deleteEmployee), (error) => {
-    //   if (error) {
-    //     res.send(error);
-    //   } else {
-    //     res.send('Employee deleted');
-    //   }
-    // });
-  }
-};
-
-const post = (req, res) => {
-  const employeeAdd = req.body;
-  if (employeeAdd.id && employeeAdd.firstName && employeeAdd.lastName
-    && employeeAdd.email && employeeAdd.dateOfBirth && employeeAdd.dni) {
-    employees.push(employeeAdd);
-    // fs.writeFile('src/data/employees.json', JSON.stringify(employees), (error) => {
-    //   if (error) {
-    //     res.send(error);
-    //   } else {
-    //     res.send('employee added');
-    //   }
-    // });
-  } else {
-    res.send('Insufficient data: New employee impossible to create.');
-  }
-};
-
-const getFilter = (req, res) => {
-  const employeeId = req.query.id;
-  const employeeName = req.query.firstName;
-  const employeeLastName = req.query.lastName;
-  const employeeEmail = req.query.email;
-  const employeeDoB = req.query.dateOfBirth;
-  const employeeDni = req.query.dni;
-  if (!employeeId && !employeeName && !employeeLastName && !employeeEmail
-    && !employeeDoB && !employeeDni) {
-    res.send(employees);
-  }
-  const employeeFilter = employees.filter((employee) => {
-    if (employeeId && employeeName && employeeLastName && employeeEmail
-        && employeeDoB && employeeDni) {
-      return employee.id.toLowerCase().includes(employeeId.toLowerCase())
-        && employee.firstName.toLowerCase().includes(employeeName.toLowerCase())
-        && employee.lastName.toLowerCase().includes(employeeLastName.toLowerCase())
-        && employee.email.toLowerCase().includes(employeeEmail.toLowerCase())
-        && employee.dateOfBirth.toLowerCase().includes(employeeDoB.toLowerCase())
-        && employee.dni.toLowerCase().includes(employeeDni.toLowerCase());
+const deleteById = async (req, res) => {
+  try {
+    const findEmployee = await Employee.findByIdAndRemove(req.params.id);
+    if (!findEmployee) {
+      return res.status(404).json({
+        message: 'Employee ID not found',
+        data: undefined,
+        error: true,
+      });
     }
-    if (employeeName && employeeLastName && employeeEmail && employeeDoB && employeeDni) {
-      return employee.firstName.toLowerCase().includes(employeeName.toLowerCase())
-        && employee.lastName.toLowerCase().includes(employeeLastName.toLowerCase())
-        && employee.email.toLowerCase().includes(employeeEmail.toLowerCase())
-        && employee.dateOfBirth.toLowerCase().includes(employeeDoB.toLowerCase())
-        && employee.dni.toLowerCase().includes(employeeDni.toLowerCase());
-    }
-    if (employeeLastName && employeeEmail && employeeDoB && employeeDni) {
-      return employee.lastName.toLowerCase().includes(employeeLastName.toLowerCase())
-        && employee.email.toLowerCase().includes(employeeEmail.toLowerCase())
-        && employee.dateOfBirth.toLowerCase().includes(employeeDoB.toLowerCase())
-        && employee.dni.toLowerCase().includes(employeeDni.toLowerCase());
-    }
-    if (employeeEmail && employeeDoB && employeeDni) {
-      return employee.email.toLowerCase().includes(employeeEmail.toLowerCase())
-        && employee.dateOfBirth.toLowerCase().includes(employeeDoB.toLowerCase())
-        && employee.dni.toLowerCase().includes(employeeDni.toLowerCase());
-    }
-    if (employeeDoB && employeeDni) {
-      return employee.dateOfBirth.toLowerCase().includes(employeeDoB.toLowerCase())
-        && employee.dni.toLowerCase().includes(employeeDni.toLowerCase());
-    }
-    if (employeeDni) {
-      return employee.dni.toLowerCase().includes(employeeDni.toLowerCase());
-    }
-    if (employeeDoB) {
-      return employee.dateOfBirth.toLowerCase().includes(employeeDoB.toLowerCase());
-    }
-    if (employeeEmail) {
-      return employee.email.toLowerCase().includes(employeeEmail.toLowerCase());
-    }
-    if (employeeLastName) {
-      return employee.lastName.toLowerCase().includes(employeeLastName.toLowerCase());
-    }
-    if (employeeName) {
-      return employee.firstName.toLowerCase().includes(employeeName.toLowerCase());
-    }
-    if (employeeId) {
-      return employee.id.toLowerCase().includes(employeeId.toLowerCase());
-    }
-    return false;
-  });
-  if (employeeFilter.length > 0) {
-    res.send(employeeFilter);
-  } else {
-    res.send('Employee not found');
-  }
-};
-
-const put = (req, res) => {
-  const reqId = req.params.id;
-  const modEmployee = employees.find((employee) => employee.id === reqId);
-  if (modEmployee) {
-    const empUpdate = req.body;
-    const updated = {};
-    updated.id = reqId;
-    updated.firstName = empUpdate.firstName ? empUpdate.firstName : modEmployee.firstName;
-    updated.lastName = empUpdate.lastName ? empUpdate.lastName : modEmployee.lastName;
-    updated.dni = empUpdate.dni ? empUpdate.dni : modEmployee.dni;
-    updated.dateOfBirth = empUpdate.dateOfBirth ? empUpdate.dateOfBirth : modEmployee.dateOfBirth;
-    updated.password = empUpdate.password ? empUpdate.password : modEmployee.password;
-    updated.email = empUpdate.email ? empUpdate.email : modEmployee.email;
-    const toEdit = employees.filter((employee) => employee.id !== reqId);
-    toEdit.push(updated);
-    // fs.writeFile('src/data/employees.json', JSON.stringify(toEdit), (err) => {
-    //   if (err) {
-    //     res.send(err);
-    //   } else {
-    //     res.send(`Employee ${updated.firstName} ${updated.lastName} successfully updated`);
-    //   }
-    // });
-  } else {
-    res.send('Error: Id not found.');
+    return res.status(200).json({
+      message: 'Employee deleted successfully',
+      data: findEmployee,
+      error: false,
+    });
+  } catch (error) {
+    return res.json({
+      message: 'Employee can not be deleted',
+      data: undefined,
+      error: true,
+    });
   }
 };
 
 export default {
-  getById,
-  deleteById,
   post,
-  getFilter,
-  put,
+  deleteById,
 };
