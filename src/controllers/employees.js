@@ -8,15 +8,20 @@ const getById = async (req, res) => {
   try {
     if (req.params.id) {
       const employee = await Employees.findById(req.params.id);
-      return res.status(200).json(employee);
+      return res.status(200).json({
+        message: 'Success',
+        data: employee,
+        error: false,
+      });
     }
     return res.status(400).json({
-      msg: 'missing id parameter',
+      message: 'missing id parameter',
+      data: undefined,
       error: true,
     });
   } catch (error) {
     return res.json({
-      msg: error,
+      message: error,
       error: true,
     });
   }
@@ -26,14 +31,22 @@ const getFilter = async (req, res) => {
   try {
     if (req.params.id) {
       const employee = await Employees.findById(req.params.id);
-      return res.status(200).json(employee);
+      return res.status(200).json({
+        message: 'Success',
+        data: employee,
+        error: false,
+      });
     }
     return res.status(400).json({
-      msg: 'missing id parameter',
+      message: 'missing id parameter',
+      data: undefined,
+      error: true,
     });
   } catch (error) {
     return res.json({
-      msg: error,
+      message: error,
+      data: undefined,
+      error: true,
     });
   }
 };
@@ -42,7 +55,9 @@ const put = async (req, res) => {
   try {
     if (!req.params.id) {
       return res.status(400).json({
-        msg: 'missing id parameter',
+        message: 'missing id parameter',
+        data: undefined,
+        error: true,
       });
     }
 
@@ -54,14 +69,20 @@ const put = async (req, res) => {
 
     if (!result) {
       return res.status(404).json({
-        msg: 'The employee has not been found',
+        message: 'The employee has not been found',
+        data: undefined,
         error: true,
       });
     }
-    return res.status(200).json(result);
+    return res.status(200).json({
+      message: 'Employee edited successfully',
+      data: result,
+      error: false,
+    });
   } catch (error) {
     return res.json({
-      msg: 'An error has ocurred',
+      message: 'An error has ocurred',
+      data: undefined,
       error: error.details[0].message,
     });
   }
