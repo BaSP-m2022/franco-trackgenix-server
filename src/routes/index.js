@@ -9,7 +9,6 @@ import taskRouter from './task';
 const router = express.Router();
 
 router.use('/tasks', taskRouter);
-// router.use('/projects', projectRouter);
 router.use('/projects', projectRouter);
 // router.use('/tasks', taskRouter);
 // router.use('/admins', adminRouter);
