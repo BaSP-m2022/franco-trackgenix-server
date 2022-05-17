@@ -33,7 +33,7 @@ const getById = async (req, res) => {
   try {
     if (req.params.id) {
       const sAdmin = await SuperAdmins.findById(req.params.id);
-      if (sAdmin.length !== 0) {
+      if (Object.entries(sAdmin).length) {
         return res.status(200).json({
           sAdmin,
           error: false,
