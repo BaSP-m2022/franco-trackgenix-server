@@ -26,16 +26,7 @@ const create = async (req, res) => {
 };
 
 const filter = async (req, res) => {
-  const emptyPath = req.query;
   try {
-    if (Object.entries(emptyPath).length === 0) {
-      const allProjects = await Project.find({});
-      res.status(200).json({
-        message: 'List of all projects',
-        data: allProjects,
-        error: false,
-      });
-    }
     const filteredProjects = await Project.find(req.query);
     if (filteredProjects.length === 0) {
       res.status(404).json({

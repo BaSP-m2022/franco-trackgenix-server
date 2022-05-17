@@ -3,7 +3,7 @@ import Joi from 'joi';
 const validationCreateProject = (req, res, next) => {
   const employeesSchema = Joi.object({
     rate: Joi.number().required().greater(0),
-    role: Joi.string().required().valid('TL', 'QA', 'DEV'),
+    role: Joi.string().required(),
   });
 
   const projectValidation = Joi.object({
@@ -22,7 +22,7 @@ const validationCreateProject = (req, res, next) => {
       error: true,
     });
   }
-  return next();
+  next();
 };
 
 export default {
