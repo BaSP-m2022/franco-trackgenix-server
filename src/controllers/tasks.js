@@ -2,48 +2,56 @@ import Task from '../models/tasks';
 
 const getAllTasks = async (req, res) => {
   try {
-    const allTasks = await Task.find({});
-
-    return res.status(200).json({
-      msg: 'Tasks',
-      data: allTasks,
-      error: false,
-    });
+    const allTasks = await Task.find(req.query);
+    if (allTasks.length > 0) {
+      res.status(200).json({
+        msg: 'Tasks',
+        data: allTasks,
+        error: false,
+      });
+    } else {
+      res.status(400).json({
+        msg: 'Please, put an information about the task',
+        data: undefined,
+        error: true,
+      });
+    }
   } catch (error) {
-    return res.status(500).json({
+    res.status(500).json({
       msg: 'There was an error',
       data: undefined,
-      error: true,
+      error: error.details[0].message,
     });
   }
 };
+
 const getTasksById = async (req, res) => {
   try {
     if (req.params.id) {
       const taskById = await Task.findById(req.params.id);
       if (!taskById) {
-        return res.status(404).json({
+        res.status(404).json({
           msg: 'Task not found',
           data: undefined,
           error: true,
         });
       }
-      return res.status(200).json({
+      res.status(200).json({
         msg: 'Tasks',
         data: taskById,
         error: false,
       });
     }
-    return res.status(400).json({
+    res.status(400).json({
       msg: 'Please, put an ID for a task',
       data: undefined,
       error: true,
     });
   } catch (error) {
-    return res.status(500).json({
+    res.status(500).json({
       msg: 'There was an error',
       data: undefined,
-      error: true,
+      error: error.details[0].message,
     });
   }
 };
@@ -55,16 +63,16 @@ const createTask = async (req, res) => {
       workedHours: req.body.workedHours,
     });
     const result = await task.save();
-    return res.status(201).json({
+    res.status(201).json({
       msg: 'Task created',
       data: result,
       error: false,
     });
   } catch (error) {
-    return res.status(400).json({
+    res.status(500).json({
       msg: 'There was an error',
       data: undefined,
-      error: true,
+      error: error.details[0].message,
     });
   }
 };
@@ -72,7 +80,7 @@ const createTask = async (req, res) => {
 const deleteTask = async (req, res) => {
   try {
     if (!req.params.id) {
-      return res.status(400).json({
+      res.status(400).json({
         msg: 'Missing id parameter',
         data: undefined,
         error: true,
@@ -80,22 +88,22 @@ const deleteTask = async (req, res) => {
     }
     const result = await Task.findByIdAndDelete(req.params.id);
     if (!result) {
-      return res.status(404).json({
+      res.status(404).json({
         msg: 'Task not found',
         data: undefined,
         error: true,
       });
     }
-    return res.status(200).json({
+    res.status(200).json({
       msg: 'Task deleted successfully',
       data: result,
       error: false,
     });
   } catch (error) {
-    return res.status(500).json({
+    res.status(500).json({
       msg: 'There was an error',
       data: undefined,
-      error: true,
+      error: error.details[0].message,
     });
   }
 };
@@ -103,7 +111,7 @@ const deleteTask = async (req, res) => {
 const updateTask = async (req, res) => {
   try {
     if (!req.params) {
-      return res.status(400).json({
+      res.status(400).json({
         msg: 'Missing id parameter',
         data: undefined,
         error: true,
@@ -115,19 +123,19 @@ const updateTask = async (req, res) => {
       { new: true },
     );
     if (!result) {
-      return res.status(404).json({
+      res.status(404).json({
         msg: 'Task not found',
         data: undefined,
         error: true,
       });
     }
-    return res.status(200).json({
+    res.status(200).json({
       msg: 'Task updated',
       data: result,
       error: false,
     });
   } catch (error) {
-    return res.status(500).json({
+    res.status(500).json({
       msg: 'There was an error',
       data: undefined,
       error: error.details[0].message,
