@@ -1,27 +1,32 @@
-// import fs from 'fs';
-// import { models } from 'mongoose';
 import Employees from '../models/Employees';
-
-// const employees = [];
 
 const getById = async (req, res) => {
   try {
     if (req.params.id) {
-      const employee = await Employees.findById(req.params.id);
-      return res.status(200).json({
+      const employeeById = await Employees.findById(req.params.id);
+      if (!employeeById) {
+        res.status(404).json({
+          message: 'Employee was not found',
+          data: undefined,
+          error: true,
+        });
+      }
+      res.status(200).json({
         message: 'Success',
-        data: employee,
+        data: employeeById,
         error: false,
       });
+    } else {
+      res.status(400).json({
+        message: 'missing id parameter',
+        data: undefined,
+        error: true,
+      });
     }
-    return res.status(400).json({
-      message: 'missing id parameter',
-      data: undefined,
-      error: true,
-    });
   } catch (error) {
-    return res.json({
+    res.status(500).json({
       message: error,
+      data: undefined,
       error: true,
     });
   }
@@ -29,21 +34,22 @@ const getById = async (req, res) => {
 
 const getFilter = async (req, res) => {
   try {
-    if (req.params.id) {
-      const employee = await Employees.findById(req.params.id);
-      return res.status(200).json({
+    const result = await Employees.find(req.query);
+    if (result.length > 0) {
+      res.status(200).json({
         message: 'Success',
-        data: employee,
+        data: result,
         error: false,
       });
+    } else {
+      res.status(404).json({
+        message: 'Employee was not found',
+        data: undefined,
+        error: true,
+      });
     }
-    return res.status(400).json({
-      message: 'missing id parameter',
-      data: undefined,
-      error: true,
-    });
   } catch (error) {
-    return res.json({
+    res.status(500).json({
       message: error,
       data: undefined,
       error: true,
@@ -54,13 +60,12 @@ const getFilter = async (req, res) => {
 const put = async (req, res) => {
   try {
     if (!req.params.id) {
-      return res.status(400).json({
+      res.status(400).json({
         message: 'missing id parameter',
         data: undefined,
         error: true,
       });
     }
-
     const result = await Employees.findByIdAndUpdate(
       req.params.id,
       req.body,
@@ -68,19 +73,19 @@ const put = async (req, res) => {
     );
 
     if (!result) {
-      return res.status(404).json({
+      res.status(404).json({
         message: 'The employee has not been found',
         data: undefined,
         error: true,
       });
     }
-    return res.status(200).json({
+    res.status(200).json({
       message: 'Employee edited successfully',
       data: result,
       error: false,
     });
   } catch (error) {
-    return res.json({
+    res.status(500).json({
       message: 'An error has ocurred',
       data: undefined,
       error: error.details[0].message,

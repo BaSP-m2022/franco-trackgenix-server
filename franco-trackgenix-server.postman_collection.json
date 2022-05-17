@@ -1,33 +1,170 @@
 {
-  "info": {
-    "_postman_id": "933eb2a8-d97d-402a-87e4-e8f1af8e3c1e",
-    "name": "franco-trackgenix-server",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
-  },
-  "item": [
-    {
-      "name": "admins",
-      "item": []
-    },
-    {
-      "name": "superAdmins",
-      "item": []
-    },
-    {
-      "name": "tasks",
-      "item": []
-    },
-    {
-      "name": "employees",
-      "item": []
-    },
-    {
-      "name": "timesheets",
-      "item": []
-    },
-    {
-      "name": "projects",
-      "item": []
-    }
-  ]
+	"info": {
+		"_postman_id": "ab6bfd4f-a40f-42fa-bacb-fa75ee90881f",
+		"name": "franco-trackgenix-server",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "admins",
+			"item": []
+		},
+		{
+			"name": "superAdmins",
+			"item": []
+		},
+		{
+			"name": "tasks",
+			"item": []
+		},
+		{
+			"name": "employees",
+			"item": [
+				{
+					"name": "getById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/employees/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"employees",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "edit",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"_id\": \"628197b4a7204f4c87ab6687\",\r\n    \"firstName\": \"Madonna\",\r\n    \"lastName\": \"Pop\",\r\n    \"dni\": \"33016244\",\r\n    \"email\": \"madonna@gmail.com\",\r\n    \"password\": \"pop1234\",\r\n    \"__v\": 0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/employees/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"employees",
+								""
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/employees/?firstName&lastName&dni&email&password",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"employees",
+								""
+							],
+							"query": [
+								{
+									"key": "firstName",
+									"value": null
+								},
+								{
+									"key": "lastName",
+									"value": null
+								},
+								{
+									"key": "dni",
+									"value": null
+								},
+								{
+									"key": "email",
+									"value": null
+								},
+								{
+									"key": "password",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/employees",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"employees"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/employees",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"employees"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "timesheets",
+			"item": []
+		},
+		{
+			"name": "projects",
+			"item": []
+		}
+	]
 }

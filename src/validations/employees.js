@@ -1,5 +1,8 @@
 import Joi from 'joi';
 
+const now = Date.now();
+const more18 = new Date(now - (1000 * 60 * 60 * 24 * 365 * 18));
+
 const validateEdit = (req, res, next) => {
   const employeesValidation = Joi.object({
     firstName: Joi.string().min(3).max(50).required,
@@ -7,7 +10,7 @@ const validateEdit = (req, res, next) => {
     dni: Joi.number().max(10).required(),
     email: Joi.string().email().required(),
     password: Joi.pattern(/^(?=.*[A-Za-z])(?=.*d)[A-Za-zd]{8,}$/),
-    dateOfBirth: Joi.date().less('15-05-2004').greater('15-05-1990').required(),
+    dateOfBirth: Joi.date().max(more18).required(),
   });
 
   const validation = employeesValidation.validate(req.body);
