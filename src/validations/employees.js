@@ -35,8 +35,8 @@ const postValidation = (req, res, next) => {
       .message('Password must have between 8 and 12 characters')
       .max(12)
       .message('Password must have between 8 and 12 characters')
-      .alphanum()
-      .message('Testing')
+      .pattern(/^(?=.*[a-z])(?=.*\d)/)
+      .message('Password must have 1 letter and 1 number')
       .required(),
     dateOfBirth: Joi.date()
       .greater('01-01-1900')
