@@ -6,7 +6,7 @@ const router = express.Router();
 
 router.get('/', superAdminsController.getFilter);
 router.get('/:id', superAdminsController.getById);
-router.post('/', /* superAdminsValidation.creation, */superAdminsController.post);
+router.post('/', superAdminsController.post);
 router.put('/:id', superAdminsController.put);
 router.delete('/:id', superAdminsController.deleteById);
 
