@@ -160,7 +160,96 @@
 		},
 		{
 			"name": "timesheets",
-			"item": []
+			"item": [
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"tasks\": [\"Dormir\",\"Comer\", \"Correr\"],\r\n    \"totalHours\": 8,\r\n    \"checked\": true,\r\n    \"status\": \"Status4\",\r\n    \"startDate\": \"2022-05-15T18:02:23.412Z\",\r\n    \"endDate\": \"2022-05-20T18:02:23.412Z\",\r\n    \"projectId\": \"4\",\r\n    \"employeeId\": \"3\",\r\n    \"managerId\": \"4\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/timesheets",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"timesheets"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "edit",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"tasks\": [\"Caminar\",\"Programar\"],\r\n    \"totalHours\": 12,\r\n    \"checked\": true,\r\n    \"status\": \"Status1\",\r\n    \"startDate\": \"2022-05-16T18:02:23.412Z\",\r\n    \"endDate\": \"2022-05-19T18:02:23.412Z\",\r\n    \"projectId\": \"1\",\r\n    \"employeeId\": \"1\",\r\n    \"managerId\": \"1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/timesheets/:id",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"timesheets",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "6281937a8da15cc010a1607e"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getById",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": []
+					},
+					"response": []
+				}
+			]
 		},
 		{
 			"name": "projects",
