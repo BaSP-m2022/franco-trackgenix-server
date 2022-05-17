@@ -19,7 +19,7 @@ const create = async (req, res) => {
       error: false,
     });
   } catch (error) {
-    return res.status(400).json({
+    return res.status(500).json({
       message: error.message,
       data: undefined,
       error: true,
@@ -85,7 +85,7 @@ const deleteById = async (req, res) => {
       error: false,
     });
   } catch (error) {
-    return res.json({
+    return res.status(500).json({
       message: error.message,
       data: undefined,
       error: true,

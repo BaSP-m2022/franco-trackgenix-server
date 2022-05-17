@@ -1,6 +1,6 @@
 import express from 'express';
 import projectsController from '../controllers/projects';
-// import projectValidation from '../validations/project';
+import projectValidation from '../validations/project';
 
 const router = express.Router();
 
@@ -10,7 +10,7 @@ router.route('/')
 
 router.route('/:id')
   .get(projectsController.getById)
-  .put(projectsController.update)
+  .put(projectValidation, projectsController.update)
   .delete(projectsController.deleteById);
 
 export default router;
