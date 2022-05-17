@@ -1,33 +1,144 @@
 {
-  "info": {
-    "_postman_id": "933eb2a8-d97d-402a-87e4-e8f1af8e3c1e",
-    "name": "franco-trackgenix-server",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
-  },
-  "item": [
-    {
-      "name": "admins",
-      "item": []
-    },
-    {
-      "name": "superAdmins",
-      "item": []
-    },
-    {
-      "name": "tasks",
-      "item": []
-    },
-    {
-      "name": "employees",
-      "item": []
-    },
-    {
-      "name": "timesheets",
-      "item": []
-    },
-    {
-      "name": "projects",
-      "item": []
-    }
-  ]
+	"info": {
+		"_postman_id": "8ae528c8-3112-491c-8c34-5bac304bd7b0",
+		"name": "franco-trackgenix-server",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "admins",
+			"item": []
+		},
+		{
+			"name": "superAdmins",
+			"item": []
+		},
+		{
+			"name": "tasks",
+			"item": []
+		},
+		{
+			"name": "employees",
+			"item": []
+		},
+		{
+			"name": "timesheets",
+			"item": []
+		},
+		{
+			"name": "projects",
+			"item": [
+				{
+					"name": "createProject",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"mas\",\r\n    \"status\": \"active\",\r\n    \"description\": \"asdsdfadasd\",\r\n    \"employees\": [{\r\n        \"rate\": 123.12,\r\n        \"role\": \"DEV\"\r\n    }],\r\n    \"startDate\": \"5-17-2020\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/projects",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"projects"
+							],
+							"query": [
+								{
+									"key": "employees",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "startDate",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "endDate",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteProject",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/projects/628139f57f6efb1e99eb2467",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"projects",
+								"628139f57f6efb1e99eb2467"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getProjectFilter",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/projects?name=multi",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"projects"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "multi"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getProjectById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/projects/62816b78e398e408164af5df",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"projects",
+								"62816b78e398e408164af5df"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
 }
