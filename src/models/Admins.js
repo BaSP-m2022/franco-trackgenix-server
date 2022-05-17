@@ -1,4 +1,3 @@
-// const mongoose = require('mongoose');
 import mongoose from 'mongoose';
 
 const adminSchema = new mongoose.Schema({
@@ -13,14 +12,6 @@ const adminSchema = new mongoose.Schema({
   email: {
     type: String,
     required: true,
-  },
-  dateOfBirth: {
-    type: String,
-    required: false,
-  },
-  dni: {
-    type: Number,
-    required: false,
   },
   password: {
     type: String,
