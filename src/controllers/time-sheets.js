@@ -1,9 +1,9 @@
-import TimeSheet from '../models/Time-sheets';
+import TimeSheets from '../models/Time-sheets';
 // import fs from 'fs';
 
 const createTimesheet = async (req, res) => {
   try {
-    const newTimeSheet = new TimeSheet({
+    const newTimeSheet = new TimeSheets({
       tasks: req.body.tasks,
       totalHours: req.body.totalHours,
       checked: req.body.checked,
@@ -31,7 +31,7 @@ const createTimesheet = async (req, res) => {
 
 const editTimesheet = async (req, res) => {
   try {
-    const timeSheet = await TimeSheet.findByIdAndUpdate(req.params.id, req.body);
+    const timeSheet = await TimeSheets.findByIdAndUpdate(req.params.id, req.body);
     return res.status(200).json({
       message: 'Time sheet edited',
       data: timeSheet,
