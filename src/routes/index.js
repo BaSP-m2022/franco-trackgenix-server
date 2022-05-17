@@ -4,7 +4,8 @@ import express from 'express';
 // import employeeRouter from './employee';
 // import taskRouter from './task';
 import adminRouter from './admin';
-// import timesheetRouter from './time-sheet';
+// import adminRouter from './admin';
+import timesheetRouter from './time-sheet';
 
 const router = express.Router();
 
@@ -12,7 +13,7 @@ const router = express.Router();
 // router.use('/tasks', taskRouter);
 router.use('/admins', adminRouter);
 // router.use('/super-admins', superAdminRouter);
-// router.use('/timesheets', timesheetRouter);
+router.use('/timesheets', timesheetRouter);
 // router.use('/employees', employeeRouter);
 
 export default router;
