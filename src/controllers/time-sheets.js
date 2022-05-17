@@ -1,5 +1,6 @@
 // import express from 'express';
 // import fs from 'fs';
+
 import TimeSheets from '../models/Time-sheets';
 
 const deleteById = async (req, res) => {
@@ -20,6 +21,24 @@ const deleteById = async (req, res) => {
   } catch (error) {
     res.json({
       message: 'Time-sheet could not be deleted',
+      data: undefined,
+      error: true,
+    });
+  }
+};
+
+const createTimesheet = async (req, res) => {
+  try {
+    const newTimeSheet = new TimeSheets(req.body);
+    await newTimeSheet.save();
+    res.status(201).json({
+      message: 'Time sheet created',
+      data: newTimeSheet,
+      error: false,
+    });
+  } catch (error) {
+    res.status(400).json({
+      message: 'An error ocurred',
       data: undefined,
       error: true,
     });
@@ -72,6 +91,40 @@ const getAll = async (req, res) => {
       error: true,
     });
   }
+};
+
+const editTimesheet = async (req, res) => {
+  try {
+    if (req.params.id) {
+      const timeSheet = await TimeSheets.findByIdAndUpdate({ _id: req.params.id }, req.body);
+      if (!timeSheet) {
+        res.status(404).json({
+          message: 'Time sheet not found',
+          data: undefined,
+          error: true,
+        });
+      }
+      res.status(200).json({
+        message: 'Time sheet edited',
+        data: timeSheet,
+        error: false,
+      });
+    }
+  } catch (error) {
+    res.status(400).json({
+      message: 'An error ocurred',
+      data: undefined,
+      error: true,
+    });
+  }
+};
+
+export default {
+  createTimesheet,
+  editTimesheet,
+  deleteById,
+  getById,
+  getAll,
 };
 
 /*
@@ -198,8 +251,3 @@ const edit = (req, res) => {
   }
 };
 */
-export default {
-  deleteById,
-  getById,
-  getAll,
-};

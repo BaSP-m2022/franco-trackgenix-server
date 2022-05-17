@@ -1,211 +1,122 @@
 {
-	"id": "66900af8-3adb-978c-317d-7f47b86df53e",
-	"name": "franco-trackgenix-server",
-	"description": "",
-	"order": [],
-	"folders": [
+	"info": {
+		"_postman_id": "9c10e6fd-56c6-4506-9fbf-54b4d1868c1b",
+		"name": "franco-trackgenix-server",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
 		{
-			"id": "77401438-603f-2371-890e-df68ac29ceac",
 			"name": "admins",
-			"description": "",
-			"order": [],
-			"folders_order": [],
-			"owner": "20855348",
-			"collectionId": "66900af8-3adb-978c-317d-7f47b86df53e"
+			"item": []
 		},
 		{
-			"id": "87b75156-f828-2ea9-7384-ffd674fc69c4",
-			"name": "employees",
-			"description": "",
-			"order": [],
-			"folders_order": [],
-			"owner": "20855348",
-			"collectionId": "66900af8-3adb-978c-317d-7f47b86df53e"
-		},
-		{
-			"id": "05a4b255-dbf6-9644-4429-d9df1f79b9bd",
-			"name": "projects",
-			"description": "",
-			"order": [],
-			"folders_order": [],
-			"owner": "20855348",
-			"collectionId": "66900af8-3adb-978c-317d-7f47b86df53e"
-		},
-		{
-			"id": "355a3f82-3638-a294-c5b5-97bb8ae7101a",
 			"name": "superAdmins",
-			"description": "",
-			"order": [],
-			"folders_order": [],
-			"owner": "20855348",
-			"collectionId": "66900af8-3adb-978c-317d-7f47b86df53e"
+			"item": []
 		},
 		{
-			"id": "65e6a149-b14f-ee7f-00b7-c8e093a4b04c",
 			"name": "tasks",
-			"description": "",
-			"order": [],
-			"folders_order": [],
-			"owner": "20855348",
-			"collectionId": "66900af8-3adb-978c-317d-7f47b86df53e"
+			"item": []
 		},
 		{
-			"id": "6978ce9e-13e2-2ef9-9c55-4d6f84f039bc",
+			"name": "employees",
+			"item": []
+		},
+		{
 			"name": "timesheets",
-			"description": "",
-			"order": [
-				"f156e9ed-f4f6-6fd5-1f4a-c907825a4633",
-				"7e35d907-e9a1-f89a-bf75-a9d17caee02f",
-				"69719870-fc97-69bd-5d8d-931dc4366a4e",
-				"56ed0b21-9b6e-3d3b-adc6-f482f9ccedd0",
-				"b9a3ae36-f19c-180e-7178-5737dd77d242"
-			],
-			"folders_order": [],
-			"owner": "20855348",
-			"collectionId": "66900af8-3adb-978c-317d-7f47b86df53e"
-		}
-	],
-	"folders_order": [
-		"77401438-603f-2371-890e-df68ac29ceac",
-		"355a3f82-3638-a294-c5b5-97bb8ae7101a",
-		"65e6a149-b14f-ee7f-00b7-c8e093a4b04c",
-		"87b75156-f828-2ea9-7384-ffd674fc69c4",
-		"6978ce9e-13e2-2ef9-9c55-4d6f84f039bc",
-		"05a4b255-dbf6-9644-4429-d9df1f79b9bd"
-	],
-	"timestamp": 0,
-	"owner": "20855348",
-	"public": false,
-	"requests": [
-		{
-			"id": "56ed0b21-9b6e-3d3b-adc6-f482f9ccedd0",
-			"headers": "",
-			"headerData": [],
-			"url": "localhost:3000/timesheets",
-			"queryParams": [],
-			"pathVariables": {},
-			"pathVariableData": [],
-			"preRequestScript": null,
-			"method": "GET",
-			"collectionId": "66900af8-3adb-978c-317d-7f47b86df53e",
-			"data": null,
-			"dataMode": "params",
-			"name": "getAll",
-			"description": "",
-			"descriptionFormat": "html",
-			"time": 1652800988610,
-			"version": 2,
-			"responses": [],
-			"tests": null,
-			"currentHelper": "normal",
-			"helperAttributes": {},
-			"folder": "6978ce9e-13e2-2ef9-9c55-4d6f84f039bc"
-		},
-		{
-			"id": "69719870-fc97-69bd-5d8d-931dc4366a4e",
-			"headers": "",
-			"headerData": [],
-			"url": "http://localhost:3000/timesheets/:id",
-			"queryParams": [],
-			"pathVariables": {
-				"id": ""
-			},
-			"pathVariableData": [
+			"item": [
 				{
-					"key": "id",
-					"value": ""
-				}
-			],
-			"preRequestScript": null,
-			"method": "PUT",
-			"collectionId": "66900af8-3adb-978c-317d-7f47b86df53e",
-			"data": null,
-			"dataMode": "params",
-			"name": "edit",
-			"description": "",
-			"descriptionFormat": "html",
-			"time": 1652800945395,
-			"version": 2,
-			"responses": [],
-			"tests": null,
-			"currentHelper": "normal",
-			"helperAttributes": {},
-			"folder": "6978ce9e-13e2-2ef9-9c55-4d6f84f039bc"
-		},
-		{
-			"id": "7e35d907-e9a1-f89a-bf75-a9d17caee02f",
-			"headers": "",
-			"headerData": [],
-			"url": "http://localhost:3000/timesheets/6281937a8da15cc010a1607e",
-			"folder": "6978ce9e-13e2-2ef9-9c55-4d6f84f039bc",
-			"queryParams": [],
-			"preRequestScript": null,
-			"pathVariables": {},
-			"pathVariableData": [],
-			"method": "GET",
-			"data": null,
-			"dataMode": "params",
-			"version": 2,
-			"tests": null,
-			"currentHelper": "normal",
-			"helperAttributes": {},
-			"time": 1652806652192,
-			"name": "getById",
-			"description": "",
-			"collectionId": "66900af8-3adb-978c-317d-7f47b86df53e",
-			"responses": []
-		},
-		{
-			"id": "b9a3ae36-f19c-180e-7178-5737dd77d242",
-			"headers": "",
-			"headerData": [],
-			"url": "http://localhost:3000/timesheets",
-			"queryParams": [],
-			"preRequestScript": null,
-			"pathVariables": {},
-			"pathVariableData": [],
-			"method": "POST",
-			"data": null,
-			"dataMode": "params",
-			"tests": null,
-			"currentHelper": "normal",
-			"helperAttributes": {},
-			"time": 1652801114455,
-			"name": "create",
-			"description": "",
-			"collectionId": "66900af8-3adb-978c-317d-7f47b86df53e",
-			"responses": []
-		},
-		{
-			"id": "f156e9ed-f4f6-6fd5-1f4a-c907825a4633",
-			"headers": "",
-			"headerData": [],
-			"url": "http://localhost:3000/time-sheets/:id",
-			"queryParams": [],
-			"pathVariables": {
-				"id": ""
-			},
-			"pathVariableData": [
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"tasks\": [\"Sleep\",\"Eat\", \"Run\"],\r\n    \"totalHours\": 8,\r\n    \"checked\": true,\r\n    \"status\": \"Status4\",\r\n    \"startDate\": \"2022-05-15T18:02:23.412Z\",\r\n    \"endDate\": \"2022-05-20T18:02:23.412Z\",\r\n    \"projectId\": \"4\",\r\n    \"employeeId\": \"3\",\r\n    \"managerId\": \"4\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/timesheets",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"timesheets"
+							]
+						}
+					},
+					"response": []
+				},
 				{
-					"key": "id",
-					"value": ""
+					"name": "edit",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"tasks\": [\"Walk\",\"Programming\"],\r\n    \"totalHours\": 12,\r\n    \"checked\": true,\r\n    \"status\": \"Status1\",\r\n    \"startDate\": \"2022-05-16T18:02:23.412Z\",\r\n    \"endDate\": \"2022-05-19T18:02:23.412Z\",\r\n    \"projectId\": \"1\",\r\n    \"employeeId\": \"1\",\r\n    \"managerId\": \"1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/timesheets/:id",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"timesheets",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "6281937a8da15cc010a1607e"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getById",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": []
+					},
+					"response": []
 				}
-			],
-			"preRequestScript": null,
-			"method": "DELETE",
-			"collectionId": "66900af8-3adb-978c-317d-7f47b86df53e",
-			"data": null,
-			"dataMode": "params",
-			"name": "delete",
-			"description": "",
-			"descriptionFormat": "html",
-			"time": 1652710859411,
-			"version": 2,
-			"responses": [],
-			"tests": null,
-			"currentHelper": "normal",
-			"helperAttributes": {},
-			"folder": "6978ce9e-13e2-2ef9-9c55-4d6f84f039bc"
+			]
+		},
+		{
+			"name": "projects",
+			"item": []
 		}
 	]
 }
