@@ -3,26 +3,16 @@ import TimeSheets from '../models/Time-sheets';
 
 const createTimesheet = async (req, res) => {
   try {
-    const newTimeSheet = new TimeSheets({
-      tasks: req.body.tasks,
-      totalHours: req.body.totalHours,
-      checked: req.body.checked,
-      status: req.body.status,
-      startDate: req.body.startDate,
-      endDate: req.body.endDate,
-      projectId: req.body.projectId,
-      employeeId: req.body.employeeId,
-      managerId: req.body.managerId,
-    });
+    const newTimeSheet = new TimeSheets(req.body);
     await newTimeSheet.save();
-    return res.status(201).json({
+    res.status(201).json({
       message: 'Time sheet created',
       data: newTimeSheet,
       error: false,
     });
   } catch (error) {
-    return res.status(400).json({
-      message: error,
+    res.status(400).json({
+      message: 'An error ocurred',
       data: undefined,
       error: true,
     });
@@ -31,15 +21,24 @@ const createTimesheet = async (req, res) => {
 
 const editTimesheet = async (req, res) => {
   try {
-    const timeSheet = await TimeSheets.findByIdAndUpdate(req.params.id, req.body);
-    return res.status(200).json({
-      message: 'Time sheet edited',
-      data: timeSheet,
-      error: false,
-    });
+    if (req.params.id) {
+      const timeSheet = await TimeSheets.findByIdAndUpdate({ _id: req.params.id }, req.body);
+      if (!timeSheet) {
+        res.status(404).json({
+          message: 'Time sheet not found',
+          data: undefined,
+          error: true,
+        });
+      }
+      res.status(200).json({
+        message: 'Time sheet edited',
+        data: timeSheet,
+        error: false,
+      });
+    }
   } catch (error) {
-    return res.status(404).json({
-      message: 'Time sheet not found',
+    res.status(400).json({
+      message: 'An error ocurred',
       data: undefined,
       error: true,
     });
