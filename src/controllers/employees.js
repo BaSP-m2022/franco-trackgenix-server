@@ -1,11 +1,9 @@
-import express from 'express';
 // import fs from 'fs';
+// import Employees from '../models/Employees';
 
 const employees = [];
 
-const router = express.Router();
-
-router.get('/:id', (req, res) => {
+const getById = (req, res) => {
   const employeeId = req.params.id;
   const employee = employees.find((s) => s.id === employeeId);
   if (employee) {
@@ -13,9 +11,9 @@ router.get('/:id', (req, res) => {
   } else {
     res.send('Employee not found');
   }
-});
+};
 
-router.delete('/:id', (req, res) => {
+const deleteById = (req, res) => {
   const employeeId = req.params.id;
   const deleteEmployee = employees.filter((s) => s.id !== employeeId);
   if (employees.length === deleteEmployee.length) {
@@ -29,9 +27,9 @@ router.delete('/:id', (req, res) => {
     //   }
     // });
   }
-});
+};
 
-router.post('/', (req, res) => {
+const post = (req, res) => {
   const employeeAdd = req.body;
   if (employeeAdd.id && employeeAdd.firstName && employeeAdd.lastName
     && employeeAdd.email && employeeAdd.dateOfBirth && employeeAdd.dni) {
@@ -46,9 +44,9 @@ router.post('/', (req, res) => {
   } else {
     res.send('Insufficient data: New employee impossible to create.');
   }
-});
+};
 
-router.get('/', (req, res) => {
+const getFilter = (req, res) => {
   const employeeId = req.query.id;
   const employeeName = req.query.firstName;
   const employeeLastName = req.query.lastName;
@@ -116,9 +114,9 @@ router.get('/', (req, res) => {
   } else {
     res.send('Employee not found');
   }
-});
+};
 
-router.put('/:id', (req, res) => {
+const put = (req, res) => {
   const reqId = req.params.id;
   const modEmployee = employees.find((employee) => employee.id === reqId);
   if (modEmployee) {
@@ -143,6 +141,12 @@ router.put('/:id', (req, res) => {
   } else {
     res.send('Error: Id not found.');
   }
-});
+};
 
-export default router;
+export default {
+  getById,
+  deleteById,
+  post,
+  getFilter,
+  put,
+};
