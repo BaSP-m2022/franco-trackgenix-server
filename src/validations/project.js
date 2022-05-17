@@ -3,7 +3,7 @@ import Joi from 'joi';
 const validationCreateProject = (req, res, next) => {
   const employeesSchema = Joi.object({
     rate: Joi.number().required().greater(0),
-    role: Joi.string().required().valid('agregar'),
+    role: Joi.string().required().valid('TL', 'QA', 'DEV'),
   });
 
   const projectValidation = Joi.object({
@@ -16,7 +16,7 @@ const validationCreateProject = (req, res, next) => {
   });
   const validation = projectValidation.validate(req.body);
   if (validation.error) {
-    return res.status(400).json({
+    res.status(400).json({
       message: 'There was an error during validation',
       data: validation.error.details[0].message,
       error: true,
