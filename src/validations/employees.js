@@ -15,12 +15,13 @@ const validateEdit = (req, res, next) => {
 
   const validation = employeesValidation.validate(req.body);
   if (validation.error) {
-    return res.status(400).json({
+    res.status(400).json({
       message: 'there was an error during the validation of the request',
       error: validation.error.details[0].message,
     });
+  } else {
+    next();
   }
-  return next();
 };
 
 export default { validateEdit };
