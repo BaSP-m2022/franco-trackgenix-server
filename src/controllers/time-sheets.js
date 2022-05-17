@@ -1,30 +1,81 @@
-import express from 'express';
+// import express from 'express';
 // import fs from 'fs';
+import TimeSheets from '../models/Time-sheets';
 
-const timesheets = [];
-
-const router = express.Router();
-
-router.delete('/:id', (req, res) => {
-  const timesheetIdToFilter = req.query.id;
-  const filteredTimesheets = timesheets.filter((timeSheet) => timeSheet.id !== timesheetIdToFilter);
-  if (filteredTimesheets.length === timesheets.length) {
-    res.send('Could not delete the timesheet because it was not found.');
-  } else {
-    // fs.writeFile('src/data/time-sheets.json', JSON.stringify(filteredTimesheets), (err) => {
-    //   if (err) {
-    //     res.send(err);
-    //   } else {
-    //     res.send(`
-    // The user by the id of ${timesheetIdToFilter}
-    // was deleted successfully from the timesheet list.
-    // `);
-    //   }
-    // });
+const deleteById = async (req, res) => {
+  try {
+    const timesheetIdToFilter = await TimeSheets.findByIdAndRemove(req.params.id);
+    if (!timesheetIdToFilter) {
+      res.status(404).json({
+        message: 'Time-sheet was not found',
+        data: undefined,
+        error: true,
+      });
+    }
+    res.status(200).json({
+      message: 'Time-sheet deleted',
+      data: timesheetIdToFilter,
+      error: false,
+    });
+  } catch (error) {
+    res.json({
+      message: 'Time-sheet could not be deleted',
+      data: undefined,
+      error: true,
+    });
   }
-});
+};
 
-router.get('/', (req, res) => {
+const getById = async (req, res) => {
+  try {
+    const byId = await TimeSheets.findById(req.params.id);
+    if (!byId) {
+      res.status(404).json({
+        message: 'Time-sheet was not found',
+        data: undefined,
+        error: true,
+      });
+    }
+    res.status(200).json({
+      message: 'Time-sheet found',
+      data: byId,
+      error: false,
+    });
+  } catch (error) {
+    res.json({
+      message: 'Time-sheet was not found',
+      data: undefined,
+      error: true,
+    });
+  }
+};
+
+const getAll = async (req, res) => {
+  try {
+    const result = await TimeSheets.find(req.query);
+    if (result.length > 0) {
+      res.status(200).json({
+        result,
+        error: false,
+      });
+    } else {
+      res.status(400).json({
+        message: 'A valid parameter is needed',
+        data: undefined,
+        error: true,
+      });
+    }
+  } catch (error) {
+    res.status(404).json({
+      message: 'Time-sheet was not found',
+      data: undefined,
+      error: true,
+    });
+  }
+};
+
+/*
+const getAll = (req, res) => {
   const tmManager = req.query.manager;
   const tmCheck = req.query.check;
   const tmProject = req.query.project;
@@ -82,19 +133,9 @@ router.get('/', (req, res) => {
   } else {
     res.send('Timesheet not found');
   }
-});
+};
 
-router.get('/:id', (req, res) => {
-  const byId = req.params.id;
-  const filteredId = timesheets.find((timesheet) => timesheet.id === byId);
-  if (filteredId) {
-    res.send(filteredId);
-  } else {
-    res.send(`There are not ${byId}`);
-  }
-});
-
-router.post('/', (req, res) => {
+const create = (req, res) => {
   const newTimesheet = req.body;
   if (newTimesheet.id
     && newTimesheet.user
@@ -116,18 +157,18 @@ router.post('/', (req, res) => {
   } else {
     res.send('Timesheet was not created');
   }
-});
+};
 
-router.put('/:id', (req, res) => {
+const edit = (req, res) => {
   const timesheetId = req.params.id;
-  const timesheetToModifiy = timesheets.find((timesheet) => timesheet.id === timesheetId);
-  if (timesheetToModifiy) {
+  const timesheetTo = timesheets.find((timesheet) => timesheet.id === timesheetId);
+  if (timesheetToModify) {
     const updateTimesheet = req.body;
     const newTimesheet = {};
     newTimesheet.id = timesheetId;
-    newTimesheet.user = updateTimesheet.user ? updateTimesheet.user : timesheetToModifiy.user;
+    newTimesheet.user = updateTimesheet.user ? updateTimesheet.user : timesheetToModify.user;
 
-    newTimesheet.day = updateTimesheet.day ? updateTimesheet.day : timesheetToModifiy.day;
+    newTimesheet.day = updateTimesheet.day ? updateTimesheet.day : timesheetToModify.day;
 
     newTimesheet.workedHours = updateTimesheet.workedHours
       ? updateTimesheet.workedHours : timesheetToModifiy.workedHours;
@@ -155,6 +196,10 @@ router.put('/:id', (req, res) => {
   } else {
     res.send('Id not found');
   }
-});
-
-export default router;
+};
+*/
+export default {
+  deleteById,
+  getById,
+  getAll,
+};
