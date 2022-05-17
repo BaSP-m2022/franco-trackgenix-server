@@ -1,5 +1,8 @@
 import Joi from 'joi';
 
+const now = Date.now();
+const moreThan18 = new Date(now - (1000 * 60 * 60 * 24 * 365 * 18));
+
 const postValidation = (req, res, next) => {
   const schemaPostValidation = Joi.object({
     firstName: Joi.string()
@@ -35,26 +38,27 @@ const postValidation = (req, res, next) => {
       .message('Password must have between 8 and 12 characters')
       .max(12)
       .message('Password must have between 8 and 12 characters')
-      .pattern(/^(?=.*[a-z])(?=.*\d)/)
-      .message('Password must have 1 letter and 1 number')
+      .pattern(/[a-zA-Z]/)
+      .message('Password must have 1 letter')
+      .pattern(/[0-9]/)
+      .message('Password must have 1 number')
       .required(),
     dateOfBirth: Joi.date()
-      .greater('01-01-1900')
-      .message('This date is invalid')
-      .less('05-15-2004')
-      .message('You must be at least 18 years old')
+      .max(moreThan18)
+      .message('You must be more than 18 years old')
       .required(),
   });
 
   const validation = schemaPostValidation.validate(req.body);
   if (validation.error) {
-    return res.status(400).json({
+    res.status(400).json({
       message: 'There was an error during the validation',
       data: undefined,
       error: validation.error.details[0].message,
     });
+  } else {
+    next();
   }
-  return next();
 };
 
 export default { postValidation };
