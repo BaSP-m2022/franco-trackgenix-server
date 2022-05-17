@@ -2,7 +2,7 @@ import Employee from '../models/Employees';
 
 const post = async (req, res) => {
   try {
-    const employee = await Employee.create({
+    const newEmployee = await Employee.create({
       firstName: req.body.firstName,
       lastName: req.body.lastName,
       dni: req.body.dni,
@@ -10,14 +10,14 @@ const post = async (req, res) => {
       password: req.body.password,
       dateOfBirth: req.body.dateOfBirth,
     });
-    await employee.save();
+    await newEmployee.save();
     return res.status(201).json({
       message: 'Employee created successfully',
-      data: employee,
+      data: newEmployee,
       error: false,
     });
   } catch (error) {
-    return res.status(400).json({
+    return res.status(500).json({
       message: 'Error creating new employee',
       data: undefined,
       error: true,
@@ -27,8 +27,8 @@ const post = async (req, res) => {
 
 const deleteById = async (req, res) => {
   try {
-    const findEmployee = await Employee.findByIdAndRemove(req.params.id);
-    if (!findEmployee) {
+    const findAndDeleteEmployee = await Employee.findByIdAndRemove(req.params.id);
+    if (!findAndDeleteEmployee) {
       return res.status(404).json({
         message: 'Employee ID not found',
         data: undefined,
@@ -37,11 +37,11 @@ const deleteById = async (req, res) => {
     }
     return res.status(200).json({
       message: 'Employee deleted successfully',
-      data: findEmployee,
+      data: findAndDeleteEmployee,
       error: false,
     });
   } catch (error) {
-    return res.json({
+    return res.status(500)({
       message: 'Employee can not be deleted',
       data: undefined,
       error: true,
