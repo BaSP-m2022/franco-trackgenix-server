@@ -52,9 +52,9 @@ const postValidation = (req, res, next) => {
   const validation = schemaPostValidation.validate(req.body);
   if (validation.error) {
     res.status(400).json({
-      message: 'There was an error during the validation',
+      message: validation.error.details[0].message,
       data: undefined,
-      error: validation.error.details[0].message,
+      error: true,
     });
   } else {
     next();
