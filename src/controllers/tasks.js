@@ -20,7 +20,7 @@ const getAllTasks = async (req, res) => {
     res.status(500).json({
       message: 'There was an error',
       data: undefined,
-      error: error.details[0].message,
+      error: true,
     });
   }
 };
@@ -51,7 +51,7 @@ const getTasksById = async (req, res) => {
     res.status(500).json({
       message: 'There was an error',
       data: undefined,
-      error: error.details[0].message,
+      error: true,
     });
   }
 };
@@ -72,7 +72,7 @@ const createTask = async (req, res) => {
     res.status(500).json({
       message: 'There was an error',
       data: undefined,
-      error: error.details[0].message,
+      error: true,
     });
   }
 };
@@ -138,7 +138,7 @@ const updateTask = async (req, res) => {
     res.status(500).json({
       message: 'There was an error',
       data: undefined,
-      error: error.details[0].message,
+      error: true,
     });
   }
 };
