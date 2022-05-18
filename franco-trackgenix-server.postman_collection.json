@@ -1,189 +1,182 @@
 {
-	"info": {
-		"_postman_id": "e3424c51-266b-4cc8-bb15-5b53f4e9a56b",
-		"name": "franco-trackgenix-server",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
-	},
-	"item": [
-		{
-			"name": "admins",
-			"item": []
-		},
-		{
-			"name": "superAdmins",
-			"item": []
-		},
-		{
-			"name": "tasks",
-			"item": []
-		},
-		{
-			"name": "employees",
-			"item": []
-		},
-		{
-			"name": "timesheets",
-			"item": [
-				{
-					"name": "create",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"tasks\": [\"Dormir\",\"Comer\", \"Correr\"],\r\n    \"totalHours\": 8,\r\n    \"checked\": true,\r\n    \"status\": \"Status4\",\r\n    \"startDate\": \"2022-05-15T18:02:23.412Z\",\r\n    \"endDate\": \"2022-05-20T18:02:23.412Z\",\r\n    \"projectId\": \"4\",\r\n    \"employeeId\": \"3\",\r\n    \"managerId\": \"4\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "localhost:3000/tasks/",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"tasks",
-								"",
-								"timesheets"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "edit",
-					"request": {
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"tasks\": [\"Caminar\",\"Programar\"],\r\n    \"totalHours\": 12,\r\n    \"checked\": true,\r\n    \"status\": \"Status1\",\r\n    \"startDate\": \"2022-05-16T18:02:23.412Z\",\r\n    \"endDate\": \"2022-05-19T18:02:23.412Z\",\r\n    \"projectId\": \"1\",\r\n    \"employeeId\": \"1\",\r\n    \"managerId\": \"1\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "localhost:3000/timesheets/:id",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"timesheets",
-								":id"
-							],
-							"variable": [
-								{
-									"key": "id",
-									"value": "6281937a8da15cc010a1607e"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "getAll",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "localhost:3000/tasks?workedHours",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"tasks"
-							],
-							"query": [
-								{
-									"key": "description",
-									"value": "Updated task 5.0",
-									"disabled": true
-								},
-								{
-									"key": "workedHours",
-									"value": null
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "getById",
-					"request": {
-						"method": "GET",
-						"header": []
-					},
-					"response": []
-				},
-				{
-					"name": "delete",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "localhost:3000/tasks/628261cccf8835f2c0d24814",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"tasks",
-								"628261cccf8835f2c0d24814"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "edit",
-					"request": {
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n\"description\": \"Updated task 5.0\",\r\n\"workedHours\": 5.5\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "localhost:3000/tasks/6282659b7389388c5b5558b6",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"tasks",
-								"6282659b7389388c5b5558b6"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "employees",
-			"item": []
-		},
-		{
-			"name": "timesheets",
-			"item": []
-		},
-		{
-			"name": "projects",
-			"item": []
-		}
-	]
+  "info": {
+    "_postman_id": "b6a034a0-8600-4945-96c5-22850c77332a",
+    "name": "franco-trackgenix-server",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "admins",
+      "item": []
+    },
+    {
+      "name": "superAdmins",
+      "item": []
+    },
+    {
+      "name": "tasks",
+      "item": []
+    },
+    {
+      "name": "employees",
+      "item": []
+    },
+    {
+      "name": "timesheets",
+      "item": [
+        {
+          "name": "create",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"tasks\": [\"Dormir\",\"Comer\", \"Correr\"],\r\n    \"totalHours\": 8,\r\n    \"checked\": true,\r\n    \"status\": \"Status4\",\r\n    \"startDate\": \"2022-05-15T18:02:23.412Z\",\r\n    \"endDate\": \"2022-05-20T18:02:23.412Z\",\r\n    \"projectId\": \"4\",\r\n    \"employeeId\": \"3\",\r\n    \"managerId\": \"4\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:3000/timesheets",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "timesheets"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "edit",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"tasks\": [\"Caminar\",\"Programar\"],\r\n    \"totalHours\": 12,\r\n    \"checked\": true,\r\n    \"status\": \"Status1\",\r\n    \"startDate\": \"2022-05-16T18:02:23.412Z\",\r\n    \"endDate\": \"2022-05-19T18:02:23.412Z\",\r\n    \"projectId\": \"1\",\r\n    \"employeeId\": \"1\",\r\n    \"managerId\": \"1\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:3000/timesheets/:id",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "timesheets",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "6281937a8da15cc010a1607e"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "getAll",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": ""
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "getById",
+          "request": {
+            "method": "GET",
+            "header": []
+          },
+          "response": []
+        },
+        {
+          "name": "delete",
+          "request": {
+            "method": "DELETE",
+            "header": []
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "projects",
+      "item": [
+        {
+          "name": "delete",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:3000/projects/:id",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "projects",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": null
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "put",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "url": {
+              "raw": "localhost:3000/projects/:id",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "projects",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": null
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
 }
