@@ -103,7 +103,7 @@ const deleteTask = async (req, res) => {
     res.status(500).json({
       message: 'There was an error',
       data: undefined,
-      error: error.details[0].message,
+      error: true,
     });
   }
 };
