@@ -1,6 +1,6 @@
 {
   "info": {
-    "_postman_id": "9c10e6fd-56c6-4506-9fbf-54b4d1868c1b",
+    "_postman_id": "b6a034a0-8600-4945-96c5-22850c77332a",
     "name": "franco-trackgenix-server",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
@@ -259,7 +259,67 @@
     },
     {
       "name": "projects",
-      "item": []
+      "item": [
+        {
+          "name": "delete",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:3000/projects/:id",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "projects",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": null
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "put",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "url": {
+              "raw": "localhost:3000/projects/:id",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "projects",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": null
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
     }
   ]
 }
