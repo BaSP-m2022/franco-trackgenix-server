@@ -1,5 +1,28 @@
 import TimeSheets from '../models/Time-sheets';
-// import fs from 'fs';
+
+const deleteById = async (req, res) => {
+  try {
+    const timesheetIdToFilter = await TimeSheets.findByIdAndRemove(req.params.id);
+    if (!timesheetIdToFilter) {
+      res.status(404).json({
+        message: 'Time-sheet was not found',
+        data: undefined,
+        error: true,
+      });
+    }
+    res.status(200).json({
+      message: 'Time-sheet deleted',
+      data: timesheetIdToFilter,
+      error: false,
+    });
+  } catch (error) {
+    res.status(400).json({
+      message: 'Time-sheet could not be deleted',
+      data: undefined,
+      error: true,
+    });
+  }
+};
 
 const createTimesheet = async (req, res) => {
   try {
@@ -13,6 +36,55 @@ const createTimesheet = async (req, res) => {
   } catch (error) {
     res.status(400).json({
       message: 'An error ocurred',
+      data: undefined,
+      error: true,
+    });
+  }
+};
+
+const getById = async (req, res) => {
+  try {
+    const byId = await TimeSheets.findById(req.params.id);
+    if (!byId) {
+      res.status(404).json({
+        message: 'Time-sheet was not found',
+        data: undefined,
+        error: true,
+      });
+    }
+    res.status(200).json({
+      message: 'Time-sheet found',
+      data: byId,
+      error: false,
+    });
+  } catch (error) {
+    res.status(400).json({
+      message: 'Time-sheet was not found',
+      data: undefined,
+      error: true,
+    });
+  }
+};
+
+const getAll = async (req, res) => {
+  try {
+    const result = await TimeSheets.find(req.query);
+    if (result.length > 0) {
+      res.status(200).json({
+        message: 'Time-sheets',
+        data: result,
+        error: false,
+      });
+    } else {
+      res.status(404).json({
+        message: 'A valid parameter is needed',
+        data: undefined,
+        error: true,
+      });
+    }
+  } catch (error) {
+    res.status(400).json({
+      message: 'Time-sheet was not found',
       data: undefined,
       error: true,
     });
@@ -48,4 +120,7 @@ const editTimesheet = async (req, res) => {
 export default {
   createTimesheet,
   editTimesheet,
+  deleteById,
+  getById,
+  getAll,
 };
