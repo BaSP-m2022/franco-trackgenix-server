@@ -1,30 +1,25 @@
-import SuperAdmins from '../models/Super-admins';
+import SuperAdmin from '../models/Super-admins';
 
 const deleteById = async (req, res) => {
   try {
-    if (!req.params.id) {
-      return res.status(400).json({
-        message: 'missing id',
+    const result = await SuperAdmin.findByIdAndDelete(req.params.id);
+    if (!result) {
+      return res.status(404).json({
+        message: 'Super Admin not found',
         data: undefined,
         error: true,
       });
     }
-    const result = await SuperAdmins.findByIdAndDelete(req.params.id);
-    if (Object.entries(result).length) {
-      return res.status(200).json({
-        message: 'Super Admin deleted successfully',
-        data: req.params.id,
-        error: false,
-      });
-    }
-    return res.status(404).json({
-      message: 'Super Admin not found',
+    return res.status(200).json({
+      message: 'Super Admin deleted successfully',
       data: undefined,
-      error: true,
+      error: false,
     });
   } catch (error) {
     return res.status(500).json({
       message: 'An error has ocurred',
+      data: undefined,
+      error: true,
     });
   }
 };
@@ -32,7 +27,7 @@ const deleteById = async (req, res) => {
 const getById = async (req, res) => {
   try {
     if (req.params.id) {
-      const sAdmin = await SuperAdmins.findById(req.params.id);
+      const sAdmin = await SuperAdmin.findById(req.params.id);
       if (Object.entries(sAdmin).length) {
         return res.status(200).json({
           sAdmin,
@@ -41,6 +36,7 @@ const getById = async (req, res) => {
       }
       return res.status(404).json({
         message: 'Super Admin not found, invalid ID',
+        data: undefined,
         error: true,
       });
     }
@@ -48,13 +44,15 @@ const getById = async (req, res) => {
   } catch (error) {
     return res.status(500).json({
       message: 'An error has ocurred',
+      data: undefined,
+      error: true,
     });
   }
 };
 
 const post = async (req, res) => {
   try {
-    const sAdmin = new SuperAdmins({
+    const sAdmin = new SuperAdmin({
       password: req.body.password,
       email: req.body.email,
       firstName: req.body.firstName,
@@ -68,6 +66,8 @@ const post = async (req, res) => {
   } catch (error) {
     return res.status(500).json({
       message: 'An error has ocurred',
+      data: undefined,
+      error: true,
     });
   }
 };
@@ -75,7 +75,7 @@ const post = async (req, res) => {
 const put = async (req, res) => {
   try {
     if (req.params) {
-      const result = await SuperAdmins.findByIdAndUpdate(
+      const result = await SuperAdmin.findByIdAndUpdate(
         req.params.id,
         req.body,
         { new: true },
@@ -88,25 +88,27 @@ const put = async (req, res) => {
       }
       return res.status(404).json({
         message: 'Super Admin not found',
-        data: req.params.id,
+        data: undefined,
         error: true,
       });
     }
     return res.status(400).json({
       message: 'Missing id parameter',
-      data: req.params.id,
+      data: undefined,
       error: true,
     });
   } catch (error) {
     return res.status(500).json({
       message: 'An error has ocurred',
+      data: undefined,
+      error: true,
     });
   }
 };
 
 const getFilter = async (req, res) => {
   try {
-    const result = await SuperAdmins.find(req.query);
+    const result = await SuperAdmin.find(req.query);
     if (result.length > 0) {
       return res.status(200).json({
         result,
@@ -121,6 +123,8 @@ const getFilter = async (req, res) => {
   } catch (error) {
     return res.status(500).json({
       message: 'An error has ocurred',
+      data: undefined,
+      error: true,
     });
   }
 };
