@@ -10,7 +10,7 @@ const router = express.Router();
 
 router.use('/tasks', taskRouter);
 router.use('/projects', projectRouter);
-// router.use('/tasks', taskRouter);
+router.use('/tasks', taskRouter);
 // router.use('/admins', adminRouter);
 // router.use('/super-admins', superAdminRouter);
 router.use('/timesheets', timesheetRouter);
