@@ -2,8 +2,8 @@ import Admin from '../models/Admins';
 
 const getAllAdmins = async (req, res) => {
   try {
-    const allAdmins = await Admin.find({});
-    if (allAdmins) {
+    const allAdmins = await Admin.find(req.query);
+    if (allAdmins.length > 0) {
       res.status(200).json({
         message: 'Showing the complete list of admins.',
         data: allAdmins,
@@ -25,20 +25,20 @@ const getAllAdmins = async (req, res) => {
 
 const getAdminById = async (req, res) => {
   try {
-    if (!req.params) {
+    if (req.params.id) {
+      const result = await Admin.findById(req.params.id);
+      res.status(200).json({
+        message: `Showing the specified admin by the id of ${req.params.id}.`,
+        data: result,
+        error: false,
+      });
+    } else {
       res.status(404).json({
         message: 'No input available.',
         data: undefined,
         error: true,
       });
     }
-    const { id } = req.params;
-    const result = await Admin.findById(id);
-    res.status(200).json({
-      message: `Showing the specified admin by the id of ${req.params.id}.`,
-      data: result,
-      error: false,
-    });
   } catch (error) {
     res.status(400).json({
       message: `Could not found an admin by the id of ${req.params.id}.`,
@@ -67,23 +67,31 @@ const createAdmin = async (req, res) => {
 
 const editAdmin = async (req, res) => {
   try {
+    if (!req.params) {
+      res.status(400).json({
+        message: 'Missing id parameter',
+        data: undefined,
+        error: true,
+      });
+    }
     const result = await Admin.findByIdAndUpdate(
       req.params.id,
       req.body,
       { new: true },
     );
-    if (result) {
-      res.status(200).json({
-        message: `Admin by the id of ${req.params.id} successfully updated.`,
-        data: result,
-        error: false,
+    if (!result) {
+      res.status(404).json({
+        message: 'Task not found',
+        data: undefined,
+        error: true,
       });
-    } res.status(404).json({
-      message: `There is no admin with the id of ${req.params.id}.`,
-      data: undefined,
-      error: true,
+    }
+    res.status(200).json({
+      message: 'Task updated',
+      data: result,
+      error: false,
     });
-  } catch (err) {
+  } catch (error) {
     res.status(400).json({
       message: 'There was an error, please try again.',
       data: undefined,
@@ -95,7 +103,7 @@ const editAdmin = async (req, res) => {
 const deleteAdmin = async (req, res) => {
   try {
     const result = await Admin.findByIdAndDelete(req.params.id);
-    res.status(204).json({
+    res.status(200).json({
       message: `Admin by the id of ${req.params.id} deleted successfully.`,
       data: result,
       error: false,
