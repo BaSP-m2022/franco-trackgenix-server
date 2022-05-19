@@ -1,9 +1,26 @@
-import Employees from '../models/Employees';
+import Employee from '../models/Employees';
+
+const post = async (req, res) => {
+  try {
+    const newEmployee = await Employee.create(req.body);
+    res.status(201).json({
+      message: 'Employee created successfully',
+      data: newEmployee,
+      error: false,
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: 'Error creating new employee',
+      data: undefined,
+      error: true,
+    });
+  }
+};
 
 const getById = async (req, res) => {
   try {
     if (req.params.id) {
-      const employeeById = await Employees.findById(req.params.id);
+      const employeeById = await Employee.findById(req.params.id);
       if (!employeeById) {
         res.status(404).json({
           message: 'Employee was not found',
@@ -34,7 +51,7 @@ const getById = async (req, res) => {
 
 const getFilter = async (req, res) => {
   try {
-    const result = await Employees.find(req.query);
+    const result = await Employee.find(req.query);
     if (result.length > 0) {
       res.status(200).json({
         message: 'Success',
@@ -57,6 +74,30 @@ const getFilter = async (req, res) => {
   }
 };
 
+const deleteById = async (req, res) => {
+  try {
+    const findAndDeleteEmployee = await Employee.findByIdAndRemove(req.params.id);
+    if (!findAndDeleteEmployee) {
+      res.status(404).json({
+        message: 'Employee ID not found',
+        data: undefined,
+        error: true,
+      });
+    }
+    res.status(200).json({
+      message: 'Employee deleted successfully',
+      data: findAndDeleteEmployee,
+      error: false,
+    });
+  } catch (error) {
+    res.status(500)({
+      message: 'Employee can not be deleted',
+      data: undefined,
+      error: true,
+    });
+  }
+};
+
 const put = async (req, res) => {
   try {
     if (!req.params.id) {
@@ -66,7 +107,7 @@ const put = async (req, res) => {
         error: true,
       });
     }
-    const result = await Employees.findByIdAndUpdate(
+    const result = await Employee.findByIdAndUpdate(
       req.params.id,
       req.body,
       { new: true },
@@ -92,11 +133,10 @@ const put = async (req, res) => {
     });
   }
 };
-
 export default {
   getById,
-  // deleteById,
-  // post,
+  deleteById,
+  post,
   getFilter,
   put,
 };
