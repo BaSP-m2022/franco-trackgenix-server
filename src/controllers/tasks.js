@@ -10,7 +10,7 @@ const getAllTasks = async (req, res) => {
         error: false,
       });
     } else {
-      res.status(400).json({
+      res.status(404).json({
         message: 'Please, put an information about the task',
         data: undefined,
         error: true,
