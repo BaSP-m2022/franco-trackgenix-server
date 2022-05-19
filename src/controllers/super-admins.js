@@ -1,134 +1,138 @@
-import express from 'express';
-// import fs from 'fs';
+import SuperAdmin from '../models/Super-admins';
 
-const superAdmins = [];
-
-const router = express.Router();
-
-router.get('/:id', (req, res) => {
-  const sAdminId = req.params.id;
-  const sAdmin = superAdmins.find((s) => s.id === sAdminId);
-  if (sAdmin) {
-    res.send(sAdmin);
-  } else {
-    res.send('SuperAdmin not found');
+const deleteById = async (req, res) => {
+  try {
+    const result = await SuperAdmin.findByIdAndDelete(req.params.id);
+    if (!result) {
+      res.status(404).json({
+        message: 'Super Admin not found',
+        data: undefined,
+        error: true,
+      });
+    } else {
+      res.status(200).json({
+        message: 'Super Admin deleted successfully',
+        data: result,
+        error: false,
+      });
+    }
+  } catch (error) {
+    res.status(500).json({
+      message: 'An error has ocurred',
+      data: undefined,
+      error: true,
+    });
   }
-});
+};
 
-router.get('/', (req, res) => {
-  const sAdminName = req.query.firstName;
-  const sAdminLName = req.query.lastName;
-  const sAdminEmail = req.query.email;
-  const sAdminDate = req.query.dateOfBirth;
-  const sAdminDni = req.query.dni;
-  if (!sAdminName && !sAdminLName && !sAdminEmail && !sAdminDate && !sAdminDni) {
-    res.send(superAdmins);
+const getById = async (req, res) => {
+  try {
+    if (req.params.id) {
+      const sAdmin = await SuperAdmin.findById(req.params.id);
+      if (!sAdmin) {
+        res.status(404).json({
+          message: 'Super Admin not found, invalid ID',
+          data: undefined,
+          error: true,
+        });
+      } else {
+        res.status(200).json({
+          message: 'Super Admin found successfully',
+          data: sAdmin,
+          error: false,
+        });
+      }
+    }
+  } catch (error) {
+    res.status(500).json({
+      message: 'An error has ocurred',
+      data: undefined,
+      error: true,
+    });
   }
-  const filteredSuperAdmins = superAdmins.filter((sAdmin) => {
-    if (sAdminName && sAdminLName && sAdminEmail && sAdminDate && sAdminDni) {
-      return sAdmin.firstName.includes(sAdminName.toLowerCase())
-      && sAdmin.lastName.includes(sAdminLName.toLowerCase())
-      && sAdmin.email.includes(sAdminEmail.toLowerCase())
-      && sAdmin.dateOfBirth.includes(sAdminDate.toLowerCase())
-      && sAdmin.dni.includes(sAdminDni.toLowerCase());
-    }
-    if (sAdminName && sAdminLName && sAdminEmail && sAdminDate) {
-      return sAdmin.firstName.includes(sAdminName.toLowerCase())
-      && sAdmin.lastName.includes(sAdminLName.toLowerCase())
-      && sAdmin.email.includes(sAdminEmail.toLowerCase())
-      && sAdmin.dateOfBirth.includes(sAdminDate.toLowerCase());
-    }
-    if (sAdminName && sAdminLName && sAdminEmail) {
-      return sAdmin.firstName.includes(sAdminName.toLowerCase())
-      && sAdmin.lastName.includes(sAdminLName.toLowerCase())
-      && sAdmin.email.includes(sAdminEmail.toLowerCase());
-    }
-    if (sAdminName && sAdminLName) {
-      return sAdmin.firstName.includes(sAdminName.toLowerCase())
-      && sAdmin.lastName.includes(sAdminLName.toLowerCase());
-    }
-    if (sAdminName) {
-      return sAdmin.firstName.includes(sAdminName.toLowerCase());
-    }
-    if (sAdminLName) {
-      return sAdmin.lastName.includes(sAdminLName.toLowerCase());
-    }
-    if (sAdminEmail) {
-      return sAdmin.email.includes(sAdminEmail.toLowerCase());
-    }
-    if (sAdminDate) {
-      return sAdmin.dateOfBirth.includes(sAdminDate.toLowerCase());
-    }
-    if (sAdminDni) {
-      return sAdmin.dni.includes(sAdminDni.toLowerCase());
-    }
-    return false;
-  });
-  if (filteredSuperAdmins.length > 0) {
-    res.send(filteredSuperAdmins);
-  } else {
-    res.send('SuperAdmin not found');
-  }
-});
+};
 
-router.post('/', (req, res) => {
-  const sAdmin = req.body;
-  if (sAdmin.id && sAdmin.firstName && sAdmin.lastName && sAdmin.email && sAdmin.dateOfBirth
-      && sAdmin.dni) {
-    superAdmins.push(sAdmin);
-    // fs.writeFile('src/data/super-admins.json', JSON.stringify(superAdmins), (err) => {
-    //   if (err) {
-    //     res.send(err);
-    //   } else {
-    //     res.send('SuperAdmin Created');
-    //   }
-    // });
-  } else {
-    res.send('Data insufficient');
+const post = async (req, res) => {
+  try {
+    const sAdmin = await SuperAdmin.create(req.body);
+    res.status(201).json({
+      message: 'Super Admin added to database',
+      data: sAdmin,
+      error: false,
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: 'An error has ocurred',
+      data: undefined,
+      error: true,
+    });
   }
-});
+};
 
-router.delete('/:id', (req, res) => {
-  const sAdminId = req.params.id;
-  const deletedById = superAdmins.filter((s) => s.id !== sAdminId);
-  if (superAdmins.length === deletedById.length) {
-    res.send('Could not delete SuperAdmin because it was not found');
-  } else {
-    // fs.writeFile('src/data/super-admins.json', JSON.stringify(deletedById), (err) => {
-    //   if (err) {
-    //     res.send(err);
-    //   } else {
-    //     res.send('SuperAdmin Deleted');
-    //   }
-    // });
+const put = async (req, res) => {
+  try {
+    if (req.params) {
+      const result = await SuperAdmin.findByIdAndUpdate(
+        req.params.id,
+        req.body,
+        { new: true },
+      );
+      if (result) {
+        res.status(200).json({
+          message: 'Super Admin edited successfully',
+          data: result,
+          error: false,
+        });
+      } else {
+        res.status(404).json({
+          message: 'Super Admin not found',
+          data: undefined,
+          error: true,
+        });
+      }
+    }
+    res.status(400).json({
+      message: 'Missing id parameter',
+      data: undefined,
+      error: true,
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: 'An error has ocurred',
+      data: undefined,
+      error: true,
+    });
   }
-});
+};
 
-router.put('/:id', (req, res) => {
-  const sAdminId = req.params.id;
-  const sAdmin = superAdmins.find((s) => s.id === sAdminId);
-  if (sAdmin) {
-    const sAdminUpdated = req.body;
-    const newAdmin = {};
-    newAdmin.id = sAdminId;
-    newAdmin.firstName = sAdminUpdated.firstName ? sAdminUpdated.firstName : sAdmin.firstName;
-    newAdmin.lastName = sAdminUpdated.lastName ? sAdminUpdated.lastName : sAdmin.lastName;
-    newAdmin.email = sAdminUpdated.email ? sAdminUpdated.email : sAdmin.email;
-    newAdmin.dateOfBirth = sAdminUpdated.dateOfBirth
-      ? sAdminUpdated.dateOfBirth : sAdmin.dateOfBirth;
-    newAdmin.dni = sAdminUpdated.dni ? sAdminUpdated.dni : sAdmin.dni;
-    const superAdminUpdate = superAdmins.filter((s) => s.id !== sAdminId);
-    superAdminUpdate.push(newAdmin);
-    // fs.writeFile('src/data/super-admins.json', JSON.stringify(superAdminUpdate), (err) => {
-    //   if (err) {
-    //     res.send(err);
-    //   } else {
-    //     res.send('SuperAdmin Updated');
-    //   }
-    // });
-  } else {
-    res.send('SuperAdmin not found');
+const getFilter = async (req, res) => {
+  try {
+    const result = await SuperAdmin.find(req.query);
+    if (result.length > 0) {
+      res.status(200).json({
+        message: 'Super Admins found succesfully',
+        data: result,
+        error: false,
+      });
+    }
+    res.status(404).json({
+      message: 'Super Admins not found',
+      data: undefined,
+      error: true,
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: 'An error has ocurred',
+      data: undefined,
+      error: true,
+    });
   }
-});
+};
 
-export default router;
+export default {
+  getById,
+  getFilter,
+  deleteById,
+  post,
+  put,
+};
