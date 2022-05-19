@@ -354,7 +354,15 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": ""
+              "raw": "localhost:3000/timesheets/",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "timesheets",
+                ""
+              ]
             }
           },
           "response": []
@@ -363,7 +371,24 @@
           "name": "getById",
           "request": {
             "method": "GET",
-            "header": []
+            "header": [],
+            "url": {
+              "raw": "localhost:3000/timesheets/:id",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "timesheets",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": null
+                }
+              ]
+            }
           },
           "response": []
         },
@@ -371,7 +396,24 @@
           "name": "delete",
           "request": {
             "method": "DELETE",
-            "header": []
+            "header": [],
+            "url": {
+              "raw": "localhost:3000/timesheets/:id",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "timesheets",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": null
+                }
+              ]
+            }
           },
           "response": []
         }
