@@ -184,32 +184,14 @@
 					},
 					"response": []
 				},
-				{
+        {
 					"name": "getById",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:3000/employees/62830ed24887fa4590d33107",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"employees",
-								"62830ed24887fa4590d33107"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "getAll",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "localhost:3000/employees/",
+							"raw": "http://localhost:3000/employees/",
+							"protocol": "http",
 							"host": [
 								"localhost"
 							],
@@ -229,17 +211,72 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": ""
+							"raw": "{\r\n    \"_id\": \"628197b4a7204f4c87ab6687\",\r\n    \"firstName\": \"Madonna\",\r\n    \"lastName\": \"Pop\",\r\n    \"dni\": \"33016244\",\r\n    \"email\": \"madonna@gmail.com\",\r\n    \"password\": \"pop1234\",\r\n    \"__v\": 0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
 						},
 						"url": {
-							"raw": "localhost:3000/employees/62830ed24887fa4590d33107",
+							"raw": "http://localhost:3000/employees/",
+							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "3000",
 							"path": [
 								"employees",
-								"62830ed24887fa4590d33107"
+								""
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/employees/?firstName&lastName&dni&email&password",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"employees",
+								""
+							],
+							"query": [
+								{
+									"key": "firstName",
+									"value": null
+								},
+								{
+									"key": "lastName",
+									"value": null
+								},
+								{
+									"key": "dni",
+									"value": null
+								},
+								{
+									"key": "email",
+									"value": null
+								},
+								{
+									"key": "password",
+									"value": null
+								}
 							]
 						}
 					},
@@ -317,7 +354,15 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": ""
+              "raw": "localhost:3000/timesheets/",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "timesheets",
+                ""
+              ]
             }
           },
           "response": []
@@ -326,7 +371,24 @@
           "name": "getById",
           "request": {
             "method": "GET",
-            "header": []
+            "header": [],
+            "url": {
+              "raw": "localhost:3000/timesheets/:id",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "timesheets",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": null
+                }
+              ]
+            }
           },
           "response": []
         },
@@ -334,7 +396,24 @@
           "name": "delete",
           "request": {
             "method": "DELETE",
-            "header": []
+            "header": [],
+            "url": {
+              "raw": "localhost:3000/timesheets/:id",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "timesheets",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": null
+                }
+              ]
+            }
           },
           "response": []
         }
