@@ -37,6 +37,9 @@
     "eslint": "^8.14.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.26.0",
-    "husky": "^7.0.4"
+    "husky": "^7.0.4",
+    "jest": "^28.1.0",
+    "mongodb-memory-server": "^8.5.2",
+    "supertest": "^6.2.3"
   }
 }
