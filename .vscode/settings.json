@@ -9,11 +9,12 @@
     "source.fixAll.eslint": true
   },
   "eslint.format.enable": true,
+
+  "cSpell.userWords": [
+    "\"DBURL\",     \"Modifiy\",     \"timesheet\",     \"timesheets\",     \"trackgenix\"",
+    "\"timesheet\", \"Timesheet\""
+  ],
   "cSpell.words": [
-    "DBURL",
-    "Modifiy",
-    "timesheet",
-    "timesheets",
-    "trackgenix"
+    "timesheet"
   ],
 }
