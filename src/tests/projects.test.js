@@ -7,11 +7,12 @@ beforeAll(async () => {
   await Project.collection.insertMany(projectsSeeds);
 });
 
-describe('Test Employees routes', () => {
+describe('Test Projects routes', () => {
   test('It should get the project list', async () => {
     const response = await request(app).get('/projects');
-    console.log(response.body);
+    expect(response.body.message).toBe('Project found');
     expect(response.statusCode).toBe(200);
+    expect(response.body.data.length).toBeGreaterThan(0);
     expect(response.body.error).toBe(false);
   });
 });

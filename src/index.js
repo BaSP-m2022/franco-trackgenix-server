@@ -1,9 +1,12 @@
 import mongoose from 'mongoose';
+import dotenv from 'dotenv';
 import app from './app';
 
-const port = process.env.PORT || 3000;
+dotenv.config();
 
-const mongoDBURL = 'mongodb+srv://trackgenix-franco:BaSP2022-franco-tg@trackgenix-cluster.3g4em.mongodb.net/BaSP_database?retryWrites=true&w=majority';
+const port = process.env.PORT || 4000;
+
+const mongoDBURL = process.env.URL_MONGO;
 
 mongoose.connect(
   mongoDBURL,
