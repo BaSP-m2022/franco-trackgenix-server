@@ -10,10 +10,9 @@ const router = express.Router();
 
 router.use('/tasks', taskRouter);
 router.use('/projects', projectRouter);
-router.use('/tasks', taskRouter);
 router.use('/admins', adminRouter);
 router.use('/super-admins', superAdminRouter);
-router.use('/timesheets', timesheetRouter);
+router.use('/time-sheets', timesheetRouter);
 router.use('/employees', employeeRouter);
 
 export default router;
