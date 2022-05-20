@@ -15,13 +15,14 @@ const validations = (req, res, next) => {
 
   const validate = timesheetsSchema.validate(req.body);
   if (validate.error) {
-    res.status(400).json({
+    return res.status(400).json({
       message: 'There was an error during validation',
       data: validate.error,
       error: true,
     });
   }
-  next();
+
+  return next();
 };
 
 export default {

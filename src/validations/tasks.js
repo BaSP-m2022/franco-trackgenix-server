@@ -8,14 +8,14 @@ const validationCreate = (req, res, next) => {
 
   const validation = schema.validate(req.body);
   if (validation.error) {
-    res.status(400).json({
+    return res.status(400).json({
       msg: 'There was an error',
       data: undefined,
       error: validation.error.details[0].message,
     });
   }
 
-  next();
+  return next();
 };
 
 export default {

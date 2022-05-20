@@ -11,13 +11,13 @@ const create = async (req, res) => {
       endDate: req.body.endDate,
     });
     await project.save();
-    res.status(201).json({
+    return res.status(201).json({
       message: 'Project was created.',
       data: project,
       error: false,
     });
   } catch (error) {
-    res.status(500).json({
+    return res.status(500).json({
       message: error,
       data: undefined,
       error: true,
@@ -64,19 +64,19 @@ const filter = async (req, res) => {
   try {
     const filteredProjects = await Project.find(req.query);
     if (filteredProjects.length === 0) {
-      res.status(404).json({
+      return res.status(404).json({
         message: 'Error 404. Project not found with those parameters',
         data: undefined,
         error: true,
       });
     }
-    res.status(200).json({
+    return res.status(200).json({
       message: 'Project found',
       data: filteredProjects,
       error: false,
     });
   } catch (error) {
-    res.status(500).json({
+    return res.status(500).json({
       message: error,
       data: undefined,
       error: true,
@@ -120,20 +120,25 @@ const getById = async (req, res) => {
     if (req.params.id) {
       const project = await Project.findById(req.params.id);
       if (!project) {
-        res.status(404).json({
+        return res.status(404).json({
           message: 'Project not found',
           data: undefined,
           error: true,
         });
       }
-      res.status(200).json({
+      return res.status(200).json({
         message: 'Project found',
         data: project,
         error: false,
       });
     }
+    return res.status(400).json({
+      message: 'Invalid params',
+      data: undefined,
+      error: true,
+    });
   } catch (error) {
-    res.status(500).json({
+    return res.status(500).json({
       message: error,
       data: undefined,
       error: true,

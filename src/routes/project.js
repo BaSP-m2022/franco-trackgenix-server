@@ -8,7 +8,7 @@ router.get('/', projectsController.filter);
 
 router.get('/:id', projectsController.getById);
 
-router.post('/', projectValidation.validationCreateProject, projectsController.create);
+router.post('/', projectValidation.projectValidation, projectsController.create);
 
 router.put('/:id', projectValidation.projectValidation, projectsController.update);
 

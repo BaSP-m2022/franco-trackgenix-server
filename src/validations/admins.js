@@ -21,13 +21,13 @@ const createRegisterAdmin = (req, res, next) => {
   const validation = registerSchema.validate(req.body);
 
   if (validation.error) {
-    res.status(400).json({
+    return res.status(400).json({
       message: 'There was an error during the validation of the request.',
       error: true,
     });
-  } else {
-    next();
   }
+
+  return next();
 };
 
 export default {
