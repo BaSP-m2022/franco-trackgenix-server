@@ -1,19 +1,12 @@
-import express from 'express';
 import mongoose from 'mongoose';
-import router from './routes';
+import dotenv from 'dotenv';
+import app from './app';
 
-const app = express();
+dotenv.config();
+
 const port = process.env.PORT || 3000;
 
-const mongoDBURL = 'mongodb+srv://trackgenix-franco:BaSP2022-franco-tg@trackgenix-cluster.3g4em.mongodb.net/BaSP_database?retryWrites=true&w=majority';
-
-app.use(express.json());
-
-app.use('/', router);
-
-app.get('/', (req, res) => {
-  res.send('Hello World!');
-});
+const mongoDBURL = process.env.URL_MONGO;
 
 mongoose.connect(
   mongoDBURL,
