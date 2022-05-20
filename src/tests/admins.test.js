@@ -1,5 +1,5 @@
 import request from 'supertest';
-import Project from '../models/Project';
+import Project from '../models/Projects';
 import projectsSeeds from '../seeds/projects';
 import app from '../app';
 

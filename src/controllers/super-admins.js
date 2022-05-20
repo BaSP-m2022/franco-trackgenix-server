@@ -1,4 +1,4 @@
-import SuperAdmin from '../models/super-admins';
+import SuperAdmin from '../models/Super-admin';
 
 const deleteById = async (req, res) => {
   try {
