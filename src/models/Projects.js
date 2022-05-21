@@ -2,17 +2,6 @@ import mongoose from 'mongoose';
 
 const { Schema } = mongoose;
 
-const employeeSchema = new Schema({
-  rate: {
-    type: Number,
-    required: true,
-  },
-  role: {
-    type: String,
-    required: true,
-  },
-});
-
 const projectSchema = new Schema({
   name: {
     type: String,
@@ -26,7 +15,21 @@ const projectSchema = new Schema({
     type: String,
     required: false,
   },
-  employees: [employeeSchema],
+  employees: [{
+    rate: {
+      type: Number,
+      required: true,
+    },
+    role: {
+      type: String,
+      required: true,
+    },
+    employeeId: {
+      type: mongoose.Schema.Types.ObjectId,
+      required: true,
+      ref: 'Employee',
+    },
+  }],
   startDate: {
     type: Date,
     required: true,
