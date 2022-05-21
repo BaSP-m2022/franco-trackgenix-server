@@ -2,7 +2,7 @@ import Joi from 'joi';
 
 const validations = (req, res, next) => {
   const timesheetsSchema = Joi.object({
-    tasks: Joi.required(),
+    tasks: Joi.array().items().required(),
     totalHours: Joi.number(),
     status: Joi.string(),
     startDate: Joi.date().less('now').required(),
