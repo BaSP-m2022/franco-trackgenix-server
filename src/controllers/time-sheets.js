@@ -68,7 +68,7 @@ const getById = async (req, res) => {
 
 const getAll = async (req, res) => {
   try {
-    const result = await TimeSheets.find(req.query).populate('tasks', { description: 0, workedHours: 0, projects: 0 });
+    const result = await TimeSheets.find(req.query).populate('tasks');
     if (result.length > 0) {
       return res.status(200).json({
         message: 'Time-sheets',
