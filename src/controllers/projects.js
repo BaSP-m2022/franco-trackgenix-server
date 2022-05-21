@@ -89,7 +89,10 @@ const deleteById = async (req, res) => {
         error: true,
       });
     }
-    const findProject = await Project.findByIdAndDelete(req.params.id);
+    const findProject = await Project.findByIdAndDelete(req.params.id).populate('employees.employeeId', {
+      firstName: 1,
+      lastName: 1,
+    });
     if (!findProject) {
       return res.status(404).json({
         message: 'Project not found',
