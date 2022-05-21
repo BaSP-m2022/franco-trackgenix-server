@@ -2,18 +2,11 @@ import Project from '../models/Projects';
 
 const create = async (req, res) => {
   try {
-    const project = new Project({
-      name: req.body.name,
-      status: req.body.status,
-      description: req.body.description,
-      employees: req.body.employees,
-      startDate: req.body.startDate,
-      endDate: req.body.endDate,
-    });
-    await project.save();
+    const project = new Project(req.body);
+    const result = await project.save();
     return res.status(201).json({
       message: 'Project was created.',
-      data: project,
+      data: result,
       error: false,
     });
   } catch (error) {
@@ -62,7 +55,10 @@ const update = async (req, res) => {
 
 const filter = async (req, res) => {
   try {
-    const filteredProjects = await Project.find(req.query);
+    const filteredProjects = await Project.find(req.query).populate('employees.employeeId', {
+      firstName: 1,
+      lastName: 1,
+    });
     if (filteredProjects.length === 0) {
       return res.status(404).json({
         message: 'Error 404. Project not found with those parameters',
