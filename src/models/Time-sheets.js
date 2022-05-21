@@ -22,18 +22,11 @@ const timesheetsSchema = new mongoose.Schema({
     type: Date,
     required: true,
   },
-  projectId: {
-    type: String,
+  employeeId: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Employee',
     required: true,
-  },
-  employeeId: {
-    type: String,
-    required: true,
-  },
-  managerId: {
-    type: String,
-    required: true,
-  },
+  }],
 });
 
 export default mongoose.model('Time-sheets', timesheetsSchema);

@@ -44,7 +44,10 @@ const createTimesheet = async (req, res) => {
 
 const getById = async (req, res) => {
   try {
-    const byId = await TimeSheets.findById(req.params.id);
+    const byId = await TimeSheets.findById(req.params.id).populate('employeeId', {
+      firstName: 1,
+      lastName: 1,
+    });
     if (!byId) {
       return res.status(404).json({
         message: 'Time-sheet was not found',
@@ -68,7 +71,10 @@ const getById = async (req, res) => {
 
 const getAll = async (req, res) => {
   try {
-    const result = await TimeSheets.find(req.query);
+    const result = await TimeSheets.find(req.query).populate('employeeId', {
+      firstName: 1,
+      lastName: 1,
+    });
     if (result.length > 0) {
       return res.status(200).json({
         message: 'Time-sheets',
