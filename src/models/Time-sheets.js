@@ -8,9 +8,6 @@ const timesheetsSchema = new mongoose.Schema({
   totalHours: {
     type: Number,
   },
-  checked: {
-    type: Boolean,
-  },
   status: {
     type: String,
   },
