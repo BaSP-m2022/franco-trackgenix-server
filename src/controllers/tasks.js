@@ -2,7 +2,7 @@ import Task from '../models/Tasks';
 
 const getAllTasks = async (req, res) => {
   try {
-    const allTasks = await Task.find(req.query).populate('projects', { name: 1 });
+    const allTasks = await Task.find(req.query).populate('projectId', { name: 1 });
     if (allTasks.length > 0) {
       return res.status(200).json({
         message: 'Tasks',
@@ -27,7 +27,7 @@ const getAllTasks = async (req, res) => {
 const getTasksById = async (req, res) => {
   try {
     if (req.params.id) {
-      const taskById = await Task.findById(req.params.id).populate('projects', { name: 1 });
+      const taskById = await Task.findById(req.params.id).populate('projectId', { name: 1 });
       if (!taskById) {
         return res.status(404).json({
           message: 'Task not found',
