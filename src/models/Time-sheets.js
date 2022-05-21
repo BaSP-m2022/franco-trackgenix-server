@@ -1,15 +1,13 @@
 import mongoose from 'mongoose';
 
 const timesheetsSchema = new mongoose.Schema({
-  tasks: {
-    type: Array,
+  tasks: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Task',
     required: true,
-  },
+  }],
   totalHours: {
     type: Number,
-  },
-  checked: {
-    type: Boolean,
   },
   status: {
     type: String,
@@ -22,15 +20,7 @@ const timesheetsSchema = new mongoose.Schema({
     type: Date,
     required: true,
   },
-  projectId: {
-    type: String,
-    required: true,
-  },
   employeeId: {
-    type: String,
-    required: true,
-  },
-  managerId: {
     type: String,
     required: true,
   },
