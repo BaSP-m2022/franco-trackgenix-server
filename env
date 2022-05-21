@@ -1,0 +1,2 @@
+PORT=4000
+URL_MONGO='mongodb+srv://trackgenix-franco:BaSP2022-franco-tg@trackgenix-cluster.3g4em.mongodb.net/BaSP_database?retryWrites=true&w=majority'
