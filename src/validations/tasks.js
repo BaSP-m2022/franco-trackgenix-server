@@ -4,6 +4,7 @@ const validationCreate = (req, res, next) => {
   const schema = Joi.object({
     description: Joi.string().min(3).max(50).required(),
     workedHours: Joi.number().min(1).required(),
+    projects: Joi.required(),
   });
 
   const validation = schema.validate(req.body);
