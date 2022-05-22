@@ -1,16 +1,43 @@
 import mongoose from 'mongoose';
 
 export default [{
-  _id: mongoose.Types.ObjectId('62817f227d1213af0d9d1ab8'),
-  name: 'multi',
-  status: 'active',
-  description: 'asd',
-  employees: [
-    {
-      rate: 123,
-      role: 'role1',
-      _id: mongoose.Types.ObjectId('62817f227d1213af0d9d1ab9'),
-    },
-  ],
-  startDate: '2002-12-09T00:00:00.000+00:00',
+  _id: mongoose.Types.ObjectId('60d4a32f257e066e9495ce12'),
+  first_name: 'Esteban',
+  last_name: 'Frare',
+  dni: '38240915',
+  email: 'esteban.frare@radiumrocket.com',
+  password: 'test123',
+  dateOfBirth: '03-11-1987',
+}, {
+  _id: mongoose.Types.ObjectId('62830ed24887fa4590d33107'),
+  first_name: 'Lionel',
+  last_name: 'Messi',
+  dni: '33016244',
+  email: 'liomessi@gmail.com',
+  password: 'soylapulga10',
+  dateOfBirth: '05-05-1985',
+}, {
+  _id: mongoose.Types.ObjectId('62840603549ef329a075ef63'),
+  first_name: 'Luciano',
+  last_name: 'Alarcon',
+  dni: '42926691',
+  email: 'luchialarcon123@gmail.com',
+  password: 'asdasd123',
+  dateOfBirth: '14-01-2001',
+}, {
+  _id: mongoose.Types.ObjectId('6289016df4d67ad85b52d9af'),
+  first_name: 'Carlos',
+  last_name: 'Rodriguez',
+  dni: '34586984',
+  email: 'carlitos123@gmail.com',
+  password: 'carlosgod',
+  dateOfBirth: '26-03-1975',
+}, {
+  _id: mongoose.Types.ObjectId('6289016df4d67ad85b52d9af'),
+  first_name: 'Roman',
+  last_name: 'Riquelme',
+  dni: '20568986',
+  email: 'romanriq123@gmail.com',
+  password: 'romanriq',
+  dateOfBirth: '19-07-1980',
 }];
