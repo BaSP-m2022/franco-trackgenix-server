@@ -1,65 +1,16 @@
 import mongoose from 'mongoose';
 
 export default [{
-  _id: mongoose.Types.ObjectId('246c3e8616a6374cae43b660'),
-  password: '1e4c62d4d5',
-  email: 'mainline@carokann.com',
-  firstName: 'Marcus',
-  lastName: 'Kann',
-},
-{
-  _id: mongoose.Types.ObjectId('544ef916f12420140bd32087'),
-  password: '1e4c52c3Nf6',
-  email: 'solidplay@sicilian.com',
-  firstName: 'Simon',
-  lastName: 'Alapin',
-},
-{
-  _id: mongoose.Types.ObjectId('281fd57e016500597e32fa80'),
-  password: '1d4f52c4g6',
-  email: 'leningrad@dutch.com',
-  firstName: 'Savielly',
-  lastName: 'Tartakower',
-},
-{
-  _id: mongoose.Types.ObjectId('2f60b253f5f2ba466c32888e'),
-  password: '1e4c52Nf3Nc63Bb5',
-  email: 'antisicilian@play.com',
-  firstName: 'Nikolai',
-  lastName: 'Rossolimo',
-},
-{
-  _id: mongoose.Types.ObjectId('e853dbe270f22b7e8d8babb4'),
-  password: '1960toforever',
-  email: 'esazurda@delirante.com',
-  firstName: 'Dieguito',
-  lastName: 'Maradona',
-},
-{
-  _id: mongoose.Types.ObjectId('d572d1c48fdd4a1c08800123'),
-  password: '1e4e52Nf3Nc63Bc4',
-  email: 'oldschool@italian.com',
-  firstName: 'Gioachino',
-  lastName: 'Greco',
-},
-{
-  _id: mongoose.Types.ObjectId('679511deffab1830038b1303'),
-  password: '1e4e52f4exf4',
-  email: 'romantic@firework.com',
-  firstName: 'Adolf',
-  lastName: 'Anderssen',
-},
-{
-  _id: mongoose.Types.ObjectId('2088794903ad36a9d8052bb6'),
-  password: '1c4e52Nc3Nf6',
-  email: 'strategicmaster@mind.com',
-  firstName: 'Anatoly',
-  lastName: 'Karpov',
-},
-{
-  _id: mongoose.Types.ObjectId('5b87d762fc3d016ad1eb67a8'),
-  password: '1f4d52Nf3Nf6',
-  email: 'reverse@dutch.com',
-  firstName: 'Henry',
-  lastName: 'Bird',
+  _id: mongoose.Types.ObjectId('62817f227d1213af0d9d1ab8'),
+  name: 'multi',
+  status: 'active',
+  description: 'asd',
+  employees: [
+    {
+      rate: 123,
+      role: 'role1',
+      _id: mongoose.Types.ObjectId('62817f227d1213af0d9d1ab9'),
+    },
+  ],
+  startDate: '2002-12-09T00:00:00.000+00:00',
 }];
