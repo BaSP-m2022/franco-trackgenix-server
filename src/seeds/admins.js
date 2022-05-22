@@ -1,16 +1,38 @@
 import mongoose from 'mongoose';
 
 export default [{
-  _id: mongoose.Types.ObjectId('62817f227d1213af0d9d1ab8'),
-  name: 'multi',
-  status: 'active',
-  description: 'asd',
-  employees: [
-    {
-      rate: 123,
-      role: 'role1',
-      _id: mongoose.Types.ObjectId('62817f227d1213af0d9d1ab9'),
-    },
-  ],
-  startDate: '2002-12-09T00:00:00.000+00:00',
-}];
+  _id: mongoose.Types.ObjectId('628a57b3f17eaeca60f6a204'),
+  firstName: 'Esteban',
+  lastName: 'Frare',
+  email: 'esteban.frare@radiumrocket.com',
+  password: 'Esteban123',
+},
+{
+  _id: mongoose.Types.ObjectId('628a57ba5551e9d944cdb93f'),
+  firstName: 'Pedro',
+  lastName: 'Morales',
+  email: 'pedro.morales@radiumrocket.com',
+  password: 'Pedrito1234',
+},
+{
+  _id: mongoose.Types.ObjectId('628a57ba5551e9d944cdb93f'),
+  firstName: 'Alejo',
+  lastName: 'Gonzalez',
+  email: 'agonzalezfittipaldi@gmail.com',
+  password: '1234Alejo',
+},
+{
+  _id: mongoose.Types.ObjectId('628a57eb17a97669b44e2aac'),
+  firstName: 'Bruno',
+  lastName: 'Mosconi',
+  email: 'bruno.mosconi@gmail.com',
+  password: 'calitA1234',
+},
+{
+  _id: mongoose.Types.ObjectId('628a57eb17a97669b44e2aac'),
+  firstName: 'Cristiano',
+  lastName: 'Ronaldo',
+  email: 'cr7@gmail.com',
+  password: 'Cr72022',
+},
+];
