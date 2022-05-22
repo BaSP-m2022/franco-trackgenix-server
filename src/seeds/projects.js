@@ -70,5 +70,18 @@ export default [
       },
     ],
     startDate: '2002-12-09T00:00:00.000+00:00',
+  }, {
+    _id: mongoose.Types.ObjectId('628abb62edfde385f408fe4f'),
+    name: 'Twitter',
+    status: 'active',
+    description: 'BaSP-TG-26: twitter',
+    employees: [
+      {
+        rate: 3,
+        role: 'PM',
+        _id: mongoose.Types.ObjectId('628abb6852be388c3fcef04a'),
+      },
+    ],
+    startDate: '2002-12-09T00:00:00.000+00:00',
   },
 ];
