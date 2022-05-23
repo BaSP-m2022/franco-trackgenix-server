@@ -70,6 +70,7 @@ export default [
       },
     ],
     startDate: '2002-12-09T00:00:00.000+00:00',
+    endDate: '2022-12-09T00:00:00.000+00:00',
   }, {
     _id: mongoose.Types.ObjectId('60d4a32f257e066e9495ce13'),
     name: 'Twitter',
