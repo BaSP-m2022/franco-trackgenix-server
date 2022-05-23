@@ -33,7 +33,7 @@ export default [{
   password: 'carlosgod',
   dateOfBirth: '26-03-1975',
 }, {
-  _id: mongoose.Types.ObjectId('6289016df4d67ad85b52d9af'),
+  _id: mongoose.Types.ObjectId('857593945541aab67563b869'),
   first_name: 'Roman',
   last_name: 'Riquelme',
   dni: '20568986',

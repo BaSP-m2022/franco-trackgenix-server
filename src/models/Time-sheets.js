@@ -20,11 +20,11 @@ const timesheetsSchema = new mongoose.Schema({
     type: Date,
     required: true,
   },
-  employeeId: [{
+  employeeId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Employee',
     required: true,
-  }],
+  },
 });
 
 export default mongoose.model('Time-sheets', timesheetsSchema);
