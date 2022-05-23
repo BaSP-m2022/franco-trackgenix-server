@@ -15,16 +15,42 @@ const differentKey = {
   firstName: 'Marcos',
   lastName: 'Kannino',
 };
-const differentTypeData = {
-  password: 12345678,
+const emptyPass = {
+  password: '',
   email: 'mainline2@carkannino.com',
   firstName: 'Marcos',
   lastName: 'Kannino',
+};
+const emptyEmail = {
+  password: '1e4c62d434',
+  email: '',
+  firstName: 'Marcos',
+  lastName: 'Kannino',
+};
+const emptyFirstName = {
+  password: '1e4c62d434',
+  email: 'mainline2@carkannino.com',
+  firstName: '',
+  lastName: 'Kannino',
+};
+const emptyLastName = {
+  password: '1e4c62d434',
+  email: 'mainline2@carkannino.com',
+  firstName: 'Marcos',
+  lastName: '',
 };
 
 describe('GET /super-admins', () => {
   test('It should get super admins list', async () => {
     const response = await request(app).get('/super-admins');
+    expect(response.body.message).toBe('Super Admins found successfully');
+    expect(response.statusCode).toBe(200);
+    expect(response.body.data.length).toBeGreaterThan(0);
+    expect(response.body.error).toBe(false);
+  });
+
+  test('It should get super admins list', async () => {
+    const response = await request(app).get('/super-admins?firstName=Simon');
     expect(response.body.message).toBe('Super Admins found successfully');
     expect(response.statusCode).toBe(200);
     expect(response.body.data.length).toBeGreaterThan(0);
@@ -93,8 +119,29 @@ describe('POST /super-admins', () => {
     expect(response.body.error).toBe(true);
   });
 
-  test('It should return status 400 (different type data)', async () => {
-    const response = await request(app).post('/super-admins').send(differentTypeData);
+  test('It should return status 400 (empty password)', async () => {
+    const response = await request(app).post('/super-admins').send(emptyPass);
+    expect(response.body.message).toBe('There was an error');
+    expect(response.statusCode).toBe(400);
+    expect(response.body.error).toBe(true);
+  });
+
+  test('It should return status 400 (empty email)', async () => {
+    const response = await request(app).post('/super-admins').send(emptyEmail);
+    expect(response.body.message).toBe('There was an error');
+    expect(response.statusCode).toBe(400);
+    expect(response.body.error).toBe(true);
+  });
+
+  test('It should return status 400 (empty first name)', async () => {
+    const response = await request(app).post('/super-admins').send(emptyFirstName);
+    expect(response.body.message).toBe('There was an error');
+    expect(response.statusCode).toBe(400);
+    expect(response.body.error).toBe(true);
+  });
+
+  test('It should return status 400 (empty last name)', async () => {
+    const response = await request(app).post('/super-admins').send(emptyLastName);
     expect(response.body.message).toBe('There was an error');
     expect(response.statusCode).toBe(400);
     expect(response.body.error).toBe(true);
@@ -142,8 +189,29 @@ describe('PUT /super-admins/:id', () => {
     expect(response.body.error).toBe(true);
   });
 
-  test('It should return status 400 (different type data)', async () => {
-    const response = await request(app).put(`/super-admins/${superAdminId}`).send(differentTypeData);
+  test('It should return status 400 (empty password)', async () => {
+    const response = await request(app).put(`/super-admins/${superAdminId}`).send(emptyPass);
+    expect(response.body.message).toBe('There was an error');
+    expect(response.statusCode).toBe(400);
+    expect(response.body.error).toBe(true);
+  });
+
+  test('It should return status 400 (empty email)', async () => {
+    const response = await request(app).put(`/super-admins/${superAdminId}`).send(emptyEmail);
+    expect(response.body.message).toBe('There was an error');
+    expect(response.statusCode).toBe(400);
+    expect(response.body.error).toBe(true);
+  });
+
+  test('It should return status 400 (empty first name)', async () => {
+    const response = await request(app).put(`/super-admins/${superAdminId}`).send(emptyFirstName);
+    expect(response.body.message).toBe('There was an error');
+    expect(response.statusCode).toBe(400);
+    expect(response.body.error).toBe(true);
+  });
+
+  test('It should return status 400 (empty last name)', async () => {
+    const response = await request(app).put(`/super-admins/${superAdminId}`).send(emptyLastName);
     expect(response.body.message).toBe('There was an error');
     expect(response.statusCode).toBe(400);
     expect(response.body.error).toBe(true);
@@ -170,6 +238,14 @@ describe('DELETE /super-admins/:id', () => {
     const response = await request(app).delete('/super-admins/22');
     expect(response.body.message).toBe('An error has ocurred');
     expect(response.statusCode).toBe(500);
+    expect(response.body.data).toBeUndefined();
+    expect(response.body.error).toBe(true);
+  });
+
+  test('It should return status 404', async () => {
+    const response = await request(app).get(`/super-admins/${superAdminId}`);
+    expect(response.body.message).toBe('Super Admin not found, invalid ID');
+    expect(response.statusCode).toBe(404);
     expect(response.body.data).toBeUndefined();
     expect(response.body.error).toBe(true);
   });
