@@ -44,7 +44,6 @@ describe('GET /projects', () => {
   });
   test('It should get populate employee', async () => {
     const response = await request(app).get('/projects');
-    // eslint-disable-next-line no-underscore-dangle
     expect(response.body.data[0].employees[0].employeeId._id).toBe('6289016df4d67ad85b52d9af');
     expect(response.body.data[0].employees[0].employeeId.firstName).toBe('Roman');
     expect(response.body.data[0].employees[0].employeeId.lastName).toBe('Riquelme');
