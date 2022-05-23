@@ -10,7 +10,7 @@ export default [
       {
         rate: 1,
         role: 'QA',
-        _id: mongoose.Types.ObjectId('628a5ad8f6a8cdd3cefb2b07'),
+        employeeId: mongoose.Types.ObjectId('60d4a32f257e066e9495ce12'),
       },
     ],
     startDate: '2002-12-09T00:00:00.000+00:00',
@@ -24,7 +24,12 @@ export default [
       {
         rate: 2,
         role: 'DEV',
-        _id: mongoose.Types.ObjectId('628a5ae1c56212ee7a5618cd'),
+        employeeId: mongoose.Types.ObjectId('62830ed24887fa4590d33107'),
+      },
+      {
+        rate: 2,
+        role: 'QA',
+        employeeId: mongoose.Types.ObjectId('60d4a32f257e066e9495ce12'),
       },
     ],
     startDate: '2002-12-09T00:00:00.000+00:00',
@@ -38,7 +43,7 @@ export default [
       {
         rate: 3,
         role: 'PM',
-        _id: mongoose.Types.ObjectId('628a5ae941697271968cd673'),
+        employeeId: mongoose.Types.ObjectId('6289016df4d67ad85b52d9af'),
       },
     ],
     startDate: '2002-12-09T00:00:00.000+00:00',
@@ -52,7 +57,7 @@ export default [
       {
         rate: 4,
         role: 'QA',
-        _id: mongoose.Types.ObjectId('628a5af52a91d6871a6ebb81'),
+        employeeId: mongoose.Types.ObjectId('62840603549ef329a075ef63'),
       },
     ],
     startDate: '2002-12-09T00:00:00.000+00:00',
@@ -66,7 +71,7 @@ export default [
       {
         rate: 5,
         role: 'PM',
-        _id: mongoose.Types.ObjectId('628a5b0333675625aa393918'),
+        employeeId: mongoose.Types.ObjectId('6289016df4d67ad85b52d9aa'),
       },
     ],
     startDate: '2002-12-09T00:00:00.000+00:00',
