@@ -62,7 +62,7 @@ describe('GET/timeSheet', () => {
 });
 
 describe('PUT/timeSheet/:id', () => {
-  test('should delete', async () => {
+  test('should put', async () => {
     const response = await request(app).put(`/time-sheets/${timeSheetId}`).send(
       {
         tasks: ['6289a9f3c375d9047b94a4c5'],
@@ -78,13 +78,6 @@ describe('PUT/timeSheet/:id', () => {
     expect(response.body.error).toBe(false);
     expect(response.body.data).toEqual(expect.anything());
   });
-  test('It should get status 404', async () => {
-    const response = await request(app).delete('/time-sheets/628a979a3661749f792a55c3');
-    expect(response.statusCode).toBe(404);
-    expect(response.body.message).toBe('Time-sheet was not found');
-    expect(response.body.error).toBe(true);
-    expect(response.body.data).toBe(undefined);
-  });
   test('should put status 500', async () => {
     const response = await request(app).get('/time-sheets/215561');
     expect(response.statusCode).toBe(500);
@@ -92,7 +85,7 @@ describe('PUT/timeSheet/:id', () => {
     expect(response.body.error).toBe(true);
     expect(response.body.data).toBe(undefined);
   });
-  test('It should get status 400 and task empty', async () => {
+  test('It should get status 500 and task empty', async () => {
     const response = await request(app).put(`/time-sheets/${timeSheetId}`).send(
       {
         tasks: [''],
@@ -189,7 +182,10 @@ describe('DELETE/timeSheet/:id', () => {
     const response = await request(app).delete(`/time-sheets/${timeSheetId}`).send();
     expect(response.statusCode).toBe(200);
     expect(response.body.error).toBe(false);
+    expect(response.body.message).toBe('Time-sheet deleted');
     expect(response.body.data).toEqual(expect.anything());
+    const responsee = await request(app).get(`/time-sheets/${timeSheetId}`);
+    expect(responsee.statusCode).toBe(404);
   });
   test('It should get status 404', async () => {
     const response = await request(app).delete('/time-sheets/628a979a3661749f792a55c3');
