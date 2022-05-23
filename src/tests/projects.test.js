@@ -248,4 +248,11 @@ describe('DELETE /projects/:id', () => {
     expect(response.body.error).toBe(true);
     expect(response.body.data).toBe(undefined);
   });
+  test('It should return project not found', async () => {
+    const response = await request(app).get(`/projects/${projectId}`);
+    expect(response.body.message).toBe('Project not found');
+    expect(response.statusCode).toBe(404);
+    expect(response.body.error).toBe(true);
+    expect(response.body.data).toBe(undefined);
+  });
 });
