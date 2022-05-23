@@ -1,10 +1,13 @@
 import request from 'supertest';
 import Project from '../models/Projects';
+import Employee from '../models/Employees';
 import projectsSeeds from '../seeds/projects';
+import employeesSeeds from '../seeds/employees';
 import app from '../app';
 
 beforeAll(async () => {
   await Project.collection.insertMany(projectsSeeds);
+  await Employee.collection.insertMany(employeesSeeds);
 });
 
 describe('Test Projects routes', () => {
