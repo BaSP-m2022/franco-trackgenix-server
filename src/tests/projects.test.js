@@ -180,7 +180,6 @@ describe('PUT /project', () => {
       ],
       startDate: '2002-12-09T00:00:00.000+00:00',
     });
-    console.log(response.body);
     expect(response.body.message).toBe('Cast to embedded failed for value "{ rate: 12, role: \'PM\', employeeId: \'62840603549ef329a075ef6\' }" (type Object) at path "employees" because of "CastError"');
     expect(response.statusCode).toBe(500);
     expect(response.body.data).toBe(undefined);
