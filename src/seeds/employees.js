@@ -25,7 +25,7 @@ export default [{
   password: 'asdasd123',
   dateOfBirth: '14-01-2001',
 }, {
-  _id: mongoose.Types.ObjectId('6289016df4d67ad85b52d9af'),
+  _id: mongoose.Types.ObjectId('6289016df4d67ad85b52d9a2'),
   firstName: 'Carlos',
   lastName: 'Rodriguez',
   dni: '34586984',
@@ -33,7 +33,7 @@ export default [{
   password: 'carlosgod',
   dateOfBirth: '26-03-1975',
 }, {
-  _id: mongoose.Types.ObjectId('6289016df4d67ad85b52d8af'),
+  _id: mongoose.Types.ObjectId('6289016df4d67ad85b52d9af'),
   firstName: 'Roman',
   lastName: 'Riquelme',
   dni: '20568986',
