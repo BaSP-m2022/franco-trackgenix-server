@@ -6,7 +6,7 @@ export default [{
   lastName: 'Frare',
   dni: '38240915',
   email: 'esteban.frare@radiumrocket.com',
-  password: 'test123',
+  password: 'test1234',
   dateOfBirth: '03-11-1987',
 }, {
   _id: mongoose.Types.ObjectId('62830ed24887fa4590d33107'),
