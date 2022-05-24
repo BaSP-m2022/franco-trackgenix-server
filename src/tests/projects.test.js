@@ -2,12 +2,12 @@ import request from 'supertest';
 import Project from '../models/Projects';
 import Employee from '../models/Employees';
 import projectsSeeds from '../seeds/projects';
-import employeeSeeds from '../seeds/employees';
+import employeesSeeds from '../seeds/employees';
 import app from '../app';
 
 beforeAll(async () => {
   await Project.collection.insertMany(projectsSeeds);
-  await Employee.collection.insertMany(employeeSeeds);
+  await Employee.collection.insertMany(employeesSeeds);
 });
 
 const projectId = '628a5a6d243774d9ac3969f7';
