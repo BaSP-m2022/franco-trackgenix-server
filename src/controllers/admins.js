@@ -107,36 +107,6 @@ const editAdmin = async (req, res) => {
   }
 };
 
-// const deleteAdmin = async (req, res) => {
-//   try {
-//     if (!req.params.id) {
-//       return res.status(404).json({
-//         message: `Admin ${req.params.id} not found`,
-//         data: undefined,
-//         error: true,
-//       });
-//     }
-//     const findAdmin = await Admin.findByIdAndDelete(req.params.id);
-//     if (!findAdmin) {
-//       return res.status(404).json({
-//         message: `Admin ${req.params.id} not found`,
-//         data: undefined,
-//         error: true,
-//       });
-//     }
-//     return res.status(200).json({
-//       message: `Admin ${req.params.id} deleted successfully.`,
-//       data: findAdmin,
-//       error: false,
-//     });
-//   } catch (error) {
-//     return res.status(500).json({
-//       message: error.message,
-//       data: undefined,
-//       error: true,
-//     });
-//   }
-// };
 const deleteAdmin = async (req, res) => {
   try {
     const result = await Admin.findByIdAndDelete(req.params.id);
