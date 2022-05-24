@@ -37,7 +37,7 @@ describe('GET by id/employees/:id', () => {
     const response = await request(app).get(`/employees/${employeeId}`);
     expect(response.body.message).toBe('Success');
     expect(response.statusCode).toBe(200);
-    expect(response.body.data.length).toBeDefined();
+    expect(response.body.data).toBeDefined();
     expect(response.body.error).toBe(false);
   });
   test('It should return a 404 status', async () => {
