@@ -49,7 +49,32 @@ describe('GET /projects', () => {
     expect(response.body.data[0].employees[0].employeeId.lastName).toBe('Riquelme');
   });
 });
-
+describe('GET /:id', () => {
+  test('It should get the project whit the ID required', async () => {
+    const response = await request(app).get(`/projects/${projectId}`).send();
+    expect(response.body.message).toBe('Project found');
+    expect(response.statusCode).toBe(200);
+    expect(response.body.error).toBe(false);
+  });
+  test('It should get an array of one populate', async () => {
+    const response = await request(app).get(`/projects/${projectId}`).send();
+    expect(response.body.data.employees[0].employeeId._id).toBe('62840603549ef329a075ef63');
+    expect(response.body.data.employees[0].employeeId.firstName).toBe('Luciano');
+    expect(response.body.data.employees[0].employeeId.lastName).toBe('Alarcon');
+  });
+  test('It should return a status 404', async () => {
+    const response = await request(app).get('/projects/628a59c9f67d451615818847').send();
+    expect(response.body.message).toBe('Project not found');
+    expect(response.statusCode).toBe(404);
+    expect(response.body.error).toBe(true);
+  });
+  test('It should return a status 500', async () => {
+    const response = await request(app).get('/projects/6').send();
+    expect(response.body.message.message).toBe('Cast to ObjectId failed for value "6" (type string) at path "_id" for model "Project"');
+    expect(response.statusCode).toBe(500);
+    expect(response.body.error).toBe(true);
+  });
+});
 describe('PUT /project', () => {
   test('It should get status 200', async () => {
     const response = await request(app).put(`/projects/${projectId}`).send({
@@ -254,51 +279,8 @@ describe('DELETE /projects/:id', () => {
     expect(response.body.error).toBe(true);
     expect(response.body.data).toBe(undefined);
   });
-  test('It should get an array of one populate', async () => {
-    const response = await request(app).get(`/projects/${projectId}`).send();
-    expect(response.body.data.employees[0].employeeId._id).toBe('62840603549ef329a075ef63');
-    expect(response.body.data.employees[0].employeeId.firstName).toBe('Luciano');
-    expect(response.body.data.employees[0].employeeId.lastName).toBe('Alarcon');
-  });
-  test('It should return a status 404', async () => {
-    const response = await request(app).get('/projects/628a59c9f67d451615818847').send();
-    expect(response.body.message).toBe('Project not found');
-    expect(response.statusCode).toBe(404);
-    expect(response.body.error).toBe(true);
-  });
-  test('It should return a status 500', async () => {
-    const response = await request(app).get('/projects/6').send();
-    expect(response.body.message.message).toBe('Cast to ObjectId failed for value "6" (type string) at path "_id" for model "Project"');
-    expect(response.statusCode).toBe(500);
-    expect(response.body.error).toBe(true);
-  });
 });
-describe('GET /:id', () => {
-  test('It should get the project whit the ID required', async () => {
-    const response = await request(app).get(`/projects/${projectId}`).send();
-    expect(response.body.message).toBe('Project found');
-    expect(response.statusCode).toBe(200);
-    expect(response.body.error).toBe(false);
-  });
-  test('It should get an array of one populate', async () => {
-    const response = await request(app).get(`/projects/${projectId}`).send();
-    expect(response.body.data.employees[0].employeeId._id).toBe('62840603549ef329a075ef63');
-    expect(response.body.data.employees[0].employeeId.firstName).toBe('Luciano');
-    expect(response.body.data.employees[0].employeeId.lastName).toBe('Alarcon');
-  });
-  test('It should return a status 404', async () => {
-    const response = await request(app).get('/projects/628a59c9f67d451615818847').send();
-    expect(response.body.message).toBe('Project not found');
-    expect(response.statusCode).toBe(404);
-    expect(response.body.error).toBe(true);
-  });
-  test('It should return a status 500', async () => {
-    const response = await request(app).get('/projects/6').send();
-    expect(response.body.message.message).toBe('Cast to ObjectId failed for value "6" (type string) at path "_id" for model "Project"');
-    expect(response.statusCode).toBe(500);
-    expect(response.body.error).toBe(true);
-  });
-});
+
 describe('POST /', () => {
   test('It should create the project', async () => {
     const response = await request(app).post('/projects/').send({
@@ -318,7 +300,7 @@ describe('POST /', () => {
     expect(response.statusCode).toBe(201);
     expect(response.body.error).toBe(false);
   });
-  test('It should was error about the keys (name => nombre)', async () => {
+  test('It should return an error about the keys (name => nombre)', async () => {
     const response = await request(app).post('/projects/').send({
       Nombre: 'Radium Rocket',
       status: 'active',
@@ -336,7 +318,7 @@ describe('POST /', () => {
     expect(response.statusCode).toBe(400);
     expect(response.body.error).toBe(true);
   });
-  test('It should was error about the keys (name < 3)', async () => {
+  test('It should return an error about the keys (name < 3)', async () => {
     const response = await request(app).post('/projects/').send({
       name: 'R',
       status: 'active',
@@ -355,7 +337,7 @@ describe('POST /', () => {
     expect(response.statusCode).toBe(400);
     expect(response.body.error).toBe(true);
   });
-  test('It should was error about the keys (status != active, inactive)', async () => {
+  test('It should return an error about the keys (status != active, inactive)', async () => {
     const response = await request(app).post('/projects/').send({
       name: 'Radium Rocket',
       status: 'activo',
@@ -374,7 +356,7 @@ describe('POST /', () => {
     expect(response.statusCode).toBe(400);
     expect(response.body.error).toBe(true);
   });
-  test('It should was error about the keys (description < 10)', async () => {
+  test('It should return an error about the keys (description < 10)', async () => {
     const response = await request(app).post('/projects/').send({
       name: 'Radium Rocket',
       status: 'active',
@@ -393,7 +375,7 @@ describe('POST /', () => {
     expect(response.statusCode).toBe(400);
     expect(response.body.error).toBe(true);
   });
-  test('It should was error about the keys (rate != number)', async () => {
+  test('It should return an error about the keys (rate != number)', async () => {
     const response = await request(app).post('/projects/').send({
       name: 'Radium Rocket',
       status: 'active',
@@ -412,7 +394,7 @@ describe('POST /', () => {
     expect(response.statusCode).toBe(400);
     expect(response.body.error).toBe(true);
   });
-  test('It should was error about the keys (role != string)', async () => {
+  test('It should return an error about the keys (role != string)', async () => {
     const response = await request(app).post('/projects/').send({
       name: 'Radium Rocket',
       status: 'active',
@@ -431,7 +413,7 @@ describe('POST /', () => {
     expect(response.statusCode).toBe(400);
     expect(response.body.error).toBe(true);
   });
-  test('It should was error about the keys (date != date format)', async () => {
+  test('It should return an error about the keys (date != date format)', async () => {
     const response = await request(app).post('/projects/').send({
       name: 'Radium Rocket',
       status: 'active',
@@ -450,7 +432,7 @@ describe('POST /', () => {
     expect(response.statusCode).toBe(400);
     expect(response.body.error).toBe(true);
   });
-  test('It should was error because a key is missing (name => not found)', async () => {
+  test('It should return an error because a key is missing (name => not found)', async () => {
     const response = await request(app).post('/projects/').send({
       status: 'active',
       description: 'BaSP-TG-26: radium',
@@ -468,14 +450,14 @@ describe('POST /', () => {
     expect(response.statusCode).toBe(400);
     expect(response.body.error).toBe(true);
   });
-  test('It should was error because the body is empty', async () => {
+  test('It should return an error because the body is empty', async () => {
     const response = await request(app).post('/projects/').send({});
     expect(response.body.message).toBe('There was an error during validation');
     expect(response.body.data).toBe('"name" is required');
     expect(response.statusCode).toBe(400);
     expect(response.body.error).toBe(true);
   });
-  test('It should was error about the keys (id != mongooseId)', async () => {
+  test('It should return an error about the keys (id != mongooseId)', async () => {
     const response = await request(app).post('/projects/').send({
       name: 'Radium Rocket',
       status: 'active',
