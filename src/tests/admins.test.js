@@ -69,7 +69,6 @@ describe('PUT /admins', () => {
     expect(response.body.message).toBe('Admin updated');
     expect(response.statusCode).toBe(200);
     expect(response.body.error).toBe(false);
-    expect(response.body.data).not.toBe(undefined);
   });
   test('It should get status 400 and firstName empty', async () => {
     const response = await request(app).put(`/admins/${adminId}`).send({
@@ -81,7 +80,6 @@ describe('PUT /admins', () => {
     expect(response.body.message).toBe('There was an error during the validation of the request.');
     expect(response.statusCode).toBe(400);
     expect(response.body.error).toBe(true);
-    expect(response.body.data).toBe(undefined);
   });
   test('It should get status 400 and lastName incorrect', async () => {
     const response = await request(app).put(`/admins/${adminId}`).send({
@@ -93,7 +91,6 @@ describe('PUT /admins', () => {
     expect(response.body.message).toBe('There was an error during the validation of the request.');
     expect(response.statusCode).toBe(400);
     expect(response.body.error).toBe(true);
-    expect(response.body.data).toBe(undefined);
   });
   test('It should get status 400 and email empty', async () => {
     const response = await request(app).put(`/admins/${adminId}`).send({
@@ -105,7 +102,6 @@ describe('PUT /admins', () => {
     expect(response.body.message).toBe('There was an error during the validation of the request.');
     expect(response.statusCode).toBe(400);
     expect(response.body.error).toBe(true);
-    expect(response.body.data).toBe(undefined);
   });
   test('It should get status 400 and password empty', async () => {
     const response = await request(app).put(`/admins/${adminId}`).send({
@@ -117,7 +113,6 @@ describe('PUT /admins', () => {
     expect(response.body.message).toBe('There was an error during the validation of the request.');
     expect(response.statusCode).toBe(400);
     expect(response.body.error).toBe(true);
-    expect(response.body.data).toBe(undefined);
   });
 });
 describe('DELETE /admins/:id', () => {
@@ -133,7 +128,6 @@ describe('DELETE /admins/:id', () => {
     expect(response.body.message).toBe('No admin with the id of 628a57ba5551e9d944cdb931.');
     expect(response.statusCode).toBe(404);
     expect(response.body.error).toBe(true);
-    expect(response.body.data).toBe(undefined);
   });
   test('It should return status 500', async () => {
     const response = await request(app).delete('/admins/500').send();
@@ -141,11 +135,12 @@ describe('DELETE /admins/:id', () => {
     expect(response.statusCode).toBe(500);
     expect(response.body.error).toBe(true);
   });
-  test('It should return admin not found', async () => {
-    const response = await request(app).delete('/admins/628a57ba5551e9d944cdb931');
-    expect(response.body.message).toBe('No admin with the id of 628a57ba5551e9d944cdb931.');
+  test('It should return a status 404', async () => {
+    const response = await request(app).get(`/admins/${adminId}`).send();
+    expect(response.body.message).toBe('Could not found an admin by the id of 628a57b3f17eaeca60f6a204.');
     expect(response.statusCode).toBe(404);
     expect(response.body.error).toBe(true);
+    expect(response.body.data).toBe(undefined);
   });
 });
 
