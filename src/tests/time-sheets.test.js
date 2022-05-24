@@ -33,6 +33,24 @@ describe('Time-sheet GET BY ID', () => {
     expect(response.statusCode).toBe(500);
     expect(response.body.error).toBe(true);
   });
+  test('populate is working in Employee', async () => {
+    const response = await request(app).get('/time-sheets/3687ff4624476153a8b17691').send();
+    console.log(response.body.data);
+    // eslint-disable-next-line no-underscore-dangle
+    expect(response.body.data.employeeId._id).toBe('6289016df4d67ad85b52d9af');
+    expect(response.body.data.employeeId.first_name).toBe('Carlos');
+    expect(response.body.data.employeeId.last_name).toBe('Rodriguez');
+  });
+  // test('populate is working in Task', async () => {
+  //   const response = await request(app).get('/time-sheets/3687ff4624476153a8b17691').send();
+  //   console.log(response.body.data);
+  //   // eslint-disable-next-line no-underscore-dangle
+  //   expect(response.body.data.tasks._id).toBe('6289a9f3c375d9047b94a4c5');
+  //   expect(response.body.data.tasks.description).toBe('Landing page: HTML structure');
+  //   expect(response.body.data.tasks.workedHours).toBe(9);
+  //   expect(response.body.data.tasks.date).toBe('2020-02-09T00:00:00.000+00:00');
+  //   expect(response.body.data.tasks.projectId).toBe('6289ad47d8843229e170f328');
+  // });
 });
 
 describe('Time-sheet POST', () => {
