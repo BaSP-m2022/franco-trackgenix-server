@@ -1,13 +1,16 @@
 import request from 'supertest';
 import app from '../app';
 import Tasks from '../models/Tasks';
-import task from '../seeds/tasks';
+import taskSeed from '../seeds/tasks';
+import Projects from '../models/Projects';
+import projectSeed from '../seeds/projects';
 
 beforeAll(async () => {
-  await Tasks.collection.insertMany(task);
+  await Tasks.collection.insertMany(taskSeed);
+  await Projects.collection.insertMany(projectSeed);
 });
 
-describe('GET - tasks/:id', () => {
+describe('GET - tasks/', () => {
   test('It should get the tasks list', async () => {
     const response = await request(app).get('/tasks').send();
     expect(response.body.message).toBe('Tasks');
@@ -15,7 +18,9 @@ describe('GET - tasks/:id', () => {
     expect(response.body.data.length).toBeGreaterThan(0);
     expect(response.body.error).toBe(false);
   });
+});
 
+describe('GET - tasks/:id', () => {
   test('It should return a status 404 because id is incorrect', async () => {
     const response = await request(app).get('/tasks/628a59c9f67d451615818847').send();
     expect(response.body.message).toBe('Task not found');
@@ -24,10 +29,11 @@ describe('GET - tasks/:id', () => {
   });
 
   test('It should return a task', async () => {
-    const response = await request(app).get('/tasks/6289adc53ba4baea7bf2defd').send();
+    const response = await request(app).get('/tasks/628ae0e4d17167de51a40dd6').send();
     expect(response.body.message).toBe('Tasks');
     expect(response.statusCode).toBe(200);
     expect(response.body.error).toBe(false);
+    expect(response.body.data.projectId._id).toBe('628b93ab7d637dd7898948d7');
   });
 });
 
