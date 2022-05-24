@@ -100,7 +100,7 @@ describe('DELETE - /tasks/:id', () => {
   });
 
   test('It should return a status 200 with a succesful delete', async () => {
-    const response = await request(app).delete('/tasks/6289a9f3c375d9047b94a4c5').send();
+    const response = await request(app).delete('/tasks/628a54662094397759102c14').send();
     expect(response.statusCode).toBe(200);
     expect(response.body.message).toBe('Task deleted successfully');
     expect(response.body.error).toBe(false);
