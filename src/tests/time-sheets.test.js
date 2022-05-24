@@ -37,8 +37,8 @@ describe('Time-sheet GET BY ID', () => {
     const response = await request(app).get('/time-sheets/3687ff4624476153a8b17691').send();
     // eslint-disable-next-line no-underscore-dangle
     expect(response.body.data.employeeId._id).toBe('6289016df4d67ad85b52d9af');
-    expect(response.body.data.employeeId.first_name).toBe('Carlos');
-    expect(response.body.data.employeeId.last_name).toBe('Rodriguez');
+    expect(response.body.data.employeeId.firstName).toBe('Roman');
+    expect(response.body.data.employeeId.lastName).toBe('Riquelme');
   });
   test('populate is working in Task (single task)', async () => {
     const response = await request(app).get('/time-sheets/3687ff4624476153a8b17691').send();

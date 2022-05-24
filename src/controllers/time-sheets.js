@@ -46,7 +46,7 @@ const getById = async (req, res) => {
   try {
     const byId = await TimeSheets.findById(req.params.id)
       .populate('tasks')
-      .populate('employeeId', { first_name: 1, last_name: 1 });
+      .populate('employeeId', { firstName: 1, lastName: 1 });
     if (!byId) {
       return res.status(404).json({
         message: 'Time-sheet was not found',
