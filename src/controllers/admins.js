@@ -15,7 +15,7 @@ const getAllAdmins = async (req, res) => {
       data: undefined,
       error: true,
     });
-  } catch (err) {
+  } catch (error) {
     return res.status(500).json({
       message: 'An error occurred.',
       data: undefined,
@@ -27,14 +27,21 @@ const getAllAdmins = async (req, res) => {
 const getAdminById = async (req, res) => {
   try {
     if (req.params.id) {
-      const result = await Admin.findById(req.params.id);
+      const admin = await Admin.findById(req.params.id);
+      if (!admin) {
+        return res.status(404).json({
+          message: `Could not found an admin by the id of ${req.params.id}.`,
+          data: undefined,
+          error: true,
+        });
+      }
       return res.status(200).json({
         message: `Showing the specified admin by the id of ${req.params.id}.`,
-        data: result,
+        data: admin,
         error: false,
       });
     }
-    return res.status(404).json({
+    return res.status(400).json({
       message: 'No input available.',
       data: undefined,
       error: true,
@@ -81,13 +88,13 @@ const editAdmin = async (req, res) => {
     );
     if (!result) {
       return res.status(404).json({
-        message: 'Task not found',
+        message: 'Admin not found',
         data: undefined,
         error: true,
       });
     }
     return res.status(200).json({
-      message: 'Task updated',
+      message: 'Admin updated',
       data: result,
       error: false,
     });
@@ -115,7 +122,7 @@ const deleteAdmin = async (req, res) => {
       data: undefined,
       error: true,
     });
-  } catch (err) {
+  } catch (error) {
     return res.status(500).json({
       message: 'There was an error, please try again.',
       data: undefined,

@@ -112,7 +112,7 @@ const getFilter = async (req, res) => {
     const result = await SuperAdmin.find(req.query);
     if (result.length > 0) {
       return res.status(200).json({
-        message: 'Super Admins found succesfully',
+        message: 'Super Admins found successfully',
         data: result,
         error: false,
       });

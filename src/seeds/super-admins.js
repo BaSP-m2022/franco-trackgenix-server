@@ -46,7 +46,7 @@ export default [{
   _id: mongoose.Types.ObjectId('679511deffab1830038b1303'),
   password: '1e4e52f4exf4',
   email: 'romantic@firework.com',
-  firstName: 'Adolf',
+  firstName: 'Simon',
   lastName: 'Anderssen',
 },
 {

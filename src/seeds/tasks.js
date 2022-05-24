@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 
 export default [
   {
-    _id: mongoose.Types.ObjectId('6289a9f3c375d9047b94a4c5'),
+    _id: mongoose.Types.ObjectId('40408d8000044535ffa06950'),
     description: 'Figma design',
     workedHours: 12,
     projectId: mongoose.Types.ObjectId('6289ad47d8843229e170f328'),
