@@ -52,7 +52,7 @@ export default [{
   employeeId: '62830ed24887fa4590d33107',
 }, {
   _id: mongoose.Types.ObjectId('3687ff4624476153a8b17691'),
-  tasks: ['6289a9f3c375d9047b94a4c5'],
+  tasks: ['6289a9f3c375d9047b94a4c5', '40408d8000044535ffa06950'],
   totalHours: 10,
   status: 'active',
   startDate: '2021-12-12T00:00:00.000+00:00',

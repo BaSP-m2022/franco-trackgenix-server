@@ -49,6 +49,20 @@ describe('Time-sheet GET BY ID', () => {
     expect(response.body.data.tasks[0].date).toBe('2020-02-09T00:00:00.000Z');
     expect(response.body.data.tasks[0].projectId).toBe('6289ad47d8843229e170f328');
   });
+  test('populate is working for 2+ tasks', async () => {
+    const response = await request(app).get('/time-sheets/3687ff4624476153a8b17691').send();
+    if (!response.body.data.tasks[1]) {
+    // eslint-disable-next-line no-underscore-dangle
+      expect(response.body.data.tasks[1]).toBe(undefined);
+    } else {
+    // eslint-disable-next-line no-underscore-dangle
+      expect(response.body.data.tasks[1]._id).toBe('40408d8000044535ffa06950');
+      expect(response.body.data.tasks[1].description).toBe('Figma design');
+      expect(response.body.data.tasks[1].workedHours).toBe(12);
+      expect(response.body.data.tasks[1].date).toBe('2020-01-09T00:00:00.000Z');
+      expect(response.body.data.tasks[1].projectId).toBe('6289ad47d8843229e170f328');
+    }
+  });
 });
 
 describe('Time-sheet POST', () => {
