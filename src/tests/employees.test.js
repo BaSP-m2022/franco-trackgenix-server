@@ -7,11 +7,11 @@ beforeAll(async () => {
   await Employee.collection.insertMany(employeeSeeds);
 });
 
-// const employeeId = '60d4a32f257e066e9495ce12';
+const employeeId = '60d4a32f257e066e9495ce12';
 
 describe('GET/employees', () => {
   test('It should get the employees list', async () => {
-    const response = await request(app).get('/employees');
+    const response = await request(app).get('/employees/');
     expect(response.body.message).toBe('Success');
     expect(response.statusCode).toBe(200);
     expect(response.body.data.length).toBeGreaterThan(0);
@@ -32,20 +32,41 @@ describe('GET/employees', () => {
     expect(response.body.data).toBe(undefined);
   });
 });
-/*
+
 describe('GET by id/employees/:id', () => {
   test('It should get an employee by id', async () => {
     const response = await request(app).get(`/employees/${employeeId}`);
-    expect(response.body.message).toBe('Employee found successfully');
+    expect(response.body.message).toBe('Success');
     expect(response.statusCode).toBe(200);
     expect(response.body.data.length).toBeGreaterThan(0);
     expect(response.body.error).toBe(false);
+  });
+  test('It should return a 404 status', async () => {
+    const response = await request(app).get('/employees/60d4a32f257e066e9495cc11');
+    expect(response.statusCode).toBe(404);
+    expect(response.body.message).toBe('Employee was not found');
+    expect(response.body.error).toBe(true);
+    expect(response.body.data).toBe(undefined);
+  });
+  test('It should return a 400 status', async () => {
+    const response = await request(app).get('/employees/');
+    expect(response.statusCode).toBe(404);
+    expect(response.body.message).toBe('missing id parameter');
+    expect(response.body.error).toBe(true);
+    expect(response.body.data).toBe(undefined);
+  });
+  test('It should return a 500 status', async () => {
+    const response = await request(app).get('/employees/12345');
+    expect(response.statusCode).toBe(500);
+    expect(response.body.message).toBe('error');
+    expect(response.body.error).toBe(true);
+    expect(response.body.data).toBe(undefined);
   });
 });
 
 describe('POST/employees', () => {
   test('It should create an employee', async () => {
-    const response = await request(app).post('employee').send({
+    const response = await request(app).post('/employee/').send({
       firstName: 'Esteban',
       lastName: 'Frare',
       dni: '38240915',
@@ -53,12 +74,12 @@ describe('POST/employees', () => {
       password: 'test123',
       dateOfBirth: '03-11-1987',
     });
-    expect(response.body.message).toBe('Employee added to database');
+    expect(response.body.message).toBe('Employee created successfully');
     expect(response.statusCode).toBe(201);
     expect(response.body.error).toBe(false);
   });
-  test('404 error because the email entered is already in use', async () => {
-    const response = await request(app).post('employee').send({
+  test('Should return an error when an employee already exist', async () => {
+    const response = await request(app).post('/employee/').send({
       firstName: 'Esteban',
       lastName: 'Frare',
       dni: '38240915',
@@ -66,14 +87,14 @@ describe('POST/employees', () => {
       password: 'test123',
       dateOfBirth: '03-11-1987',
     });
-    expect(response.status).toBe(400);
-    expect(response.body.message).toEqual('An employee with this email already exists');
-    expect(response.body.data).toBeUndefined();
+    expect(response.status).toBe(500);
+    expect(response.body.message).toEqual('Error creating new employee');
+    expect(response.body.data).toBe(undefined);
   });
 });
 
 describe('PUT/employees/:id', () => {
-  test('It should delete an employee', async () => {
+  test('It should return that employee is updated sucessfully', async () => {
     const response = await request(app).put(`/employees/${employeeId}`).send(
       {
         firstName: 'Totito',
@@ -85,18 +106,61 @@ describe('PUT/employees/:id', () => {
       },
     );
     expect(response.statusCode).toBe(200);
-    expect(response.body.message).toBe('Employee edited');
+    expect(response.body.message).toBe('Employee edited successfully');
     expect(response.body.error).toBe(false);
     expect(response.body.data).toEqual(expect.anything());
+  });
+  test('It should return a 400 status when any parameter left', async () => {
+    const response = await request(app).put(`/employees/${employeeId}`).send(
+      {
+        firstName: 'Totito',
+        dni: '33016244',
+        email: 'totalfake@whatever.com',
+        password: 'Holaprob123',
+        dateOfBirth: '05-05-1985',
+      },
+    );
+    expect(response.statusCode).toBe(400);
+    expect(response.body.message).toBe('missing id parameter');
+    expect(response.body.error).toBe(true);
+    expect(response.body.data).toBe(undefined);
+  });
+  test('It should return a 404 status', async () => {
+    const response = await request(app).put('/employees/62830ed24887fa4590d33123').send();
+    expect(response.statusCode).toBe(404);
+    expect(response.body.message).toBe('The employee has not been found');
+    expect(response.body.error).toBe(true);
+    expect(response.body.data).toBe(undefined);
+  });
+  test('It should return error when any parameter is empty', async () => {
+    const response = await request(app).put(`/employees/${employeeId}`).send(
+      {
+        firstName: '',
+        lastName: 'Chulito',
+        dni: '33016244',
+        email: 'totalfake@whatever.com',
+        password: 'Holaprob123',
+        dateOfBirth: '05-05-1985',
+      },
+    );
+    expect(response.statusCode).toBe(500);
+    expect(response.body.message).toBe('An error has ocurred');
+    expect(response.body.error).toBe(true);
+    expect(response.body.data).toBe(undefined);
   });
 });
 
 describe('DELETE/employee', () => {
   test('It should delete an employee', async () => {
-    const response = await request(app).delete(`/employees/${employeeId}`);
+    const response = await request(app).delete('/employee/62830ed24887fa4590d33107').send();
     expect(response.body.message).toBe('Employee deleted successfully');
     expect(response.statusCode).toBe(200);
     expect(response.body.error).toBe(false);
   });
+  test('It should return a 404 error', async () => {
+    const response = await request(app).delete('/employee/62830ed24888fa6590d33187').send();
+    expect(response.body.message).toBe('Employee ID not found');
+    expect(response.statusCode).toBe(404);
+    expect(response.body.error).toBe(true);
+  });
 });
-*/
