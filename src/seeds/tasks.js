@@ -9,7 +9,7 @@ export default [
     date: '2020-01-09T00:00:00.000+00:00',
   },
   {
-    _id: mongoose.Types.ObjectId('6289a9f3c375d9047b94a4c5'),
+    _id: mongoose.Types.ObjectId('6289a9f3c375d9047b94a4c6'),
     description: 'Landing page: HTML structure',
     workedHours: 9,
     projectId: mongoose.Types.ObjectId('6289ad47d8843229e170f328'),
