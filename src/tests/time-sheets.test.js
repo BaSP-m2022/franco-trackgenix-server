@@ -60,7 +60,7 @@ describe('GET/timeSheet', () => {
 });
 
 describe('PUT/timeSheet/:id', () => {
-  test('should put', async () => {
+  test('It should put successfully', async () => {
     const response = await request(app).put(`/time-sheets/${timeSheetId}`).send(
       {
         tasks: ['6289a9f3c375d9047b94a4c5'],
@@ -170,13 +170,13 @@ describe('PUT/timeSheet/:id', () => {
 
 describe('DELETE/timeSheet/:id', () => {
   test('should delete', async () => {
-    const response = await request(app).delete(`/time-sheets/${timeSheetId}`).send();
-    expect(response.statusCode).toBe(200);
-    expect(response.body.error).toBe(false);
-    expect(response.body.message).toBe('Time-sheet deleted');
-    expect(response.body.data).toEqual(expect.anything());
-    const responsee = await request(app).get(`/time-sheets/${timeSheetId}`);
-    expect(responsee.statusCode).toBe(404);
+    const responseDelete = await request(app).delete(`/time-sheets/${timeSheetId}`).send();
+    expect(responseDelete.statusCode).toBe(200);
+    expect(responseDelete.body.error).toBe(false);
+    expect(responseDelete.body.message).toBe('Time-sheet deleted');
+    expect(responseDelete.body.data).toEqual(expect.anything());
+    const responseGet = await request(app).get(`/time-sheets/${timeSheetId}`);
+    expect(responseGet.statusCode).toBe(404);
   });
   test('It should get status 404', async () => {
     const response = await request(app).delete('/time-sheets/628a979a3661749f792a55c3');
