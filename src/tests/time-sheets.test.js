@@ -43,16 +43,14 @@ describe('GET/timeSheet', () => {
     expect(response.body.data.length).toBeGreaterThan(0);
     expect(response.body.error).toBe(false);
   });
-  test('populate is working in Employee', async () => {
+  test('It should populate the Employee information', async () => {
     const response = await request(app).get('/time-sheets');
-    // eslint-disable-next-line no-underscore-dangle
     expect(response.body.data[0].employeeId._id).toBe('60d4a32f257e066e9495ce12');
     expect(response.body.data[0].employeeId.firstName).toBe('Esteban');
     expect(response.body.data[0].employeeId.lastName).toBe('Frare');
   });
-  test('populate is working in Task', async () => {
+  test('It should populate the task information', async () => {
     const response = await request(app).get('/time-sheets');
-    // eslint-disable-next-line no-underscore-dangle
     expect(response.body.data[0].tasks[0]._id).toBe('6289a9f3c375d9047b94a4c5');
     expect(response.body.data[0].tasks[0].description).toBe('Figma design');
     expect(response.body.data[0].tasks[0].workedHours).toBe(12);
@@ -77,13 +75,6 @@ describe('PUT/timeSheet/:id', () => {
     expect(response.body.message).toBe('Time sheet edited');
     expect(response.body.error).toBe(false);
     expect(response.body.data).toEqual(expect.anything());
-  });
-  test('should put status 500', async () => {
-    const response = await request(app).get('/time-sheets/215561');
-    expect(response.statusCode).toBe(500);
-    expect(response.body.message).toBe('Time-sheet was not found');
-    expect(response.body.error).toBe(true);
-    expect(response.body.data).toBe(undefined);
   });
   test('It should get status 500 and task empty', async () => {
     const response = await request(app).put(`/time-sheets/${timeSheetId}`).send(
