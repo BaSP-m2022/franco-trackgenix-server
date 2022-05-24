@@ -51,7 +51,7 @@ describe('GET/timeSheet', () => {
   });
   test('It should populate the task information', async () => {
     const response = await request(app).get('/time-sheets');
-    expect(response.body.data[0].tasks[0]._id).toBe('6289a9f3c375d9047b94a4c5');
+    expect(response.body.data[0].tasks[0]._id).toBe('40408d8000044535ffa06950');
     expect(response.body.data[0].tasks[0].description).toBe('Figma design');
     expect(response.body.data[0].tasks[0].workedHours).toBe(12);
     expect(response.body.data[0].tasks[0].date).toBe('2020-01-09T00:00:00.000Z');
@@ -191,5 +191,99 @@ describe('DELETE/timeSheet/:id', () => {
     expect(response.body.message).toBe('Time-sheet could not be deleted');
     expect(response.body.error).toBe(true);
     expect(response.body.data).not.toEqual(expect.anything());
+  });
+});
+
+describe('Time-sheet GET BY ID', () => {
+  test('It should get status: 200', async () => {
+    const response = await request(app).get('/time-sheets/628a979a3661749f792a55c8').send();
+    expect(response.body.message).toBe('Time-sheet found');
+    expect(response.statusCode).toBe(200);
+    expect(response.body.error).toBe(false);
+  });
+  test('It should get status: 404', async () => {
+    const response = await request(app).get('/time-sheets/3687ff4624676153a8b17691').send();
+    expect(response.body.message).toBe('Time-sheet was not found');
+    expect(response.statusCode).toBe(404);
+    expect(response.body.error).toBe(true);
+  });
+  test('It should get status: 500', async () => {
+    const response = await request(app).get('/time-sheets/3').send();
+    expect(response.body.message).toBe('Time-sheet was not found');
+    expect(response.statusCode).toBe(500);
+    expect(response.body.error).toBe(true);
+  });
+  test('It should populate Employee', async () => {
+    const response = await request(app).get('/time-sheets/3687ff4624476153a8b17691').send();
+    expect(response.body.data.employeeId._id).toBe('6289016df4d67ad85b52d9af');
+    expect(response.body.data.employeeId.firstName).toBe('Roman');
+    expect(response.body.data.employeeId.lastName).toBe('Riquelme');
+  });
+  test('It should populate Task', async () => {
+    const response = await request(app).get('/time-sheets/628a97e19bbdb18c9a34017d').send();
+    expect(response.body.data.tasks[0]._id).toBe('6289aec7b0e2e0dacd30311d');
+    expect(response.body.data.tasks[0].description).toBe('Login and signup validations with JavaScript ES5');
+    expect(response.body.data.tasks[0].workedHours).toBe(12);
+    expect(response.body.data.tasks[0].date).toBe('2020-06-09T00:00:00.000Z');
+    expect(response.body.data.tasks[0].projectId).toBe('6289aed1ba4eec80445aaf6e');
+  });
+});
+
+describe('Time-sheet POST', () => {
+  test('It should get status:200 | expected to create a time-sheet', async () => {
+    const response = await request(app).post('/time-sheets/').send({
+      tasks: ['6289a9f3c375d9047b94a4c5'],
+      totalHours: 13,
+      status: 'active',
+      startDate: '2021-12-12T00:00:00.000+00:00',
+      endDate: '2022-12-12T00:00:00.000+00:00',
+      employeeId: '62830ed24887fa4590d33107',
+    });
+    expect(response.body.message).toBe('Time sheet created');
+    expect(response.statusCode).toBe(201);
+    expect(response.body.error).toBe(false);
+  });
+  test('It should get ERROR status: 400 (EMPTY BODY)', async () => {
+    const response = await request(app).post('/time-sheets/').send();
+    expect(response.body.message).toBe('There was an error during validation');
+    expect(response.statusCode).toBe(400);
+    expect(response.body.error).toBe(true);
+  });
+  test('It should get ERROR status: 400 (WRONG KEY)', async () => {
+    const response = await request(app).post('/time-sheets/').send({
+      tareas: ['6289a9f3c375d9047b94a4c5'],
+      totalHours: 13,
+      status: 'active',
+      startDate: '2021-12-12T00:00:00.000+00:00',
+      endDate: '2022-12-12T00:00:00.000+00:00',
+      employeeId: '62830ed24887fa4590d33107',
+    });
+    expect(response.body.message).toBe('There was an error during validation');
+    expect(response.statusCode).toBe(400);
+    expect(response.body.error).toBe(true);
+  });
+  test('It should get ERROR status: 400 (MISSING KEYS)', async () => {
+    const response = await request(app).post('/time-sheets/').send({
+      totalHours: 13,
+      startDate: '2021-12-12T00:00:00.000+00:00',
+      endDate: '2022-12-12T00:00:00.000+00:00',
+      employeeId: '62830ed24887fa4590d33107',
+    });
+    expect(response.body.message).toBe('There was an error during validation');
+    expect(response.statusCode).toBe(400);
+    expect(response.body.error).toBe(true);
+  });
+  test('It should get ERROR status: 400 (WRONG DATA TYPE)', async () => {
+    const response = await request(app).post('/time-sheets/').send({
+      tasks: ['6289a9f3c375d9047b94a4c5'],
+      totalHours: 13,
+      status: 'active',
+      startDate: '2021-12-1lakjsfhlkawj000+00:00',
+      endDate: '2022-12-12T00:00:00.000+00:00',
+      employeeId: '62830ed24887fa4590d33107',
+    });
+    expect(response.body.message).toBe('There was an error during validation');
+    expect(response.statusCode).toBe(400);
+    expect(response.body.error).toBe(true);
   });
 });
