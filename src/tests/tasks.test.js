@@ -7,7 +7,7 @@ beforeAll(async () => {
   await Tasks.collection.insertMany(task);
 });
 
-describe('Test Tasks routes', () => {
+describe('GET - tasks/:id', () => {
   test('It should get the tasks list', async () => {
     const response = await request(app).get('/tasks').send();
     expect(response.body.message).toBe('Tasks');
@@ -16,6 +16,22 @@ describe('Test Tasks routes', () => {
     expect(response.body.error).toBe(false);
   });
 
+  test('It should return a status 404 because id is incorrect', async () => {
+    const response = await request(app).get('/tasks/628a59c9f67d451615818847').send();
+    expect(response.body.message).toBe('Task not found');
+    expect(response.statusCode).toBe(404);
+    expect(response.body.error).toBe(true);
+  });
+
+  test('It should return a task', async () => {
+    const response = await request(app).get('/tasks/6289adc53ba4baea7bf2defd').send();
+    expect(response.body.message).toBe('Tasks');
+    expect(response.statusCode).toBe(200);
+    expect(response.body.error).toBe(false);
+  });
+});
+
+describe('POST - /tasks', () => {
   test('It should create task', async () => {
     const response = await request(app).post('/tasks').send({
       description: 'Landing page',
@@ -43,21 +59,9 @@ describe('Test Tasks routes', () => {
     });
     expect(response.statusCode).toBe(400);
   });
+});
 
-  test('It should return a status 404 because id is incorrect', async () => {
-    const response = await request(app).get('/tasks/628a59c9f67d451615818847').send();
-    expect(response.body.message).toBe('Task not found');
-    expect(response.statusCode).toBe(404);
-    expect(response.body.error).toBe(true);
-  });
-
-  test('It should return a task by id', async () => {
-    const response = await request(app).get('/tasks/6289adc53ba4baea7bf2defd').send();
-    expect(response.body.message).toBe('Tasks');
-    expect(response.statusCode).toBe(200);
-    expect(response.body.error).toBe(false);
-  });
-
+describe('PUT - /tasks/:id', () => {
   test('It should return a status 404 because id is incorrect', async () => {
     const response = await request(app).put('/tasks/628ae081dbe588f5677e9982').send({
       description: 'Landing Page',
@@ -79,7 +83,9 @@ describe('Test Tasks routes', () => {
     expect(response.statusCode).toBe(200);
     expect(response.body.error).toBe(false);
   });
+});
 
+describe('DELETE - /tasks/:id', () => {
   test('It should return a status 404', async () => {
     const response = await request(app).delete('/tasks/628281b30f0ab1495571e1a4').send();
     expect(response.statusCode).toBe(404);
@@ -92,5 +98,12 @@ describe('Test Tasks routes', () => {
     expect(response.statusCode).toBe(200);
     expect(response.body.message).toBe('Task deleted successfully');
     expect(response.body.error).toBe(false);
+  });
+
+  test('It should return a status 500 because the id is not a mongoDB id', async () => {
+    const response = await request(app).delete('/tasks/6289a9f3c375d9047b94a4c').send();
+    expect(response.statusCode).toBe(500);
+    expect(response.body.message).toBe('There was an error');
+    expect(response.body.error).toBe(true);
   });
 });

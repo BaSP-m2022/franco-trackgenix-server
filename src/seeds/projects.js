@@ -10,13 +10,13 @@ export default [
       {
         rate: 1,
         role: 'QA',
-        _id: mongoose.Types.ObjectId('628a5ad8f6a8cdd3cefb2b07'),
+        employeeId: mongoose.Types.ObjectId('6289016df4d67ad85b52d9af'),
       },
     ],
     startDate: '2002-12-09T00:00:00.000+00:00',
   },
   {
-    _id: mongoose.Types.ObjectId('628a59f1a847f0ea55251cc2'),
+    _id: mongoose.Types.ObjectId('628b93ab7d637dd7898948d7'),
     name: 'Facebook',
     status: 'inactive',
     description: 'BaSP-TG-26: facebook',
@@ -24,13 +24,13 @@ export default [
       {
         rate: 2,
         role: 'DEV',
-        _id: mongoose.Types.ObjectId('628a5ae1c56212ee7a5618cd'),
+        employeeId: mongoose.Types.ObjectId('6289016df4d67ad85b52d9af'),
       },
     ],
     startDate: '2002-12-09T00:00:00.000+00:00',
   },
   {
-    _id: mongoose.Types.ObjectId('628a5a1d3a9e2db5eeebf009'),
+    _id: mongoose.Types.ObjectId('628b93b34a75cf105f3c0da7'),
     name: 'Twitter',
     status: 'active',
     description: 'BaSP-TG-26: twitter',
@@ -38,7 +38,7 @@ export default [
       {
         rate: 3,
         role: 'PM',
-        _id: mongoose.Types.ObjectId('628a5ae941697271968cd673'),
+        employeeId: mongoose.Types.ObjectId('6289016df4d67ad85b52d9af'),
       },
     ],
     startDate: '2002-12-09T00:00:00.000+00:00',
@@ -52,7 +52,7 @@ export default [
       {
         rate: 4,
         role: 'QA',
-        _id: mongoose.Types.ObjectId('628a5af52a91d6871a6ebb81'),
+        employeeId: mongoose.Types.ObjectId('6289016df4d67ad85b52d9af'),
       },
     ],
     startDate: '2002-12-09T00:00:00.000+00:00',
@@ -66,7 +66,21 @@ export default [
       {
         rate: 5,
         role: 'PM',
-        _id: mongoose.Types.ObjectId('628a5b0333675625aa393918'),
+        employeeId: mongoose.Types.ObjectId('62840603549ef329a075ef63'),
+      },
+    ],
+    startDate: '2002-12-09T00:00:00.000+00:00',
+    endDate: '2022-12-09T00:00:00.000+00:00',
+  }, {
+    _id: mongoose.Types.ObjectId('60d4a32f257e066e9495ce13'),
+    name: 'Twitter',
+    status: 'active',
+    description: 'BaSP-TG-26: twitter',
+    employees: [
+      {
+        rate: 6,
+        role: 'PM',
+        employeeId: mongoose.Types.ObjectId('6289016df4d67ad85b52d9af'),
       },
     ],
     startDate: '2002-12-09T00:00:00.000+00:00',
