@@ -81,13 +81,13 @@ const getAll = async (req, res) => {
       });
     }
     return res.status(404).json({
-      message: 'A valid parameter is needed',
+      message: 'Time-sheet was not found',
       data: undefined,
       error: true,
     });
   } catch (error) {
     return res.status(500).json({
-      message: 'Time-sheet was not found',
+      message: 'A valid parameter is needed',
       data: undefined,
       error: true,
     });
