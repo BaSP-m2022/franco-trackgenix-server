@@ -81,13 +81,13 @@ const editAdmin = async (req, res) => {
     );
     if (!result) {
       return res.status(404).json({
-        message: 'Task not found',
+        message: 'Admin not found',
         data: undefined,
         error: true,
       });
     }
     return res.status(200).json({
-      message: 'Task updated',
+      message: 'Admin updated',
       data: result,
       error: false,
     });
@@ -115,7 +115,7 @@ const deleteAdmin = async (req, res) => {
       data: undefined,
       error: true,
     });
-  } catch (err) {
+  } catch (error) {
     return res.status(500).json({
       message: 'There was an error, please try again.',
       data: undefined,
