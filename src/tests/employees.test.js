@@ -24,12 +24,6 @@ describe('GET/employees', () => {
     expect(response.body.error).toBe(true);
     expect(response.body.data).toBe(undefined);
   });
-  test('It should return a 500 status', async () => {
-    const response = await request(app).get('/employees/12345');
-    expect(response.statusCode).toBe(500);
-    expect(response.body.error).toBe(true);
-    expect(response.body.data).toBe(undefined);
-  });
 });
 
 describe('GET by id/employees/:id', () => {
@@ -69,7 +63,7 @@ describe('POST/employees', () => {
     expect(response.statusCode).toBe(201);
     expect(response.body.error).toBe(false);
   });
-  test('Should return an error when the password is too short', async () => {
+  test('It Should return an error when the password is too short', async () => {
     const response = await request(app).post('/employees/').send({
       firstName: 'Esteban',
       lastName: 'Frare',
@@ -112,7 +106,6 @@ describe('PUT/employees/:id', () => {
       },
     );
     expect(response.statusCode).toBe(400);
-    expect(response.body.message).toBe('\"lastName\" is required');
     expect(response.body.error).toBe(true);
     expect(response.body.data).toBe(undefined);
   });
@@ -144,7 +137,6 @@ describe('PUT/employees/:id', () => {
       },
     );
     expect(response.statusCode).toBe(400);
-    expect(response.body.message).toBe('\"firstName\" is not allowed to be empty');
     expect(response.body.error).toBe(true);
     expect(response.body.data).toBe(undefined);
   });
@@ -162,5 +154,12 @@ describe('DELETE/employee', () => {
     expect(response.body.message).toBe('Employee ID not found');
     expect(response.statusCode).toBe(404);
     expect(response.body.error).toBe(true);
+  });
+  test('It should return a status 404', async () => {
+    const response = await request(app).get('/employees/62830ed24887fa4590d33107').send();
+    expect(response.body.message).toBe('Employee was not found');
+    expect(response.statusCode).toBe(404);
+    expect(response.body.error).toBe(true);
+    expect(response.body.data).toBe(undefined);
   });
 });
