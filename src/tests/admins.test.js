@@ -46,9 +46,9 @@ describe('GET /:id', () => {
     expect(response.body.error).toBe(false);
   });
   test('It should return a status 404', async () => {
-    const response = await request(app).get('/admins/528a57ba5551e9d944cdb93g').send();
-    expect(response.body.message).toBe('Could not found an admin by the id of 528a57ba5551e9d944cdb93g.');
-    expect(response.statusCode).toBe(500);
+    const response = await request(app).get('/admins/528a57ba5551e9d944cdb93a').send();
+    expect(response.body.message).toBe('Could not found an admin by the id of 528a57ba5551e9d944cdb93a.');
+    expect(response.statusCode).toBe(404);
     expect(response.body.error).toBe(true);
   });
   test('It should return a status 500', async () => {

@@ -9,10 +9,10 @@ export default [
     date: '2020-01-09T00:00:00.000+00:00',
   },
   {
-    _id: mongoose.Types.ObjectId('6289a9f3c375d9047b94a4c6'),
+    _id: mongoose.Types.ObjectId('628ae0e4d17167de51a40dd6'),
     description: 'Landing page: HTML structure',
     workedHours: 9,
-    projectId: mongoose.Types.ObjectId('6289ad47d8843229e170f328'),
+    projectId: mongoose.Types.ObjectId('628b93ab7d637dd7898948d7'),
     date: '2020-02-09T00:00:00.000+00:00',
   },
   {
@@ -40,7 +40,7 @@ export default [
     _id: mongoose.Types.ObjectId('628a54662094397759102c14'),
     description: 'HTTP request with fetch method and LocalStorage',
     workedHours: 12,
-    projectId: mongoose.Types.ObjectId('628a546eb2342572d3f59d53'),
+    projectId: mongoose.Types.ObjectId('628a59c9f67d45161581886f'),
     date: '2020-07-09T00:00:00.000+00:00',
   },
 ];
