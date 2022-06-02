@@ -57,7 +57,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"firstName\": \"laura\",\r\n    \"lastName\": \"sammartino\",\r\n    \"email\": \"laurasammartino@hotmail.com\",\r\n    \"password\": \"contrasenafalsa123\"\r\n}",
+							"raw": "{\r\n    \"firstName\": \"laura\",\r\n    \"lastName\": \"sammartino\",\r\n    \"email\": \"laurasammartino@hotmail.com\",\r\n    \"password\": \"coasa123\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -125,7 +125,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"firstName\": \"laura\",\r\n    \"lastName\": \"sammartino\",\r\n    \"email\": \"laurasammartino@hotmail.com\",\r\n    \"password\": \"contrasenafalsa123\"\r\n}",
+							"raw": "{\r\n    \"firstName\": \"laura\",\r\n    \"lastName\": \"sammartino\",\r\n    \"email\": \"laurasammartino@hotmail.com\",\r\n    \"password\": \"coasa123\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -197,7 +197,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"password\": \"sasd44su987\",\r\n    \"email\": \"recktbythiss@asdasd.com\",\r\n    \"firstName\": \"Mago\",\r\n    \"lastName\": \"Rdito\"\r\n}",
+							"raw": "{\r\n    \"password\": \"iH4trShell\",\r\n    \"email\": \"rikitika@prip.com\",\r\n    \"firstName\": \"Francisco\",\r\n    \"lastName\": \"Juanse\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -338,7 +338,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"description\": \"Updated task 5.0\",\r\n    \"workedHours\": 5.5\r\n}",
+							"raw": "{\r\n    \"description\": \"Test an app\",\r\n    \"workedHours\": 10,\r\n    \"projectId\": \"6298dd9d11ed617320cb4468\",\r\n    \"date\": \"2023-02-02\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -395,7 +395,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"description\": \"Test an app\",\r\n    \"workedHours\": 10 \r\n}",
+							"raw": "{\r\n    \"description\": \"Test an app\",\r\n    \"workedHours\": 10,\r\n    \"projectId\": \"6298dd9d11ed617320cb4468\",\r\n    \"date\": \"2023-02-02\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -494,7 +494,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"_id\": \"628197b4a7204f4c87ab6687\",\r\n    \"firstName\": \"Madonna\",\r\n    \"lastName\": \"Pop\",\r\n    \"dni\": \"33016244\",\r\n    \"email\": \"madonna@gmail.com\",\r\n    \"password\": \"pop1234\",\r\n    \"__v\": 0\r\n}",
+							"raw": "{\r\n    \"firstName\": \"Prueba\",\r\n    \"lastName\": \"Post\",\r\n    \"email\": \"prueba@gmail.com\",\r\n    \"dni\": \"12345678\",\r\n    \"password\": \"a1Asdwe1\",\r\n    \"dateOfBirth\": \"05-05-1985\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -634,7 +634,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"tasks\": [\"Caminar\",\"Programar\"],\r\n    \"totalHours\": 12,\r\n    \"checked\": true,\r\n    \"status\": \"Status1\",\r\n    \"startDate\": \"2022-05-16T18:02:23.412Z\",\r\n    \"endDate\": \"2022-05-19T18:02:23.412Z\",\r\n    \"projectId\": \"1\",\r\n    \"employeeId\": \"1\",\r\n    \"managerId\": \"1\"\r\n}",
+							"raw": "{\r\n    \"tasks\": [\"6295572e7e921dffa9f71a24\",\"6295576c7e921dffa9f71a28\"],\r\n    \"totalHours\": 8,\r\n    \"status\": \"Status4\",\r\n    \"startDate\": \"2022-05-15T18:02:23.412Z\",\r\n    \"endDate\": \"2022-07-20T18:02:23.412Z\",\r\n    \"employeeId\": \"62840603549ef329a075ef63\"\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -691,7 +691,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"tasks\": [\"Dormir\",\"Comer\", \"Correr\"],\r\n    \"totalHours\": 8,\r\n    \"status\": \"Status4\",\r\n    \"startDate\": \"2022-05-15T18:02:23.412Z\",\r\n    \"endDate\": \"2022-07-20T18:02:23.412Z\",\r\n    \"employeeId\": \"3\"\r\n}\r\n",
+							"raw": "{\r\n    \"tasks\": [\"6295572e7e921dffa9f71a24\",\"6295576c7e921dffa9f71a28\"],\r\n    \"totalHours\": 8,\r\n    \"status\": \"Status4\",\r\n    \"startDate\": \"2022-05-15T18:02:23.412Z\",\r\n    \"endDate\": \"2022-07-20T18:02:23.412Z\",\r\n    \"employeeId\": \"62840603549ef329a075ef63\"\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -770,7 +770,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"Proyecto 6\",\r\n    \"description\": \"this is the description 6\",\r\n    \"startDate\": \"2022-01-01T00:00:00.000Z\",\r\n    \"endDate\": \"2027-01-01T00:00:00.000Z\",\r\n    \"status\": \"active\",\r\n    \"employees\": [\r\n        {\r\n            \"employeeId\": \"62950d38c13d310fcb2702c9\",\r\n            \"rate\": 12,\r\n            \"role\": \"DEV\"\r\n        }\r\n    ]\r\n}",
+							"raw": "{\r\n    \"name\": \"mas\",\r\n    \"status\": \"active\",\r\n    \"description\": \"asdsdfadasd\",\r\n    \"employees\": [{\r\n        \"employeeId\": \"62950d38c13d310fcb2702c9\",\r\n        \"rate\": 123.12,\r\n        \"role\": \"DEV\"\r\n    }],\r\n    \"startDate\": \"5-17-2020\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
