@@ -19,7 +19,7 @@ const postValidation = (req, res, next) => {
       .max(30)
       .message('Last Name must be less than 30 characters')
       .regex(/^[a-zA-Z]+$/)
-      .message('Last Name musthave only letters')
+      .message('Last Name must have only letters')
       .required(),
     dni: Joi.string()
       .regex(/^[0-9]+$/)
