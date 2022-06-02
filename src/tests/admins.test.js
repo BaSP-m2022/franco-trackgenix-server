@@ -77,7 +77,6 @@ describe('PUT /admins', () => {
       email: 'liomessi@gmail.com',
       password: 'LaPulga10',
     });
-    expect(response.body.message).toBe('There was an error during the validation of the request.');
     expect(response.statusCode).toBe(400);
     expect(response.body.error).toBe(true);
   });
@@ -88,7 +87,6 @@ describe('PUT /admins', () => {
       email: 'liomessi@gmail.com',
       password: 'LaPulga10',
     });
-    expect(response.body.message).toBe('There was an error during the validation of the request.');
     expect(response.statusCode).toBe(400);
     expect(response.body.error).toBe(true);
   });
@@ -99,7 +97,6 @@ describe('PUT /admins', () => {
       email: '',
       password: 'LaPulga10',
     });
-    expect(response.body.message).toBe('There was an error during the validation of the request.');
     expect(response.statusCode).toBe(400);
     expect(response.body.error).toBe(true);
   });
@@ -110,7 +107,6 @@ describe('PUT /admins', () => {
       email: 'liomessi@gmail.com',
       password: '',
     });
-    expect(response.body.message).toBe('There was an error during the validation of the request.');
     expect(response.statusCode).toBe(400);
     expect(response.body.error).toBe(true);
   });
@@ -163,7 +159,6 @@ describe('POST /', () => {
       email: 'francomarini@gmail.com',
       password: 'FrancoM2022',
     });
-    expect(response.body.message).toBe('There was an error during the validation of the request.');
     expect(response.statusCode).toBe(400);
     expect(response.body.error).toBe(true);
   });
@@ -174,7 +169,6 @@ describe('POST /', () => {
       email: 'francomarini@gmail.com',
       password: 'FrancoM2022',
     });
-    expect(response.body.message).toBe('There was an error during the validation of the request.');
     expect(response.statusCode).toBe(400);
     expect(response.body.error).toBe(true);
   });
@@ -185,7 +179,6 @@ describe('POST /', () => {
       email: 'franco marini@gmailcom',
       password: 'FrancoM2022',
     });
-    expect(response.body.message).toBe('There was an error during the validation of the request.');
     expect(response.statusCode).toBe(400);
     expect(response.body.error).toBe(true);
   });
@@ -196,7 +189,6 @@ describe('POST /', () => {
       email: 'francomarini@gmail.com',
       password: 'FrancoMarini',
     });
-    expect(response.body.message).toBe('There was an error during the validation of the request.');
     expect(response.statusCode).toBe(400);
     expect(response.body.error).toBe(true);
   });
@@ -206,13 +198,11 @@ describe('POST /', () => {
       email: 'francomarini@gmail.com',
       password: 'FrancoM2022',
     });
-    expect(response.body.message).toBe('There was an error during the validation of the request.');
     expect(response.statusCode).toBe(400);
     expect(response.body.error).toBe(true);
   });
   test('It should return an error because the body is empty', async () => {
     const response = await request(app).post('/admins/').send({});
-    expect(response.body.message).toBe('There was an error during the validation of the request.');
     expect(response.statusCode).toBe(400);
     expect(response.body.error).toBe(true);
   });

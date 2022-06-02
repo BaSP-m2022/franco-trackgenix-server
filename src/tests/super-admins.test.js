@@ -77,7 +77,8 @@ describe('POST /super-admins', () => {
 
   test('It should return status 400 (empty body)', async () => {
     const response = await request(app).post('/super-admins').send({});
-    expect(response.body.message).toBe('There was an error');
+    expect(response.body.message).toBeDefined();
+    expect(response.body.data).toBeUndefined();
     expect(response.statusCode).toBe(400);
     expect(response.body.error).toBe(true);
   });
@@ -89,7 +90,8 @@ describe('POST /super-admins', () => {
       firstName: 'Marcos',
       lastName: 'Kannino',
     });
-    expect(response.body.message).toBe('There was an error');
+    expect(response.body.message).toBeDefined();
+    expect(response.body.data).toBeUndefined();
     expect(response.statusCode).toBe(400);
     expect(response.body.error).toBe(true);
   });
@@ -101,7 +103,8 @@ describe('POST /super-admins', () => {
       firstName: 'Marcos',
       lastName: 'Kannino',
     });
-    expect(response.body.message).toBe('There was an error');
+    expect(response.body.message).toBeDefined();
+    expect(response.body.data).toBeUndefined();
     expect(response.statusCode).toBe(400);
     expect(response.body.error).toBe(true);
   });
@@ -113,7 +116,8 @@ describe('POST /super-admins', () => {
       firstName: 'Marcos',
       lastName: 'Kannino',
     });
-    expect(response.body.message).toBe('There was an error');
+    expect(response.body.message).toBeDefined();
+    expect(response.body.data).toBeUndefined();
     expect(response.statusCode).toBe(400);
     expect(response.body.error).toBe(true);
   });
@@ -125,7 +129,8 @@ describe('POST /super-admins', () => {
       firstName: '',
       lastName: 'Kannino',
     });
-    expect(response.body.message).toBe('There was an error');
+    expect(response.body.message).toBeDefined();
+    expect(response.body.data).toBeUndefined();
     expect(response.statusCode).toBe(400);
     expect(response.body.error).toBe(true);
   });
@@ -137,7 +142,8 @@ describe('POST /super-admins', () => {
       firstName: 'Marcos',
       lastName: '',
     });
-    expect(response.body.message).toBe('There was an error');
+    expect(response.body.message).toBeDefined();
+    expect(response.body.data).toBeUndefined();
     expect(response.statusCode).toBe(400);
     expect(response.body.error).toBe(true);
   });
@@ -151,7 +157,8 @@ describe('PUT /super-admins/:id', () => {
       firstName: 'Teffu',
       lastName: 'Isteditado',
     });
-    expect(response.body.message).toBe('Super Admin edited successfully');
+    expect(response.body.message).toBeDefined();
+    expect(response.body.data).not.toBe(undefined);
     expect(response.statusCode).toBe(200);
     expect(response.body.error).toBe(false);
   });
@@ -163,14 +170,15 @@ describe('PUT /super-admins/:id', () => {
       firstName: 'Teffu',
       lastName: 'Isteditado',
     });
-    expect(response.body.message).toBe('Super Admin not found');
+    expect(response.body.message).toBeDefined();
+    expect(response.body.data).toBeUndefined();
     expect(response.statusCode).toBe(404);
     expect(response.body.error).toBe(true);
   });
 
   test('It should return status 400 (empty body)', async () => {
     const response = await request(app).put(`/super-admins/${superAdminId}`).send({});
-    expect(response.body.message).toBe('There was an error');
+    expect(response.body.message).toBeDefined();
     expect(response.body.data).toBeUndefined();
     expect(response.statusCode).toBe(400);
     expect(response.body.error).toBe(true);
@@ -183,7 +191,7 @@ describe('PUT /super-admins/:id', () => {
       firstName: 'Marcos',
       lastName: 'Kannino',
     });
-    expect(response.body.message).toBe('There was an error');
+    expect(response.body.message).toBeDefined();
     expect(response.body.data).toBeUndefined();
     expect(response.statusCode).toBe(400);
     expect(response.body.error).toBe(true);
@@ -196,7 +204,8 @@ describe('PUT /super-admins/:id', () => {
       firstName: 'Marcos',
       lastName: 'Kannino',
     });
-    expect(response.body.message).toBe('There was an error');
+    expect(response.body.message).toBeDefined();
+    expect(response.body.data).toBeUndefined();
     expect(response.statusCode).toBe(400);
     expect(response.body.error).toBe(true);
   });
@@ -208,7 +217,8 @@ describe('PUT /super-admins/:id', () => {
       firstName: 'Marcos',
       lastName: 'Kannino',
     });
-    expect(response.body.message).toBe('There was an error');
+    expect(response.body.message).toBeDefined();
+    expect(response.body.data).toBeUndefined();
     expect(response.statusCode).toBe(400);
     expect(response.body.error).toBe(true);
   });
@@ -220,7 +230,8 @@ describe('PUT /super-admins/:id', () => {
       firstName: '',
       lastName: 'Kannino',
     });
-    expect(response.body.message).toBe('There was an error');
+    expect(response.body.message).toBeDefined();
+    expect(response.body.data).toBeUndefined();
     expect(response.statusCode).toBe(400);
     expect(response.body.error).toBe(true);
   });
@@ -232,7 +243,8 @@ describe('PUT /super-admins/:id', () => {
       firstName: 'Marcos',
       lastName: '',
     });
-    expect(response.body.message).toBe('There was an error');
+    expect(response.body.message).toBeDefined();
+    expect(response.body.data).toBeUndefined();
     expect(response.statusCode).toBe(400);
     expect(response.body.error).toBe(true);
   });
