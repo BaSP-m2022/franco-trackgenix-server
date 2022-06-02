@@ -77,6 +77,8 @@ describe('PUT /admins', () => {
       email: 'liomessi@gmail.com',
       password: 'LaPulga10',
     });
+    expect(response.body.message).toBeDefined();
+    expect(response.body.data).toBeUndefined();
     expect(response.statusCode).toBe(400);
     expect(response.body.error).toBe(true);
   });
@@ -87,6 +89,8 @@ describe('PUT /admins', () => {
       email: 'liomessi@gmail.com',
       password: 'LaPulga10',
     });
+    expect(response.body.message).toBeDefined();
+    expect(response.body.data).toBeUndefined();
     expect(response.statusCode).toBe(400);
     expect(response.body.error).toBe(true);
   });
@@ -97,6 +101,8 @@ describe('PUT /admins', () => {
       email: '',
       password: 'LaPulga10',
     });
+    expect(response.body.message).toBeDefined();
+    expect(response.body.data).toBeUndefined();
     expect(response.statusCode).toBe(400);
     expect(response.body.error).toBe(true);
   });
@@ -107,6 +113,8 @@ describe('PUT /admins', () => {
       email: 'liomessi@gmail.com',
       password: '',
     });
+    expect(response.body.message).toBeDefined();
+    expect(response.body.data).toBeUndefined();
     expect(response.statusCode).toBe(400);
     expect(response.body.error).toBe(true);
   });
