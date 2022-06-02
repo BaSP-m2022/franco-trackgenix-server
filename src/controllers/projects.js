@@ -11,8 +11,8 @@ const create = async (req, res) => {
     });
   } catch (error) {
     return res.status(500).json({
-      message: error,
-      data: undefined,
+      message: 'An error ocurred',
+      data: error.message,
       error: true,
     });
   }

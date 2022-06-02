@@ -36,7 +36,7 @@ const createTimesheet = async (req, res) => {
   } catch (error) {
     return res.status(500).json({
       message: 'An error ocurred',
-      data: undefined,
+      data: error.message,
       error: true,
     });
   }

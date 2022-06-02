@@ -10,8 +10,8 @@ const post = async (req, res) => {
     });
   } catch (error) {
     return res.status(500).json({
-      message: 'Error creating new employee',
-      data: undefined,
+      message: 'An error ocurred',
+      data: error.message,
       error: true,
     });
   }

@@ -471,7 +471,7 @@ describe('POST /', () => {
       ],
       startDate: '2002-12-09T00:00:00.000+00:00',
     });
-    expect(response.body.message.message).toBe('Project validation failed: employees.0.employeeId: Cast to ObjectId failed for value "123" (type string) at path "employeeId" because of "BSONTypeError"');
+    expect(response.body.message).toBe('An error ocurred');
     expect(response.statusCode).toBe(500);
     expect(response.body.error).toBe(true);
   });
