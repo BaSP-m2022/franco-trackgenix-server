@@ -1,838 +1,889 @@
 {
-  "info": {
-    "_postman_id": "b6a034a0-8600-4945-96c5-22850c77332a",
-    "name": "franco-trackgenix-server",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
-  },
-  "item": [
-    {
-      "name": "admins",
-      "item": [
-        {
-          "name": "getAll",
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "localhost:3000/admins/",
-              "host": [
-                "localhost"
-              ],
-              "port": "3000",
-              "path": [
-                "admins",
-                ""
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "getById",
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "localhost:3000/admins/:id",
-              "host": [
-                "localhost"
-              ],
-              "port": "3000",
-              "path": [
-                "admins",
-                ":id"
-              ],
-              "variable": [
-                {
-                  "key": "id",
-                  "value": null
-                }
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "edit",
-          "request": {
-            "method": "PUT",
-            "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "localhost:3000/admins/:id",
-              "host": [
-                "localhost"
-              ],
-              "port": "3000",
-              "path": [
-                "admins",
-                ":id"
-              ],
-              "variable": [
-                {
-                  "key": "id",
-                  "value": null
-                }
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "delete",
-          "request": {
-            "method": "DELETE",
-            "header": [],
-            "url": {
-              "raw": "localhost:3000/admins/:id",
-              "host": [
-                "localhost"
-              ],
-              "port": "3000",
-              "path": [
-                "admins",
-                ":id"
-              ],
-              "variable": [
-                {
-                  "key": "id",
-                  "value": null
-                }
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "create",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "exec": [
-                  ""
-                ],
-                "type": "text/javascript"
-              }
-            }
-          ],
-          "request": {
-            "method": "POST",
-            "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "localhost:3000/admins/",
-              "host": [
-                "localhost"
-              ],
-              "port": "3000",
-              "path": [
-                "admins",
-                ""
-              ]
-            }
-          },
-          "response": []
-        }
-      ]
-    },
-    {
-      "name": "superAdmins",
-      "item": [
-        {
-          "name": "getById",
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "http://localhost:3000/super-admins/",
-              "protocol": "http",
-              "host": [
-                "localhost"
-              ],
-              "port": "3000",
-              "path": [
-                "super-admins",
-                ""
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "getAll",
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "http://localhost:3000/super-admins",
-              "protocol": "http",
-              "host": [
-                "localhost"
-              ],
-              "port": "3000",
-              "path": [
-                "super-admins"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "delete",
-          "request": {
-            "method": "DELETE",
-            "header": [],
-            "url": {
-              "raw": "http://localhost:3000/super-admins/",
-              "protocol": "http",
-              "host": [
-                "localhost"
-              ],
-              "port": "3000",
-              "path": [
-                "super-admins",
-                ""
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "edit",
-          "request": {
-            "method": "PUT",
-            "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n    \"password\": \"sasd44su987\",\r\n    \"email\": \"recktbythiss@asdasd.com\",\r\n    \"firstName\": \"Mago\",\r\n    \"lastName\": \"Rdito\"\r\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "http://localhost:3000/super-admins/",
-              "protocol": "http",
-              "host": [
-                "localhost"
-              ],
-              "port": "3000",
-              "path": [
-                "super-admins",
-                ""
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "create",
-          "request": {
-            "method": "POST",
-            "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n    \"password\": \"iH4trShell\",\r\n    \"email\": \"rikitika@prip.com\",\r\n    \"firstName\": \"Francisco\",\r\n    \"lastName\": \"Juanse\"\r\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "http://localhost:3000/super-admins/",
-              "protocol": "http",
-              "host": [
-                "localhost"
-              ],
-              "port": "3000",
-              "path": [
-                "super-admins",
-                ""
-              ]
-            }
-          },
-          "response": []
-        }
-      ]
-    },
-    {
-      "name": "tasks",
-      "item": [
-        {
-          "name": "create",
-          "request": {
-            "method": "POST",
-            "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n    \"description\": \"Test an app\",\r\n    \"workedHours\": 10 \r\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "localhost:3000/tasks/",
-              "host": [
-                "localhost"
-              ],
-              "port": "3000",
-              "path": [
-                "tasks",
-                ""
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "getAll",
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "localhost:3000/tasks?workedHours",
-              "host": [
-                "localhost"
-              ],
-              "port": "3000",
-              "path": [
-                "tasks"
-              ],
-              "query": [
-                {
-                  "key": "description",
-                  "value": "Updated task 5.0",
-                  "disabled": true
-                },
-                {
-                  "key": "workedHours",
-                  "value": null
-                }
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "getById",
-          "request": {
-            "method": "GET",
-            "header": []
-          },
-          "response": []
-        },
-        {
-          "name": "delete",
-          "request": {
-            "method": "DELETE",
-            "header": [],
-            "url": {
-              "raw": "localhost:3000/tasks/628261cccf8835f2c0d24814",
-              "host": [
-                "localhost"
-              ],
-              "port": "3000",
-              "path": [
-                "tasks",
-                "628261cccf8835f2c0d24814"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "edit",
-          "request": {
-            "method": "PUT",
-            "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n\"description\": \"Updated task 5.0\",\r\n\"workedHours\": 5.5\r\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "localhost:3000/tasks/6282659b7389388c5b5558b6",
-              "host": [
-                "localhost"
-              ],
-              "port": "3000",
-              "path": [
-                "tasks",
-                "6282659b7389388c5b5558b6"
-              ]
-            }
-          },
-          "response": []
-        }
-      ]
-    },
-    {
-      "name": "employees",
-      "item": [
-        {
-          "name": "create",
-          "request": {
-            "method": "POST",
-            "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n    \"firstName\": \"Prueba\",\r\n    \"lastName\": \"Post\",\r\n    \"email\": \"prueba@gmail.com\",\r\n    \"dni\": \"12345678\",\r\n    \"password\": \"a1Asdwe1\",\r\n    \"dateOfBirth\": \"05-05-1985\"\r\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "localhost:3000/employees/",
-              "host": [
-                "localhost"
-              ],
-              "port": "3000",
-              "path": [
-                "employees",
-                ""
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "delete",
-          "request": {
-            "method": "DELETE",
-            "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": ""
-            },
-            "url": {
-              "raw": "localhost:3000/employees/",
-              "host": [
-                "localhost"
-              ],
-              "port": "3000",
-              "path": [
-                "employees",
-                ""
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "getById",
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "http://localhost:3000/employees/",
-              "protocol": "http",
-              "host": [
-                "localhost"
-              ],
-              "port": "3000",
-              "path": [
-                "employees",
-                ""
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "edit",
-          "request": {
-            "method": "PUT",
-            "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n    \"_id\": \"628197b4a7204f4c87ab6687\",\r\n    \"firstName\": \"Madonna\",\r\n    \"lastName\": \"Pop\",\r\n    \"dni\": \"33016244\",\r\n    \"email\": \"madonna@gmail.com\",\r\n    \"password\": \"pop1234\",\r\n    \"__v\": 0\r\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "http://localhost:3000/employees/",
-              "protocol": "http",
-              "host": [
-                "localhost"
-              ],
-              "port": "3000",
-              "path": [
-                "employees",
-                ""
-              ],
-              "query": [
-                {
-                  "key": "id",
-                  "value": null,
-                  "disabled": true
-                }
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "getAll",
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "http://localhost:3000/employees/?firstName&lastName&dni&email&password",
-              "protocol": "http",
-              "host": [
-                "localhost"
-              ],
-              "port": "3000",
-              "path": [
-                "employees",
-                ""
-              ],
-              "query": [
-                {
-                  "key": "firstName",
-                  "value": null
-                },
-                {
-                  "key": "lastName",
-                  "value": null
-                },
-                {
-                  "key": "dni",
-                  "value": null
-                },
-                {
-                  "key": "email",
-                  "value": null
-                },
-                {
-                  "key": "password",
-                  "value": null
-                }
-              ]
-            }
-          },
-          "response": []
-        }
-      ]
-    },
-    {
-      "name": "timesheets",
-      "item": [
-        {
-          "name": "create",
-          "request": {
-            "method": "POST",
-            "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n    \"tasks\": [\"Dormir\",\"Comer\", \"Correr\"],\r\n    \"totalHours\": 8,\r\n    \"checked\": true,\r\n    \"status\": \"Status4\",\r\n    \"startDate\": \"2022-05-15T18:02:23.412Z\",\r\n    \"endDate\": \"2022-05-20T18:02:23.412Z\",\r\n    \"projectId\": \"4\",\r\n    \"employeeId\": \"3\",\r\n    \"managerId\": \"4\"\r\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "localhost:3000/time-sheets",
-              "host": [
-                "localhost"
-              ],
-              "port": "3000",
-              "path": [
-                "timesheets"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "edit",
-          "request": {
-            "method": "PUT",
-            "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n    \"tasks\": [\"Caminar\",\"Programar\"],\r\n    \"totalHours\": 12,\r\n    \"checked\": true,\r\n    \"status\": \"Status1\",\r\n    \"startDate\": \"2022-05-16T18:02:23.412Z\",\r\n    \"endDate\": \"2022-05-19T18:02:23.412Z\",\r\n    \"projectId\": \"1\",\r\n    \"employeeId\": \"1\",\r\n    \"managerId\": \"1\"\r\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "localhost:3000/time-sheets/:id",
-              "host": [
-                "localhost"
-              ],
-              "port": "3000",
-              "path": [
-                "timesheets",
-                ":id"
-              ],
-              "variable": [
-                {
-                  "key": "id",
-                  "value": "6281937a8da15cc010a1607e"
-                }
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "getAll",
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "localhost:3000/time-sheets/",
-              "host": [
-                "localhost"
-              ],
-              "port": "3000",
-              "path": [
-                "timesheets",
-                ""
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "getById",
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "localhost:3000/time-sheets/:id",
-              "host": [
-                "localhost"
-              ],
-              "port": "3000",
-              "path": [
-                "timesheets",
-                ":id"
-              ],
-              "variable": [
-                {
-                  "key": "id",
-                  "value": null
-                }
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "delete",
-          "request": {
-            "method": "DELETE",
-            "header": [],
-            "url": {
-              "raw": "localhost:3000/time-sheets/:id",
-              "host": [
-                "localhost"
-              ],
-              "port": "3000",
-              "path": [
-                "timesheets",
-                ":id"
-              ],
-              "variable": [
-                {
-                  "key": "id",
-                  "value": null
-                }
-              ]
-            }
-          },
-          "response": []
-        }
-      ]
-    },
-    {
-      "name": "projects",
-      "item": [
-        {
-          "name": "create",
-          "request": {
-            "method": "POST",
-            "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n    \"name\": \"mas\",\r\n    \"status\": \"active\",\r\n    \"description\": \"asdsdfadasd\",\r\n    \"employees\": [{\r\n        \"rate\": 123.12,\r\n        \"role\": \"DEV\"\r\n    }],\r\n    \"startDate\": \"5-17-2020\"\r\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "http://localhost:3000/projects",
-              "protocol": "http",
-              "host": [
-                "localhost"
-              ],
-              "port": "3000",
-              "path": [
-                "projects"
-              ],
-              "query": [
-                {
-                  "key": "employees",
-                  "value": "",
-                  "disabled": true
-                },
-                {
-                  "key": "startDate",
-                  "value": "",
-                  "disabled": true
-                },
-                {
-                  "key": "endDate",
-                  "value": "",
-                  "disabled": true
-                }
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "getAll",
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "http://localhost:3000/projects?name=multi",
-              "protocol": "http",
-              "host": [
-                "localhost"
-              ],
-              "port": "3000",
-              "path": [
-                "projects"
-              ],
-              "query": [
-                {
-                  "key": "name",
-                  "value": "multi"
-                }
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "getById",
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "http://localhost:3000/projects/62816b78e398e408164af5df",
-              "protocol": "http",
-              "host": [
-                "localhost"
-              ],
-              "port": "3000",
-              "path": [
-                "projects",
-                "62816b78e398e408164af5df"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "delete",
-          "request": {
-            "method": "DELETE",
-            "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "localhost:3000/projects/:id",
-              "host": [
-                "localhost"
-              ],
-              "port": "3000",
-              "path": [
-                "projects",
-                ":id"
-              ],
-              "variable": [
-                {
-                  "key": "id",
-                  "value": null
-                }
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "put",
-          "request": {
-            "method": "PUT",
-            "header": [],
-            "url": {
-              "raw": "localhost:3000/projects/:id",
-              "host": [
-                "localhost"
-              ],
-              "port": "3000",
-              "path": [
-                "projects",
-                ":id"
-              ],
-              "variable": [
-                {
-                  "key": "id",
-                  "value": null
-                }
-              ]
-            }
-          },
-          "response": []
-        }
-      ]
-    }
-  ]
+	"info": {
+		"_postman_id": "bdb59794-e6bf-4fb2-946f-201b1b3bc2f9",
+		"name": "franco-trackgenix-server",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "11310572"
+	},
+	"item": [
+		{
+			"name": "admins",
+			"item": [
+				{
+					"name": "getAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/admins",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"admins"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/admins/:id",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"admins",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "edit",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"laura\",\r\n    \"lastName\": \"sammartino\",\r\n    \"email\": \"laurasammartino@hotmail.com\",\r\n    \"password\": \"coasa123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/admins/:id",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"admins",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/admins/:id",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"admins",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"laura\",\r\n    \"lastName\": \"sammartino\",\r\n    \"email\": \"laurasammartino@hotmail.com\",\r\n    \"password\": \"coasa123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/admins",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"admins"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "super-admins",
+			"item": [
+				{
+					"name": "getAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/super-admins",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"super-admins"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/super-admins/:id",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"super-admins",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "edit",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"password\": \"iH4trShell\",\r\n    \"email\": \"rikitika@prip.com\",\r\n    \"firstName\": \"Francisco\",\r\n    \"lastName\": \"Juanse\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/super-admins/:id",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"super-admins",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "628694302f284e08ca50349e"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/super-admins/:id",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"super-admins",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"password\": \"iH4trShell\",\r\n    \"email\": \"rikitika@prip.com\",\r\n    \"firstName\": \"Francisco\",\r\n    \"lastName\": \"Juanse\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/super-admins",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"super-admins"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "tasks",
+			"item": [
+				{
+					"name": "getAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/tasks",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"tasks"
+							],
+							"query": [
+								{
+									"key": "description",
+									"value": "Updated task 5.0",
+									"disabled": true
+								},
+								{
+									"key": "workedHours",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/tasks/:id",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"tasks",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "edit",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"description\": \"Test an app\",\r\n    \"workedHours\": 10,\r\n    \"projectId\": \"6298dd9d11ed617320cb4468\",\r\n    \"date\": \"2023-02-02\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/tasks/:id",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"tasks",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/tasks/:id",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"tasks",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"description\": \"Test an app\",\r\n    \"workedHours\": 10,\r\n    \"projectId\": \"6298dd9d11ed617320cb4468\",\r\n    \"date\": \"2023-02-02\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/tasks",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"tasks"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "employees",
+			"item": [
+				{
+					"name": "getAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/employees",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"employees"
+							],
+							"query": [
+								{
+									"key": "firstName",
+									"value": null,
+									"disabled": true
+								},
+								{
+									"key": "lastName",
+									"value": null,
+									"disabled": true
+								},
+								{
+									"key": "dni",
+									"value": null,
+									"disabled": true
+								},
+								{
+									"key": "email",
+									"value": null,
+									"disabled": true
+								},
+								{
+									"key": "password",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/employees/:id",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"employees",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "edit",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"Prueba\",\r\n    \"lastName\": \"Post\",\r\n    \"email\": \"prueba@gmail.com\",\r\n    \"dni\": \"12345678\",\r\n    \"password\": \"a1Asdwe1\",\r\n    \"dateOfBirth\": \"05-05-1985\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/employees/:id",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"employees",
+								":id"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "",
+									"disabled": true
+								}
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{URL}}/employees/:id",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"employees",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"Prueba\",\r\n    \"lastName\": \"Post\",\r\n    \"email\": \"prueba@gmail.com\",\r\n    \"dni\": \"12345678\",\r\n    \"password\": \"a1Asdwe1\",\r\n    \"dateOfBirth\": \"05-05-1985\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/employees",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"employees"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "time-sheets",
+			"item": [
+				{
+					"name": "getAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/time-sheets",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"time-sheets"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/time-sheets/:id",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"time-sheets",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "edit",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"tasks\": [\"6295572e7e921dffa9f71a24\",\"6295576c7e921dffa9f71a28\"],\r\n    \"totalHours\": 8,\r\n    \"status\": \"Status4\",\r\n    \"startDate\": \"2022-05-15T18:02:23.412Z\",\r\n    \"endDate\": \"2022-07-20T18:02:23.412Z\",\r\n    \"employeeId\": \"62840603549ef329a075ef63\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/time-sheets/:id",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"time-sheets",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "6281937a8da15cc010a1607e"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/time-sheets/:id",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"time-sheets",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"tasks\": [\"6295572e7e921dffa9f71a24\",\"6295576c7e921dffa9f71a28\"],\r\n    \"totalHours\": 8,\r\n    \"status\": \"Status4\",\r\n    \"startDate\": \"2022-05-15T18:02:23.412Z\",\r\n    \"endDate\": \"2022-07-20T18:02:23.412Z\",\r\n    \"employeeId\": \"62840603549ef329a075ef63\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/time-sheets",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"time-sheets"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "projects",
+			"item": [
+				{
+					"name": "getAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/projects",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"projects"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "multi",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/projects/:id",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"projects",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "62950d38c13d310fcb2702c9"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "put",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"mas\",\r\n    \"status\": \"active\",\r\n    \"description\": \"asdsdfadasd\",\r\n    \"employees\": [{\r\n        \"employeeId\": \"62950d38c13d310fcb2702c9\",\r\n        \"rate\": 123.12,\r\n        \"role\": \"DEV\"\r\n    }],\r\n    \"startDate\": \"5-17-2020\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/projects/:id",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"projects",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "62950d38c13d310fcb2702c9"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/projects/:id",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"projects",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"mas\",\r\n    \"status\": \"active\",\r\n    \"description\": \"asdsdfadasd\",\r\n    \"employees\": [{\r\n        \"employeeId\": \"62950d38c13d310fcb2702c9\",\r\n        \"rate\": 123.12,\r\n        \"role\": \"DEV\"\r\n    }],\r\n    \"startDate\": \"5-17-2020\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/projects",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"projects"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "URL",
+			"value": "localhost:4000",
+			"type": "string"
+		}
+	]
 }

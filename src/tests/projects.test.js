@@ -109,9 +109,9 @@ describe('PUT /project', () => {
       ],
       startDate: '2002-12-09T00:00:00.000+00:00',
     });
-    expect(response.body.message).toBe('There was an error during validation');
+    expect(response.body.message).toBeDefined();
     expect(response.statusCode).toBe(400);
-    expect(response.body.data).toBe('"name" is not allowed to be empty');
+    expect(response.body.data).toBeUndefined();
     expect(response.body.error).toBe(true);
   });
   test('It should get status 400 and status incorrect', async () => {
@@ -128,9 +128,9 @@ describe('PUT /project', () => {
       ],
       startDate: '2002-12-09T00:00:00.000+00:00',
     });
-    expect(response.body.message).toBe('There was an error during validation');
+    expect(response.body.message).toBeDefined();
     expect(response.statusCode).toBe(400);
-    expect(response.body.data).toBe('"status" must be one of [active, inactive]');
+    expect(response.body.data).toBeUndefined();
     expect(response.body.error).toBe(true);
   });
   test('It should get status 400 and description empty', async () => {
@@ -147,9 +147,9 @@ describe('PUT /project', () => {
       ],
       startDate: '2002-12-09T00:00:00.000+00:00',
     });
-    expect(response.body.message).toBe('There was an error during validation');
+    expect(response.body.message).toBeDefined();
     expect(response.statusCode).toBe(400);
-    expect(response.body.data).toBe('"description" is not allowed to be empty');
+    expect(response.body.data).toBeUndefined();
     expect(response.body.error).toBe(true);
   });
   test('It should get status 400 and rate empty', async () => {
@@ -166,9 +166,9 @@ describe('PUT /project', () => {
       ],
       startDate: '2002-12-09T00:00:00.000+00:00',
     });
-    expect(response.body.message).toBe('There was an error during validation');
+    expect(response.body.message).toBeDefined();
     expect(response.statusCode).toBe(400);
-    expect(response.body.data).toBe('"employees[0].rate" must be a number');
+    expect(response.body.data).toBeUndefined();
     expect(response.body.error).toBe(true);
   });
   test('It should get status 400 and role empty', async () => {
@@ -185,9 +185,9 @@ describe('PUT /project', () => {
       ],
       startDate: '2002-12-09T00:00:00.000+00:00',
     });
-    expect(response.body.message).toBe('There was an error during validation');
+    expect(response.body.message).toBeDefined();
     expect(response.statusCode).toBe(400);
-    expect(response.body.data).toBe('"employees[0].role" is not allowed to be empty');
+    expect(response.body.data).toBeUndefined();
     expect(response.body.error).toBe(true);
   });
   test('It should get status 500 and employee ID invalid', async () => {
@@ -223,9 +223,9 @@ describe('PUT /project', () => {
       ],
       startDate: '',
     });
-    expect(response.body.message).toBe('There was an error during validation');
+    expect(response.body.message).toBeDefined();
     expect(response.statusCode).toBe(400);
-    expect(response.body.data).toBe('"startDate" must be a valid date');
+    expect(response.body.data).toBeUndefined();
     expect(response.body.error).toBe(true);
   });
   test('It should get status 400 and startDate empty', async () => {
@@ -243,9 +243,9 @@ describe('PUT /project', () => {
       startDate: '2002-12-09T00:00:00.000+00:00',
       endDate: '',
     });
-    expect(response.body.message).toBe('There was an error during validation');
+    expect(response.body.message).toBeDefined();
     expect(response.statusCode).toBe(400);
-    expect(response.body.data).toBe('"endDate" must be a valid date');
+    expect(response.body.data).toBeUndefined();
     expect(response.body.error).toBe(true);
   });
 });
@@ -314,7 +314,7 @@ describe('POST /', () => {
       ],
       startDate: '2002-12-09T00:00:00.000+00:00',
     });
-    expect(response.body.message).toBe('There was an error during validation');
+    expect(response.body.message).toBeDefined();
     expect(response.statusCode).toBe(400);
     expect(response.body.error).toBe(true);
   });
@@ -332,8 +332,8 @@ describe('POST /', () => {
       ],
       startDate: '2002-12-09T00:00:00.000+00:00',
     });
-    expect(response.body.message).toBe('There was an error during validation');
-    expect(response.body.data).toBe('"name" length must be at least 3 characters long');
+    expect(response.body.message).toBeDefined();
+    expect(response.body.data).toBeUndefined();
     expect(response.statusCode).toBe(400);
     expect(response.body.error).toBe(true);
   });
@@ -351,8 +351,8 @@ describe('POST /', () => {
       ],
       startDate: '2002-12-09T00:00:00.000+00:00',
     });
-    expect(response.body.message).toBe('There was an error during validation');
-    expect(response.body.data).toBe('"status" must be one of [active, inactive]');
+    expect(response.body.message).toBeDefined();
+    expect(response.body.data).toBeUndefined();
     expect(response.statusCode).toBe(400);
     expect(response.body.error).toBe(true);
   });
@@ -370,8 +370,8 @@ describe('POST /', () => {
       ],
       startDate: '2002-12-09T00:00:00.000+00:00',
     });
-    expect(response.body.message).toBe('There was an error during validation');
-    expect(response.body.data).toBe('"description" length must be at least 10 characters long');
+    expect(response.body.message).toBeDefined();
+    expect(response.body.data).toBeUndefined();
     expect(response.statusCode).toBe(400);
     expect(response.body.error).toBe(true);
   });
@@ -389,8 +389,8 @@ describe('POST /', () => {
       ],
       startDate: '2002-12-09T00:00:00.000+00:00',
     });
-    expect(response.body.message).toBe('There was an error during validation');
-    expect(response.body.data).toBe('"employees[0].rate" must be a number');
+    expect(response.body.message).toBeDefined();
+    expect(response.body.data).toBeUndefined();
     expect(response.statusCode).toBe(400);
     expect(response.body.error).toBe(true);
   });
@@ -408,8 +408,8 @@ describe('POST /', () => {
       ],
       startDate: '2002-12-09T00:00:00.000+00:00',
     });
-    expect(response.body.message).toBe('There was an error during validation');
-    expect(response.body.data).toBe('"employees[0].role" must be a string');
+    expect(response.body.message).toBeDefined();
+    expect(response.body.data).toBeUndefined();
     expect(response.statusCode).toBe(400);
     expect(response.body.error).toBe(true);
   });
@@ -427,8 +427,8 @@ describe('POST /', () => {
       ],
       startDate: 'asd',
     });
-    expect(response.body.message).toBe('There was an error during validation');
-    expect(response.body.data).toBe('"startDate" must be a valid date');
+    expect(response.body.message).toBeDefined();
+    expect(response.body.data).toBeUndefined();
     expect(response.statusCode).toBe(400);
     expect(response.body.error).toBe(true);
   });
@@ -445,15 +445,15 @@ describe('POST /', () => {
       ],
       startDate: '2002-12-09T00:00:00.000+00:00',
     });
-    expect(response.body.message).toBe('There was an error during validation');
-    expect(response.body.data).toBe('"name" is required');
+    expect(response.body.message).toBeDefined();
+    expect(response.body.data).toBeUndefined();
     expect(response.statusCode).toBe(400);
     expect(response.body.error).toBe(true);
   });
   test('It should return an error because the body is empty', async () => {
     const response = await request(app).post('/projects/').send({});
-    expect(response.body.message).toBe('There was an error during validation');
-    expect(response.body.data).toBe('"name" is required');
+    expect(response.body.message).toBeDefined();
+    expect(response.body.data).toBeUndefined();
     expect(response.statusCode).toBe(400);
     expect(response.body.error).toBe(true);
   });
@@ -471,7 +471,7 @@ describe('POST /', () => {
       ],
       startDate: '2002-12-09T00:00:00.000+00:00',
     });
-    expect(response.body.message.message).toBe('Project validation failed: employees.0.employeeId: Cast to ObjectId failed for value "123" (type string) at path "employeeId" because of "BSONTypeError"');
+    expect(response.body.message).toBe('An error ocurred');
     expect(response.statusCode).toBe(500);
     expect(response.body.error).toBe(true);
   });

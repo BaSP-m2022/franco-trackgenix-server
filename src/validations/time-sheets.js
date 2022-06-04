@@ -1,7 +1,7 @@
 import Joi from 'joi';
 
 const validations = (req, res, next) => {
-  const timesheetsSchema = Joi.object({
+  const schema = Joi.object({
     tasks: Joi.array().items().required(),
     totalHours: Joi.number(),
     status: Joi.string(),
@@ -10,11 +10,12 @@ const validations = (req, res, next) => {
     employeeId: Joi.string().required(),
   });
 
-  const validate = timesheetsSchema.validate(req.body);
-  if (validate.error) {
+  const validation = schema.validate(req.body);
+
+  if (validation.error) {
     return res.status(400).json({
-      message: 'There was an error during validation',
-      data: validate.error,
+      message: validation.error.details[0].message,
+      data: undefined,
       error: true,
     });
   }

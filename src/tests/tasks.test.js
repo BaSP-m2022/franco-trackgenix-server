@@ -52,7 +52,7 @@ describe('POST - /tasks', () => {
 
   test('It should return a status 400', async () => {
     const response = await request(app).post('/tasks').send();
-    expect(response.body.message).toBe('There was an error');
+    expect(response.body.message).toBeDefined();
     expect(response.statusCode).toBe(400);
   });
 

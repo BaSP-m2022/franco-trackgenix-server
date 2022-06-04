@@ -1,17 +1,44 @@
 import Joi from 'joi';
 
 const creation = (req, res, next) => {
-  const superAdminValidation = Joi.object({
-    firstName: Joi.string().required().min(3),
-    lastName: Joi.string().required().min(3),
-    email: Joi.string().email().required(),
-    password: Joi.string().required()
-      .pattern(/^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$/),
+  const schema = Joi.object({
+    firstName: Joi.string()
+      .min(3)
+      .message('First Name must have at least 3 characters')
+      .max(30)
+      .message('First Name must be less than 30 characters')
+      .regex(/^[a-zA-Z]+$/)
+      .message('First Name must have only letters')
+      .required(),
+    lastName: Joi.string()
+      .min(3)
+      .message('Last Name must have at least 3 characters')
+      .max(30)
+      .message('Last Name must be less than 30 characters')
+      .regex(/^[a-zA-Z]+$/)
+      .message('Last Name must have only letters')
+      .required(),
+    email: Joi.string()
+      .email()
+      .message('Your email must be a valid email')
+      .required(),
+    password: Joi.string()
+      .min(8)
+      .message('Password must have between 8 and 12 characters')
+      .max(12)
+      .message('Password must have between 8 and 12 characters')
+      .pattern(/[a-zA-Z]/)
+      .message('Password must have at least 1 letter')
+      .pattern(/[0-9]/)
+      .message('Password must have at least 1 number')
+      .required(),
   });
-  const validation = superAdminValidation.validate(req.body);
+
+  const validation = schema.validate(req.body);
+
   if (validation.error) {
     return res.status(400).json({
-      message: 'There was an error',
+      message: validation.error.details[0].message,
       data: undefined,
       error: true,
     });

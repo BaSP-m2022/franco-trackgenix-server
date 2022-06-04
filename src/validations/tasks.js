@@ -9,11 +9,12 @@ const validationCreate = (req, res, next) => {
   });
 
   const validation = schema.validate(req.body);
+
   if (validation.error) {
     return res.status(400).json({
-      message: 'There was an error',
+      message: validation.error.details[0].message,
       data: undefined,
-      error: validation.error.details[0].message,
+      error: true,
     });
   }
 

@@ -102,9 +102,10 @@ describe('PUT/timeSheet/:id', () => {
         employeeId: '60d4a32f257e066e9495ce12',
       },
     );
-    expect(response.body.message).toBe('There was an error during validation');
+    expect(response.body.message).toBeDefined();
     expect(response.statusCode).toBe(400);
     expect(response.body.error).toBe(true);
+    expect(response.body.data).toBeUndefined();
   });
   test('It should get status 400 and status incorrect', async () => {
     const response = await request(app).put(`/time-sheets/${timeSheetId}`).send(
@@ -117,9 +118,10 @@ describe('PUT/timeSheet/:id', () => {
         employeeId: '60d4a32f257e066e9495ce12',
       },
     );
-    expect(response.body.message).toBe('There was an error during validation');
+    expect(response.body.message).toBeDefined();
     expect(response.statusCode).toBe(400);
     expect(response.body.error).toBe(true);
+    expect(response.body.data).toBeUndefined();
   });
   test('It should get status 400 and start date empty', async () => {
     const response = await request(app).put(`/time-sheets/${timeSheetId}`).send(
@@ -132,9 +134,10 @@ describe('PUT/timeSheet/:id', () => {
         employeeId: '60d4a32f257e066e9495ce12',
       },
     );
-    expect(response.body.message).toBe('There was an error during validation');
+    expect(response.body.message).toBeDefined();
     expect(response.statusCode).toBe(400);
     expect(response.body.error).toBe(true);
+    expect(response.body.data).toBeUndefined();
   });
   test('It should get status 400 and end date empty', async () => {
     const response = await request(app).put(`/time-sheets/${timeSheetId}`).send(
@@ -147,9 +150,10 @@ describe('PUT/timeSheet/:id', () => {
         employeeId: '60d4a32f257e066e9495ce12',
       },
     );
-    expect(response.body.message).toBe('There was an error during validation');
+    expect(response.body.message).toBeDefined();
     expect(response.statusCode).toBe(400);
     expect(response.body.error).toBe(true);
+    expect(response.body.data).toBeUndefined();
   });
   test('It should get status 400 and employeeId empty', async () => {
     const response = await request(app).put(`/time-sheets/${timeSheetId}`).send(
@@ -162,9 +166,10 @@ describe('PUT/timeSheet/:id', () => {
         employeeId: '',
       },
     );
-    expect(response.body.message).toBe('There was an error during validation');
+    expect(response.body.message).toBeDefined();
     expect(response.statusCode).toBe(400);
     expect(response.body.error).toBe(true);
+    expect(response.body.data).toBeUndefined();
   });
 });
 
@@ -245,9 +250,10 @@ describe('Time-sheet POST', () => {
   });
   test('It should get ERROR status: 400 (EMPTY BODY)', async () => {
     const response = await request(app).post('/time-sheets/').send();
-    expect(response.body.message).toBe('There was an error during validation');
+    expect(response.body.message).toBeDefined();
     expect(response.statusCode).toBe(400);
     expect(response.body.error).toBe(true);
+    expect(response.body.data).toBeUndefined();
   });
   test('It should get ERROR status: 400 (WRONG KEY)', async () => {
     const response = await request(app).post('/time-sheets/').send({
@@ -258,9 +264,10 @@ describe('Time-sheet POST', () => {
       endDate: '2022-12-12T00:00:00.000+00:00',
       employeeId: '62830ed24887fa4590d33107',
     });
-    expect(response.body.message).toBe('There was an error during validation');
+    expect(response.body.message).toBeDefined();
     expect(response.statusCode).toBe(400);
     expect(response.body.error).toBe(true);
+    expect(response.body.data).toBeUndefined();
   });
   test('It should get ERROR status: 400 (MISSING KEYS)', async () => {
     const response = await request(app).post('/time-sheets/').send({
@@ -269,9 +276,10 @@ describe('Time-sheet POST', () => {
       endDate: '2022-12-12T00:00:00.000+00:00',
       employeeId: '62830ed24887fa4590d33107',
     });
-    expect(response.body.message).toBe('There was an error during validation');
+    expect(response.body.message).toBeDefined();
     expect(response.statusCode).toBe(400);
     expect(response.body.error).toBe(true);
+    expect(response.body.data).toBeUndefined();
   });
   test('It should get ERROR status: 400 (WRONG DATA TYPE)', async () => {
     const response = await request(app).post('/time-sheets/').send({
@@ -282,8 +290,9 @@ describe('Time-sheet POST', () => {
       endDate: '2022-12-12T00:00:00.000+00:00',
       employeeId: '62830ed24887fa4590d33107',
     });
-    expect(response.body.message).toBe('There was an error during validation');
+    expect(response.body.message).toBeDefined();
     expect(response.statusCode).toBe(400);
     expect(response.body.error).toBe(true);
+    expect(response.body.data).toBeUndefined();
   });
 });
