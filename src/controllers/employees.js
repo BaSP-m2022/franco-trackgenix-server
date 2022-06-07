@@ -125,8 +125,8 @@ const put = async (req, res) => {
   } catch (error) {
     return res.status(500).json({
       message: 'An error has ocurred',
-      data: undefined,
-      error: error.details[0].message,
+      data: error.details[0].message,
+      error: true,
     });
   }
 };
