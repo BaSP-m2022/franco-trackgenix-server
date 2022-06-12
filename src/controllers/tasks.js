@@ -17,7 +17,7 @@ const getAllTasks = async (req, res) => {
     });
   } catch (error) {
     return res.status(500).json({
-      message: 'There was an error',
+      message: error.message,
       data: undefined,
       error: true,
     });
@@ -48,7 +48,7 @@ const getTasksById = async (req, res) => {
     });
   } catch (error) {
     return res.status(500).json({
-      message: 'There was an error',
+      message: error.message,
       data: undefined,
       error: true,
     });
@@ -66,8 +66,8 @@ const createTask = async (req, res) => {
     });
   } catch (error) {
     return res.status(500).json({
-      message: 'An error ocurred',
-      data: error.message,
+      message: error.message,
+      data: undefined,
       error: true,
     });
   }
@@ -97,7 +97,7 @@ const deleteTask = async (req, res) => {
     });
   } catch (error) {
     return res.status(500).json({
-      message: 'There was an error',
+      message: error.message,
       data: undefined,
       error: true,
     });
@@ -132,7 +132,7 @@ const updateTask = async (req, res) => {
     });
   } catch (error) {
     return res.status(500).json({
-      message: 'There was an error',
+      message: error.message,
       data: undefined,
       error: true,
     });

@@ -17,7 +17,7 @@ const deleteById = async (req, res) => {
     });
   } catch (error) {
     return res.status(500).json({
-      message: 'Time-sheet could not be deleted',
+      message: error.message,
       data: undefined,
       error: true,
     });
@@ -35,8 +35,8 @@ const createTimesheet = async (req, res) => {
     });
   } catch (error) {
     return res.status(500).json({
-      message: 'An error ocurred',
-      data: error.message,
+      message: error.message,
+      data: undefined,
       error: true,
     });
   }
@@ -61,7 +61,7 @@ const getById = async (req, res) => {
     });
   } catch (error) {
     return res.status(500).json({
-      message: 'Time-sheet was not found',
+      message: error.message,
       data: undefined,
       error: true,
     });
@@ -87,7 +87,7 @@ const getAll = async (req, res) => {
     });
   } catch (error) {
     return res.status(500).json({
-      message: 'A valid parameter is needed',
+      message: error.message,
       data: undefined,
       error: true,
     });
@@ -118,7 +118,7 @@ const editTimesheet = async (req, res) => {
     });
   } catch (error) {
     return res.status(500).json({
-      message: 'An error ocurred',
+      message: error.message,
       data: undefined,
       error: true,
     });

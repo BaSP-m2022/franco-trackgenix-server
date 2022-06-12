@@ -10,8 +10,8 @@ const post = async (req, res) => {
     });
   } catch (error) {
     return res.status(500).json({
-      message: 'An error ocurred',
-      data: error.message,
+      message: error.message,
+      data: undefined,
       error: true,
     });
   }
@@ -35,13 +35,13 @@ const getById = async (req, res) => {
       });
     }
     return res.status(400).json({
-      message: 'missing id parameter',
+      message: 'Missing id parameter',
       data: undefined,
       error: true,
     });
   } catch (error) {
     return res.status(500).json({
-      message: error,
+      message: error.message,
       data: undefined,
       error: true,
     });
@@ -65,7 +65,7 @@ const getFilter = async (req, res) => {
     });
   } catch (error) {
     return res.status(500).json({
-      message: error,
+      message: error.message,
       data: undefined,
       error: true,
     });
@@ -124,8 +124,8 @@ const put = async (req, res) => {
     });
   } catch (error) {
     return res.status(500).json({
-      message: 'An error has ocurred',
-      data: error.details[0].message,
+      message: error.message,
+      data: undefined,
       error: true,
     });
   }

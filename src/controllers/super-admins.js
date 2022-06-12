@@ -17,7 +17,7 @@ const deleteById = async (req, res) => {
     });
   } catch (error) {
     return res.status(500).json({
-      message: 'An error has ocurred',
+      message: error.message,
       data: undefined,
       error: true,
     });
@@ -48,7 +48,7 @@ const getById = async (req, res) => {
     });
   } catch (error) {
     return res.status(500).json({
-      message: 'An error has ocurred',
+      message: error.message,
       data: undefined,
       error: true,
     });
@@ -65,8 +65,8 @@ const post = async (req, res) => {
     });
   } catch (error) {
     return res.status(500).json({
-      message: 'An error ocurred',
-      data: error.message,
+      message: error.message,
+      data: undefined,
       error: true,
     });
   }
@@ -100,7 +100,7 @@ const put = async (req, res) => {
     });
   } catch (error) {
     return res.status(500).json({
-      message: 'An error has ocurred',
+      message: error.message,
       data: undefined,
       error: true,
     });
@@ -124,7 +124,7 @@ const getFilter = async (req, res) => {
     });
   } catch (error) {
     return res.status(500).json({
-      message: 'An error has ocurred',
+      message: error.message,
       data: undefined,
       error: true,
     });
