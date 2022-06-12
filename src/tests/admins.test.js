@@ -1,4 +1,3 @@
-/* eslint-disable no-useless-escape */
 import request from 'supertest';
 import Admin from '../models/Admins';
 import adminsSeeds from '../seeds/admins';

@@ -1,4 +1,3 @@
-/* eslint-disable no-useless-escape */
 import request from 'supertest';
 import TimeSheet from '../models/Time-sheets';
 import Employee from '../models/Employees';
