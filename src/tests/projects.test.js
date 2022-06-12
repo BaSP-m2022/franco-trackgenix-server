@@ -23,7 +23,7 @@ describe('GET /projects', () => {
   });
   test('It should get status 404', async () => {
     const response = await request(app).get('/projects?name=kldñfgkgñdfkgñdfl');
-    expect(response.body.message).toBe('Error 404. Project not found with those parameters');
+    expect(response.body.message).toBe('Project not found with those parameters');
     expect(response.statusCode).toBe(404);
     expect(response.body.error).toBe(true);
     expect(response.body.data).toBe(undefined);
@@ -70,7 +70,7 @@ describe('GET /:id', () => {
   });
   test('It should return a status 500', async () => {
     const response = await request(app).get('/projects/6').send();
-    expect(response.body.message.message).toBe('Cast to ObjectId failed for value "6" (type string) at path "_id" for model "Project"');
+    expect(response.body.message).toBe('Cast to ObjectId failed for value "6" (type string) at path "_id" for model "Project"');
     expect(response.statusCode).toBe(500);
     expect(response.body.error).toBe(true);
   });
@@ -471,7 +471,7 @@ describe('POST /', () => {
       ],
       startDate: '2002-12-09T00:00:00.000+00:00',
     });
-    expect(response.body.message).toBe('An error ocurred');
+    expect(response.body.message).toBeDefined();
     expect(response.statusCode).toBe(500);
     expect(response.body.error).toBe(true);
   });

@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-escape */
 import request from 'supertest';
 import SuperAdmins from '../models/Super-admins';
 import superAdminsSeed from '../seeds/super-admins';
@@ -55,7 +56,7 @@ describe('GET by id /super-admins/:id', () => {
 
   test('It should return status 500 (invalid id)', async () => {
     const response = await request(app).get('/super-admins/22');
-    expect(response.body.message).toBe('An error has ocurred');
+    expect(response.body.message).toBe('Cast to ObjectId failed for value \"22\" (type string) at path \"_id\" for model \"SuperAdmin\"');
     expect(response.statusCode).toBe(500);
     expect(response.body.data).toBeUndefined();
     expect(response.body.error).toBe(true);
@@ -268,7 +269,7 @@ describe('DELETE /super-admins/:id', () => {
 
   test('It should return status 500 (invalid id)', async () => {
     const response = await request(app).delete('/super-admins/22');
-    expect(response.body.message).toBe('An error has ocurred');
+    expect(response.body.message).toBe('Cast to ObjectId failed for value \"22\" (type string) at path \"_id\" for model \"SuperAdmin\"');
     expect(response.statusCode).toBe(500);
     expect(response.body.data).toBeUndefined();
     expect(response.body.error).toBe(true);

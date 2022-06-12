@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-escape */
 import request from 'supertest';
 import TimeSheet from '../models/Time-sheets';
 import Employee from '../models/Employees';
@@ -87,7 +88,7 @@ describe('PUT/timeSheet/:id', () => {
         employeeId: '60d4a32f257e066e9495ce12',
       },
     );
-    expect(response.body.message).toBe('An error ocurred');
+    expect(response.body.message).toBeDefined();
     expect(response.statusCode).toBe(500);
     expect(response.body.error).toBe(true);
   });
@@ -193,7 +194,7 @@ describe('DELETE/timeSheet/:id', () => {
   test('It should get status 500', async () => {
     const response = await request(app).delete('/time-sheets/1');
     expect(response.statusCode).toBe(500);
-    expect(response.body.message).toBe('Time-sheet could not be deleted');
+    expect(response.body.message).toBe('Cast to ObjectId failed for value \"1\" (type string) at path \"_id\" for model \"Time-sheets\"');
     expect(response.body.error).toBe(true);
     expect(response.body.data).not.toEqual(expect.anything());
   });
@@ -214,7 +215,7 @@ describe('Time-sheet GET BY ID', () => {
   });
   test('It should get status: 500', async () => {
     const response = await request(app).get('/time-sheets/3').send();
-    expect(response.body.message).toBe('Time-sheet was not found');
+    expect(response.body.message).toBe('Cast to ObjectId failed for value \"3\" (type string) at path \"_id\" for model \"Time-sheets\"');
     expect(response.statusCode).toBe(500);
     expect(response.body.error).toBe(true);
   });

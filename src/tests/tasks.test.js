@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-escape */
 import request from 'supertest';
 import app from '../app';
 import Tasks from '../models/Tasks';
@@ -109,7 +110,7 @@ describe('DELETE - /tasks/:id', () => {
   test('It should return a status 500 because the id is not a mongoDB id', async () => {
     const response = await request(app).delete('/tasks/6289a9f3c375d9047b94a4c').send();
     expect(response.statusCode).toBe(500);
-    expect(response.body.message).toBe('There was an error');
+    expect(response.body.message).toBe('Cast to ObjectId failed for value \"6289a9f3c375d9047b94a4c\" (type string) at path \"_id\" for model \"Task\"');
     expect(response.body.error).toBe(true);
   });
 });
