@@ -88,7 +88,7 @@ const deleteById = async (req, res) => {
       error: false,
     });
   } catch (error) {
-    return res.status(500)({
+    return res.status(500).json({
       message: 'Employee can not be deleted',
       data: undefined,
       error: true,
