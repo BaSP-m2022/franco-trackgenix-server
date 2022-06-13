@@ -17,7 +17,7 @@ const getAllAdmins = async (req, res) => {
     });
   } catch (error) {
     return res.status(500).json({
-      message: 'An error occurred.',
+      message: error.message,
       data: undefined,
       error: true,
     });
@@ -65,8 +65,8 @@ const createAdmin = async (req, res) => {
     });
   } catch (error) {
     return res.status(500).json({
-      message: 'An error ocurred',
-      data: error.message,
+      message: error.message,
+      data: undefined,
       error: true,
     });
   }
@@ -100,7 +100,7 @@ const editAdmin = async (req, res) => {
     });
   } catch (error) {
     return res.status(500).json({
-      message: 'There was an error, please try again.',
+      message: error.message,
       data: undefined,
       error: true,
     });
@@ -124,7 +124,7 @@ const deleteAdmin = async (req, res) => {
     });
   } catch (error) {
     return res.status(500).json({
-      message: 'There was an error, please try again.',
+      message: error.message,
       data: undefined,
       error: true,
     });

@@ -135,7 +135,7 @@ describe('DELETE /admins/:id', () => {
   });
   test('It should return status 500', async () => {
     const response = await request(app).delete('/admins/500').send();
-    expect(response.body.message).toBe('There was an error, please try again.');
+    expect(response.body.message).toBe('Cast to ObjectId failed for value \"500\" (type string) at path \"_id\" for model \"Admin\"');
     expect(response.statusCode).toBe(500);
     expect(response.body.error).toBe(true);
   });

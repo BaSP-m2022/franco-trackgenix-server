@@ -11,8 +11,8 @@ const create = async (req, res) => {
     });
   } catch (error) {
     return res.status(500).json({
-      message: 'An error ocurred',
-      data: error.message,
+      message: error.message,
+      data: undefined,
       error: true,
     });
   }
@@ -61,7 +61,7 @@ const filter = async (req, res) => {
     });
     if (filteredProjects.length === 0) {
       return res.status(404).json({
-        message: 'Error 404. Project not found with those parameters',
+        message: 'Project not found with those parameters',
         data: undefined,
         error: true,
       });
@@ -73,7 +73,7 @@ const filter = async (req, res) => {
     });
   } catch (error) {
     return res.status(500).json({
-      message: error,
+      message: error.message,
       data: undefined,
       error: true,
     });
@@ -138,7 +138,7 @@ const getById = async (req, res) => {
     });
   } catch (error) {
     return res.status(500).json({
-      message: error,
+      message: error.message,
       data: undefined,
       error: true,
     });
