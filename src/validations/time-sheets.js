@@ -4,7 +4,7 @@ const validations = (req, res, next) => {
   const schema = Joi.object({
     tasks: Joi.array().items().required(),
     totalHours: Joi.number(),
-    status: Joi.string(),
+    status: Joi.string().valid('active', 'inactive').required(),
     startDate: Joi.date().less('now').required(),
     endDate: Joi.date().greater('now').required(),
     employeeId: Joi.string().required(),

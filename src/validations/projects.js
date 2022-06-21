@@ -5,13 +5,15 @@ const projectValidation = (req, res, next) => {
     name: Joi.string().required().min(3),
     status: Joi.string().valid('active', 'inactive'),
     description: Joi.string().min(10).max(100),
-    employees: Joi.array().items(Joi.object({
-      rate: Joi.number().required().greater(0),
-      role: Joi.string().required(),
-      employeeId: Joi.string().required(),
-    })),
-    startDate: Joi.date().less('now').required(),
-    endDate: Joi.date().greater('now').optional(),
+    employees: Joi.array().items(
+      Joi.object({
+        rate: Joi.number().required().greater(0),
+        role: Joi.string().required().valid('QA', 'TL', 'PM', 'DEV'),
+        employeeId: Joi.string().required(),
+      }),
+    ),
+    startDate: Joi.date().required(),
+    endDate: Joi.date().min(Joi.ref('startDate')).allow(''),
   });
 
   const validation = schema.validate(req.body);
