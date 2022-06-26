@@ -281,6 +281,7 @@ describe('PUT /project', () => {
         startDate: '',
         endDate: '',
       });
+    expect(response.body.message).toBeDefined();
     expect(response.statusCode).toBe(400);
     expect(response.body.data).toBeUndefined();
     expect(response.body.error).toBe(true);
@@ -389,7 +390,7 @@ describe('POST /', () => {
       .post('/projects/')
       .send({
         name: 'Radium Rocket',
-        status: '',
+        status: 'activo',
         description: 'BaSP-TG-26: radium',
         employees: [
           {
