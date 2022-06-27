@@ -4,9 +4,9 @@ const validations = (req, res, next) => {
   const schema = Joi.object({
     tasks: Joi.array().items().required(),
     totalHours: Joi.number(),
-    status: Joi.string(),
-    startDate: Joi.date().less('now').required(),
-    endDate: Joi.date().greater('now').required(),
+    status: Joi.string().valid('active', 'inactive').required(),
+    startDate: Joi.date().max('now').required(),
+    endDate: Joi.date().min(Joi.ref('startDate')),
     employeeId: Joi.string().required(),
   });
 

@@ -1,8 +1,5 @@
 import Joi from 'joi';
 
-const now = Date.now();
-const moreThan18 = new Date(now - (1000 * 60 * 60 * 24 * 365 * 18));
-
 const postValidation = (req, res, next) => {
   const schema = Joi.object({
     firstName: Joi.string()
@@ -44,7 +41,7 @@ const postValidation = (req, res, next) => {
       .message('Password must have at least 1 number')
       .required(),
     dateOfBirth: Joi.date()
-      .max(moreThan18)
+      .max((Date.now() - (1000 * 60 * 60 * 24 * 365 * 18)))
       .message('You must be more than 18 years old')
       .required(),
   });
