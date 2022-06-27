@@ -2,9 +2,23 @@ import mongoose from 'mongoose';
 
 const timesheetsSchema = new mongoose.Schema({
   tasks: [{
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Task',
-    required: true,
+    description: {
+      type: String,
+      required: true,
+    },
+    workedHours: {
+      type: Number,
+      required: true,
+    },
+    projectId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Project',
+      required: true,
+    },
+    date: {
+      type: Date,
+      required: true,
+    },
   }],
   totalHours: {
     type: Number,
