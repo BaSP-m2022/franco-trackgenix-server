@@ -1,4 +1,7 @@
-const admin = require('firebase-admin');
+import dotenv from 'dotenv';
+import admin from 'firebase-admin';
+
+dotenv.config();
 
 const firebaseApp = admin.initializeApp({
   credential: admin.credential.cert({
