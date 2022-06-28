@@ -5,7 +5,7 @@ import authMiddleware from '../middlewares/authMiddleware';
 
 const router = express.Router();
 
-router.get('/', employeeController.getFilter);
+router.get('/', authMiddleware, employeeController.getFilter);
 router.get('/:id', authMiddleware, employeeController.getById);
 router.post('/', authMiddleware, employeesValidation.postValidation, employeeController.post);
 router.put('/:id', authMiddleware, employeesValidation.postValidation, employeeController.put);

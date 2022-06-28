@@ -7,6 +7,7 @@ const register = async (req, res) => {
       email: req.body.email,
       password: req.body.password,
     });
+    await Firebase.auth().setCustomUserClaims(newFirebaseUser.uid, { role: req.body.role });
     const userCreated = new Users({
       email: req.body.email,
       firebaseUid: newFirebaseUser.uid,
