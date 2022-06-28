@@ -28,6 +28,13 @@ const employeeSchema = new Schema(
       type: Date,
       required: false,
     },
+    firebaseUid: {
+      type: String,
+      required: true,
+    },
+    token: {
+      type: String,
+    },
   },
 );
 

@@ -17,6 +17,13 @@ const adminSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  firebaseUid: {
+    type: String,
+    required: true,
+  },
+  token: {
+    type: String,
+  },
 });
 
 export default mongoose.model('Admin', adminSchema);

@@ -20,6 +20,13 @@ const superAdminSchema = new Schema(
       type: String,
       required: true,
     },
+    firebaseUid: {
+      type: String,
+      required: true,
+    },
+    token: {
+      type: String,
+    },
   },
 );
 
