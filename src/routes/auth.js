@@ -4,7 +4,6 @@ import validations from '../validations/auth';
 
 const router = express.Router();
 
-router.post('/register', validations, controller.register);
-router.post('/login', validations, controller.login);
+router.post('/register', validations, controller);
 
 export default router;
