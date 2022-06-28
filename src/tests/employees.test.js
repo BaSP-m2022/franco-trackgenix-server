@@ -13,7 +13,7 @@ describe('GET/employees', () => {
   test('It should get the employees list', async () => {
     const response = await request(app).get('/employees/');
     // expect(response.body.message).toBe('Success');
-    expect(response.statusCode).toBe(400);
+    expect(response.statusCode).toBe(200);
     // expect(response.body.data.length).toBeGreaterThan(0);
     // expect(response.body.error).toBe(false);
   });
