@@ -17,7 +17,7 @@ const register = async (req, res) => {
       data: userSaved,
     });
   } catch (error) {
-    return res.status(400).json({ message: error.toString() });
+    return res.status(400).json({ message: error.toString(), error: true, data: undefined });
   }
 };
 
