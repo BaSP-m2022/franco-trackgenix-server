@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "bdb59794-e6bf-4fb2-946f-201b1b3bc2f9",
+		"_postman_id": "4b800530-1cf4-4955-a8c8-24dc61b46176",
 		"name": "franco-trackgenix-server",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "11310572"
+		"_exporter_id": "20837997"
 	},
 	"item": [
 		{
@@ -299,7 +299,7 @@
 								},
 								{
 									"key": "workedHours",
-									"value": null,
+									"value": "",
 									"disabled": true
 								}
 							]
@@ -435,27 +435,27 @@
 							"query": [
 								{
 									"key": "firstName",
-									"value": null,
+									"value": "",
 									"disabled": true
 								},
 								{
 									"key": "lastName",
-									"value": null,
+									"value": "",
 									"disabled": true
 								},
 								{
 									"key": "dni",
-									"value": null,
+									"value": "",
 									"disabled": true
 								},
 								{
 									"key": "email",
-									"value": null,
+									"value": "",
 									"disabled": true
 								},
 								{
 									"key": "password",
-									"value": null,
+									"value": "",
 									"disabled": true
 								}
 							]
@@ -853,6 +853,19 @@
 								"projects"
 							]
 						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "sign-up",
+			"item": [
+				{
+					"name": "create",
+					"request": {
+						"method": "GET",
+						"header": []
 					},
 					"response": []
 				}
