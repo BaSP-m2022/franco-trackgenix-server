@@ -6,6 +6,8 @@ const router = express.Router();
 
 router.get('/', projectsController.filter);
 
+router.get('/employee/:id', projectsController.getByEmployeeId);
+
 router.get('/:id', projectsController.getById);
 
 router.post('/', projectValidation.projectValidation, projectsController.create);

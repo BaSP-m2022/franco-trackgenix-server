@@ -145,10 +145,59 @@ const getById = async (req, res) => {
   }
 };
 
+const getByEmployeeId = async (req, res) => {
+  try {
+    if (req.params.id.length === 24) {
+      const projects = await Project.find().populate('employees.employeeId', {
+        firstName: 1,
+        lastName: 1,
+      });
+      if (!projects) {
+        return res.status(404).json({
+          message: 'Projects not found',
+          data: undefined,
+          error: true,
+        });
+      }
+      const projectsFiltered = projects.filter((project) => {
+        // eslint-disable-next-line arrow-body-style
+        const hasEmployeeId = project.employees.filter((employee) => {
+          return employee.employeeId?._id.toString() === req.params.id;
+        });
+        return hasEmployeeId.length > 0;
+      });
+      if (projectsFiltered.length === 0) {
+        return res.status(404).json({
+          message: 'Projects not found',
+          data: undefined,
+          error: true,
+        });
+      }
+      return res.status(200).json({
+        message: 'Projects found',
+        data: projectsFiltered,
+        error: false,
+      });
+    }
+    return res.status(400).json({
+      message: 'Missing id param',
+      data: undefined,
+      error: true,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      message: error.message,
+      data: undefined,
+      error: true,
+    });
+  }
+};
+
 export default {
   create,
   filter,
   getById,
   deleteById,
   update,
+  getByEmployeeId,
 };
