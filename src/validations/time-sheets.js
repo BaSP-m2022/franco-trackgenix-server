@@ -2,7 +2,12 @@ import Joi from 'joi';
 
 const validations = (req, res, next) => {
   const schema = Joi.object({
-    tasks: Joi.array().items().required(),
+    tasks: Joi.array().items(Joi.object({
+      description: Joi.string().min(3).max(50).required(),
+      workedHours: Joi.number().min(1).required(),
+      projectId: Joi.string().required(),
+      date: Joi.date().required(),
+    })),
     totalHours: Joi.number(),
     status: Joi.string().valid('active', 'inactive').required(),
     startDate: Joi.date().max('now').required(),

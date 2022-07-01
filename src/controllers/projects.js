@@ -1,3 +1,4 @@
+import mongoose from 'mongoose';
 import Project from '../models/Projects';
 
 const create = async (req, res) => {
@@ -147,42 +148,52 @@ const getById = async (req, res) => {
 
 const getByEmployeeId = async (req, res) => {
   try {
-    if (req.params.id.length === 24) {
-      const projects = await Project.find().populate('employees.employeeId', {
-        firstName: 1,
-        lastName: 1,
-      });
-      if (!projects) {
-        return res.status(404).json({
-          message: 'Projects not found',
-          data: undefined,
-          error: true,
-        });
-      }
-      const projectsFiltered = projects.filter((project) => {
-        // eslint-disable-next-line arrow-body-style
-        const hasEmployeeId = project.employees.filter((employee) => {
-          return employee.employeeId?._id.toString() === req.params.id;
-        });
-        return hasEmployeeId.length > 0;
-      });
-      if (projectsFiltered.length === 0) {
-        return res.status(404).json({
-          message: 'Projects not found',
-          data: undefined,
-          error: true,
-        });
-      }
-      return res.status(200).json({
-        message: 'Projects found',
-        data: projectsFiltered,
-        error: false,
+    const projectProps = {
+      name: 1,
+      status: 1,
+      description: 1,
+      startDate: 1,
+      endDate: 1,
+    };
+    const filteredProjects = await Project.aggregate([
+      {
+        $project: {
+          ...projectProps,
+          employees: {
+            $filter: {
+              input: '$employees',
+              as: 'employee',
+              cond: {
+                $eq: ['$$employee.employeeId',
+                  mongoose.Types.ObjectId(req.params.id),
+                ],
+              },
+            },
+          },
+        },
+      },
+      { $unwind: '$employees' },
+      { $set: { role: '$employees.role' } },
+      { $set: { rate: '$employees.rate' } },
+      {
+        $project: {
+          ...projectProps,
+          role: 1,
+          rate: 1,
+        },
+      },
+    ]);
+    if (filteredProjects.length === 0) {
+      return res.status(404).json({
+        message: 'Project not found with those parameters',
+        data: undefined,
+        error: true,
       });
     }
-    return res.status(400).json({
-      message: 'Missing id param',
-      data: undefined,
-      error: true,
+    return res.status(200).json({
+      message: 'Project found',
+      data: filteredProjects,
+      error: false,
     });
   } catch (error) {
     return res.status(500).json({
