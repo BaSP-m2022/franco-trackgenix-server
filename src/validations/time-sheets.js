@@ -1,6 +1,6 @@
 import Joi from 'joi';
 
-const validations = (req, res, next) => {
+const timeSheet = (req, res, next) => {
   const schema = Joi.object({
     tasks: Joi.array().items(Joi.object({
       description: Joi.string().min(3).max(50).required(),
@@ -8,10 +8,11 @@ const validations = (req, res, next) => {
       projectId: Joi.string().required(),
       date: Joi.date().required(),
     })),
-    totalHours: Joi.number(),
-    status: Joi.string().valid('active', 'inactive').required(),
-    startDate: Joi.date().max('now').required(),
-    endDate: Joi.date().min(Joi.ref('startDate')),
+    startDate: Joi.date().required()
+      .custom((value, helper) => {
+        if (value.getDay() !== 1) return helper.message('Start date must be a Monday');
+        return true;
+      }),
     employeeId: Joi.string().required(),
   });
 
@@ -29,5 +30,5 @@ const validations = (req, res, next) => {
 };
 
 export default {
-  validations,
+  timeSheet,
 };

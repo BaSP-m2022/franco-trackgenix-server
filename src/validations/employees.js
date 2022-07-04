@@ -1,22 +1,22 @@
 import Joi from 'joi';
 
-const postValidation = (req, res, next) => {
+const employee = (req, res, next) => {
   const schema = Joi.object({
     firstName: Joi.string()
+      .regex(/^[a-zA-Z]+$/)
+      .message('First Name must have only letters')
       .min(3)
       .message('First Name must have at least 3 characters')
       .max(30)
       .message('First Name must be less than 30 characters')
-      .regex(/^[a-zA-Z]+$/)
-      .message('First Name must have only letters')
       .required(),
     lastName: Joi.string()
+      .regex(/^[a-zA-Z]+$/)
+      .message('Last Name must have only letters')
       .min(3)
       .message('Last Name must have at least 3 characters')
       .max(30)
       .message('Last Name must be less than 30 characters')
-      .regex(/^[a-zA-Z]+$/)
-      .message('Last Name must have only letters')
       .required(),
     dni: Joi.string()
       .regex(/^[0-9]+$/)
@@ -44,6 +44,7 @@ const postValidation = (req, res, next) => {
       .max((Date.now() - (1000 * 60 * 60 * 24 * 365 * 18)))
       .message('You must be more than 18 years old')
       .required(),
+    firebaseUid: Joi.string().length(28).message('Provide a valid firebase UID').required(),
   });
 
   const validation = schema.validate(req.body);
@@ -59,4 +60,4 @@ const postValidation = (req, res, next) => {
   return next();
 };
 
-export default { postValidation };
+export default { employee };
