@@ -1,6 +1,6 @@
 import Joi from 'joi';
 
-const projectValidation = (req, res, next) => {
+const project = (req, res, next) => {
   const schema = Joi.object({
     name: Joi.string().required().min(3),
     status: Joi.string().valid('active', 'inactive'),
@@ -30,5 +30,5 @@ const projectValidation = (req, res, next) => {
 };
 
 export default {
-  projectValidation,
+  project,
 };

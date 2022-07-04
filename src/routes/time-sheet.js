@@ -1,13 +1,13 @@
 import express from 'express';
 import timeSheetsController from '../controllers/time-sheets';
-import timeSheetsValidation from '../validations/time-sheets';
+import validations from '../validations/time-sheets';
 
 const router = express.Router();
 
 router.get('/', timeSheetsController.getAll);
 router.get('/:id', timeSheetsController.getById);
 router.delete('/:id', timeSheetsController.deleteById);
-router.post('/', timeSheetsValidation.validations, timeSheetsController.createTimesheet);
-router.put('/:id', timeSheetsValidation.validations, timeSheetsController.editTimesheet);
+router.post('/', validations.timeSheet, timeSheetsController.createTimesheet);
+router.put('/:id', validations.timeSheet, timeSheetsController.editTimesheet);
 
 export default router;

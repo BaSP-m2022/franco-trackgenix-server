@@ -1,6 +1,6 @@
 import Joi from 'joi';
 
-const postValidation = (req, res, next) => {
+const employee = (req, res, next) => {
   const schema = Joi.object({
     firstName: Joi.string()
       .regex(/^[a-zA-Z]+$/)
@@ -60,4 +60,4 @@ const postValidation = (req, res, next) => {
   return next();
 };
 
-export default { postValidation };
+export default { employee };

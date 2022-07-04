@@ -1,6 +1,6 @@
 import Joi from 'joi';
 
-const createRegisterAdmin = (req, res, next) => {
+const admin = (req, res, next) => {
   const schema = Joi.object({
     firstName: Joi.string()
       .regex(/^[a-zA-Z]+$/)
@@ -49,5 +49,5 @@ const createRegisterAdmin = (req, res, next) => {
 };
 
 export default {
-  createRegisterAdmin,
+  admin,
 };
