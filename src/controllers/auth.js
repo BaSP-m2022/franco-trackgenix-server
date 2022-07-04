@@ -76,7 +76,7 @@ const signUp = async (req, res) => {
     try {
       const newEmployee = await SuperAdmin.create(body);
       return res.status(201).json({
-        message: 'Employee created successfully',
+        message: 'Super Admin created successfully',
         data: newEmployee,
         error: false,
       });
@@ -95,13 +95,5 @@ const signUp = async (req, res) => {
     error: true,
   });
 };
-
-//   return res.status(201).json({
-//     message: 'User created',
-//     data: userSaved,
-//   });
-// } catch (error) {
-//   return res.status(400).json({ message: error.toString(), error: true, data: undefined });
-// }
 
 export default { signUp };
