@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "4b800530-1cf4-4955-a8c8-24dc61b46176",
-		"name": "franco-trackgenix-server",
+		"_postman_id": "f26f0381-a26f-41c4-ade1-203b23663e1f",
+		"name": "franco-trackgenix-server Copy",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "20837997"
+		"_exporter_id": "11310572"
 	},
 	"item": [
 		{
@@ -620,7 +620,7 @@
 							"variable": [
 								{
 									"key": "id",
-									"value": null
+									"value": "62c30bb615b471a456cc76f2"
 								}
 							]
 						}
@@ -634,7 +634,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"tasks\": [\"6295572e7e921dffa9f71a24\",\"6295576c7e921dffa9f71a28\"],\r\n    \"totalHours\": 8,\r\n    \"status\": \"Status4\",\r\n    \"startDate\": \"2022-05-15T18:02:23.412Z\",\r\n    \"endDate\": \"2022-07-20T18:02:23.412Z\",\r\n    \"employeeId\": \"62840603549ef329a075ef63\"\r\n}\r\n",
+							"raw": "{\r\n    \"tasks\": [\r\n        {\r\n            \"description\": \"Test an app\",\r\n            \"workedHours\": 10,\r\n            \"projectId\": \"6298dd9d11ed617320cb4468\",\r\n            \"date\": \"2023-02-02T00:00:00.000Z\"\r\n        },\r\n        {\r\n            \"description\": \"Test an app\",\r\n            \"workedHours\": 111,\r\n            \"projectId\": \"6298dd9d11ed617320cb4468\",\r\n            \"date\": \"2023-02-02T00:00:00.000Z\"\r\n        }\r\n    ],\r\n    \"startDate\": \"2022-07-04T18:02:23.412Z\",\r\n    \"employeeId\": \"62b93b6f8186c3f9a35f7ed8\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -653,7 +653,7 @@
 							"variable": [
 								{
 									"key": "id",
-									"value": "6281937a8da15cc010a1607e"
+									"value": "62c30bb615b471a456cc76f2"
 								}
 							]
 						}
@@ -691,7 +691,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"tasks\": [\"6295572e7e921dffa9f71a24\",\"6295576c7e921dffa9f71a28\"],\r\n    \"totalHours\": 8,\r\n    \"status\": \"Status4\",\r\n    \"startDate\": \"2022-05-15T18:02:23.412Z\",\r\n    \"endDate\": \"2022-07-20T18:02:23.412Z\",\r\n    \"employeeId\": \"62840603549ef329a075ef63\"\r\n}\r\n",
+							"raw": "{\r\n    \"tasks\": [\r\n        {\r\n            \"description\": \"Test an app\",\r\n            \"workedHours\": 10,\r\n            \"projectId\": \"6298dd9d11ed617320cb4468\",\r\n            \"date\": \"2023-02-02\"\r\n        },\r\n        {\r\n            \"description\": \"Test an app\",\r\n            \"workedHours\": 11,\r\n            \"projectId\": \"6298dd9d11ed617320cb4468\",\r\n            \"date\": \"2023-02-02\"\r\n        },\r\n        {\r\n            \"description\": \"Test an app\",\r\n            \"workedHours\": 99,\r\n            \"projectId\": \"6298dd9d11ed617320cb4468\",\r\n            \"date\": \"2023-02-02\"\r\n        }\r\n    ],\r\n    \"startDate\": \"2022-07-04T18:02:23.412Z\",\r\n    \"employeeId\": \"62b93b6f8186c3f9a35f7ed8\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -865,7 +865,10 @@
 					"name": "create",
 					"request": {
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": ""
+						}
 					},
 					"response": []
 				}
