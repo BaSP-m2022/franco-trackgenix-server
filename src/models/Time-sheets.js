@@ -23,9 +23,6 @@ const timesheetsSchema = new mongoose.Schema({
   totalHours: {
     type: Number,
   },
-  status: {
-    type: String,
-  },
   startDate: {
     type: Date,
     required: true,
