@@ -77,16 +77,7 @@ const getAll = async (req, res) => {
 
 const createTimesheet = async (req, res) => {
   try {
-    const parsedStartDate = new Date(req.body.startDate);
-    const totalHours = req.body.tasks.reduce((partial, task) => partial + task.workedHours, 0);
-    const body = {
-      tasks: req.body.tasks,
-      totalHours,
-      startDate: req.body.startDate,
-      endDate: parsedStartDate.setDate(parsedStartDate.getDate() + 6),
-      employeeId: req.body.employeeId,
-    };
-    const newTimeSheet = new TimeSheets(body);
+    const newTimeSheet = new TimeSheets(req.body);
     await newTimeSheet.save();
     return res.status(201).json({
       message: 'Time sheet created',
@@ -105,16 +96,7 @@ const createTimesheet = async (req, res) => {
 const editTimesheet = async (req, res) => {
   try {
     if (req.params.id) {
-      const parsedStartDate = new Date(req.body.startDate);
-      const totalHours = req.body.tasks.reduce((partial, task) => partial + task.workedHours, 0);
-      const body = {
-        tasks: req.body.tasks,
-        totalHours,
-        startDate: req.body.startDate,
-        endDate: parsedStartDate.setDate(parsedStartDate.getDate() + 6),
-        employeeId: req.body.employeeId,
-      };
-      const timeSheet = await TimeSheets.findByIdAndUpdate({ _id: req.params.id }, body);
+      const timeSheet = await TimeSheets.findByIdAndUpdate({ _id: req.params.id }, req.body);
       if (!timeSheet) {
         return res.status(404).json({
           message: 'Time sheet not found',
@@ -124,7 +106,7 @@ const editTimesheet = async (req, res) => {
       }
       return res.status(200).json({
         message: 'Time sheet edited',
-        data: body,
+        data: req.body,
         error: false,
       });
     }
