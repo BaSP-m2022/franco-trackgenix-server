@@ -3,20 +3,20 @@ import Joi from 'joi';
 const createRegisterAdmin = (req, res, next) => {
   const schema = Joi.object({
     firstName: Joi.string()
+      .regex(/^[a-zA-Z]+$/)
+      .message('First Name must have only letters')
       .min(3)
       .message('First Name must have at least 3 characters')
       .max(30)
       .message('First Name must be less than 30 characters')
-      .regex(/^[a-zA-Z]+$/)
-      .message('First Name must have only letters')
       .required(),
     lastName: Joi.string()
+      .regex(/^[a-zA-Z]+$/)
+      .message('Last Name must have only letters')
       .min(3)
       .message('Last Name must have at least 3 characters')
       .max(30)
       .message('Last Name must be less than 30 characters')
-      .regex(/^[a-zA-Z]+$/)
-      .message('Last Name must have only letters')
       .required(),
     email: Joi.string()
       .email()
@@ -32,6 +32,7 @@ const createRegisterAdmin = (req, res, next) => {
       .pattern(/[0-9]/)
       .message('Password must have at least 1 number')
       .required(),
+    firebaseUid: Joi.string().length(28).message('Provide a valid firebase UID').required(),
   });
 
   const validation = schema.validate(req.body);

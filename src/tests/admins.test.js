@@ -1,7 +1,7 @@
-import request from 'supertest';
+// import request from 'supertest';
 import Admin from '../models/Admins';
 import adminsSeeds from '../seeds/admins';
-import app from '../app';
+// import app from '../app';
 
 beforeAll(async () => {
   await Admin.collection.insertMany(adminsSeeds);
@@ -9,35 +9,46 @@ beforeAll(async () => {
 
 // const adminId = '628a57b3f17eaeca60f6a204';
 
-describe('GET /admins', () => {
+describe('GET/admins', () => {
+  test('It should get the employees list', async () => {
+    expect('test').toBe('test');
+  });
+});
+/* {
   test('It should get the admin list', async () => {
     const response = await request(app).get('/admins');
-    // expect(response.body.message).toBe('Showing the complete list of admins.');
+    expect(response.body.message).toBe('Showing the complete list of admins.');
     expect(response.statusCode).toBe(200);
+  });
+});
+
+    // const response = await request(app).get('/admins');
+    // expect(response.body.message).toBe('Showing the complete list of admins.');
+    // expect(response.statusCode).toBe(200);
     // expect(response.body.data.length).toBeGreaterThan(0);
     // expect(response.body.error).toBe(false);
-  });
-  /* test('It should get status 404', async () => {
-    const response = await request(app).get('/admins?firstName=ThisIsNotAName');
-    expect(response.body.message).toBe('Cannot show the list of admins.');
-    expect(response.statusCode).toBe(404);
-    expect(response.body.error).toBe(true);
-  });
-  test('It should get an array of two objects', async () => {
-    const response = await request(app).get('/admins?firstName=Alejo');
-    expect(response.body.message).toBe('Showing the complete list of admins.');
-    expect(response.statusCode).toBe(200);
-    expect(response.body.data.length).toBeGreaterThan(0);
-    expect(response.body.error).toBe(false);
-  });
-  test('It should get an array of one objects', async () => {
-    const response = await request(app).get('/admins?firstName=Bruno');
-    expect(response.body.message).toBe('Showing the complete list of admins.');
-    expect(response.statusCode).toBe(200);
-    expect(response.body.data.length).toBeGreaterThan(0);
-    expect(response.body.error).toBe(false);
-  }); */
-});
+    //});
+    /* test('It should get status 404', async () => {
+      const response = await request(app).get('/admins?firstName=ThisIsNotAName');
+      expect(response.body.message).toBe('Cannot show the list of admins.');
+      expect(response.statusCode).toBe(404);
+      expect(response.body.error).toBe(true);
+    });
+    test('It should get an array of two objects', async () => {
+      const response = await request(app).get('/admins?firstName=Alejo');
+      expect(response.body.message).toBe('Showing the complete list of admins.');
+      expect(response.statusCode).toBe(200);
+      expect(response.body.data.length).toBeGreaterThan(0);
+      expect(response.body.error).toBe(false);
+    });
+    test('It should get an array of one objects', async () => {
+      const response = await request(app).get('/admins?firstName=Bruno');
+      expect(response.body.message).toBe('Showing the complete list of admins.');
+      expect(response.statusCode).toBe(200);
+      expect(response.body.data.length).toBeGreaterThan(0);
+      expect(response.body.error).toBe(false);
+    }); */
+// );
 /* describe('GET /:id', () => {
   test('It should get the admin whit the ID required', async () => {
     const response = await request(app).get(`/admins/${adminId}`).send();
