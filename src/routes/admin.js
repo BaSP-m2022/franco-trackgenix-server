@@ -7,8 +7,8 @@ const router = express.Router();
 
 router.get('/', adminsController.getAllAdmins);
 router.get('/:id', adminsController.getAdminById);
-router.post('/', authMiddleware.authMiddlewareSuperAdmin, validations.admin, adminsController.createAdmin);
-router.put('/:id', authMiddleware.authMiddlewareAdmin, validations.admin, adminsController.editAdmin);
-router.delete('/:id', authMiddleware.authMiddlewareSuperAdmin, adminsController.deleteAdmin);
+router.post('/', authMiddleware.SuperAdmin, validations.admin, adminsController.createAdmin);
+router.put('/:id', authMiddleware.Admin, validations.admin, adminsController.editAdmin);
+router.delete('/:id', authMiddleware.SuperAdmin, adminsController.deleteAdmin);
 
 export default router;
