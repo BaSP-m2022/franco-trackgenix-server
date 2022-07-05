@@ -7,8 +7,8 @@ const router = express.Router();
 
 router.get('/', timeSheetsController.getAll);
 router.get('/:id', timeSheetsController.getById);
-router.delete('/:id', authMiddleware.authMiddlewareAdmin, timeSheetsController.deleteById);
-router.post('/', authMiddleware.authMiddlewareEmployee, validations.timeSheet, timeSheetsController.createTimesheet);
-router.put('/:id', authMiddleware.authMiddlewareEmployee, validations.timeSheet, timeSheetsController.editTimesheet);
+router.delete('/:id', authMiddleware.Admin, timeSheetsController.deleteById);
+router.post('/', authMiddleware.Employee, validations.timeSheet, timeSheetsController.createTimesheet);
+router.put('/:id', authMiddleware.Employee, validations.timeSheet, timeSheetsController.editTimesheet);
 
 export default router;
