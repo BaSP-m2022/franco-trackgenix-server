@@ -7,8 +7,8 @@ const router = express.Router();
 
 router.get('/', employeeController.getFilter);
 router.get('/:id', employeeController.getById);
-router.post('/', authMiddleware.authMiddlewareAdmin, validations.employee, employeeController.post);
-router.put('/:id', authMiddleware.authMiddlewareEmployee, validations.employee, employeeController.put);
-router.delete('/:id', authMiddleware.authMiddlewareAdmin, employeeController.deleteById);
+router.post('/', authMiddleware.Admin, validations.employee, employeeController.post);
+router.put('/:id', authMiddleware.Employee, validations.employee, employeeController.put);
+router.delete('/:id', authMiddleware.Admin, employeeController.deleteById);
 
 export default router;
