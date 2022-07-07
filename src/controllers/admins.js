@@ -2,7 +2,7 @@ import Admin from '../models/Admins';
 
 const getAllAdmins = async (req, res) => {
   try {
-    const allAdmins = await Admin.find(req.query).find({ isDeleted: false });
+    const allAdmins = await Admin.find({ ...req.query, isDeleted: false });
     if (allAdmins.length > 0) {
       return res.status(200).json({
         message: 'Showing admins.',
@@ -57,7 +57,7 @@ const getAdminById = async (req, res) => {
 
 const createAdmin = async (req, res) => {
   try {
-    const newAdmin = await Admin.create(req.body);
+    const newAdmin = await Admin.create({ ...req.query, isDeleted: false });
     return res.status(201).json({
       message: 'Admin created successfully.',
       data: newAdmin,

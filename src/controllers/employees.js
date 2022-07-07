@@ -33,7 +33,7 @@ const getById = async (req, res) => {
 
 const getFilter = async (req, res) => {
   try {
-    const result = await Employee.find(req.query).find({ isDeleted: false });
+    const result = await Employee.find({ ...req.query, isDeleted: false });
     if (result.length > 0) {
       return res.status(200).json({
         message: 'Success',
@@ -119,7 +119,7 @@ const put = async (req, res) => {
 
 const post = async (req, res) => {
   try {
-    const newEmployee = await Employee.create(req.body);
+    const newEmployee = await Employee.create({ ...req.body, isDeleted: false });
     return res.status(201).json({
       message: 'Employee created successfully',
       data: newEmployee,

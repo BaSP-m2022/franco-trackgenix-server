@@ -27,7 +27,7 @@ const deleteById = async (req, res) => {
 const getById = async (req, res) => {
   try {
     if (req.params.id) {
-      const sAdmin = await SuperAdmin.findById(req.params.id);
+      const sAdmin = await SuperAdmin.findById(req.params.id).find({ isDeleted: false });
       if (!sAdmin) {
         return res.status(404).json({
           message: 'Super Admin not found, invalid ID',
@@ -57,7 +57,7 @@ const getById = async (req, res) => {
 
 const post = async (req, res) => {
   try {
-    const sAdmin = await SuperAdmin.create(req.body);
+    const sAdmin = await SuperAdmin.create({ ...req.body, isDeleted: false });
     return res.status(201).json({
       message: 'Super Admin added to database',
       data: sAdmin,
@@ -109,7 +109,7 @@ const put = async (req, res) => {
 
 const getFilter = async (req, res) => {
   try {
-    const result = await SuperAdmin.find(req.query);
+    const result = await SuperAdmin.find({ ...req.query, isDeleted: false });
     if (result.length > 0) {
       return res.status(200).json({
         message: 'Super Admins found successfully',

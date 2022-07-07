@@ -3,8 +3,7 @@ import Project from '../models/Projects';
 
 const create = async (req, res) => {
   try {
-    const project = new Project(req.body);
-    const result = await project.save();
+    const result = await Project.create({ ...req.body, isDeleted: false });
     return res.status(201).json({
       message: 'Project was created.',
       data: result,
@@ -56,7 +55,7 @@ const update = async (req, res) => {
 
 const filter = async (req, res) => {
   try {
-    const filteredProjects = await Project.find(req.query).populate('employees.employeeId', {
+    const filteredProjects = await Project.find({ ...req.query, isDeleted: false }).populate('employees.employeeId', {
       firstName: 1,
       lastName: 1,
     });
