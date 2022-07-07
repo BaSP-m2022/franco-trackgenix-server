@@ -36,6 +36,7 @@ const projectSchema = new mongoose.Schema({
     type: Date,
     required: false,
   },
+  isDeleted: { type: Boolean, required: true },
 });
 
 export default mongoose.model('Project', projectSchema);

@@ -3,7 +3,7 @@ import Employee from '../models/Employees';
 const getById = async (req, res) => {
   try {
     if (req.params.id) {
-      const employeeById = await Employee.findById(req.params.id);
+      const employeeById = await Employee.findById(req.params.id).find({ isDeleted: false });
       if (!employeeById) {
         return res.status(404).json({
           message: 'Employee was not found',
@@ -33,7 +33,7 @@ const getById = async (req, res) => {
 
 const getFilter = async (req, res) => {
   try {
-    const result = await Employee.find(req.query);
+    const result = await Employee.find({ ...req.query, isDeleted: false });
     if (result.length > 0) {
       return res.status(200).json({
         message: 'Success',
@@ -57,7 +57,10 @@ const getFilter = async (req, res) => {
 
 const deleteById = async (req, res) => {
   try {
-    const findAndDeleteEmployee = await Employee.findByIdAndRemove(req.params.id);
+    const findAndDeleteEmployee = await Employee.findByIdAndUpdate(
+      req.params.id,
+      { isDeleted: true },
+    );
     if (!findAndDeleteEmployee) {
       return res.status(404).json({
         message: 'Employee ID not found',
@@ -116,7 +119,7 @@ const put = async (req, res) => {
 
 const post = async (req, res) => {
   try {
-    const newEmployee = await Employee.create(req.body);
+    const newEmployee = await Employee.create({ ...req.body, isDeleted: false });
     return res.status(201).json({
       message: 'Employee created successfully',
       data: newEmployee,
