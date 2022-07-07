@@ -1,3 +1,4 @@
+import Firebase from '../helper/firebase';
 import Admin from '../models/Admins';
 
 const getAllAdmins = async (req, res) => {
@@ -56,16 +57,38 @@ const getAdminById = async (req, res) => {
 };
 
 const createAdmin = async (req, res) => {
+  let newFirebaseUser;
   try {
-    const newAdmin = await Admin.create({ ...req.query, isDeleted: false });
+    newFirebaseUser = await Firebase.auth().createUser({
+      email: req.body.email,
+      password: req.body.password,
+    });
+    await Firebase.auth().setCustomUserClaims(newFirebaseUser.uid, { role: 'ADMIN' });
+  } catch (error) {
+    return res.status(500).json({
+      message: `Firebase Error: ${error.message}`,
+      data: undefined,
+      error: true,
+    });
+  }
+  const bodyAdmin = {
+    firstName: req.body.firstName,
+    lastName: req.body.lastName,
+    email: req.body.email,
+    password: req.body.password,
+    firebaseUid: newFirebaseUser.uid,
+    isDeleted: false,
+  };
+  try {
+    const newAdmin = await Admin.create(bodyAdmin);
     return res.status(201).json({
-      message: 'Admin created successfully.',
+      message: 'Your registration was successful',
       data: newAdmin,
       error: false,
     });
   } catch (error) {
     return res.status(500).json({
-      message: error.message,
+      message: `MongoDB Error: ${error.message}`,
       data: undefined,
       error: true,
     });
