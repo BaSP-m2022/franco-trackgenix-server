@@ -2,7 +2,7 @@ import SuperAdmin from '../models/Super-admins';
 
 const deleteById = async (req, res) => {
   try {
-    const result = await SuperAdmin.findByIdAndDelete(req.params.id);
+    const result = await SuperAdmin.findByIdAndUpdate(req.params.id, { isDeleted: true });
     if (!result) {
       return res.status(404).json({
         message: 'Super Admin not found',

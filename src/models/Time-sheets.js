@@ -39,6 +39,7 @@ const timesheetsSchema = new mongoose.Schema({
     ref: 'Employee',
     required: true,
   },
+  isDeleted: { type: Boolean, required: true },
 });
 
 export default mongoose.model('Time-sheets', timesheetsSchema);

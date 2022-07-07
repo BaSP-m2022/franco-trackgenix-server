@@ -2,7 +2,10 @@ import TimeSheets from '../models/Time-sheets';
 
 const deleteById = async (req, res) => {
   try {
-    const timesheetIdToFilter = await TimeSheets.findByIdAndRemove(req.params.id);
+    const timesheetIdToFilter = await TimeSheets.findByIdAndUpdate(
+      req.params.id,
+      { isDeleted: true },
+    );
     if (!timesheetIdToFilter) {
       return res.status(404).json({
         message: 'Time-sheet was not found',

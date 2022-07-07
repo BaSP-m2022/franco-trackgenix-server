@@ -17,6 +17,7 @@ const adminSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  isDeleted: { type: Boolean, required: true },
 });
 
 export default mongoose.model('Admin', adminSchema);

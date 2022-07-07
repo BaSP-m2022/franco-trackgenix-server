@@ -28,6 +28,7 @@ const employeeSchema = new Schema(
       type: Date,
       required: false,
     },
+    isDeleted: { type: Boolean, required: true },
   },
 );
 

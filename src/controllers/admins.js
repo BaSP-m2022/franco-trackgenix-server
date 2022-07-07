@@ -2,10 +2,10 @@ import Admin from '../models/Admins';
 
 const getAllAdmins = async (req, res) => {
   try {
-    const allAdmins = await Admin.find(req.query);
+    const allAdmins = await Admin.find(req.query).find({ isDeleted: false });
     if (allAdmins.length > 0) {
       return res.status(200).json({
-        message: 'Showing the complete list of admins.',
+        message: 'Showing admins.',
         data: allAdmins,
         error: false,
       });
@@ -27,7 +27,7 @@ const getAllAdmins = async (req, res) => {
 const getAdminById = async (req, res) => {
   try {
     if (req.params.id) {
-      const admin = await Admin.findById(req.params.id);
+      const admin = await Admin.findById(req.params.id).find({ isDeleted: false });
       if (!admin) {
         return res.status(404).json({
           message: `Could not found an admin by the id of ${req.params.id}.`,
@@ -109,7 +109,7 @@ const editAdmin = async (req, res) => {
 
 const deleteAdmin = async (req, res) => {
   try {
-    const result = await Admin.findByIdAndDelete(req.params.id);
+    const result = await Admin.findByIdAndUpdate(req.params.id, { isDeleted: true });
     if (result) {
       return res.status(200).json({
         message: `Admin by the id of ${req.params.id} deleted successfully.`,

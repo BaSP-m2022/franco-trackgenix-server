@@ -20,6 +20,7 @@ const superAdminSchema = new Schema(
       type: String,
       required: true,
     },
+    isDeleted: { type: Boolean, required: true },
   },
 );
 
