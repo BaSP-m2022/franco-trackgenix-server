@@ -21,7 +21,6 @@ describe('GET/admins', () => {
     expect(response.statusCode).toBe(200);
   });
 });
-
     // const response = await request(app).get('/admins');
     // expect(response.body.message).toBe('Showing the complete list of admins.');
     // expect(response.statusCode).toBe(200);
@@ -164,7 +163,6 @@ describe('DELETE /admins/:id', () => {
     expect(response.body.data).toBe(undefined);
   });
 });
-
 describe('POST /', () => {
   test('It should delete admin', async () => {
     const response = await request(app).post('/admins/').send({

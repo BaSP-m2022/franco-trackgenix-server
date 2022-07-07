@@ -22,6 +22,7 @@ const employeeSchema = new mongoose.Schema(
       type: Date,
       required: false,
     },
+    isDeleted: { type: Boolean, required: true },
     firebaseUid: {
       type: String,
       required: true,

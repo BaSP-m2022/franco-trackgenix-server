@@ -3,8 +3,7 @@ import Project from '../models/Projects';
 
 const create = async (req, res) => {
   try {
-    const project = new Project(req.body);
-    const result = await project.save();
+    const result = await Project.create({ ...req.body, isDeleted: false });
     return res.status(201).json({
       message: 'Project was created.',
       data: result,
@@ -56,7 +55,7 @@ const update = async (req, res) => {
 
 const filter = async (req, res) => {
   try {
-    const filteredProjects = await Project.find(req.query).populate('employees.employeeId', {
+    const filteredProjects = await Project.find({ ...req.query, isDeleted: false }).populate('employees.employeeId', {
       firstName: 1,
       lastName: 1,
     });
@@ -90,7 +89,7 @@ const deleteById = async (req, res) => {
         error: true,
       });
     }
-    const findProject = await Project.findByIdAndDelete(req.params.id);
+    const findProject = await Project.findByIdAndUpdate(req.params.id, { isDeleted: true });
     if (!findProject) {
       return res.status(404).json({
         message: 'Project not found',
@@ -115,7 +114,7 @@ const deleteById = async (req, res) => {
 const getById = async (req, res) => {
   try {
     if (req.params.id) {
-      const project = await Project.findById(req.params.id).populate('employees.employeeId', {
+      const project = await Project.findById(req.params.id).find({ isDeleted: false }).populate('employees.employeeId', {
         firstName: 1,
         lastName: 1,
       });
