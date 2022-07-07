@@ -30,6 +30,7 @@ const signUp = async (req, res) => {
     email: req.body.email,
     firebaseUid: newFirebaseUser.uid,
   };
+
   if (req.body.role === 'EMPLOYEE') {
     const bodyEmployee = {
       firstName: req.body.firstName,
@@ -56,11 +57,18 @@ const signUp = async (req, res) => {
   }
 
   if (req.body.role === 'ADMIN') {
+    const bodyAdmin = {
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      password: req.body.password,
+      email: req.body.email,
+      firebaseUid: newFirebaseUser.uid,
+    };
     try {
-      const newEmployee = await Admin.create(body);
+      const newAdmin = await Admin.create(bodyAdmin);
       return res.status(201).json({
-        message: 'Admin created successfully',
-        data: newEmployee,
+        message: 'Your registration was successful',
+        data: newAdmin,
         error: false,
       });
     } catch (error) {
