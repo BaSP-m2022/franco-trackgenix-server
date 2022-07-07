@@ -27,24 +27,6 @@ const deleteById = async (req, res) => {
   }
 };
 
-const createTimesheet = async (req, res) => {
-  try {
-    const newTimeSheet = new TimeSheets(req.body);
-    await newTimeSheet.save();
-    return res.status(201).json({
-      message: 'Time sheet created',
-      data: newTimeSheet,
-      error: false,
-    });
-  } catch (error) {
-    return res.status(500).json({
-      message: error.message,
-      data: undefined,
-      error: true,
-    });
-  }
-};
-
 const getById = async (req, res) => {
   try {
     const byId = await TimeSheets.findById(req.params.id)
@@ -74,7 +56,6 @@ const getById = async (req, res) => {
 const getAll = async (req, res) => {
   try {
     const result = await TimeSheets.find(req.query)
-      .populate('tasks')
       .populate('employeeId', { firstName: 1, lastName: 1 });
     if (result.length > 0) {
       return res.status(200).json({
@@ -87,6 +68,24 @@ const getAll = async (req, res) => {
       message: 'Time-sheet was not found',
       data: undefined,
       error: true,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      message: error.message,
+      data: undefined,
+      error: true,
+    });
+  }
+};
+
+const createTimesheet = async (req, res) => {
+  try {
+    const newTimeSheet = new TimeSheets(req.body);
+    await newTimeSheet.save();
+    return res.status(201).json({
+      message: 'Time sheet created',
+      data: newTimeSheet,
+      error: false,
     });
   } catch (error) {
     return res.status(500).json({
@@ -110,7 +109,7 @@ const editTimesheet = async (req, res) => {
       }
       return res.status(200).json({
         message: 'Time sheet edited',
-        data: timeSheet,
+        data: req.body,
         error: false,
       });
     }

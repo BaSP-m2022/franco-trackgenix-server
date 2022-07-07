@@ -13,7 +13,7 @@ const adminSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  password: {
+  firebaseUid: {
     type: String,
     required: true,
   },

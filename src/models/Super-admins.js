@@ -1,17 +1,7 @@
 import mongoose from 'mongoose';
 
-const { Schema } = mongoose;
-
-const superAdminSchema = new Schema(
+const superAdminSchema = new mongoose.Schema(
   {
-    password: {
-      type: String,
-      required: true,
-    },
-    email: {
-      type: String,
-      required: true,
-    },
     firstName: {
       type: String,
       required: true,
@@ -21,6 +11,14 @@ const superAdminSchema = new Schema(
       required: true,
     },
     isDeleted: { type: Boolean, required: true },
+    email: {
+      type: String,
+      required: true,
+    },
+    firebaseUid: {
+      type: String,
+      required: true,
+    },
   },
 );
 

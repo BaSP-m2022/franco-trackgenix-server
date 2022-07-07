@@ -1,22 +1,5 @@
 import Employee from '../models/Employees';
 
-const post = async (req, res) => {
-  try {
-    const newEmployee = await Employee.create(req.body);
-    return res.status(201).json({
-      message: 'Employee created successfully',
-      data: newEmployee,
-      error: false,
-    });
-  } catch (error) {
-    return res.status(500).json({
-      message: error.message,
-      data: undefined,
-      error: true,
-    });
-  }
-};
-
 const getById = async (req, res) => {
   try {
     if (req.params.id) {
@@ -133,10 +116,28 @@ const put = async (req, res) => {
     });
   }
 };
+
+const post = async (req, res) => {
+  try {
+    const newEmployee = await Employee.create(req.body);
+    return res.status(201).json({
+      message: 'Employee created successfully',
+      data: newEmployee,
+      error: false,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      message: error.message,
+      data: undefined,
+      error: true,
+    });
+  }
+};
+
 export default {
   getById,
-  deleteById,
-  post,
   getFilter,
+  deleteById,
   put,
+  post,
 };

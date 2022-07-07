@@ -1,3 +1,4 @@
+import mongoose from 'mongoose';
 import Project from '../models/Projects';
 
 const create = async (req, res) => {
@@ -145,10 +146,69 @@ const getById = async (req, res) => {
   }
 };
 
+const getByEmployeeId = async (req, res) => {
+  try {
+    const projectProps = {
+      name: 1,
+      status: 1,
+      description: 1,
+      startDate: 1,
+      endDate: 1,
+    };
+    const filteredProjects = await Project.aggregate([
+      {
+        $project: {
+          ...projectProps,
+          employees: {
+            $filter: {
+              input: '$employees',
+              as: 'employee',
+              cond: {
+                $eq: ['$$employee.employeeId',
+                  mongoose.Types.ObjectId(req.params.id),
+                ],
+              },
+            },
+          },
+        },
+      },
+      { $unwind: '$employees' },
+      { $set: { role: '$employees.role' } },
+      { $set: { rate: '$employees.rate' } },
+      {
+        $project: {
+          ...projectProps,
+          role: 1,
+          rate: 1,
+        },
+      },
+    ]);
+    if (filteredProjects.length === 0) {
+      return res.status(404).json({
+        message: 'Project not found with those parameters',
+        data: undefined,
+        error: true,
+      });
+    }
+    return res.status(200).json({
+      message: 'Project found',
+      data: filteredProjects,
+      error: false,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      message: error.message,
+      data: undefined,
+      error: true,
+    });
+  }
+};
+
 export default {
   create,
   filter,
   getById,
   deleteById,
   update,
+  getByEmployeeId,
 };

@@ -1,8 +1,6 @@
 import mongoose from 'mongoose';
 
-const { Schema } = mongoose;
-
-const employeeSchema = new Schema(
+const employeeSchema = new mongoose.Schema(
   {
     firstName: {
       type: String,
@@ -20,15 +18,15 @@ const employeeSchema = new Schema(
       type: String,
       required: true,
     },
-    password: {
-      type: String,
-      required: true,
-    },
     dateOfBirth: {
       type: Date,
       required: false,
     },
     isDeleted: { type: Boolean, required: true },
+    firebaseUid: {
+      type: String,
+      required: true,
+    },
   },
 );
 
