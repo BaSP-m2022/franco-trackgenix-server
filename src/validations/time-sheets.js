@@ -10,7 +10,7 @@ const timeSheet = (req, res, next) => {
     })),
     startDate: Joi.date().required()
       .custom((value, helper) => {
-        if (value.getDay() !== 1) return helper.message('Start date must be a Monday');
+        if (value.getUTCDay() !== 1) return helper.message('Start date must be a Monday');
         return true;
       }),
     employeeId: Joi.string().required(),
