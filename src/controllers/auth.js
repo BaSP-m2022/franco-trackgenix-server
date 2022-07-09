@@ -23,6 +23,7 @@ const signUp = async (req, res) => {
     email: req.body.email,
     dateOfBirth: req.body.dateOfBirth,
     firebaseUid: newFirebaseUser.uid,
+    isDeleted: false,
   };
   try {
     const newEmployee = await Employee.create(bodyEmployee);
