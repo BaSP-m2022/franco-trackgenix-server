@@ -2,7 +2,7 @@ import firebase from '../helper/firebase';
 
 const Employee = (req, res, next) => {
   const { token } = req.headers;
-  if (!token) return res.status(401).json({ message: 'Provide a Token.', error: true, data: null });
+  if (token === 'null') return res.status(401).json({ message: 'Provide a Token.', error: true, data: null });
   return firebase.auth().verifyIdToken(token)
     .then(() => { next(); })
     .catch((error) => {
@@ -13,10 +13,10 @@ const Employee = (req, res, next) => {
 
 const Admin = (req, res, next) => {
   const { token } = req.headers;
-  if (!token) return res.status(401).json({ message: 'Provide a Token.', error: true, data: null });
+  if (token === 'null') return res.status(401).json({ message: 'Provide a Token.', error: true, data: null });
   return firebase.auth().verifyIdToken(token)
     .then((claims) => {
-      if (claims.role !== 'ADMIN' || claims.role !== 'SUPERADMIN') return res.status(401).json({ message: 'You dont have the permissions to access this', error: true, data: null });
+      if (claims.role !== 'ADMIN' && claims.role !== 'SUPERADMIN') return res.status(401).json({ message: 'You dont have the permissions to access this', error: true, data: null });
       return next();
     })
     .catch((error) => {
@@ -27,7 +27,7 @@ const Admin = (req, res, next) => {
 
 const SuperAdmin = (req, res, next) => {
   const { token } = req.headers;
-  if (!token) return res.status(401).json({ message: 'Provide a Token.', error: true, data: null });
+  if (token === 'null') return res.status(401).json({ message: 'Provide a Token.', error: true, data: null });
   return firebase.auth().verifyIdToken(token)
     .then((claims) => {
       if (claims.role !== 'SUPERADMIN') return res.status(401).json({ message: 'You dont have the permissions to access this', error: true, data: null });
