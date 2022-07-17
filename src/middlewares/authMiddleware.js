@@ -5,7 +5,7 @@ const Employee = async (req, res, next) => {
   if (!token || token === 'null') return res.status(401).json({ message: 'Provide a Token.', error: true, data: null });
   try {
     const { role } = await firebase.auth().verifyIdToken(token);
-    return (role !== 'EMPLOYEE' && role !== 'ADMIN' && role !== 'SUPERADMIN')
+    return (role !== 'EMPLOYEE' && role !== 'ADMIN' && role !== 'SUPER-ADMIN')
       ? res.status(401).json({ message: 'You dont have the permissions to access this.', error: true, data: null })
       : next();
   } catch (error) {
@@ -19,7 +19,7 @@ const Admin = async (req, res, next) => {
   if (!token || token === 'null') return res.status(401).json({ message: 'Provide a Token.', error: true, data: null });
   try {
     const { role } = await firebase.auth().verifyIdToken(token);
-    return (role !== 'ADMIN' && role !== 'SUPERADMIN')
+    return (role !== 'ADMIN' && role !== 'SUPER-ADMIN')
       ? res.status(401).json({ message: 'You dont have the permissions to access this.', error: true, data: null })
       : next();
   } catch (error) {
@@ -33,7 +33,7 @@ const SuperAdmin = async (req, res, next) => {
   if (!token || token === 'null') return res.status(401).json({ message: 'Provide a Token.', error: true, data: null });
   try {
     const { role } = await firebase.auth().verifyIdToken(token);
-    return (role !== 'SUPERADMIN')
+    return (role !== 'SUPER-ADMIN')
       ? res.status(401).json({ message: 'You dont have the permissions to access this.', error: true, data: null })
       : next();
   } catch (error) {

@@ -1,3 +1,4 @@
+import Firebase from '../helper/firebase';
 import SuperAdmin from '../models/Super-admins';
 
 const deleteById = async (req, res) => {
@@ -55,17 +56,39 @@ const getById = async (req, res) => {
   }
 };
 
-const post = async (req, res) => {
+const createSuperAdmin = async (req, res) => {
+  let newFirebaseUser;
   try {
-    const sAdmin = await SuperAdmin.create({ ...req.body, isDeleted: false });
+    newFirebaseUser = await Firebase.auth().createUser({
+      email: req.body.email,
+      password: req.body.password,
+    });
+    await Firebase.auth().setCustomUserClaims(newFirebaseUser.uid, { role: 'SUPER-ADMIN' });
+  } catch (error) {
+    return res.status(500).json({
+      message: `Firebase Error: ${error.message}`,
+      data: undefined,
+      error: true,
+    });
+  }
+  const bodySuperAdmin = {
+    firstName: req.body.firstName,
+    lastName: req.body.lastName,
+    email: req.body.email,
+    password: req.body.password,
+    firebaseUid: newFirebaseUser.uid,
+    isDeleted: false,
+  };
+  try {
+    const newSuperAdmin = await SuperAdmin.create(bodySuperAdmin);
     return res.status(201).json({
-      message: 'Super Admin added to database',
-      data: sAdmin,
+      message: 'Your registration was successful',
+      data: newSuperAdmin,
       error: false,
     });
   } catch (error) {
     return res.status(500).json({
-      message: error.message,
+      message: `MongoDB Error: ${error.message}`,
       data: undefined,
       error: true,
     });
@@ -135,6 +158,6 @@ export default {
   getById,
   getFilter,
   deleteById,
-  post,
   put,
+  createSuperAdmin,
 };
