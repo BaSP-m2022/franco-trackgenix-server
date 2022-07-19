@@ -133,6 +133,7 @@ const editAdmin = async (req, res) => {
 const deleteAdmin = async (req, res) => {
   try {
     const result = await Admin.findByIdAndUpdate(req.params.id, { isDeleted: true });
+    await Firebase.auth().deleteUser(result.firebaseUid).catch(() => { throw new Error('Firebase error'); });
     if (result) {
       return res.status(200).json({
         message: `Admin by the id of ${req.params.id} deleted successfully.`,

@@ -1,4 +1,5 @@
 import Employee from '../models/Employees';
+import Firebase from '../helper/firebase';
 
 const getById = async (req, res) => {
   try {
@@ -57,11 +58,12 @@ const getFilter = async (req, res) => {
 
 const deleteById = async (req, res) => {
   try {
-    const findAndDeleteEmployee = await Employee.findByIdAndUpdate(
+    const result = await Employee.findByIdAndUpdate(
       req.params.id,
       { isDeleted: true },
     );
-    if (!findAndDeleteEmployee) {
+    await Firebase.auth().deleteUser(result.firebaseUid).catch(() => { throw new Error('Firebase error'); });
+    if (!result) {
       return res.status(404).json({
         message: 'Employee ID not found',
         data: undefined,
@@ -70,7 +72,7 @@ const deleteById = async (req, res) => {
     }
     return res.status(200).json({
       message: 'Employee deleted successfully',
-      data: findAndDeleteEmployee,
+      data: result,
       error: false,
     });
   } catch (error) {
