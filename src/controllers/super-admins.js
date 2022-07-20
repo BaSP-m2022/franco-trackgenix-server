@@ -1,6 +1,5 @@
 import Firebase from '../helper/firebase';
 import SuperAdmin from '../models/Super-admins';
-import Firebase from '../helper/firebase';
 
 const deleteById = async (req, res) => {
   try {
