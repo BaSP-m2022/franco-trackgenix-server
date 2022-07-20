@@ -1,8 +1,10 @@
 import SuperAdmin from '../models/Super-admins';
+import Firebase from '../helper/firebase';
 
 const deleteById = async (req, res) => {
   try {
     const result = await SuperAdmin.findByIdAndUpdate(req.params.id, { isDeleted: true });
+    await Firebase.auth().deleteUser(result.firebaseUid).catch(() => { throw new Error('Firebase error'); });
     if (!result) {
       return res.status(404).json({
         message: 'Super Admin not found',
