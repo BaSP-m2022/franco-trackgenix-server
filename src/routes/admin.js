@@ -5,10 +5,10 @@ import authMiddleware from '../middlewares/authMiddleware';
 
 const router = express.Router();
 
-router.get('/', adminsController.getAllAdmins);
-router.get('/:id', adminsController.getAdminById);
+router.get('/', authMiddleware.Admin, adminsController.getAllAdmins);
+router.get('/:id', authMiddleware.Admin, adminsController.getAdminById);
 router.post('/', authMiddleware.SuperAdmin, validations.admin, adminsController.createAdmin);
-router.put('/:id', authMiddleware.Admin, validations.admin, adminsController.editAdmin);
+router.put('/:id', authMiddleware.SuperAdmin, validations.admin, adminsController.editAdmin);
 router.delete('/:id', authMiddleware.SuperAdmin, adminsController.deleteAdmin);
 
 export default router;

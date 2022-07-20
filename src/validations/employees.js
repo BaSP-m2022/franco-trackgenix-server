@@ -44,7 +44,6 @@ const employee = (req, res, next) => {
       .max((Date.now() - (1000 * 60 * 60 * 24 * 365 * 18)))
       .message('You must be more than 18 years old')
       .required(),
-    firebaseUid: Joi.string().length(28).message('Provide a valid firebase UID').required(),
   });
 
   const validation = schema.validate(req.body);

@@ -5,9 +5,9 @@ import validations from '../validations/time-sheets';
 
 const router = express.Router();
 
-router.get('/', timeSheetsController.getAll);
-router.get('/:id', timeSheetsController.getById);
-router.delete('/:id', authMiddleware.Admin, timeSheetsController.deleteById);
+router.get('/', authMiddleware.Employee, timeSheetsController.getAll);
+router.get('/:id', authMiddleware.Employee, timeSheetsController.getById);
+router.delete('/:id', authMiddleware.Employee, authMiddleware.Admin, timeSheetsController.deleteById);
 router.post('/', authMiddleware.Employee, validations.timeSheet, timeSheetsController.createTimesheet);
 router.put('/:id', authMiddleware.Employee, validations.timeSheet, timeSheetsController.editTimesheet);
 

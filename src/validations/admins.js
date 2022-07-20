@@ -32,7 +32,6 @@ const admin = (req, res, next) => {
       .pattern(/[0-9]/)
       .message('Password must have at least 1 number')
       .required(),
-    firebaseUid: Joi.string().length(28).message('Provide a valid firebase UID').required(),
   });
 
   const validation = schema.validate(req.body);

@@ -12,7 +12,7 @@ const logIn = (req, res, next) => {
       .pattern(/[0-9]/)
       .message('Password must have at least 1 number')
       .required(),
-    role: Joi.string().valid('EMPLOYEE', 'ADMIN', 'SUPERADMIN').required(),
+    role: Joi.string().valid('EMPLOYEE', 'ADMIN', 'SUPER-ADMIN').required(),
   });
   const validation = schema.validate(req.body);
   if (validation.error) {
