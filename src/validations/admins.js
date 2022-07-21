@@ -30,8 +30,7 @@ const admin = (req, res, next) => {
       .pattern(/[a-zA-Z]/)
       .message('Password must have at least 1 letter')
       .pattern(/[0-9]/)
-      .message('Password must have at least 1 number')
-      .required(),
+      .message('Password must have at least 1 number'),
   });
 
   const validation = schema.validate(req.body);
