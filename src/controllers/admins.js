@@ -4,7 +4,7 @@ import Admin from '../models/Admins';
 const getAllAdmins = async (req, res) => {
   try {
     const admins = await Admin.find({ ...req.query, isDeleted: false });
-    if (!admins.length) {
+    if (admins.length) {
       return res.status(200).json({
         message: 'Showing admins.',
         data: admins,

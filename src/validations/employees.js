@@ -28,8 +28,7 @@ const employee = (req, res, next) => {
       .optional(),
     email: Joi.string()
       .email()
-      .message('Your email must be a valid email')
-      .required(),
+      .message('Your email must be a valid email'),
     password: Joi.string()
       .min(8)
       .message('Password must have between 8 and 12 characters')
@@ -38,8 +37,7 @@ const employee = (req, res, next) => {
       .pattern(/[a-zA-Z]/)
       .message('Password must have at least 1 letter')
       .pattern(/[0-9]/)
-      .message('Password must have at least 1 number')
-      .required(),
+      .message('Password must have at least 1 number'),
     dateOfBirth: Joi.date()
       .max((Date.now() - (1000 * 60 * 60 * 24 * 365 * 18)))
       .message('You must be more than 18 years old')
