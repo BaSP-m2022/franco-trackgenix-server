@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "f26f0381-a26f-41c4-ade1-203b23663e1f",
+		"_postman_id": "641b0ca5-09be-4661-ba3f-0b7b7733acd4",
 		"name": "franco-trackgenix-server Copy",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "11310572"
+		"_exporter_id": "20837997"
 	},
 	"item": [
 		{
@@ -13,7 +13,13 @@
 					"name": "getAll",
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Token",
+								"value": "{{Token}}",
+								"type": "text"
+							}
+						],
 						"url": {
 							"raw": "{{URL}}/admins",
 							"host": [
@@ -30,7 +36,13 @@
 					"name": "getById",
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "token",
+								"value": "{{Token}}",
+								"type": "text"
+							}
+						],
 						"url": {
 							"raw": "{{URL}}/admins/:id",
 							"host": [
@@ -54,7 +66,13 @@
 					"name": "edit",
 					"request": {
 						"method": "PUT",
-						"header": [],
+						"header": [
+							{
+								"key": "token",
+								"value": "{{Token}}",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "{\r\n    \"firstName\": \"laura\",\r\n    \"lastName\": \"sammartino\",\r\n    \"email\": \"laurasammartino@hotmail.com\",\r\n    \"password\": \"coasa123\"\r\n}",
@@ -87,7 +105,13 @@
 					"name": "delete",
 					"request": {
 						"method": "DELETE",
-						"header": [],
+						"header": [
+							{
+								"key": "token",
+								"value": "{{Token}}",
+								"type": "text"
+							}
+						],
 						"url": {
 							"raw": "{{URL}}/admins/:id",
 							"host": [
@@ -122,7 +146,13 @@
 					],
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "token",
+								"value": "{{Token}}",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "{\r\n    \"firstName\": \"laura\",\r\n    \"lastName\": \"sammartino\",\r\n    \"email\": \"laurasammartino@hotmail.com\",\r\n    \"password\": \"coasa123\"\r\n}",
@@ -153,7 +183,13 @@
 					"name": "getAll",
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "token",
+								"value": "{{Token}}",
+								"type": "text"
+							}
+						],
 						"url": {
 							"raw": "{{URL}}/super-admins",
 							"host": [
@@ -170,7 +206,13 @@
 					"name": "getById",
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "token",
+								"value": "{{Token}}",
+								"type": "text"
+							}
+						],
 						"url": {
 							"raw": "{{URL}}/super-admins/:id",
 							"host": [
@@ -194,7 +236,13 @@
 					"name": "edit",
 					"request": {
 						"method": "PUT",
-						"header": [],
+						"header": [
+							{
+								"key": "token",
+								"value": "{{Token}}",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "{\r\n    \"password\": \"iH4trShell\",\r\n    \"email\": \"rikitika@prip.com\",\r\n    \"firstName\": \"Francisco\",\r\n    \"lastName\": \"Juanse\"\r\n}",
@@ -227,7 +275,13 @@
 					"name": "delete",
 					"request": {
 						"method": "DELETE",
-						"header": [],
+						"header": [
+							{
+								"key": "token",
+								"value": "{{Token}}",
+								"type": "text"
+							}
+						],
 						"url": {
 							"raw": "{{URL}}/super-admins/:id",
 							"host": [
@@ -251,7 +305,13 @@
 					"name": "create",
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "token",
+								"value": "{{Token}}",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "{\r\n    \"password\": \"iH4trShell\",\r\n    \"email\": \"rikitika@prip.com\",\r\n    \"firstName\": \"Francisco\",\r\n    \"lastName\": \"Juanse\"\r\n}",
@@ -276,154 +336,19 @@
 			]
 		},
 		{
-			"name": "tasks",
-			"item": [
-				{
-					"name": "getAll",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{URL}}/tasks",
-							"host": [
-								"{{URL}}"
-							],
-							"path": [
-								"tasks"
-							],
-							"query": [
-								{
-									"key": "description",
-									"value": "Updated task 5.0",
-									"disabled": true
-								},
-								{
-									"key": "workedHours",
-									"value": "",
-									"disabled": true
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "getById",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{URL}}/tasks/:id",
-							"host": [
-								"{{URL}}"
-							],
-							"path": [
-								"tasks",
-								":id"
-							],
-							"variable": [
-								{
-									"key": "id",
-									"value": null
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "edit",
-					"request": {
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"description\": \"Test an app\",\r\n    \"workedHours\": 10,\r\n    \"projectId\": \"6298dd9d11ed617320cb4468\",\r\n    \"date\": \"2023-02-02\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{URL}}/tasks/:id",
-							"host": [
-								"{{URL}}"
-							],
-							"path": [
-								"tasks",
-								":id"
-							],
-							"variable": [
-								{
-									"key": "id",
-									"value": null
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "delete",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "{{URL}}/tasks/:id",
-							"host": [
-								"{{URL}}"
-							],
-							"path": [
-								"tasks",
-								":id"
-							],
-							"variable": [
-								{
-									"key": "id",
-									"value": null
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "create",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"description\": \"Test an app\",\r\n    \"workedHours\": 10,\r\n    \"projectId\": \"6298dd9d11ed617320cb4468\",\r\n    \"date\": \"2023-02-02\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{URL}}/tasks",
-							"host": [
-								"{{URL}}"
-							],
-							"path": [
-								"tasks"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
 			"name": "employees",
 			"item": [
 				{
 					"name": "getAll",
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "token",
+								"value": "{{Token}}",
+								"type": "text"
+							}
+						],
 						"url": {
 							"raw": "{{URL}}/employees",
 							"host": [
@@ -467,7 +392,13 @@
 					"name": "getById",
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "token",
+								"value": "{{Token}}",
+								"type": "text"
+							}
+						],
 						"url": {
 							"raw": "{{URL}}/employees/:id",
 							"host": [
@@ -491,7 +422,13 @@
 					"name": "edit",
 					"request": {
 						"method": "PUT",
-						"header": [],
+						"header": [
+							{
+								"key": "token",
+								"value": "{{Token}}",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "{\r\n    \"firstName\": \"Prueba\",\r\n    \"lastName\": \"Post\",\r\n    \"email\": \"prueba@gmail.com\",\r\n    \"dni\": \"12345678\",\r\n    \"password\": \"a1Asdwe1\",\r\n    \"dateOfBirth\": \"05-05-1985\"\r\n}",
@@ -531,7 +468,13 @@
 					"name": "delete",
 					"request": {
 						"method": "DELETE",
-						"header": [],
+						"header": [
+							{
+								"key": "token",
+								"value": "{{Token}}",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": ""
@@ -559,10 +502,16 @@
 					"name": "create",
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "token",
+								"value": "{{Token}}",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"firstName\": \"Prueba\",\r\n    \"lastName\": \"Post\",\r\n    \"email\": \"prueba@gmail.com\",\r\n    \"dni\": \"12345678\",\r\n    \"password\": \"a1Asdwe1\",\r\n    \"dateOfBirth\": \"05-05-1985\"\r\n}",
+							"raw": "{\r\n    \"firstName\": \"Prueba\",\r\n    \"lastName\": \"Post\",\r\n    \"email\": \"prueba@gmail.com\",\r\n    \"dni\": \"12345678\",\r\n    \"password\": \"a1234567\",\r\n    \"dateOfBirth\": \"05-05-1985\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -590,7 +539,13 @@
 					"name": "getAll",
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "token",
+								"value": "{{Token}}",
+								"type": "text"
+							}
+						],
 						"url": {
 							"raw": "{{URL}}/time-sheets",
 							"host": [
@@ -607,7 +562,13 @@
 					"name": "getById",
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "token",
+								"value": "{{Token}}",
+								"type": "text"
+							}
+						],
 						"url": {
 							"raw": "{{URL}}/time-sheets/:id",
 							"host": [
@@ -631,7 +592,13 @@
 					"name": "edit",
 					"request": {
 						"method": "PUT",
-						"header": [],
+						"header": [
+							{
+								"key": "token",
+								"value": "{{Token}}",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "{\r\n    \"tasks\": [\r\n        {\r\n            \"description\": \"Test an app\",\r\n            \"workedHours\": 10,\r\n            \"projectId\": \"6298dd9d11ed617320cb4468\",\r\n            \"date\": \"2023-02-02T00:00:00.000Z\"\r\n        },\r\n        {\r\n            \"description\": \"Test an app\",\r\n            \"workedHours\": 111,\r\n            \"projectId\": \"6298dd9d11ed617320cb4468\",\r\n            \"date\": \"2023-02-02T00:00:00.000Z\"\r\n        }\r\n    ],\r\n    \"startDate\": \"2022-07-04T18:02:23.412Z\",\r\n    \"employeeId\": \"62b93b6f8186c3f9a35f7ed8\"\r\n}",
@@ -664,7 +631,13 @@
 					"name": "delete",
 					"request": {
 						"method": "DELETE",
-						"header": [],
+						"header": [
+							{
+								"key": "token",
+								"value": "{{Token}}",
+								"type": "text"
+							}
+						],
 						"url": {
 							"raw": "{{URL}}/time-sheets/:id",
 							"host": [
@@ -688,7 +661,13 @@
 					"name": "create",
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "token",
+								"value": "{{Token}}",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "{\r\n    \"tasks\": [\r\n        {\r\n            \"description\": \"Test an app\",\r\n            \"workedHours\": 10,\r\n            \"projectId\": \"6298dd9d11ed617320cb4468\",\r\n            \"date\": \"2023-02-02\"\r\n        },\r\n        {\r\n            \"description\": \"Test an app\",\r\n            \"workedHours\": 11,\r\n            \"projectId\": \"6298dd9d11ed617320cb4468\",\r\n            \"date\": \"2023-02-02\"\r\n        },\r\n        {\r\n            \"description\": \"Test an app\",\r\n            \"workedHours\": 99,\r\n            \"projectId\": \"6298dd9d11ed617320cb4468\",\r\n            \"date\": \"2023-02-02\"\r\n        }\r\n    ],\r\n    \"startDate\": \"2022-07-04T18:02:23.412Z\",\r\n    \"employeeId\": \"62b93b6f8186c3f9a35f7ed8\"\r\n}",
@@ -719,7 +698,13 @@
 					"name": "getAll",
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "token",
+								"value": "{{Token}}",
+								"type": "text"
+							}
+						],
 						"url": {
 							"raw": "{{URL}}/projects",
 							"host": [
@@ -743,7 +728,13 @@
 					"name": "getById",
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "token",
+								"value": "{{Token}}",
+								"type": "text"
+							}
+						],
 						"url": {
 							"raw": "{{URL}}/projects/:id",
 							"host": [
@@ -767,7 +758,13 @@
 					"name": "put",
 					"request": {
 						"method": "PUT",
-						"header": [],
+						"header": [
+							{
+								"key": "token",
+								"value": "{{Token}}",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "{\r\n    \"name\": \"mas\",\r\n    \"status\": \"active\",\r\n    \"description\": \"asdsdfadasd\",\r\n    \"employees\": [{\r\n        \"employeeId\": \"62950d38c13d310fcb2702c9\",\r\n        \"rate\": 123.12,\r\n        \"role\": \"DEV\"\r\n    }],\r\n    \"startDate\": \"5-17-2020\"\r\n}",
@@ -800,7 +797,13 @@
 					"name": "delete",
 					"request": {
 						"method": "DELETE",
-						"header": [],
+						"header": [
+							{
+								"key": "token",
+								"value": "{{Token}}",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "",
@@ -834,10 +837,16 @@
 					"name": "create",
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "token",
+								"value": "{{Token}}",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"mas\",\r\n    \"status\": \"active\",\r\n    \"description\": \"asdsdfadasd\",\r\n    \"employees\": [{\r\n        \"employeeId\": \"62950d38c13d310fcb2702c9\",\r\n        \"rate\": 123.12,\r\n        \"role\": \"DEV\"\r\n    }],\r\n    \"startDate\": \"5-17-2020\"\r\n}",
+							"raw": "{\r\n    \"name\": \"mas\",\r\n    \"status\": \"active\",\r\n    \"description\": \"asdsdfadasd\",\r\n    \"employees\": [{\r\n        \"employeeId\": \"62d3319edd4e9f2a5a43306e\",\r\n        \"rate\": 123.12,\r\n        \"role\": \"DEV\"\r\n    }],\r\n    \"startDate\": \"5-17-2020\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -900,6 +909,10 @@
 			"key": "URL",
 			"value": "localhost:4000",
 			"type": "string"
+		},
+		{
+			"key": "Token",
+			"value": "eyJhbGciOiJSUzI1NiIsImtpZCI6ImJmMWMyNzQzYTJhZmY3YmZmZDBmODRhODY0ZTljMjc4ZjMxYmM2NTQiLCJ0eXAiOiJKV1QifQ.eyJyb2xlIjoiU1VQRVItQURNSU4iLCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vYmFzcC0yMDIyLXRyYWNrZ2VuaXgtMTNmNDkiLCJhdWQiOiJiYXNwLTIwMjItdHJhY2tnZW5peC0xM2Y0OSIsImF1dGhfdGltZSI6MTY1ODg0NzIyNCwidXNlcl9pZCI6IldGcDN3RGJEb3FlVnVPelJSQWoxVEFmUUFmQzIiLCJzdWIiOiJXRnAzd0RiRG9xZVZ1T3pSUkFqMVRBZlFBZkMyIiwiaWF0IjoxNjU4ODQ3MjI0LCJleHAiOjE2NTg4NTA4MjQsImVtYWlsIjoibm9ib3JyYXJAaG90bWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6ZmFsc2UsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZW1haWwiOlsibm9ib3JyYXJAaG90bWFpbC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJwYXNzd29yZCJ9fQ.USqEuHQ-3iombv5diTHSyv0eDrmgmm1pkc9sWpRo8f74iFYW8JAYJk5cg5jL9S9sXfsQSSQ-YkmhnXiB0JMM_I-ATq_lFEOlX-sLLVsiH40hOS58qFgA8Cxyy8bz7iQtw9LE67P2-g1Qos6HQsk2XYixqt-Xd0K52jxhbdaOOtnC_mQTs1QCyYrRkBBLZ_iajfiCi09dqwHO3oBiYjbfvbtHOiyGg3LePMmMftRrAUD8LCx-PuP6txpAnTR56QDCScHeAY4MYQcT-F0BAQDLMKGcRhwFa4kojtJkZjOT6MXTo08H8niP1nuKUeBVNoCbPaiSi8dqIvKjBoxu_mT9Iw"
 		}
 	]
 }

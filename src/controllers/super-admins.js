@@ -30,7 +30,7 @@ const getById = async (req, res) => {
   try {
     if (req.params.id) {
       const sAdmin = await SuperAdmin.findById(req.params.id).find({ isDeleted: false });
-      if (!sAdmin) {
+      if (!sAdmin.length) {
         return res.status(404).json({
           message: 'Super Admin not found, invalid ID',
           data: undefined,

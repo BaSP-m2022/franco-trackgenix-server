@@ -33,7 +33,7 @@ const getById = async (req, res) => {
       .find({ isDeleted: false })
       .populate('tasks.projectId', { name: 1 })
       .populate('employeeId', { firstName: 1, lastName: 1 });
-    if (!byId) {
+    if (!byId.length) {
       return res.status(404).json({
         message: 'Time-sheet was not found',
         data: undefined,

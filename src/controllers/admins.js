@@ -3,11 +3,11 @@ import Admin from '../models/Admins';
 
 const getAllAdmins = async (req, res) => {
   try {
-    const allAdmins = await Admin.find({ ...req.query, isDeleted: false });
-    if (allAdmins.length > 0) {
+    const admins = await Admin.find({ ...req.query, isDeleted: false });
+    if (!admins.length) {
       return res.status(200).json({
         message: 'Showing admins.',
-        data: allAdmins,
+        data: admins,
         error: false,
       });
     }
@@ -18,7 +18,7 @@ const getAllAdmins = async (req, res) => {
     });
   } catch (error) {
     return res.status(500).json({
-      message: error.message,
+      message: `MongoDB Error: ${error.message}`,
       data: undefined,
       error: true,
     });
@@ -29,7 +29,7 @@ const getAdminById = async (req, res) => {
   try {
     if (req.params.id) {
       const admin = await Admin.findById(req.params.id).find({ isDeleted: false });
-      if (!admin) {
+      if (!admin.length) {
         return res.status(404).json({
           message: `Could not found an admin by the id of ${req.params.id}.`,
           data: undefined,
@@ -49,7 +49,7 @@ const getAdminById = async (req, res) => {
     });
   } catch (error) {
     return res.status(500).json({
-      message: `Could not found an admin by the id of ${req.params.id}.`,
+      message: `MongoDB Error: ${error.message}`,
       data: undefined,
       error: true,
     });
@@ -123,7 +123,7 @@ const editAdmin = async (req, res) => {
     });
   } catch (error) {
     return res.status(500).json({
-      message: error.message,
+      message: `MongoDB Error: ${error.message}`,
       data: undefined,
       error: true,
     });
