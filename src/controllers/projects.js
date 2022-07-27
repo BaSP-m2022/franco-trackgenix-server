@@ -118,7 +118,7 @@ const getById = async (req, res) => {
         firstName: 1,
         lastName: 1,
       });
-      if (!project) {
+      if (!project.length) {
         return res.status(404).json({
           message: 'Project not found',
           data: undefined,
@@ -182,7 +182,7 @@ const getByEmployeeId = async (req, res) => {
         },
       },
     ]);
-    if (filteredProjects.length === 0) {
+    if (!filteredProjects.length) {
       return res.status(404).json({
         message: 'Project not found with those parameters',
         data: undefined,

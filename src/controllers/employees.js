@@ -5,7 +5,7 @@ const getById = async (req, res) => {
   try {
     if (req.params.id) {
       const employeeById = await Employee.findById(req.params.id).find({ isDeleted: false });
-      if (!employeeById) {
+      if (!employeeById.length) {
         return res.status(404).json({
           message: 'Employee was not found',
           data: undefined,
@@ -25,7 +25,7 @@ const getById = async (req, res) => {
     });
   } catch (error) {
     return res.status(500).json({
-      message: error.message,
+      message: `MongoDB Error: ${error.message}`,
       data: undefined,
       error: true,
     });
